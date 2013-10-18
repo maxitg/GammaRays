@@ -293,12 +293,12 @@ Now, when we know $p$, we can compute many different things with it. Examples in
 \end{itemize}
 
 \subsection{Stretching factor}
-The stretching factor for a continuous light curve is defined exactly like the stretching factor for a discrete one. It is the value $\kappa$ which makes the KS-distance minimal:
+The stretching factor for a continuous light curve is defined exactly like the stretching factor for a discrete one. It is the value of $\kappa$ which makes the KS-distance minimal:
 \begin{equation}
 \kappa\left(z,\chi; \omega_1, \omega_2, \omega_3\right) = \argmin_\kappa \max_\tau\left| \Phi\left(z,\chi; 0,\tau; \omega_1,\omega_2\right) - \Phi\left( z,\chi; 0,\kappa \tau; \omega_2,\omega_3 \right) \right|
 \end{equation}
 
-But the maximum of an absolute value cannot be differentiated, so it is a complicated thing to compute numerically. Lets instead rewrite the expression for $\kappa$ in terms of a positive and a negative KS-distances:
+The maximum of an absolute value cannot be differentiated, so the computation of $\kappa$ by the given definition is complicated. Lets instead rewrite this expression in terms of a positive and a negative KS-distances:
 \begin{align*}
 D_+\left(z,\chi; \kappa; \omega_1, \omega_2, \omega_3\right) &= \max_\tau\left( \Phi\left(z,\chi; 0,\tau; \omega_1,\omega_2\right) - \Phi\left( z,\chi; 0,\kappa \tau; \omega_2,\omega_3 \right) \right) \\
 D_-\left(z,\chi; \kappa; \omega_1, \omega_2, \omega_3\right) &= \min_\tau\left( \Phi\left(z,\chi; 0,\tau; \omega_1,\omega_2\right) - \Phi\left( z,\chi; 0,\kappa \tau; \omega_2,\omega_3 \right) \right) \\
@@ -309,11 +309,11 @@ Take note that $\Phi$ monotonously increases with $\tau$. It implies that $D_+$ 
 \begin{equation}
 D_+\left(z,\chi; \kappa; \omega_1, \omega_2, \omega_3\right) = -D_-\left(z,\chi; \kappa; \omega_1, \omega_2, \omega_3\right)
 \end{equation}
-And this value of $\kappa$ also makes the $\max\left({D_+, -D_-}\right)$ minimal, since $D_+$ monotonously increase, and $-D_-$ monotonously decrease with $\kappa$.
+And this value of $\kappa$ also makes the $\max\left({D_+, -D_-}\right)$ minimal, since $D_+$ monotonously decrease, and $-D_-$ monotonously increase with $\kappa$.
 
-So we have now a simplified way to compute $\kappa$ by solving an equation instead of computing the minimum. And $\Phi$ can be differentiated, which makes it easier to compute maximums and minimums of their differences.
+So we have now a simpler way to compute $\kappa$ by solving an equation instead of computing the minimum. And $\Phi$ can be differentiated, which makes it easier to compute maximums and minimums of their differences.
 
-Being able to compute the stretching factor, we could now compare our model predictions with observations given the position of an observer. However, we don't know the observer's off-axis angle $\chi$, so we cannot check the stretching factor prediction directly. Instead, we will focus on a series of tests, which will ensure that our model doesn't contradict existing observations. These tests will be discussed in the following sections.
+Being able to compute the stretching factor, we could now compare our model predictions with observations given the position of an observer. We don't know the observer's off-axis angle $\chi$, however, so we cannot check the stretching factor prediction directly. Instead, we will focus on a series of tests, which will ensure that our model doesn't contradict existing observations. These tests will be discussed in the following sections.
 
 \subsection{Total energy}
 \subsection{Spectrum}
