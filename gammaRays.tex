@@ -1,0 +1,328 @@
+\documentclass{article}
+
+\usepackage{commath}
+\usepackage{fullpage}
+
+\allowdisplaybreaks
+
+\DeclareMathOperator*{\argmin}{argmin}
+
+\author{Maxim Piskunov}
+\title{Spectral Lags in Very High Energy Emission of Gamma Ray Bursts}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+\section{Observations}
+
+\section{Model}
+
+\subsection{Assumptions}
+
+To understand the observed spectral lag, lets explore geometry of the jet. First of all, lets make some assumptions:
+\begin{enumerate}
+\item{Time $t = 0$, a spherical shell of plasma is emitted. The center is called the central engine.}
+\item{The shell points propagate with a constant velocity $v \sim 1$, so at the time $t$ the radius of the shall is $v t$.}
+\item{Each point of the shell is an isotropic radiator in its reference frame.}
+\item{
+	The radiation intensity is a function of the radiator position and the radiation frequency:
+	\begin{equation}
+		\eta\left(r,\theta,\omega\right) = 
+		\frac{\eta_0}{1 + \left(\frac{r}{r_0}\right)^n}
+		\exp\left(
+			-\left(\frac{\theta}{\theta_0}\right)^2
+			\left(\frac{\omega}{\omega_0}\right)^{-2k}
+		\right)
+		\left(\frac{\omega}{\omega_0}\right)^\alpha
+	\end{equation}
+	$\eta$ is a number of particles emitted per volume per frequency. It is a function of the distance $r$ from the central engine, of the off-axis angle $\theta$, and of the radiation frequency $\omega$.
+}
+\end{enumerate}
+
+The burst is fully specified by the following set of parameters:
+\begin{itemize}
+\item{$v$, the velocity of the shell, $\gamma = \frac{1}{\sqrt{1-v^2}} \gg 1$;}
+\item{$\eta_0$, which defines the intensity scale;}
+\item{$r_0$, the characteristic jet length; $r_0 \ll \frac{1}{H\left(0\right)}$, $H\left(t\right)$ is the Hubble parameter;}
+\item{$n$, which determines the sharpness of the jet end, $n > 3$;}
+\item{$\omega_0$, a characteristic radiation frequency;}
+\item{$\theta_0$, the opening angle of the jet for radiation with frequency $\omega_0$, $\theta_0 \ll 1$;}
+\item{$k$, which determines how much the opening angle changes with frequency, $k < 0$;}
+\item{$\alpha$, the bare spectral index.}
+\end{itemize}
+
+Now we have all we need to calculate the observed light curves, and then the stretching factors.
+
+\subsection{Photon observation time}
+
+Lets begin by calculating a time at which some particular photon is observed. This time is a function of the radiator location $\left(r, \theta, \phi\right)$, as well as the observer location $\left(d, \chi, 0\right)$. (Here we choose coordinates so that the rotation angle of the observer is $0$.) Lets assume for now that the observer is far enough to resolve the jet geometry, yet close enough so that the expansion of space is negligible. This assumption allows us to ignore the effects of cosmology for this calculation.
+
+The observation time is a sum of two terms: the time interval from $t = 0$ to the photon emission (the plasma time), and the time interval between the emission and the observation (the photon time):
+\begin{equation*}
+t\left(r, \theta, \phi, d, \chi\right) = t_\text{plasma}\left(r\right) + t_\text{photon}\left(r, \theta, \phi, d, \chi\right)
+\end{equation*}
+$t_\text{plasma}$ is easy to compute since plasma moves with uniform velocity:
+\begin{equation*}
+t_\text{plasma}\left(r\right) = \frac{r}{v}
+\end{equation*}
+$t_\text{photon}$ is a distance between the radiator and the observer:
+\begin{align*}
+t_\text{photon}\left(r, \theta, \phi, d, \chi\right) &= \sqrt{
+	\left( d \cos\chi - r \cos\theta \right)^2 +
+	\left( d \sin\chi - r \sin\theta \cos\phi \right)^2 +
+	\left( r \sin\theta \sin\phi \right)^2
+} \\
+&= d\sqrt{
+	\left( \cos\chi - \frac{r}{d} \cos\theta \right)^2 +
+	\left( \sin\chi - \frac{r}{d} \sin\theta \cos\phi \right)^2 +
+	\left(\frac{r}{d} \sin\theta \sin\phi \right)^2
+} \\
+&\sim d\sqrt{
+	\cos^2{\chi} - 2\frac{r}{d} \cos\theta \cos\chi + \sin^2\chi - 2\frac{r}{d} \sin\theta \cos\phi \sin\chi
+} \\
+&\sim d\left(
+	1 - 
+	\frac{r}{d} \left( \cos\theta \cos\chi + \sin\theta \cos\phi \sin\chi \right)
+\right) \\
+&= d - r\left( \cos\theta \cos\chi + \sin\theta \cos\phi \sin\chi \right)
+\end{align*}
+Combining these expressions together, we get:
+\begin{equation*}
+t\left(r, \theta, \phi, d, \chi\right) = d + r\left( \frac{1}{v} - \cos\theta \cos\chi - \sin\theta \cos\phi \sin\chi \right)
+\end{equation*}
+Since no photon can reach the observer faster than the speed of light, and the photons emitted at $t = 0$ reach the observer at $t = d$, this time $t = d$ is the start of the observer's light curve. So we can define a more convenient time origin:
+\begin{equation*}
+\tau \left(r, \theta, \phi, \chi\right) = t\left(r, \theta, \phi, d, \chi\right) - d = r\left( \frac{1}{v} - \cos\theta \cos\chi - \sin\theta \cos\phi \sin\chi \right)
+\end{equation*}
+Finally, we can use the spherical law of cosines to write this in terms of the great-circle distance $\sigma\left( \theta, \phi, \chi \right)$ between the points $\left( \theta, \phi \right)$ and $\left( \chi, 0 \right)$:
+\begin{equation}
+\tau \left(r, \theta, \phi, \chi\right) = r\left( \frac{1}{v} - \cos\sigma\left( \theta, \phi, \chi \right) \right)
+\end{equation}
+
+Note that $\tau$ doesn't depend on $d$ anymore. But this is only true if the scale factor did not change since emission to observation. For a distant observer we should account for the change in the scale factor, which will stretch the distances between photons:
+\begin{equation}
+\tau \left(r, \theta, \phi, z, \chi \right) = r\left( \frac{1}{v} - \cos\sigma\left( \theta, \phi, \chi \right) \right) \left( 1 + z \right)
+\end{equation}
+Here $z$ is the redshift of the burst from the point of view of the observer.
+
+\subsection{Cosmology}
+Before calculating light curves and stretching factors, we will need some equations from cosmology.
+
+First of all, the metric of the expanding Universe:
+\begin{equation}
+\dif s^2 = -\dif t^2 + a^2\left(t\right) \dif r^2 + a^2\left(t\right) r^2 \dif \Omega_2
+\end{equation}
+We define $a\left(t_\text{obs}\right) = 1$, where $t_\text{obs}$ is the observation time.
+
+We need to understand how the scale factor changes with time. For that we assume that the energy content of the Universe consists of matter $\Omega_m$ and vacuum energy $\Omega_\Lambda$ only, so that the Friedmann equation takes the following form:
+\begin{align*}
+\left( \frac{\dot{a}\left(t\right)}{a\left(t\right)} \right)^2 &= \Omega_m H_\text{obs}^2 \frac{1}{a^3\left(t\right)} + H_\text{obs}^2 \Omega_\Lambda \\
+\dot{a}\left(t\right) &= a\left(t\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda} \\
+\dif t &= \frac{\dif a}{a\left(t\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}}
+\end{align*}
+Here $H_\text{obs} = H\left(t_\text{obs}\right) = \dot{a}\left( t_\text{obs} \right)$ is the Hubble parameter at the observation time.
+
+We also need to know the areas of two spheres: the photon sphere, the sphere over which the photons emitted in a particular burst are spread; and the bursts sphere, the sphere over which the bursts at a particular redshift are distributed.
+
+Lets begin with the photon sphere. This sphere has the origin at $r = 0$ and $t = 0$, at the central engine of a particular burst. Taking $\dif s = 0$ and $\dif \Omega_2 = 0$ in the equation for metric, we get:
+\begin{equation*}
+\dif r = \frac{\dif t}{a\left(t\right)}
+\end{equation*}
+And now we integrate over time to find the observer's position:
+\begin{align*}
+r\left(t_\text{obs}\right) &= \int_0^{t_\text{obs}}\frac{\dif t}{a\left(t\right)} \\
+&= \int_{a\left(0\right)}^1\frac{\dif a}{a^2\left(t\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}} \\
+&= \frac{\, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{a^3\left(0\right) \Omega_\Lambda }\right)-a\left(0\right) \, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{\Omega_\Lambda }\right)}{a\left(0\right) H_\text{obs} \sqrt{\Omega_\Lambda }}
+\end{align*}
+Here $_2F_1\left(a, b; c; z\right) = \frac{\Gamma\left(c\right)}{\Gamma\left(b\right)\Gamma\left(c-b\right)}\int_0^1 \frac{t^{b-1}\left(1-t\right)^{c-b-1}}{\left(1-t z\right)^a} \dif t$ is a hypergeometric function. Here $a\left(0\right) = \frac{1}{1+z}$, so, finally,
+\begin{equation}
+r\left(z\right) = \frac{\left(1+z\right)\, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{\Omega_\Lambda}\left(1+z\right)^3\right) - \, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{\Omega_\Lambda }\right)}{H_\text{obs} \sqrt{\Omega_\Lambda }}
+\end{equation}
+The area of the photon sphere is then:
+\begin{equation}
+A_\text{ph}\left(z\right) = 4 \pi a^2\left(t_\text{obs}\right) r^2\left(z\right) = 4 \pi r^2\left(z\right)
+\end{equation}
+
+The second sphere is the bursts sphere. It has its origin at the observer's position. We define a new primed set of coordinates, so that $r' = 0$ and $t' = 0$ at the observation event. We can relate the primed coordinates of the burst to the observer's unprimed coordinates:
+\begin{align*}
+t'_\text{burst} &= -t_\text{obs} \\
+r'\left(t'_\text{burst}\right) &= r'\left(-t_\text{obs}\right) = \int_{-t_\text{obs}}^0\frac{\dif t'}{a'\left(t'\right)} = \int_0^{t_\text{obs}}\frac{\dif t}{a\left(t\right)} = r\left(t_\text{obs}\right)
+\end{align*}
+We see that the radius of the bursts sphere is the same as the radius of the photon sphere. Finally, the area is:
+\begin{equation}
+A_\text{b}\left(z\right) = 4 \pi a'^2\left( -t_\text{obs} \right) r^2\left(z\right) = 4 \pi a^2\left(0\right) r^2\left(z\right) = \frac{4 \pi r^2\left(z\right)}{\left(1+z\right)^2}
+\end{equation}
+
+We will need to know one more thing about the bursts sphere -- the volume of the infinitesimal shell surrounding it. For that we can again use the metric:
+\begin{align}
+\dif V\left(z\right) &= - A_\text{b}\left(z\right) a\left(0\right) \dif r \nonumber\\
+&= - A_\text{b}\left(z\right) a\left(0\right) \frac{\dif a}{a^2\left(0\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}} \nonumber\\
+&= A_\text{b}\left(z\right) \frac{\frac{1}{\left(1+z\right)^2}\dif z \left(1+z\right)}{H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}} \nonumber\\
+&= A_\text{b}\left(z\right) \frac{1}{\left(1+z\right)} \frac{\dif z}{H_\text{obs} \sqrt{\Omega_m\left(1+z\right)^3 + \Omega_\Lambda}} \nonumber\\
+&= \frac{4\pi r^2\left(z\right)}{\left(1+z\right)^3} \frac{\dif z}{H_\text{obs} \sqrt{\Omega_m\left(1+z\right)^3 + \Omega_\Lambda}}
+\end{align}
+
+\subsection{Light curve}
+We now know enough to compute the observable quantity - the number of observed photons $p$. For that we need to integrate the radiation intensity $\eta$ over four things. Two burst-related things: radiator positions and frequencies at emission. Two observer-related things: observation time and frequencies at observation. We relate the first two and the second two with the delta functions:
+\begin{align}
+p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det}}{A_\text{ph}\left(z\right)} \int_0^\infty \dif r \int_0^{\pi} r \dif \theta \int_0^{2\pi} r \sin{\theta} \dif \phi \int_0^\infty \dif \omega' \int_{\tau_1}^{\tau_2} \dif \tau \int_{\omega_1}^{\omega_2} \dif \omega \, \eta\left( r, \theta, \omega' \right) \nonumber\\
+&\qquad {} \times \underbrace{\frac{1}{\gamma^2\left( 1 - v \cos\sigma\left(\theta, \phi, \chi\right) \right)^2}}_{\text{aberration}} \underbrace{\frac{1}{\gamma\left( 1 - v \cos\sigma\left(\theta, \phi, \chi\right) \right)}}_{\text{time dilation}} \nonumber\\
+&\qquad {} \times \delta\left( \frac{\omega'}{\underbrace{\gamma \left( 1 - v\cos\sigma\left(\theta, \phi, \chi\right) \right)}_{\text{relativistic shift}} \underbrace{\left(1+z\right)}_{\text{cosmological shift}}} - \omega \right) \nonumber\\
+&\qquad {} \times \delta\left( \tau - r\left( \frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right) \right) \left(1+z\right) \right)
+\end{align}
+Here $A_\text{det}$ is the effective area of the detector. We have taken account for the four relativistic effects, which affect intensities and frequencies of the radiators: relativistic aberration; time dilation of the radiators relative to the observer; relativistic blue/redshift; and cosmological redshift.
+
+We can use the delta functions to do the integrals over $\omega'$ and $r$. For that lets transform the first one:
+\begin{align*}
+\delta\left( \frac{\omega'}{\gamma \left( 1 - v\cos\sigma \right)\left(1+z\right)} - \omega \right) &= \delta\left( \frac{1}{\gamma\left( 1-v\cos\sigma \right)\left(1+z\right)} \left( \omega' - \gamma\left( 1 - v\cos\sigma \right) \left(1+z\right) \omega \right) \right) \\
+&= \gamma\left( 1 - v\cos\sigma \right) \left(1+z\right) \delta\left( \omega' - \gamma\left( 1 - v\cos\sigma \right) \left(1+z\right) \omega \right)
+\end{align*}
+And the second one:
+\begin{align*}
+\delta\left(\tau - r\left( \frac{1}{v} - \cos\sigma \right)\left(1+z\right)\right) &= \delta\left( \left( \frac{1}{v} - \cos\sigma \right) \left( 1+z \right) \left( r - \frac{\tau}{\left(\frac{1}{v} - \cos\sigma\right)\left(1+z\right)} \right) \right) \\
+&= \frac{1}{\left(\frac{1}{v} - \cos\sigma\right)\left(1+z\right)} \delta\left( r - \frac{\tau}{\left(\frac{1}{v} - \cos\sigma\right)\left(1+z\right)} \right)
+\end{align*}
+After the transformations the expression for $p$ takes the following form:
+\begin{align}
+p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det}}{A_\text{ph}\left(z\right)} \int_0^{\pi} \dif \theta \int_0^{2\pi} \dif \phi \int_{\tau_1}^{\tau_2} \dif \tau \int_{\omega_1}^{\omega_2} \dif \omega \nonumber\\
+&\qquad {} \times \eta\left( \frac{\tau}{\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)\left(1+z\right)}, \theta, \gamma\left( 1 - v\cos\sigma\left(\theta, \phi, \chi\right) \right)\left(1+z\right)\omega  \right) \nonumber\\
+&\qquad {} \times \frac{\tau^2 \sin\theta}{\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)^3 \left(1+z\right)^2 \gamma^2 \left(1-v\cos\sigma\left(\theta, \phi, \chi\right)\right)^2} \nonumber\\
+&= \frac{A_\text{det}}{A_\text{ph}\left(z\right)} \frac{1}{v^2 \gamma^2 \left(1+z\right)^2} \int_{\tau_1}^{\tau_2} \dif \tau \, \tau^2 \int_0^{\frac{\pi}{2}} \dif \theta \int_0^{2\pi} \dif \phi \int_{\omega_1}^{\omega_2} \dif \omega \frac{\sin\theta}{\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)^5} \nonumber\\
+&\qquad {} \times \eta\left( \frac{\tau}{\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)\left(1+z\right)}, \theta, \gamma\left( 1 - v\cos\sigma\left(\theta, \phi, \chi\right) \right)\left(1+z\right)\omega  \right)
+\end{align}
+
+Furthermore, we can do the integrals over $\omega$ and $\tau$, if we write $\eta$ explicitly:
+\begin{align}
+p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det}}{A_\text{ph}\left(z\right)} \frac{1}{v^2 \gamma^2 \left(1+z\right)^2} \int_0^{\pi} \dif \theta \int_0^{2\pi} \dif \phi \int_{\omega_1}^{\omega_2} \dif \omega \int_{\tau_1}^{\tau_2} \dif \tau \, \tau^2 \frac{\sin\theta}{\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)^5} \nonumber\\
+&\qquad {} \times \frac{\eta_0}{1 + \left(\frac{\tau}{r_0\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)\left(1+z\right)}\right)^n} \nonumber\\
+&\qquad {} \times \exp\left(
+	-\left(\frac{\theta}{\theta_0}\right)^2
+	\left(\frac{\omega\gamma\left( 1 - v\cos\sigma\left(\theta, \phi, \chi\right) \right)\left(1+z\right)}{\omega_0}\right)^{-2k}
+\right) \nonumber\\
+&\qquad {} \times \left(\frac{\omega\gamma\left( 1 - v\cos\sigma\left(\theta, \phi, \chi\right) \right)\left(1+z\right)}{\omega_0}\right)^\alpha \nonumber\\
+&= \frac{A_\text{det}}{A_\text{ph}\left(z\right)} \frac{\eta_0}{\left(v\gamma\left(1+z\right)\right)^{2-\alpha}} \int_0^{\pi} \dif \theta \int_0^{2\pi} \dif \phi \frac{\sin\theta}{\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)^{5-\alpha}} \nonumber\\
+&\qquad {} \times \int_{\omega_1}^{\omega_2} \dif \omega \exp\left(
+	-\left(\frac{\theta}{\theta_0}\right)^2
+	\left(\frac{\omega\gamma\left( 1 - v\cos\sigma\left(\theta, \phi, \chi\right) \right)\left(1+z\right)}{\omega_0}\right)^{-2k}
+\right) \left(\frac{\omega}{\omega_0}\right)^\alpha \nonumber\\
+&\qquad {} \times \int_{\tau_1}^{\tau_2} \dif \tau \, \tau^2 \frac{1}{1 + \left(\frac{\tau}{r_0\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)\left(1+z\right)}\right)^n} \nonumber\\
+&= \frac{A_\text{det}}{A_\text{ph}\left(z\right)}
+\frac{\eta_0}{\left(v\gamma\left(1+z\right)\right)^{2-\alpha}}
+\int_0^{\pi} \dif \theta \int_0^{2\pi} \dif \phi \frac{\sin\theta}{\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)^{5-\alpha}} \nonumber\\
+&\qquad {} \times \left( I\left(z,\chi,\omega_2; \theta,\phi\right) - I\left(z,\chi,\omega_1; \theta,\phi\right) \right) \left( J\left(z,\chi,\tau_2; \theta,\phi\right) - J\left( z,\chi,\tau_1; \theta,\phi \right) \right)
+\end{align}
+Here $I$ and $J$ are the indefinite integrals over $\omega$ and $\tau$:
+\begin{align}
+I\left(z,\chi,\omega;\theta,\phi\right) &= \frac{
+	\omega
+	\left(\frac{\omega}{\omega_0}\right)^{\alpha }
+	E_{\frac{\alpha +1}{2 k}+1}\left(
+		\left(\frac{\theta}{\theta_0}\right)^2
+		\left(\frac{\omega}{\omega_0}\right)^{-2k}
+		\left(
+			\gamma \left(1-v \cos \sigma\left(\theta ,\phi ,\chi \right) \right) \left(1+z\right)
+		\right)^{-2 k}
+	\right)
+}{
+	2 k
+} \\
+J\left(z,\chi,\tau;\theta,\phi\right) &= \frac{\tau^3}{3} \,
+_2F_1\left(
+	1,
+	\frac{3}{n};
+	\frac{n+3}{n};
+	-\left(\frac{\tau}{
+		r_0 \left( \frac{1}{v} - \cos\sigma\left( \theta,\phi,\chi \right) \right) \left(1+z\right)
+	}\right)^n
+\right)
+\end{align}
+where $E_n$ function $E_n\left(x\right) = \int_1^\infty \frac{e^{-x t} \dif t}{t^n}$.
+
+The remaining integrals over $\theta$ and $\chi$ are hard to do symbolically, so we compute them numerically. To optimize this computation we can use the assumption of small $\theta$ and $\chi$, so that:
+\begin{align*}
+\sin\theta &\sim \theta \\
+\cos\sigma\left(\theta, \phi, \chi \right) &= \cos\theta \cos\chi + \sin\theta \sin\chi \cos\phi \sim 1 - \frac{\theta^2}{2} - \frac{\chi^2}{2} + \theta\chi\cos\phi
+\end{align*}
+Using that, and the fact that this integral is an even function of $\theta$, we arrive to the optimized expressions for $p$, $I$ and $J$:
+\begin{align}
+p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det}}{A_\text{ph}\left(z\right)}
+\frac{2\eta_0}{\left(v\gamma\left(1+z\right)\right)^{2-\alpha}}
+\int_0^{\infty} \dif \theta \int_0^{\pi} \dif \phi \frac{\theta}{\left(\frac{1}{v} - 1 + \frac{\theta^2}{2} + \frac{\chi^2}{2} - \theta\chi\cos\phi\right)^{5-\alpha}}\nonumber\\
+&\qquad {} \times \left( I\left(z,\chi,\omega_2; \theta,\phi\right) - I\left(z,\chi,\omega_1; \theta,\phi\right) \right) \left( J\left(z,\chi,\tau_2; \theta,\phi\right) - J\left( z,\chi,\tau_1; \theta,\phi \right) \right) \\
+I\left(z,\chi,\omega;\theta,\phi\right) &= \frac{
+	\omega
+	\left(\frac{\omega}{\omega_0}\right)^{\alpha }
+	E_{\frac{\alpha +1}{2 k}+1}\left(
+		\left(\frac{\theta}{\theta_0}\right)^2
+		\left(\frac{\omega}{\omega_0}\right)^{-2 k}
+		\left(
+			v \gamma \left(1+z\right) \left(\frac{1}{v} - 1 + \frac{\theta^2}{2} + \frac{\chi^2}{2} - \theta\chi\cos\phi \right)
+		\right)^{-2 k}
+	\right)
+}{
+	2 k
+} \\
+J\left(z,\chi,\tau;\theta,\phi\right) &= \frac{\tau^3}{3} \,
+_2F_1\left(
+	1,
+	\frac{3}{n};
+	\frac{n+3}{n};
+	-\left(\frac{\tau}{
+		r_0 \left( \frac{1}{v} -  1 + \frac{\theta^2}{2} + \frac{\chi^2}{2} - \theta\chi\cos\phi \right) \left(1+z\right)
+	}\right)^n
+\right)
+\end{align}
+
+Finally, we will need to compute limits of $p$ for $\omega_2 \rightarrow \infty$ and $\tau_2 \rightarrow \infty$. It requires us to know the limit of $I$ for $\omega \rightarrow \infty$ (we assumed that $k < 0$):
+\begin{equation}
+I\left(z,\chi,\infty;\theta,\phi\right) = \lim_{\omega \rightarrow \infty} I\left(z,\chi,\omega;\theta,\phi\right) = 0
+\end{equation}
+and the limit of $J$ for $\tau \rightarrow \infty$ ($n > 3$ by assumption):
+\begin{equation}
+J\left(z,\chi,\infty;\theta,\phi\right) = \lim_{\tau \rightarrow \infty} J\left(z,\chi,\tau;\theta,\phi\right) = \left(r_0 \left( \frac{1}{v} -  1 + \frac{\theta^2}{2} + \frac{\chi^2}{2} - \theta\chi\cos\phi \right) \left(1+z\right)\right)^3 \frac{\pi}{n\sin\frac{3\pi}{n}}
+\end{equation}
+
+Now, when we know $p$, we can compute many different things with it. Examples include:
+\begin{itemize}
+\item{the total number of particles observed in a given energy range, $p_\infty\left(z,\chi; \omega_1,\omega_2\right) = p\left( z,\chi; 0,\infty; \omega_1,\omega_2 \right)$;}
+\item{the fraction of photons observed during a given time interval, $\Phi\left(z,\chi; \tau_1,\tau_2; \omega_1,\omega_2\right) = \frac{p\left( z,\chi; \tau_1,\tau_2; \omega_1,\omega_2\right)}{p_\infty\left( z,\chi; \omega_1,\omega_2 \right)}$;}
+\item{the duration of the burst $T_f\left( z,\chi;\omega_1,\omega_2 \right)$, that is the time by which the fraction $f$ of photons is observed. We can compute it by solving the following equation for $T_f$: $p\left( z,\chi; 0,T_f; \omega_1,\omega_2\right) = f p_\infty\left( z,\chi; \omega_1,\omega_2 \right)$;}
+\item{the stretching factor, which we will discuss in the next section.}
+\end{itemize}
+
+\subsection{Stretching factor}
+The stretching factor for a continuous light curve is defined exactly like the stretching factor for a discrete one. It is the value $\kappa$ which makes the KS-distance minimal:
+\begin{equation}
+\kappa\left(z,\chi; \omega_1, \omega_2, \omega_3\right) = \argmin_\kappa \max_\tau\left| \Phi\left(z,\chi; 0,\tau; \omega_1,\omega_2\right) - \Phi\left( z,\chi; 0,\kappa \tau; \omega_2,\omega_3 \right) \right|
+\end{equation}
+
+But the maximum of an absolute value cannot be differentiated, so it is a complicated thing to compute numerically. Lets instead rewrite the expression for $\kappa$ in terms of a positive and a negative KS-distances:
+\begin{align*}
+D_+\left(z,\chi; \kappa; \omega_1, \omega_2, \omega_3\right) &= \max_\tau\left( \Phi\left(z,\chi; 0,\tau; \omega_1,\omega_2\right) - \Phi\left( z,\chi; 0,\kappa \tau; \omega_2,\omega_3 \right) \right) \\
+D_-\left(z,\chi; \kappa; \omega_1, \omega_2, \omega_3\right) &= \min_\tau\left( \Phi\left(z,\chi; 0,\tau; \omega_1,\omega_2\right) - \Phi\left( z,\chi; 0,\kappa \tau; \omega_2,\omega_3 \right) \right) \\
+\kappa\left(z,\chi; \omega_1, \omega_2, \omega_3\right) &= \argmin_\kappa \max\left(D_+\left(z,\chi; \kappa; \omega_1, \omega_2, \omega_3\right), -D_-\left(z,\chi; \kappa; \omega_1, \omega_2, \omega_3\right)\right)
+\end{align*}
+
+Take note that $\Phi$ monotonously increases with $\tau$. It implies that $D_+$ and $D_-$ monotonously decrease with $\kappa$, so as $D_+ + D_-$. So there is a single value of $\kappa$, for which
+\begin{equation}
+D_+\left(z,\chi; \kappa; \omega_1, \omega_2, \omega_3\right) = -D_-\left(z,\chi; \kappa; \omega_1, \omega_2, \omega_3\right)
+\end{equation}
+And this value of $\kappa$ also makes the $\max\left({D_+, -D_-}\right)$ minimal, since $D_+$ monotonously increase, and $-D_-$ monotonously decrease with $\kappa$.
+
+So we have now a simplified way to compute $\kappa$ by solving an equation instead of computing the minimum. And $\Phi$ can be differentiated, which makes it easier to compute maximums and minimums of their differences.
+
+Being able to compute the stretching factor, we could now compare our model predictions with observations given the position of an observer. However, we don't know the observer's off-axis angle $\chi$, so we cannot check the stretching factor prediction directly. Instead, we will focus on a series of tests, which will ensure that our model doesn't contradict existing observations. These tests will be discussed in the following sections.
+
+\subsection{Total energy}
+\subsection{Spectrum}
+\subsection{Distribution}
+\subsection{Case study}
+
+\section{Summary}
+
+%\bibliographystyle{plain}
+%\bibliography{refs}
+
+\end{document}
