@@ -50,7 +50,7 @@ The burst is fully specified by the following set of parameters:
 \item{$\omega_0$, a characteristic radiation frequency;}
 \item{$\theta_0$, the opening angle of the jet for radiation with frequency $\omega_0$, $\theta_0 \ll 1$;}
 \item{$k$, which determines how much the opening angle changes with frequency, $k < 0$;}
-\item{$\alpha$, the bare spectral index.}
+\item{$\alpha$, the bare spectral index, $\alpha < -2k - 1$}
 \end{itemize}
 
 Now we have all we need to calculate the observed light curves, and then the stretching factors.
@@ -319,18 +319,36 @@ Being able to compute the stretching factor, we could now compare our model pred
 
 The first test is to compute the total energy radiated from the burst, and to ensure that it doesn't exceed the mass of the star from which the burst originated.
 
-
-
-However, the largest contribution to the total energy in our model is due to unobservable low-energy photons. Moreover, the total energy integral diverges on low energies as we will see later. This divergence is understandable, since our model is only valid only for large energy photons. Still, we have to ensure that the total energy of radiated high energy photons is low enough.
-
-To do that, we have to modify the expression for the radiation intensity, to cut off all the radiators with frequencies outside the $\left(\omega_1, \omega_2\right)$ interval:
+To compute the total energy, we need to multiply the radiation intensity by frequency, and integrate it over frequencies $\omega$, volume $\left(r,\theta,\phi\right)$, and observer positions $\left(\sigma, \xi\right)$. We assumed $\theta \ll 1$, and have taken into account the same relativistic effects as we did in the observed particle count computation:
+\begin{align}
+E &= \int_0^\infty \dif \omega \int_0^\infty \dif r \int_0^\infty r \dif \theta \int_0^{2\pi} r \, \theta \dif \phi \int_0^\infty \dif \sigma \int_0^{2\pi} \sin\sigma \dif \xi \nonumber\\
+&\quad {} \times \eta\left( r,\theta,\omega \right) \underbrace{\frac{1}{\gamma\left(1-v\cos\sigma \right)}}_{\text{time dilation}} \underbrace{\frac{1}{\gamma^2\left(1-v\cos\sigma \right)^2}}_{\text{aberration}} \underbrace{\frac{\omega}{\gamma\left(1-v\cos\sigma \right)}}_{\text{relativistic shift}} \\
+&= \frac{4\pi^2}{\gamma^4} \int_0^\infty \dif \omega \, \omega \int_0^\infty \dif r \, r^2 \int_0^\infty \dif \theta \, \theta \, \eta\left( r,\theta,\omega \right) \int_0^\infty \dif \sigma \frac{\sin\sigma}{\left(1-v\cos\sigma \right)^4} \nonumber
+\end{align}
+An integral over $\sigma$ is computable analytically:
+\begin{equation*}
+\int_0^\infty \dif \sigma \frac{\sin\sigma}{\left(1-v\cos\sigma \right)^4} = \frac{2\left(3+v^2\right)}{3\left(1-v^2\right)^3} = \frac{2}{3}\gamma^6 \left(4 - \frac{1}{\gamma^2}\right)
+\end{equation*}
+Substituting the result to the integral for $E$ we get:
 \begin{equation}
-	\eta_{\omega_1}^{\omega_2}\left(r,\theta,\omega\right) = \begin{cases}
-		0 & \text{if } \omega < \omega_1 \\
-		\eta\left(r,\theta,\omega\right) & \text{if } \omega_1 < \omega < \omega_2 \\
-		0 & \text{if } \omega_2 < \omega
-	\end{cases}
+E = \frac{32\pi^2}{3}\left(\gamma^2 - \frac{1}{4}\right) \int_0^\infty \dif \omega \, \omega \int_0^\infty \dif r \, r^2 \int_0^\infty \dif \theta \, \theta \, \eta\left( r,\theta,\omega \right)
 \end{equation}
+Now we can use the expression for $\eta$ to do the remaining integrals:
+\begin{align*}
+E = \frac{32\pi^2 \eta_0}{3}\left(\gamma^2 - \frac{1}{4}\right) \int_0^\infty \dif \omega \, \omega \left(\frac{\omega}{\omega_0}\right)^\alpha \int_0^\infty \dif r \, \frac{r^2}{1 + \left(\frac{r}{r_0}\right)^n} \int_0^\infty \dif \theta \, \theta \, \exp\left(-\left(\frac{\theta}{\theta_0}\right)^2\left(\frac{\omega}{\omega_0}\right)^{-2k}\right)
+\end{align*}
+The integrals over $r$ and $\theta$ can be done symbolically:
+\begin{equation*}
+\int_0^\infty \dif r \, \frac{r^2}{1 + \left(\frac{r}{r_0}\right)^n} = \frac{\pi}{n\sin\left(\frac{3\pi}{n}\right)}r_0^3
+\end{equation*}
+\begin{equation*}
+\int_0^\infty \dif \theta \, \theta \, \exp\left(-\left(\frac{\theta}{\theta_0}\right)^2\left(\frac{\omega}{\omega_0}\right)^{-2k}\right) = \frac{1}{2}\theta_0^2 \left(\frac{\omega}{\omega_0}\right)^{2k}
+\end{equation*}
+Now we have only one integral left:
+\begin{equation}
+E = \frac{16\pi^3}{3 n\sin\left(\frac{3\pi}{n}\right)} \left(\gamma^2 - \frac{1}{4}\right) \, \eta_0 \, r_0^3 \, \theta_0^2 \int_0^\infty \dif \omega \, \omega \left(\frac{\omega}{\omega_0}\right)^{2k+\alpha}
+\end{equation}
+
 
 \subsection{Spectrum}
 \subsection{Distribution}
