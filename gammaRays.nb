@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     61110,       1538]
-NotebookOptionsPosition[     58663,       1455]
-NotebookOutlinePosition[     59040,       1472]
-CellTagsIndexPosition[     58997,       1469]
+NotebookDataLength[     59950,       1513]
+NotebookOptionsPosition[     57503,       1430]
+NotebookOutlinePosition[     57880,       1447]
+CellTagsIndexPosition[     57837,       1444]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1291,68 +1291,42 @@ Cell[BoxData[
  RowBox[{
   RowBox[{
    RowBox[{"energy", "[", 
-    RowBox[{"universe_", ",", "burst", ",", 
-     RowBox[{"{", 
-      RowBox[{"\[Omega]1_", ",", "\[Omega]2_"}], "}"}]}], "]"}], ":=", 
-   RowBox[{"Block", "[", 
-    RowBox[{
-     RowBox[{"{", "burstValues", "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"burst", ",", "\[Omega]1_"}], "]"}], ":=", 
+   RowBox[{
+    FractionBox[
+     RowBox[{"16", 
+      SuperscriptBox["\[Pi]", "3"]}], 
+     RowBox[{"3", "n", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "2"}], "k"}], "-", "\[Alpha]", "-", "2"}], ")"}], 
+      RowBox[{"Sin", "[", 
+       FractionBox[
+        RowBox[{"3", "\[Pi]"}], "n"], "]"}]}]], 
+    SuperscriptBox["\[Gamma]", 
      RowBox[{
-      RowBox[{"burstValues", "=", 
-       RowBox[{"{", 
-        RowBox[{
-        "\[Gamma]", ",", "\[Eta]0", ",", "r0", ",", "n", ",", "\[Omega]0", 
-         ",", "\[Theta]0", ",", "k", ",", "\[Alpha]"}], "}"}]}], ";", 
-      "\[IndentingNewLine]", 
       RowBox[{
-       FractionBox[
-        RowBox[{"8", 
-         SuperscriptBox["\[Pi]", "3"]}], "3"], 
-       RowBox[{"(", 
-        RowBox[{
-         RowBox[{"4", 
-          SuperscriptBox["\[Gamma]", "2"]}], "-", "1"}], ")"}], 
-       FractionBox["1", 
-        RowBox[{"n", " ", 
-         RowBox[{"Sin", "[", 
-          FractionBox[
-           RowBox[{"3", "\[Pi]"}], "n"], "]"}]}]], 
-       SuperscriptBox["r0", "3"], "\[Eta]0", " ", 
-       FractionBox[
-        RowBox[{
-         SuperscriptBox["\[Theta]0", "2"], " ", 
-         RowBox[{"(", 
-          RowBox[{
-           RowBox[{
-            RowBox[{"-", 
-             SuperscriptBox["\[Omega]1", "2"]}], 
-            SuperscriptBox[
-             RowBox[{"(", 
-              FractionBox["\[Omega]1", "\[Omega]0"], ")"}], 
-             RowBox[{
-              RowBox[{"2", " ", "k"}], "+", "\[Alpha]"}]]}], "+", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"\[Omega]2", "\[Equal]", "\[Infinity]"}], ",", "0", ",", 
-             
-             RowBox[{
-              SuperscriptBox["\[Omega]2", "2"], 
-              SuperscriptBox[
-               RowBox[{"(", 
-                FractionBox["\[Omega]2", "\[Omega]0"], ")"}], 
-               RowBox[{
-                RowBox[{"2", " ", "k"}], "+", "\[Alpha]"}]]}]}], "]"}]}], 
-          ")"}]}], 
-        RowBox[{"2", " ", 
-         RowBox[{"(", 
-          RowBox[{"2", "+", 
-           RowBox[{"2", " ", "k"}], "+", "\[Alpha]"}], ")"}]}]]}]}]}], 
-    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
- CellChangeTimes->{{3.591180484448551*^9, 3.5911806705770082`*^9}, {
-  3.591180773004405*^9, 3.5911807765405903`*^9}, {3.591181608374178*^9, 
-  3.5911816121617727`*^9}, {3.591182219349262*^9, 3.5911822803979883`*^9}, {
-  3.591242114316815*^9, 3.591242129993808*^9}, {3.591242375682941*^9, 
-  3.5912423824619827`*^9}}]
+       RowBox[{"-", "2"}], "k"}], "-", "\[Alpha]"}]], 
+    RowBox[{"(", 
+     RowBox[{"1", "-", 
+      FractionBox["1", 
+       RowBox[{"4", 
+        SuperscriptBox["\[Gamma]", "2"]}]]}], ")"}], "\[Eta]0", " ", 
+    SuperscriptBox["r0", "3"], 
+    SuperscriptBox["\[Theta]0", "2"], 
+    FractionBox[
+     SuperscriptBox["\[Omega]0", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "2"}], "k"}], "-", "\[Alpha]"}]], 
+     SuperscriptBox["\[Omega]1", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "2"}], "k"}], "-", "\[Alpha]", "-", "2"}]]]}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.591267384750402*^9, 3.591267391974464*^9}, {
+  3.591267431626403*^9, 3.5912674907454443`*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1392,7 +1366,7 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{
      RowBox[{"\[Gamma]", "\[Rule]", "100."}], ",", 
-     RowBox[{"\[Eta]0", "\[Rule]", "8.*^45"}], ",", 
+     RowBox[{"\[Eta]0", "\[Rule]", "1.*^45"}], ",", 
      RowBox[{"r0", "\[Rule]", "2.*^3"}], ",", 
      RowBox[{"n", "\[Rule]", "6"}], ",", 
      RowBox[{"\[Omega]0", "\[Rule]", "1."}], ",", 
@@ -1406,7 +1380,8 @@ Cell[BoxData[
   3.590325559406156*^9}, {3.5903257135748367`*^9, 3.590325715695589*^9}, {
   3.591242711340397*^9, 3.591242744747044*^9}, {3.591242882811522*^9, 
   3.591242885020268*^9}, {3.591243336831032*^9, 3.591243336910487*^9}, {
-  3.591243384062023*^9, 3.591243384196989*^9}}],
+  3.591243384062023*^9, 3.591243384196989*^9}, {3.5912596913878927`*^9, 
+  3.591259718440669*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -1455,7 +1430,7 @@ Cell[BoxData[
 },
 Evaluator->"Local",
 WindowSize->{1218, 756},
-WindowMargins->{{Automatic, -89}, {Automatic, 4}},
+WindowMargins->{{Automatic, -11}, {Automatic, 0}},
 FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
 2013)",
 StyleDefinitions->"Default.nb"
@@ -1521,16 +1496,16 @@ Cell[35250, 922, 17279, 359, 898, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[52566, 1286, 103, 1, 29, "Subsubtitle"],
-Cell[52672, 1289, 2416, 65, 146, "Input"]
+Cell[52672, 1289, 1205, 39, 60, "Input"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[55125, 1359, 99, 1, 29, "Subsubtitle"],
-Cell[55227, 1362, 372, 10, 28, "Input"],
-Cell[55602, 1374, 417, 11, 28, "Input"],
-Cell[56022, 1387, 983, 21, 28, "Input"],
-Cell[57008, 1410, 692, 16, 46, "Input"],
-Cell[57703, 1428, 516, 11, 28, "Input"],
-Cell[58222, 1441, 413, 10, 28, "Input"]
+Cell[53914, 1333, 99, 1, 29, "Subsubtitle"],
+Cell[54016, 1336, 372, 10, 28, "Input"],
+Cell[54391, 1348, 417, 11, 28, "Input"],
+Cell[54811, 1361, 1034, 22, 28, "Input"],
+Cell[55848, 1385, 692, 16, 46, "Input"],
+Cell[56543, 1403, 516, 11, 28, "Input"],
+Cell[57062, 1416, 413, 10, 28, "Input"]
 }, Open  ]]
 }, Open  ]]
 }
