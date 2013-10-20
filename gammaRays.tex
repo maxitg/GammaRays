@@ -37,7 +37,7 @@ To understand the observed spectral lag, lets explore geometry of the jet. First
 		\right)
 		\left(\frac{\omega}{\omega_0}\right)^\alpha
 	\end{equation}
-	$\eta$ is a number of particles emitted per volume per frequency. It is a function of the distance $r$ from the central engine, of the off-axis angle $\theta$, and of the radiation frequency $\omega$.
+	$\eta$ is a number of particles emitted per volume per solid angle per frequency. It is a function of the distance $r$ from the central engine, of the off-axis angle $\theta$, and of the radiation frequency $\omega$.
 }
 \end{enumerate}
 
@@ -316,6 +316,22 @@ So we have now a simpler way to compute $\kappa$ by solving an equation instead 
 Being able to compute the stretching factor, we could now compare our model predictions with observations given the position of an observer. We don't know the observer's off-axis angle $\chi$, however, so we cannot check the stretching factor prediction directly. Instead, we will focus on a series of tests, which will ensure that our model doesn't contradict existing observations. These tests will be discussed in the following sections.
 
 \subsection{Total energy}
+
+The first test is to compute the total energy radiated from the burst, and to ensure that it doesn't exceed the mass of the star from which the burst originated.
+
+
+
+However, the largest contribution to the total energy in our model is due to unobservable low-energy photons. Moreover, the total energy integral diverges on low energies as we will see later. This divergence is understandable, since our model is only valid only for large energy photons. Still, we have to ensure that the total energy of radiated high energy photons is low enough.
+
+To do that, we have to modify the expression for the radiation intensity, to cut off all the radiators with frequencies outside the $\left(\omega_1, \omega_2\right)$ interval:
+\begin{equation}
+	\eta_{\omega_1}^{\omega_2}\left(r,\theta,\omega\right) = \begin{cases}
+		0 & \text{if } \omega < \omega_1 \\
+		\eta\left(r,\theta,\omega\right) & \text{if } \omega_1 < \omega < \omega_2 \\
+		0 & \text{if } \omega_2 < \omega
+	\end{cases}
+\end{equation}
+
 \subsection{Spectrum}
 \subsection{Distribution}
 \subsection{Case study}
