@@ -329,7 +329,7 @@ An integral over $\sigma$ is computable analytically:
 \begin{equation*}
 \int_0^\infty \dif \sigma \frac{\sin\sigma}{\left(1-v\cos\sigma \right)^4} = \frac{2\left(3+v^2\right)}{3\left(1-v^2\right)^3} = \frac{2}{3}\gamma^6 \left(4 - \frac{1}{\gamma^2}\right)
 \end{equation*}
-Substituting the result to the integral for $E$ we get:
+Substituting this result into the expression for $E$ we get:
 \begin{equation}
 E = \frac{32\pi^2}{3}\left(\gamma^2 - \frac{1}{4}\right) \int_0^\infty \dif \omega \, \omega \int_0^\infty \dif r \, r^2 \int_0^\infty \dif \theta \, \theta \, \eta\left( r,\theta,\omega \right)
 \end{equation}
@@ -344,11 +344,23 @@ The integrals over $r$ and $\theta$ can be done symbolically:
 \begin{equation*}
 \int_0^\infty \dif \theta \, \theta \, \exp\left(-\left(\frac{\theta}{\theta_0}\right)^2\left(\frac{\omega}{\omega_0}\right)^{-2k}\right) = \frac{1}{2}\theta_0^2 \left(\frac{\omega}{\omega_0}\right)^{2k}
 \end{equation*}
-Now we have only one integral left:
+Now we only have one integral left:
 \begin{equation}
 E = \frac{16\pi^3}{3 n\sin\left(\frac{3\pi}{n}\right)} \left(\gamma^2 - \frac{1}{4}\right) \, \eta_0 \, r_0^3 \, \theta_0^2 \int_0^\infty \dif \omega \, \omega \left(\frac{\omega}{\omega_0}\right)^{2k+\alpha}
 \end{equation}
 
+Note, however, that since $\alpha < -2k-1$ this integral diverges for $\omega \rightarrow 0$. But our model is not expected to describe low-energy radiation of the burst, so we should not integrate over low-frequency radiators. Nevertheless, we should ensure that the total energy of the high-energy radiation is not too large. To compute this energy we will only integrate over those radiators which emission we can observe, that is over the radiators with frequencies greater than $\frac{\omega_1}{\gamma}$, where $\omega_1$ is the smallest observable photon frequency. Now we can compute the last integral and get the final expression for $E$:
+\begin{align}
+E\left(\omega_1\right)
+&= \frac{16\pi^3}{3 n\sin\left(\frac{3\pi}{n}\right)} \left(\gamma^2 - \frac{1}{4}\right) \, \eta_0 \, r_0^3 \, \theta_0^2 \int_{\frac{\omega_1}{\gamma}}^\infty \dif \omega \, \omega \left(\frac{\omega}{\omega_0}\right)^{2k+\alpha} \nonumber\\
+&= \frac{16\pi^3}{3 n\sin\left(\frac{3\pi}{n}\right)} \left(\gamma^2 - \frac{1}{4}\right) \, \eta_0 \, r_0^3 \, \theta_0^2 \frac{\omega_1^2 \left(\frac{\omega_1}{\gamma \omega_0}\right)^{2k+\alpha}}{\gamma ^2 (-2k-\alpha-2)} \nonumber\\
+&= \frac{16\pi^3}{3 n\left(-2k-\alpha-2\right)\sin\left(\frac{3\pi}{n}\right)} \gamma^{-2k-\alpha} \left(1 - \frac{1}{4\gamma^2}\right) \, \eta_0 \, r_0^3 \, \theta_0^2 \frac{\omega_0^{-2k-\alpha}}{\omega_1^{-2k-\alpha-2}}
+\end{align}
+
+This energy should not be larger than a typical mass $M_s$ of a massive star. So, finally, we arrive at the first constraint for the burst parameters:
+\begin{equation}
+\frac{16\pi^3}{3 n\left(-2k-\alpha-2\right)\sin\left(\frac{3\pi}{n}\right)} \gamma^{-2k-\alpha} \left(1 - \frac{1}{4\gamma^2}\right) \, \eta_0 \, r_0^3 \, \theta_0^2 \frac{\omega_0^{-2k-\alpha}}{\omega_1^{-2k-\alpha-2}} < M_s
+\end{equation}
 
 \subsection{Spectrum}
 \subsection{Distribution}
