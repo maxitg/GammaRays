@@ -25,7 +25,7 @@ To understand the observed spectral lag, lets explore geometry of the jet. First
 \begin{enumerate}
 \item{Time $t = 0$, a spherical shell of plasma is emitted. The center is called the central engine.}
 \item{The shell points propagate with a constant velocity $v \sim 1$, so at the time $t$ the radius of the shall is $v t$.}
-\item{Each point of the shell is an isotropic radiator in its reference frame.}
+\item{Each point of the shell is an isotropic radiator in its rest frame.}
 \item{
 	The radiation intensity is a function of the radiator position and the radiation frequency:
 	\begin{equation}
@@ -57,7 +57,7 @@ Now we have all we need to calculate the observed light curves, and then the str
 
 \subsection{Photon observation time}
 
-Lets begin by calculating a time at which some particular photon is observed. This time is a function of the radiator location $\left(r, \theta, \phi\right)$, as well as the observer location $\left(d, \chi, 0\right)$. (Here we choose coordinates so that the rotation angle of the observer is $0$.) Lets assume for now that the observer is far enough to resolve the jet geometry, yet close enough so that the expansion of space is negligible. This assumption allows us to ignore the effects of cosmology for this calculation.
+Lets begin by computing a time at which some particular photon is observed. This time is a function of the radiator location $\left(r, \theta, \phi\right)$, as well as the observer location $\left(d, \chi, 0\right)$. (Here we choose coordinates so that the rotation angle of the observer is $0$.) Lets assume for now that the observer is far enough to resolve the jet geometry, yet close enough so that the expansion of space is negligible. This assumption allows us to ignore the effects of cosmology for this calculation.
 
 The observation time is a sum of two terms: the time interval from $t = 0$ to the photon emission (the plasma time), and the time interval between the emission and the observation (the photon time):
 \begin{equation*}
@@ -124,7 +124,7 @@ We need to understand how the scale factor changes with time. For that we assume
 \end{align*}
 Here $H_\text{obs} = H\left(t_\text{obs}\right) = \dot{a}\left( t_\text{obs} \right)$ is the Hubble parameter at the observation time.
 
-We also need to know the areas of two spheres: the photon sphere, the sphere over which the photons emitted in a particular burst are spread; and the bursts sphere, the sphere over which the bursts at a particular redshift are distributed.
+We also need to know the areas of two spheres: the photon sphere, a sphere over which photons emitted in a particular burst are spread; and the bursts sphere, a sphere over which bursts at a particular redshift are distributed.
 
 Lets begin with the photon sphere. This sphere has the origin at $r = 0$ and $t = 0$, at the central engine of a particular burst. Taking $\dif s = 0$ and $\dif \Omega_2 = 0$ in the equation for metric, we get:
 \begin{equation*}
@@ -245,7 +245,7 @@ The remaining integrals over $\theta$ and $\chi$ are hard to do symbolically, so
 \sin\theta &\sim \theta \\
 \cos\sigma\left(\theta, \phi, \chi \right) &= \cos\theta \cos\chi + \sin\theta \sin\chi \cos\phi \sim 1 - \frac{\theta^2}{2} - \frac{\chi^2}{2} + \theta\chi\cos\phi
 \end{align*}
-Using that, and the fact that this integral is an even function of $\theta$, we arrive to the optimized expressions for $p$, $I$ and $J$:
+Using that, and the observation that this integral is an even function of $\theta$, we arrive to the optimized expressions for $p$, $I$ and $J$:
 \begin{align}
 p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det}}{A_\text{ph}\left(z\right)}
 \frac{2\eta_0}{\left(v\gamma\left(1+z\right)\right)^{2-\alpha}}
@@ -362,9 +362,8 @@ This energy should not be larger than a typical mass $M_s$ of a massive star. So
 \frac{16\pi^3}{3 n\left(-2k-\alpha-2\right)\sin\left(\frac{3\pi}{n}\right)} \gamma^{-2k-\alpha} \left(1 - \frac{1}{4\gamma^2}\right) \, \eta_0 \, r_0^3 \, \theta_0^2 \frac{\omega_0^{-2k-\alpha}}{\omega_1^{-2k-\alpha-2}} < M_s
 \end{equation}
 
-\subsection{Spectrum}
 \subsection{Distribution}
-\subsection{Case study}
+\subsection{Burst fraction with observable high-energy photons}
 
 \section{Summary}
 
