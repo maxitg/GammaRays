@@ -362,8 +362,65 @@ This energy should not be larger than a typical mass $M_s$ of a massive star. So
 \frac{16\pi^3}{3 n\left(-2k-\alpha-2\right)\sin\left(\frac{3\pi}{n}\right)} \gamma^{-2k-\alpha} \left(1 - \frac{1}{4\gamma^2}\right) \, \eta_0 \, r_0^3 \, \theta_0^2 \frac{\omega_0^{-2k-\alpha}}{\omega_1^{-2k-\alpha-2}} < M_s
 \end{equation}
 
-\subsection{Distribution}
-\subsection{Burst fraction with observable high-energy photons}
+\subsection{Distribution of stretching factors}
+
+The second test is to calculate the stretching factors distribution of the observable bursts, and to compare it with observations.
+
+The computation of the exact and precise distribution is technically hard (because stretching factors neither change monotonously with redshift, nor with off-axis angle), and computationally intensive. So we will not compute the precise distribution.
+
+Instead, we will use the Monte-Carlo method to produce a large representative sample of stretching factors. Then, we will calculate an empirical CDF of this sample, and compare it with observations using the KS-test. Since we can compute much larger sample than that of observations, we will not lose much precision due to this simplification.
+
+We still have one ingredient missing though -- the evolution of the bursts density. We assume that the bursts density is roughly proportional to the stars density, and the stars density is roughly proportional to the matter density, which changes as $\left(1+z\right)^3$. It is clear, however, that since no stars existed at very small redshifts, the burst density should decline there, so we add an exponential cutoff to it:
+\begin{equation}
+\rho = \rho_0 \left(1+z\right)^3 \exp\left(-\frac{z}{z_c}\right)
+\end{equation}
+Here $\rho_0$ is a normalization factor, and $z_c$ is a redshift scale, after which the density is cut off.
+
+Now when we have all the ingredients, we can describe the algorithm for computing a sample of stretching factors:
+\begin{enumerate}
+\item{
+	Select a redshift $z$. The distribution of redshifts is determined by the bursts count in a given volume. Its CDF is:
+	\begin{equation}
+	\Phi_z\left(z\right) = \frac{\int_{z_\text{min}}^z \rho\left(z'\right) \dif V\left(z'\right)}{\int_{z_\text{max}}^{z_\text{max}} \rho\left(z'\right) \dif V\left(z'\right)}
+	\end{equation}
+	Here $\left(z_\text{min}, z_\text{max}\right)$ is the range from which we are selecting redshifts. $z_\text{min}$ should be some small number so it is unlikely to detect a burst with $z < z_\text{min}$. And $z_\text{max}$ is the largest redshift from which a burst can be observed:
+	\begin{equation}
+	p_\infty\left(z_\text{max}, 0., \omega_2, \omega_3\right) = p_\text{min}
+	\end{equation}
+	Here $p_\text{min}$ is the smallest number of particles required to claim an observation.
+
+	Now we can select a properly distributed random redshift by solving an equation for $z$:
+	\begin{equation}
+	\Phi_z\left(z\right) = x
+	\end{equation}
+	where $x$ is a uniformly distributed random number in the range $0$ to $1$.
+}
+\item{
+	Select an off-axis angle $\chi$. All directions for the burst jets are equally probable. So the CDF of the off-axis angles distribution is:
+	\begin{equation}
+	\Phi_\chi\left(\chi\right) = \frac{\int_0^\chi \sin\chi' \dif\chi'}{\int_0^{\chi_\text{max}} \sin\chi' \dif\chi'} \approx \frac{\int_0^\chi \chi' \dif\chi'}{\int_0^{\chi_\text{max}} \chi' \dif\chi'} = \left(\frac{\chi}{\chi_\text{max}}\right)^2
+	\end{equation}
+	Here $\chi_\text{max}$ is the largest off-axis angle with which a burst at redshift $z_\text{min}$ can be observed:
+	\begin{equation}
+	p_\infty\left(z_\text{min}, \chi_\text{max}, \omega_2, \omega_3\right) = p_\text{min}
+	\end{equation}
+
+	Now as with $z$ distribution we can find the random $\chi$ by solving the equation:
+	\begin{align*}
+	\Phi_\chi\left(\chi\right) = \left(\frac{\chi}{\chi_\text{max}}\right)^2 = y \\
+	\chi = \chi_\text{max}\sqrt{y}
+	\end{align*}
+	where $y$ is a uniformly distributed random number in the range $0$ to $1$.
+
+	Note that $p\left(z,\chi\right)$ decreases with $z$, as well as with $\chi$, so all observable burst configurations can be generated except for the unlikely $z<z_\text{min}$ case.
+}
+\item{If the burst is observable: $p_\infty\left(z,\chi,\omega_2,\omega_3\right) > p_\text{min}$, add $\kappa\left(z,\chi\right)$ to the sample.}
+\item{Repeat from the step $1$.}
+\end{enumerate}
+
+For our set of parameters, this algorithm produced a sample, empirical CDF of which you can see on fig. The error margins of the observed stretching factors are too large to use the KS-test on them. It appears, however, that our model doesn't contradict existing observations.
+
+\subsection{Very high energy bursts fraction}
 
 \section{Summary}
 
