@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     98454,       2373]
-NotebookOptionsPosition[     95405,       2272]
-NotebookOutlinePosition[     95780,       2289]
-CellTagsIndexPosition[     95737,       2286]
+NotebookDataLength[     99129,       2387]
+NotebookOptionsPosition[     96040,       2285]
+NotebookOutlinePosition[     96415,       2302]
+CellTagsIndexPosition[     96372,       2299]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1574,11 +1574,18 @@ QFp1YxIniO5P/MULonebcvKB6e1W/iDa0iwITNfdsI8G0XL3doDpvbyxKSB6
 mv3gPzDdwmPArA2kN4iIsYLohV8W8YPoZc9WgWkAgsCucw==
   "]],
 
-Cell[BoxData[
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", "plotRegion", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{"axesOrigin", "\[Rule]", "Automatic"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"plotRegion", "[", 
-    RowBox[{"region_", ",", "range_"}], "]"}], ":=", 
+    RowBox[{"region_", ",", "range_", ",", 
+     RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
    RowBox[{"Block", "[", 
     RowBox[{
      RowBox[{"{", "plotPoints", "}"}], ",", "\[IndentingNewLine]", 
@@ -1644,8 +1651,10 @@ Cell[BoxData[
         RowBox[{"Joined", "\[Rule]", "True"}], ",", 
         RowBox[{"PlotRange", "\[Rule]", "range"}], ",", 
         RowBox[{"Filling", "\[Rule]", "Top"}], ",", 
-        RowBox[{"FillingStyle", "\[Rule]", "LightRed"}]}], "]"}]}]}], 
-    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+        RowBox[{"FillingStyle", "\[Rule]", "LightRed"}], ",", 
+        RowBox[{"AxesOrigin", "\[Rule]", 
+         RowBox[{"OptionValue", "[", "axesOrigin", "]"}]}]}], "]"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]}], "Input",
  CellChangeTimes->{{3.594076740666135*^9, 3.594076753708782*^9}, {
   3.594076887144764*^9, 3.5940769296014957`*^9}, {3.594076973234046*^9, 
   3.59407713802288*^9}, {3.594077211024296*^9, 3.594077213670301*^9}, {
@@ -1656,7 +1665,8 @@ Cell[BoxData[
   3.594082516730349*^9, 3.594082520156005*^9}, {3.59408255227765*^9, 
   3.594082665151011*^9}, {3.5940829266367292`*^9, 3.594082939493443*^9}, {
   3.5940844131326103`*^9, 3.594084500888402*^9}, {3.594084539984497*^9, 
-  3.594084551296248*^9}, {3.5940846618329763`*^9, 3.594084702122776*^9}}],
+  3.594084551296248*^9}, {3.5940846618329763`*^9, 3.594084702122776*^9}, {
+  3.594112518061047*^9, 3.594112579084134*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -2085,13 +2095,13 @@ Cell[BoxData[
      RowBox[{"defaultBurst", "[", "]"}], ",", 
      RowBox[{"defaultDetectorArea", "[", "]"}], ",", 
      RowBox[{"{", 
-      RowBox[{"0.1", ",", "1.", ",", "\[Infinity]"}], "}"}], ",", "100", ",", 
-     
+      RowBox[{"0.1", ",", "1.", ",", "\[Infinity]"}], "}"}], ",", "1000", ",", 
      RowBox[{"monitorQ", "\[Rule]", "True"}], ",", 
      RowBox[{"accurateQ", "\[Rule]", "False"}]}], "]"}]}], ";"}]], "Input",
  CellChangeTimes->{{3.5939876408598146`*^9, 3.593987648347599*^9}, 
    3.593997640557219*^9, {3.594084839815689*^9, 3.5940848399669952`*^9}, 
-   3.594084899697618*^9}],
+   3.594084899697618*^9, 3.5941121902665453`*^9, {3.594124435831332*^9, 
+   3.594124439959758*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -2106,7 +2116,7 @@ ButtonData:>\\\"paclet:ref/message/NIntegrate/slwcon\\\", ButtonNote -> \
 \\\"NIntegrate::slwcon\\\"]\\)\"\>"}]], "Message", "MSG",
  CellChangeTimes->{3.594084376876536*^9, 3.594084645652916*^9, 
   3.594084711866226*^9, 3.594084758001802*^9, 3.594084844849262*^9, 
-  3.59408490469689*^9}],
+  3.59408490469689*^9, 3.5941121959670477`*^9}],
 
 Cell[BoxData[
  RowBox[{
@@ -2121,7 +2131,7 @@ ButtonData:>\\\"paclet:ref/message/NIntegrate/slwcon\\\", ButtonNote -> \
 \\\"NIntegrate::slwcon\\\"]\\)\"\>"}]], "Message", "MSG",
  CellChangeTimes->{3.594084376876536*^9, 3.594084645652916*^9, 
   3.594084711866226*^9, 3.594084758001802*^9, 3.594084844849262*^9, 
-  3.594084905351563*^9}],
+  3.59408490469689*^9, 3.5941121966028633`*^9}],
 
 Cell[BoxData[
  RowBox[{
@@ -2136,7 +2146,7 @@ ButtonData:>\\\"paclet:ref/message/NIntegrate/slwcon\\\", ButtonNote -> \
 \\\"NIntegrate::slwcon\\\"]\\)\"\>"}]], "Message", "MSG",
  CellChangeTimes->{3.594084376876536*^9, 3.594084645652916*^9, 
   3.594084711866226*^9, 3.594084758001802*^9, 3.594084844849262*^9, 
-  3.594084916053759*^9}],
+  3.59408490469689*^9, 3.594112207319124*^9}],
 
 Cell[BoxData[
  RowBox[{
@@ -2151,7 +2161,10 @@ ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/General/stop\\\", \
 ButtonNote -> \\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
  CellChangeTimes->{3.594084376876536*^9, 3.594084645652916*^9, 
   3.594084711866226*^9, 3.594084758001802*^9, 3.594084844849262*^9, 
-  3.594084916110183*^9}]
+  3.59408490469689*^9, 3.594112207373372*^9}],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.5941149732083597`*^9}]
 }, Open  ]]
 }, Open  ]],
 
@@ -2344,27 +2357,28 @@ Cell[56583, 1380, 1377, 36, 97, "Input"],
 Cell[57963, 1418, 462, 13, 41, "Input"],
 Cell[58428, 1433, 1488, 38, 114, "Input"],
 Cell[59919, 1473, 4119, 101, 301, "Input"],
-Cell[64041, 1576, 3527, 82, 131, "Input"],
-Cell[67571, 1660, 18701, 378, 1202, "Input"],
+Cell[64041, 1576, 3922, 92, 165, "Input"],
+Cell[67966, 1670, 18701, 378, 1202, "Input"],
 Cell[CellGroupData[{
-Cell[86297, 2042, 1555, 27, 28, "Input"],
-Cell[87855, 2071, 76, 1, 28, "Output"]
+Cell[86692, 2052, 1555, 27, 28, "Input"],
+Cell[88250, 2081, 76, 1, 28, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[87968, 2077, 702, 16, 46, "Input"],
-Cell[88673, 2095, 693, 13, 24, "Message"],
-Cell[89369, 2110, 694, 13, 24, "Message"],
-Cell[90066, 2125, 694, 13, 24, "Message"],
-Cell[90763, 2140, 651, 13, 24, "Message"]
+Cell[88363, 2087, 771, 16, 46, "Input"],
+Cell[89137, 2105, 717, 13, 24, "Message"],
+Cell[89857, 2120, 717, 13, 24, "Message"],
+Cell[90577, 2135, 715, 13, 24, "Message"],
+Cell[91295, 2150, 672, 13, 24, "Message"],
+Cell[91970, 2165, 79, 1, 28, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[91463, 2159, 106, 1, 44, "Subsection"],
-Cell[91572, 2162, 630, 18, 46, "Input"],
-Cell[92205, 2182, 712, 18, 46, "Input"],
-Cell[92920, 2202, 1444, 34, 63, "Input"],
-Cell[94367, 2238, 188, 5, 28, "Input"],
-Cell[94558, 2245, 807, 22, 46, "Input"]
+Cell[92098, 2172, 106, 1, 44, "Subsection"],
+Cell[92207, 2175, 630, 18, 46, "Input"],
+Cell[92840, 2195, 712, 18, 46, "Input"],
+Cell[93555, 2215, 1444, 34, 63, "Input"],
+Cell[95002, 2251, 188, 5, 28, "Input"],
+Cell[95193, 2258, 807, 22, 46, "Input"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
