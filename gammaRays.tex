@@ -430,6 +430,26 @@ For our set of parameters, this algorithm produced a sample, empirical CDF of wh
 
 \subsection{Very high energy bursts fraction}
 
+Our final test is to calculate how much of the observable bursts can be observed in the very high energy range -- GeV and above.
+
+To do so, we need to compute the number of bursts visible in a given energy range, which is the integral over space and jet directions:
+\begin{align}
+b\left(\omega_1,\omega_2\right) &= \int_0^{z_\text{max}\left(\omega_1,\omega_2\right)} \dif V\left(z\right) \rho\left(z\right) \int_0^{\chi_\text{max}\left(z,\omega_1,\omega_2\right)} 2\pi \sin\chi \dif\chi \nonumber\\
+&\approx 2\pi \int_0^{z_\text{max}\left(\omega_1,\omega_2\right)} \dif V\left(z\right) \rho\left(z\right) \int_0^{\chi_\text{max}\left(z,\omega_1,\omega_2\right)} \chi \dif\chi = \pi \int_0^{z_\text{max}\left(\omega_1,\omega_2\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_1,\omega_2\right)
+\end{align}
+Here $z_\text{max}\left(\omega_1,\omega_2\right)$ and $\chi_\text{max}\left(z,\omega_1,\omega_2\right)$ are the same values we used in the previous sections: the maximum redshift from which a burst can be observed, and the maximum off-axis angle with which the burst at redshift $z$ can be observed.
+
+The fraction in question is simply the ratio of these:
+\begin{equation}
+f\left(\omega_1,\omega_2,\omega_3\right) = \frac{b\left(\omega_2,\omega_3\right)}{b\left(\omega_1,\omega_3\right)} = \frac{\int_0^{z_\text{max}\left(\omega_2,\omega_3\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_2,\omega_3\right)}{\int_0^{z_\text{max}\left(\omega_1,\omega_3\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_1,\omega_3\right)}
+\end{equation}
+
+The ratio for our set of parameters is $f_m \approx 0.072$. The ratio computed from observations is $f_o = ...$. The binary distribution gives us the probability for it to happen:
+\begin{equation}
+...
+\end{equation}
+which means that the model fits observations in this test.
+
 \section{Summary}
 
 %\bibliographystyle{plain}
