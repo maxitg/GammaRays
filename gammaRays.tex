@@ -2,6 +2,8 @@
 
 \usepackage{commath}
 \usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{subcaption}
 
 \allowdisplaybreaks
 
@@ -426,7 +428,21 @@ Now when we have all the ingredients, we can compute the sample with the followi
 \item{If the sample is not as big as we want yet, repeat from the step $3$.}
 \end{enumerate}
 
-For our set of parameters, this algorithm produced a sample, empirical CDF of which you can see on fig. However, the error margins of the observed stretching factors are too large to use the KS-test on them. Nevertheless, It appears that our model doesn't contradict existing observations.
+\begin{figure}[kappaDistribution]
+        \centering
+        \begin{subfigure}[kappaDistributionHistogram]{0.4\textwidth}
+                \includegraphics[width=\textwidth]{kappaDistributionHistogram}
+                \label{fig:kappaDistributionHistogram}
+        \end{subfigure}
+        \begin{subfigure}[kappaDistributionCDF]{0.4\textwidth}
+                \includegraphics[width=\textwidth]{kappaDistributionCDF}
+                \label{fig:kappaDistributionCDF}
+        \end{subfigure}
+        \caption{The histogram and the CDF of the stretching factors sample produced by our model. The sample contains $200$ points. You can see the stretching factors computed from the observations below the $\kappa$ axis (not yet implemented).}
+        \label{fig:kappaDistribution}
+\end{figure}
+
+For our set of parameters, this algorithm produced a sample you can see on the figure \ref{fig:kappaDistribution}. However, the error margins of the observed stretching factors are too large to use the KS-test on them. Nevertheless, It appears that our model doesn't contradict existing observations.
 
 \subsection{Very high energy bursts fraction}
 
