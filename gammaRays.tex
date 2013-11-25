@@ -442,29 +442,29 @@ Now when we have all the ingredients, we can compute the sample with the followi
         \label{fig:kappaDistribution}
 \end{figure}
 
-Our set of parameters led to a sample you can see on the figure \ref{fig:kappaDistribution}. However, the error margins of the observed stretching factors are too large to use the KS-test on them. Nevertheless, It appears that our model doesn't contradict existing observations.
+Our set of parameters led to a sample you can see on the figure \ref{fig:kappaDistribution}. However, the error margins of the observed stretching factors are too large to use the KS-test on them. Nevertheless, it appears that our model doesn't contradict existing observations.
 
 \subsection{Very high energy bursts fraction}
 
-Our final test is to calculate the fraction of the observable bursts which can be observed at the energies of GeV and above.
+Out final test is the comparison of answers to this question: given the bursts which were observed in a high energy range $\left(\omega_1,\omega_3\right)$, which fraction of them can also be observed in a very high energy range $\left(\omega_2,\omega_3\right)$?
 
-To do so, we need to compute the number of bursts visible in a given energy range, which is the integral over space and jet directions:
+To calculate this value, we need to compute the number of bursts visible in a given energy range, which is the integral over space and jet directions:
 \begin{align}
 b\left(\omega_1,\omega_2\right) &= \int_0^{z_\text{max}\left(\omega_1,\omega_2\right)} \dif V\left(z\right) \rho\left(z\right) \int_0^{\chi_\text{max}\left(z,\omega_1,\omega_2\right)} 2\pi \sin\chi \dif\chi \nonumber\\
 &\approx 2\pi \int_0^{z_\text{max}\left(\omega_1,\omega_2\right)} \dif V\left(z\right) \rho\left(z\right) \int_0^{\chi_\text{max}\left(z,\omega_1,\omega_2\right)} \chi \dif\chi = \pi \int_0^{z_\text{max}\left(\omega_1,\omega_2\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_1,\omega_2\right)
 \end{align}
-Here $z_\text{max}\left(\omega_1,\omega_2\right)$ and $\chi_\text{max}\left(z,\omega_1,\omega_2\right)$ are the same values we used in the previous section: the maximum redshift from which a burst can be observed, and the maximum off-axis angle with which the burst at redshift $z$ can be observed.
+Here $z_\text{max}\left(\omega_1,\omega_2\right)$ and $\chi_\text{max}\left(z,\omega_1,\omega_2\right)$ are the same values we used in the previous section: the maximum redshift from which a burst can be observed in a given energy range, and the maximum off-axis angle with which the burst at redshift $z$ can be observed.
 
-The fraction in question is simply the ratio of these:
+The fraction we want to compute is the ratio of these integrals:
 \begin{equation}
 f\left(\omega_1,\omega_2,\omega_3\right) = \frac{b\left(\omega_2,\omega_3\right)}{b\left(\omega_1,\omega_3\right)} = \frac{\int_0^{z_\text{max}\left(\omega_2,\omega_3\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_2,\omega_3\right)}{\int_0^{z_\text{max}\left(\omega_1,\omega_3\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_1,\omega_3\right)}
 \end{equation}
 
-The ratio for our set of parameters is $f_m \approx 0.072$. The ratio computed from observations is $f_o = ...$. The binary distribution gives us the probability for it to happen:
+The ratio for our set of parameters is $f_m = 0.072$. The LAT burst catalog \ref{LATbc} contains $n = 35$ bursts, $3$ of which were observed in the energy range ${1\text{GeV}, \infty}$. So the ratio is $f_o = \frac{3}{35} \approx 0.086$. The binary distribution gives us the probability for it to happen:
 \begin{equation}
-...
+\text{Pr}\left(k_o = k\right) = \frac{n}{k} f^k \left(1-f\right)^{n-k} \approx 0.223585
 \end{equation}
-which means that the model fits observations in this test.
+which means that the model doesn't contradict observations in this test.
 
 \section{Summary}
 
