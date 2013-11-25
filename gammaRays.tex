@@ -460,15 +460,15 @@ The fraction we want to compute is the ratio of these integrals:
 f\left(\omega_1,\omega_2,\omega_3\right) = \frac{b\left(\omega_2,\omega_3\right)}{b\left(\omega_1,\omega_3\right)} = \frac{\int_0^{z_\text{max}\left(\omega_2,\omega_3\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_2,\omega_3\right)}{\int_0^{z_\text{max}\left(\omega_1,\omega_3\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_1,\omega_3\right)}
 \end{equation}
 
-The ratio for our set of parameters is $f_m = 0.072$. The LAT burst catalog \ref{LATbc} contains $n = 35$ bursts, $3$ of which were observed in the energy range ${1\text{GeV}, \infty}$. So the ratio is $f_o = \frac{3}{35} \approx 0.086$. The binary distribution gives us the probability for it to happen:
+The ratio for our set of parameters is $f_m = 0.072$. The LAT burst catalog \cite{Ackermann:2013zfa} contains $n = 35$ bursts, $3$ of which were observed in the energy range $\left(1\text{GeV}, \infty\right)$. So the ratio is $f_o = \frac{3}{35} \approx 0.086$. The binary distribution gives us the probability for it to happen:
 \begin{equation}
-\text{Pr}\left(k_o = k\right) = \frac{n}{k} f^k \left(1-f\right)^{n-k} \approx 0.223585
+\text{Pr}\left(f_o = \frac{k}{n}\right) = \binom{n}{k} f_m^k \left(1-f_m\right)^{n-k} \approx 0.22
 \end{equation}
 which means that the model doesn't contradict observations in this test.
 
 \section{Summary}
 
-%\bibliographystyle{plain}
-%\bibliography{refs}
+\bibliographystyle{alpha}
+\bibliography{gammaRays}
 
 \end{document}

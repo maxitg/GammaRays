@@ -8,3 +8,7 @@
 *.log
 
 gammaRays.synctex.gz
+
+*.bbl
+
+*.blg
