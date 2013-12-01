@@ -4,6 +4,7 @@
 \usepackage{fullpage}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{units}
 
 \allowdisplaybreaks
 
@@ -14,6 +15,16 @@
 
 \begin{document}
 \maketitle
+
+\begin{abstract}
+Numerous observations confirm that the high energy $(> \unit[100]{MeV})$ emission of gamma ray bursts is delayed with respect to the low energy emission. However, the difference of light curves in various high energy bands has not been studied properly.
+
+In this paper we consider all the bursts observed by Fermi-LAT since 2008 August 4 to 2011 August 1, for which at least $10$ events with energies $\unit[1]{GeV}$ or higher were observed. There are $3$ of them: GRB080916C, GRB090902B, and GRB090926A. We study their light curves in two bands, $(\unit[100]{MeV}, \unit[1]{GeV})$ and $(\unit[1]{GeV}, \unit[300]{GeV})$.
+The Kolmogorov-Smirnov test is used to check whether the light curves for these two bands are the same. No significant difference was found for GRB080916C and GRB090902B. However, we observed with statistical significance of $3.4 \sigma$, that the higher energy light curve of GRB090926A is stretched with respect to the lower-energy one.
+
+We suggest a simple geometrical model to explain this result. The main assumption is the jet opening angle dependence on radiation energy -- the most energetic photons are emitted near the axis of the jet. To test this model, we compute the total energy of the burst, and confirm that it is below the constraint. We also compute the fraction of observable bursts in $(\unit[100]{MeV}, \unit[1]{GeV})$ band, which can also be observed in higher energies. This fraction matches the observations.
+Finally, we predict the distribution of observable stretching factors, which may be tested in the future when more observational data will be available.
+\end{abstract}
 
 \section{Introduction}
 
@@ -460,7 +471,7 @@ The fraction we want to compute is the ratio of these integrals:
 f\left(\omega_1,\omega_2,\omega_3\right) = \frac{b\left(\omega_2,\omega_3\right)}{b\left(\omega_1,\omega_3\right)} = \frac{\int_0^{z_\text{max}\left(\omega_2,\omega_3\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_2,\omega_3\right)}{\int_0^{z_\text{max}\left(\omega_1,\omega_3\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_1,\omega_3\right)}
 \end{equation}
 
-The ratio for our set of parameters is $f_m = 0.072$. The LAT burst catalog \cite{Ackermann:2013zfa} contains $n = 35$ bursts, $3$ of which were observed in the energy range $\left(1\text{GeV}, \infty\right)$. So the ratio is $f_o = \frac{3}{35} \approx 0.086$. The binary distribution gives us the probability for it to happen:
+The ratio for our set of parameters is $f_m = 0.072$. The LAT burst catalog \cite{Ackermann:2013zfa} contains $n = 35$ bursts, $3$ of which were observed in the energy range $\left(\unit[1]{GeV}, \infty\right)$. So the ratio is $f_o = \frac{3}{35} \approx 0.086$. The binary distribution gives us the probability for it to happen:
 \begin{equation}
 \text{Pr}\left(f_o = \frac{k}{n}\right) = \binom{n}{k} f_m^k \left(1-f_m\right)^{n-k} \approx 0.22
 \end{equation}
