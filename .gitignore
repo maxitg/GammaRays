@@ -17,3 +17,5 @@ DerivedData
 *.xcuserstate
 
 *.out
+
+*.llt

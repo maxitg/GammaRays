@@ -1,0 +1,589 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     24788,        579]
+NotebookOptionsPosition[     24217,        555]
+NotebookOutlinePosition[     24572,        571]
+CellTagsIndexPosition[     24529,        568]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", "drawRadiation", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"centralEngineSize", "\[Rule]", "1"}], ",", 
+     RowBox[{"v", "\[Rule]", "0.9"}], ",", 
+     RowBox[{"lowAngle", "\[Rule]", "0.7"}], ",", 
+     RowBox[{"highAngle", "\[Rule]", "0.07"}], ",", 
+     RowBox[{"observerDistance", "\[Rule]", "100"}], ",", 
+     RowBox[{"observerAngle", "\[Rule]", "0.6"}], ",", 
+     RowBox[{"photonSize", "\[Rule]", "0.3"}], ",", 
+     RowBox[{"photonInterval", "\[Rule]", "20"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"drawRadiation", "[", 
+    RowBox[{"t_", ",", 
+     RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"i", ",", "ti"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Disk", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0"}], "}"}], ",", 
+          RowBox[{"OptionValue", "[", "centralEngineSize", "]"}]}], "]"}], 
+        ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"Red", ",", 
+          RowBox[{"Circle", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "0"}], "}"}], ",", 
+            RowBox[{
+             RowBox[{"OptionValue", "[", "v", "]"}], "t"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"OptionValue", "[", "lowAngle", "]"}]}], ",", 
+              RowBox[{"OptionValue", "[", "lowAngle", "]"}]}], "}"}]}], 
+           "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"Thick", ",", "Blue", ",", 
+          RowBox[{"Circle", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "0"}], "}"}], ",", 
+            RowBox[{
+             RowBox[{"OptionValue", "[", "v", "]"}], "t"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"OptionValue", "[", "highAngle", "]"}]}], ",", 
+              RowBox[{"OptionValue", "[", "highAngle", "]"}]}], "}"}]}], 
+           "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Darker", "[", "Green", "]"}], ",", 
+          RowBox[{"Arrow", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"OptionValue", "[", "observerDistance", "]"}], 
+                RowBox[{"Cos", "[", 
+                 RowBox[{"OptionValue", "[", "observerAngle", "]"}], "]"}]}], 
+               ",", 
+               RowBox[{
+                RowBox[{"OptionValue", "[", "observerDistance", "]"}], 
+                RowBox[{"Sin", "[", 
+                 RowBox[{"OptionValue", "[", "observerAngle", "]"}], 
+                 "]"}]}]}], "}"}]}], "}"}], "]"}]}], "}"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Table", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Block", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+             "startX", ",", "startY", ",", "angle", ",", "x", ",", "y"}], 
+             "}"}], ",", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"startX", "=", 
+              RowBox[{
+               RowBox[{"OptionValue", "[", "v", "]"}], "i", " ", 
+               RowBox[{"Cos", "[", 
+                RowBox[{"Min", "[", 
+                 RowBox[{
+                  RowBox[{"OptionValue", "[", "lowAngle", "]"}], ",", 
+                  RowBox[{"OptionValue", "[", "observerAngle", "]"}]}], "]"}],
+                 "]"}]}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"startY", "=", 
+              RowBox[{
+               RowBox[{"OptionValue", "[", "v", "]"}], "i", " ", 
+               RowBox[{"Sin", "[", 
+                RowBox[{"Min", "[", 
+                 RowBox[{
+                  RowBox[{"OptionValue", "[", "lowAngle", "]"}], ",", 
+                  RowBox[{"OptionValue", "[", "observerAngle", "]"}]}], "]"}],
+                 "]"}]}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"angle", "=", 
+              RowBox[{"OptionValue", "[", "observerAngle", "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"x", "=", 
+              RowBox[{"startX", "+", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"t", "-", "i"}], ")"}], 
+                RowBox[{"Cos", "[", "angle", "]"}]}]}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"y", "=", 
+              RowBox[{"startY", "+", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"t", "-", "i"}], ")"}], 
+                RowBox[{"Sin", "[", "angle", "]"}]}]}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"{", 
+              RowBox[{"Red", ",", 
+               RowBox[{"Disk", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"x", ",", "y"}], "}"}], ",", 
+                 RowBox[{"OptionValue", "[", "photonSize", "]"}]}], "]"}]}], 
+              "}"}]}]}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+          ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "0", ",", "t", ",", 
+            RowBox[{"OptionValue", "[", "photonInterval", "]"}]}], "}"}]}], 
+         "]"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"Table", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Block", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+             "startX", ",", "startY", ",", "angle", ",", "x", ",", "y"}], 
+             "}"}], ",", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"startX", "=", 
+              RowBox[{
+               RowBox[{"OptionValue", "[", "v", "]"}], "i", " ", 
+               RowBox[{"Cos", "[", 
+                RowBox[{"Min", "[", 
+                 RowBox[{
+                  RowBox[{"OptionValue", "[", "highAngle", "]"}], ",", 
+                  RowBox[{"OptionValue", "[", "observerAngle", "]"}]}], "]"}],
+                 "]"}]}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"startY", "=", 
+              RowBox[{
+               RowBox[{"OptionValue", "[", "v", "]"}], "i", " ", 
+               RowBox[{"Sin", "[", 
+                RowBox[{"Min", "[", 
+                 RowBox[{
+                  RowBox[{"OptionValue", "[", "highAngle", "]"}], ",", 
+                  RowBox[{"OptionValue", "[", "observerAngle", "]"}]}], "]"}],
+                 "]"}]}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"angle", "=", 
+              RowBox[{"OptionValue", "[", "observerAngle", "]"}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"x", "=", 
+              RowBox[{"startX", "+", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"t", "-", "i"}], ")"}], 
+                RowBox[{"Cos", "[", "angle", "]"}]}]}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"y", "=", 
+              RowBox[{"startY", "+", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"t", "-", "i"}], ")"}], 
+                RowBox[{"Sin", "[", "angle", "]"}]}]}]}], ";", 
+             "\[IndentingNewLine]", 
+             RowBox[{"{", 
+              RowBox[{"Blue", ",", 
+               RowBox[{"Disk", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"x", ",", "y"}], "}"}], ",", 
+                 RowBox[{"OptionValue", "[", "photonSize", "]"}]}], "]"}]}], 
+              "}"}]}]}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+          ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "0", ",", "t", ",", 
+            RowBox[{"OptionValue", "[", "photonInterval", "]"}]}], "}"}]}], 
+         "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.59584258302489*^9, 3.595842753897132*^9}, {
+   3.595842866470069*^9, 3.595843023059347*^9}, {3.5958430677816467`*^9, 
+   3.5958431941824017`*^9}, {3.5958432468544703`*^9, 
+   3.5958433680383453`*^9}, {3.595843411558457*^9, 3.595843466852075*^9}, {
+   3.595843589814559*^9, 3.595843653036922*^9}, {3.595843689915534*^9, 
+   3.5958438100033903`*^9}, {3.595843842998906*^9, 3.5958438754186993`*^9}, {
+   3.595843969664946*^9, 3.595843974288438*^9}, {3.5958442447811728`*^9, 
+   3.595844349814054*^9}, {3.5958443821882467`*^9, 3.595844386748435*^9}, {
+   3.595844431570077*^9, 3.595844581710051*^9}, {3.595844618032076*^9, 
+   3.59584462104147*^9}, {3.5958446821784277`*^9, 3.595844716593995*^9}, {
+   3.5958447754309*^9, 3.5958448139534473`*^9}, {3.595845024716194*^9, 
+   3.59584502485439*^9}, {3.5958450743307457`*^9, 3.5958450760711184`*^9}, {
+   3.595845183381014*^9, 3.59584519873508*^9}, {3.59584536487819*^9, 
+   3.595845444892994*^9}, {3.595845705009416*^9, 3.5958457194954367`*^9}, {
+   3.5958458838966007`*^9, 3.5958460190174026`*^9}, 3.595846061056314*^9, {
+   3.5958460984306393`*^9, 3.5958461008570633`*^9}, {3.595846200546546*^9, 
+   3.595846320547361*^9}, {3.595846450287627*^9, 3.595846462244567*^9}, {
+   3.5958475282773314`*^9, 3.595847528385499*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", 
+  RowBox[{"Manipulate", "[", 
+   RowBox[{
+    RowBox[{"drawRadiation", "[", "t", "]"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "0", ",", "100"}], "}"}]}], "\[IndentingNewLine]", 
+   "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.595842613740243*^9, 3.595842621093541*^9}, {
+  3.59584285419713*^9, 3.595842854273382*^9}, {3.595842915744751*^9, 
+  3.595842923103755*^9}, {3.5958429802540703`*^9, 3.595842981985553*^9}, {
+  3.595843143950294*^9, 3.595843144139861*^9}, {3.595843355940666*^9, 
+  3.595843360274723*^9}, {3.595843405170165*^9, 3.595843407929922*^9}, {
+  3.595843901396068*^9, 3.5958439472652197`*^9}, {3.595843979089926*^9, 
+  3.595844046441688*^9}, {3.59584407664503*^9, 3.5958440977751627`*^9}, {
+  3.5958448808493843`*^9, 3.59584492523254*^9}, {3.5958460482766457`*^9, 
+  3.595846053248927*^9}}],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[
+   Manipulate[
+    $CellContext`drawRadiation[$CellContext`t], {$CellContext`t, 0, 100}], 
+   StandardForm],
+  ImageSizeCache->{397., {270., 275.}}]], "Output",
+ CellChangeTimes->{{3.595842621570582*^9, 3.595842661479677*^9}, {
+   3.595842736585754*^9, 3.595842756786009*^9}, 3.595842805966773*^9, {
+   3.5958428372991133`*^9, 3.5958429821707973`*^9}, {3.595843076452018*^9, 
+   3.5958430942176533`*^9}, {3.59584313767389*^9, 3.595843195630286*^9}, {
+   3.595843277809833*^9, 3.595843369023282*^9}, {3.59584340585756*^9, 
+   3.5958434083289213`*^9}, 3.5958436546976843`*^9, {3.5958437063965282`*^9, 
+   3.59584371914957*^9}, {3.5958437705700006`*^9, 3.595843811072383*^9}, {
+   3.595843847001895*^9, 3.5958438762360573`*^9}, {3.595843911686893*^9, 
+   3.595843947786912*^9}, 3.595844098213407*^9, 3.595844815149091*^9, {
+   3.595844916499063*^9, 3.595844925730116*^9}, 3.5958452000360518`*^9, 
+   3.595846054354067*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"OptionValue", "::", "optnf"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Option name \[NoBreak]\\!\\(observerSize\\)\[NoBreak] not \
+found in defaults for \[NoBreak]\\!\\(drawRadiation\\)\[NoBreak]. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/OptionValue\\\", ButtonNote -> \
+\\\"OptionValue::optnf\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.595848916523494*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", "drawScheme", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"centralEngineSize", "\[Rule]", "0.03"}], ",", 
+     RowBox[{"jetRadius", "\[Rule]", "0.3"}], ",", 
+     RowBox[{"jetCount", "\[Rule]", "3"}], ",", 
+     RowBox[{"lowAngle", "\[Rule]", "0.1"}], ",", 
+     RowBox[{"highAngle", "\[Rule]", "0.01"}], ",", 
+     RowBox[{"observerSize", "\[Rule]", "0.03"}], ",", 
+     RowBox[{"observerDistance", "\[Rule]", "1"}], ",", 
+     RowBox[{"observerAngle", "\[Rule]", "0.09"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"drawScheme", "[", 
+    RowBox[{"OptionsPattern", "[", "]"}], "]"}], ":=", 
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "i", ",", "ti", ",", "redX", ",", "redY", ",", "blueX", ",", "blueY", 
+       ",", "observerX", ",", "observerY"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Disk", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0"}], "}"}], ",", 
+          RowBox[{"OptionValue", "[", "centralEngineSize", "]"}]}], "]"}], 
+        ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"observerX", "=", 
+          RowBox[{
+           RowBox[{"OptionValue", "[", "observerDistance", "]"}], 
+           RowBox[{"Cos", "[", 
+            RowBox[{"OptionValue", "[", "observerAngle", "]"}], "]"}]}]}], 
+         ";", "\[IndentingNewLine]", 
+         RowBox[{"observerY", "=", 
+          RowBox[{
+           RowBox[{"OptionValue", "[", "observerDistance", "]"}], 
+           RowBox[{"Sin", "[", 
+            RowBox[{"OptionValue", "[", "observerAngle", "]"}], "]"}]}]}], 
+         ";", "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Darker", "[", "Green", "]"}], ",", 
+           RowBox[{"Disk", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"observerX", ",", "observerY"}], "}"}], ",", 
+             RowBox[{"OptionValue", "[", "observerSize", "]"}]}], "]"}]}], 
+          "}"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"Thick", ",", "Red", ",", 
+            RowBox[{"Circle", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"0", ",", "0"}], "}"}], ",", "ri", ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", 
+                 RowBox[{"OptionValue", "[", "lowAngle", "]"}]}], ",", 
+                RowBox[{"OptionValue", "[", "lowAngle", "]"}]}], "}"}]}], 
+             "]"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"ri", ",", "0", ",", 
+            RowBox[{"OptionValue", "[", "jetRadius", "]"}], ",", 
+            FractionBox[
+             RowBox[{"OptionValue", "[", "jetRadius", "]"}], 
+             RowBox[{"OptionValue", "[", "jetCount", "]"}]]}], "}"}]}], "]"}],
+         ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"redX", "=", 
+          RowBox[{
+           RowBox[{"OptionValue", "[", "jetRadius", "]"}], " ", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"Min", "[", 
+             RowBox[{
+              RowBox[{"OptionValue", "[", "lowAngle", "]"}], ",", 
+              RowBox[{"OptionValue", "[", "observerAngle", "]"}]}], "]"}], 
+            "]"}]}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"redY", "=", 
+          RowBox[{
+           RowBox[{"OptionValue", "[", "jetRadius", "]"}], " ", 
+           RowBox[{"Sin", "[", 
+            RowBox[{"Min", "[", 
+             RowBox[{
+              RowBox[{"OptionValue", "[", "lowAngle", "]"}], ",", 
+              RowBox[{"OptionValue", "[", "observerAngle", "]"}]}], "]"}], 
+            "]"}]}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{"Red", ",", 
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"0", ",", "0"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"redX", ",", "redY"}], "}"}]}], "}"}], "]"}]}], 
+          "}"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"Dashed", ",", "Red", ",", 
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"redX", ",", "redY"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"observerX", ",", "observerY"}], "}"}]}], "}"}], 
+           "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"Thick", ",", "Blue", ",", 
+            RowBox[{"Circle", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"0", ",", "0"}], "}"}], ",", "ri", ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", 
+                 RowBox[{"OptionValue", "[", "highAngle", "]"}]}], ",", 
+                RowBox[{"OptionValue", "[", "highAngle", "]"}]}], "}"}]}], 
+             "]"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"ri", ",", "0", ",", 
+            RowBox[{"OptionValue", "[", "jetRadius", "]"}], ",", 
+            FractionBox[
+             RowBox[{"OptionValue", "[", "jetRadius", "]"}], 
+             RowBox[{"OptionValue", "[", "jetCount", "]"}]]}], "}"}]}], "]"}],
+         ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"blueX", "=", 
+          RowBox[{
+           RowBox[{"OptionValue", "[", "jetRadius", "]"}], " ", 
+           RowBox[{"Cos", "[", 
+            RowBox[{"Min", "[", 
+             RowBox[{
+              RowBox[{"OptionValue", "[", "highAngle", "]"}], ",", 
+              RowBox[{"OptionValue", "[", "observerAngle", "]"}]}], "]"}], 
+            "]"}]}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"blueY", "=", 
+          RowBox[{
+           RowBox[{"OptionValue", "[", "jetRadius", "]"}], " ", 
+           RowBox[{"Sin", "[", 
+            RowBox[{"Min", "[", 
+             RowBox[{
+              RowBox[{"OptionValue", "[", "highAngle", "]"}], ",", 
+              RowBox[{"OptionValue", "[", "observerAngle", "]"}]}], "]"}], 
+            "]"}]}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{"Blue", ",", 
+           RowBox[{"Line", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"0", ",", "0"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"blueX", ",", "blueY"}], "}"}]}], "}"}], "]"}]}], 
+          "}"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"Dashed", ",", "Blue", ",", 
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"blueX", ",", "blueY"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"observerX", ",", "observerY"}], "}"}]}], "}"}], 
+           "]"}]}], "}"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.59584258302489*^9, 3.595842753897132*^9}, {
+   3.595842866470069*^9, 3.595843023059347*^9}, {3.5958430677816467`*^9, 
+   3.5958431941824017`*^9}, {3.5958432468544703`*^9, 
+   3.5958433680383453`*^9}, {3.595843411558457*^9, 3.595843466852075*^9}, {
+   3.595843589814559*^9, 3.595843653036922*^9}, {3.595843689915534*^9, 
+   3.5958438100033903`*^9}, {3.595843842998906*^9, 3.5958438754186993`*^9}, {
+   3.595843969664946*^9, 3.595843974288438*^9}, {3.5958442447811728`*^9, 
+   3.595844349814054*^9}, {3.5958443821882467`*^9, 3.595844386748435*^9}, {
+   3.595844431570077*^9, 3.595844581710051*^9}, {3.595844618032076*^9, 
+   3.59584462104147*^9}, {3.5958446821784277`*^9, 3.595844716593995*^9}, {
+   3.5958447754309*^9, 3.5958448139534473`*^9}, {3.595845024716194*^9, 
+   3.59584502485439*^9}, {3.5958450743307457`*^9, 3.5958450760711184`*^9}, {
+   3.595845183381014*^9, 3.59584519873508*^9}, {3.59584536487819*^9, 
+   3.595845444892994*^9}, {3.595845705009416*^9, 3.5958457194954367`*^9}, {
+   3.5958458838966007`*^9, 3.5958460190174026`*^9}, 3.595846061056314*^9, {
+   3.5958460984306393`*^9, 3.5958461008570633`*^9}, {3.595846200546546*^9, 
+   3.595846320547361*^9}, {3.595846450287627*^9, 3.595846462244567*^9}, {
+   3.5958475282773314`*^9, 3.595847528385499*^9}, {3.595848673673086*^9, 
+   3.595848796691436*^9}, {3.5958488696301737`*^9, 3.595848929712049*^9}, {
+   3.5958489929252*^9, 3.5958490331062098`*^9}, {3.595849351285133*^9, 
+   3.5958494242021923`*^9}, {3.595849479102297*^9, 3.595849487878209*^9}, {
+   3.5958495186465054`*^9, 3.595849570512732*^9}, {3.5958496083863277`*^9, 
+   3.595849713154964*^9}, {3.5958497690272627`*^9, 3.5958497731039343`*^9}, {
+   3.5958498062182198`*^9, 3.595849948287118*^9}, {3.595850001929093*^9, 
+   3.595850049835208*^9}, {3.5958500861973257`*^9, 3.5958501796312313`*^9}, {
+   3.5958503872146177`*^9, 3.595850410469344*^9}, {3.595850909831037*^9, 
+   3.595850958011393*^9}, {3.595851096062984*^9, 3.5958511093251038`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", 
+  RowBox[{"Manipulate", "[", 
+   RowBox[{
+    RowBox[{"drawScheme", "[", 
+     RowBox[{
+      RowBox[{"centralEngineSize", "\[Rule]", "ces"}], ",", 
+      RowBox[{"jetRadius", "\[Rule]", "jr"}], ",", 
+      RowBox[{"jetCount", "\[Rule]", "jc"}], ",", 
+      RowBox[{"lowAngle", "\[Rule]", "la"}], ",", 
+      RowBox[{"highAngle", "\[Rule]", "ha"}], ",", 
+      RowBox[{"observerSize", "\[Rule]", "os"}], ",", 
+      RowBox[{"observerDistance", "\[Rule]", "od"}], ",", 
+      RowBox[{"observerAngle", "\[Rule]", "oa"}]}], "]"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"ces", ",", "0", ",", "1"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"jr", ",", "0", ",", "1"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"jc", ",", "1", ",", "10", ",", "1"}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"la", ",", "0", ",", "\[Pi]"}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"ha", ",", "0", ",", "\[Pi]"}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"os", ",", "0", ",", "1"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"od", ",", "0", ",", "1"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"oa", ",", "0", ",", "\[Pi]"}], "}"}]}], "\[IndentingNewLine]", 
+   "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.595848957697744*^9, 3.595848974988721*^9}, {
+  3.5958495991212254`*^9, 3.5958496033906593`*^9}, {3.595850422609438*^9, 
+  3.595850502653233*^9}, {3.595850536807232*^9, 3.5958505439660883`*^9}, {
+  3.5958509622115917`*^9, 3.5958509783041563`*^9}, {3.59585101813906*^9, 
+  3.595851018306987*^9}}],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[
+   Manipulate[
+    $CellContext`drawScheme[$CellContext`centralEngineSize -> \
+$CellContext`ces, $CellContext`jetRadius -> $CellContext`jr, \
+$CellContext`jetCount -> $CellContext`jc, $CellContext`lowAngle -> \
+$CellContext`la, $CellContext`highAngle -> $CellContext`ha, \
+$CellContext`observerSize -> $CellContext`os, $CellContext`observerDistance -> \
+$CellContext`od, $CellContext`observerAngle -> $CellContext`oa], \
+{$CellContext`ces, 0, 1}, {$CellContext`jr, 0, 1}, {$CellContext`jc, 1, 10, 
+     1}, {$CellContext`la, 0, Pi}, {$CellContext`ha, 0, Pi}, {$CellContext`os,
+      0, 1}, {$CellContext`od, 0, 1}, {$CellContext`oa, 0, Pi}], StandardForm],
+  ImageSizeCache->{996., {234., 240.}}]], "Output",
+ CellChangeTimes->{
+  3.595848975620139*^9, 3.59584961943336*^9, 3.595850503862134*^9, 
+   3.5958505451014338`*^9, 3.5958507369096127`*^9, 3.595850786297187*^9, {
+   3.595850982112155*^9, 3.59585101879694*^9}, 3.595851113524775*^9}]
+}, Open  ]]
+},
+WindowSize->{1221, 756},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 9400, 214, 567, "Input"],
+Cell[CellGroupData[{
+Cell[9982, 238, 879, 16, 74, "Input"],
+Cell[10864, 256, 954, 16, 573, "Output"],
+Cell[11821, 274, 506, 10, 24, "Message"]
+}, Open  ]],
+Cell[12342, 287, 9114, 204, 512, "Input"],
+Cell[CellGroupData[{
+Cell[21481, 495, 1741, 39, 210, "Input"],
+Cell[23225, 536, 976, 16, 502, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
