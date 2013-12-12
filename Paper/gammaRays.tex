@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 \usepackage{units}
+\usepackage{hyperref}
 
 \allowdisplaybreaks
 
@@ -28,7 +29,14 @@ Finally, we predict the distribution of observable stretching factors, which may
 
 \section{Introduction}
 
-Gamma Ray Bursts (GRBs) are among the most energetic events in the Universe, therefore they might provide new knowledge for particle physics. Recent observatories, specifically Fermi \cite{Ackermann:2012kna} and Swift \cite{Gehrels:2004gu} allowed for extensive study of these explosions \cite{Vianello:2013ela,Gehrels:2013xd}. These studies led to several interesting results. For example, the total energy emitted in gamma-rays during a burst was found to be similar among different bursts within an order of magnitude \cite{Bloom:2003wy}. Temporal variations of spectra were also studied. The spectral lags were found between different low energy bands \cite{Yi:2005ht}. The very high energy radiation was discovered to be extended if compared to x-ray emission \cite{Vianello:2013ela,Lange:2013uh}. Moreover, the Large Area Telescope (LAT) of Fermi allows us to explore the spectral variations even between high energy bands like $(\unit[100]{MeV}, \unit[1]{GeV})$ and $(\unit[1]{GeV}, \unit[300]{GeV})$. In this paper we use the Kolmogorov-Smirnov test to compute the time stretching of radiation in one of these bands compared to the other.
+Gamma Ray Bursts (GRBs) are among the most energetic events in the Universe, therefore they might provide new knowledge for particle physics. Recent observatories, specifically Fermi \cite{Ackermann:2012kna} and Swift \cite{Gehrels:2004gu} allowed for extensive study of these explosions \cite{Vianello:2013ela,Gehrels:2013xd}. These studies led to several interesting results. For example, the total energy emitted in gamma-rays during a burst was found to be similar among different bursts within an order of magnitude \cite{Bloom:2003wy}. Temporal variations of spectra were also studied. The spectral lags were found between different low energy bands \cite{Yi:2005ht}. The very high energy radiation was discovered to be extended if compared to x-ray emission \cite{Vianello:2013ela,Lange:2013uh}. Moreover, the Large Area Telescope (LAT) of Fermi allows us to explore the spectral variations even between high energy bands like $(\unit[100]{MeV}, \unit[1]{GeV})$ and $(\unit[1]{GeV}, \unit[300]{GeV})$ (we'll call them low and high energy bands). In this paper we use the Kolmogorov-Smirnov test to compute the time stretching of radiation in one of these bands compared to the other.
+
+We take the GRB list from the Fermi-LAT catalog \cite{Ackermann:2013zfa}. Tables 2 and 4 in \cite{Ackermann:2013zfa} provide the time, durations and locations of the bursts, which we use to download the events data from the LAT Data Server\footnote{\url{http://fermi.gsfc.nasa.gov/cgi-bin/ssc/LAT/LATDataQuery.cgi}}. We also download events during a long time interval before the burst, and use the technique introduced in \cite{Rubtsov:2011qq} to estimate background radiation in both energy bands.
+Most of the bursts in the catalog, however, do not have enough events with over $\unit[1]{GeV}$ energies to do desired computations, so we choose only those bursts for study, for which at least $10$ photons were detected in the high energy band. This leaves $3$ of them: 080916C \cite{Tajima:2009az}, 090902B \cite{Abdo:2009pg} and 090926A \cite{Bregeon:2011bu}.
+
+For these 3 bursts we compute both high and low energy CDFs. We subtract the low energy background estimate from the low energy CDF, and add the high energy background estimate to it. This makes the low energy CDF non-monotonous and, rigorously speaking, we cannot use the 2-sample Kolmogorov-Smirnov test on it. However, since there are much more high energy events than there are low energy ones, we can think of the low energy CDF as continuous. Therefore, this non-monotonicity will be negligible, and will not harm the KS-test results very much.
+
+Finally, we stretch the high energy CDF by different factors, and compare it to the low energy CDF using the KS-test. If we require $2\sigma$-significant probability to exclude a particular stretching factor, then the stretching factor of $1$ (which means no stretching) is allowed for GRBs 080916C and 090902B. However, for 090926A, the high energy light curve should be stretched with respect to the low energy one.
 
 \section{Observations}
 
@@ -60,7 +68,7 @@ The burst is fully specified by the following set of parameters:
 \begin{itemize}
 \item{$v$, the velocity of the shell, $\gamma = \frac{1}{\sqrt{1-v^2}} \gg 1$.
 
-	If $\gamma$ is small enough, high photon densities would make the jet plasma optically thick to pair production. This in turn would suppress emitted flux, and this is not observed. From this argument the lower bound of $\gamma \ge 100$ was derived \cite{something}. The limited total energy of the burst provides an upper bound: $\gamma \le \gamma_\text{max}$ (see section 3.6). Finally, the model dependent computations of $\gamma$ give the values ranging from $50$ for low-energy bursts to $1000$ for high-energy ones \cite{Ghirlanda:2011ux,Ghisellini:2012nc}. $\gamma$ may vary from burst to burst, and it should decrease during the burst due to the dissipation of energy. As a first approximation we select {\boldmath$\gamma = 100$} for this study.
+	If $\gamma$ is small enough, high photon densities would make the jet plasma optically thick to pair production. This in turn would suppress emitted flux, and this is not observed. From this argument the lower bound of $\gamma \ge 100$ was derived \cite{}. The limited total energy of the burst provides an upper bound: $\gamma \le \gamma_\text{max}$ (see section 3.6). Finally, the model dependent computations of $\gamma$ give the values ranging from $50$ for low-energy bursts to $1000$ for high-energy ones \cite{Ghirlanda:2011ux,Ghisellini:2012nc}. $\gamma$ may vary from burst to burst, and it should decrease during the burst due to the dissipation of energy. As a first approximation we select {\boldmath$\gamma = 100$} for this study.
 }
 \item{$\eta_0$, which defines the luminosity scale.
 	
@@ -491,7 +499,7 @@ which means that the model doesn't contradict observations in this test.
 
 \section{Discussion}
 
-\bibliographystyle{alpha}
-\bibliography{/Users/maxitg/Documents/bibliography.bib}
+\bibliographystyle{hep}
+\bibliography{gammaRays.bib}
 
 \end{document}

@@ -15,3 +15,5 @@ gammaRays.synctex.gz
 
 DerivedData
 *.xcuserstate
+
+*.out

@@ -50,7 +50,7 @@ void GRBurst::init() {
 
 void GRBurst::download() {
     if (query.error == GRFermiLATDataServerQueryErrorNotDownloaded) query.download();
-    if (query.error != GRFermiLATDataServerQueryErrorNotProcessed && query.error != GRFermiLATDataServerQueryErrorNotRead && !query.error == GRFermiLATDataServerQueryErrorOk) {
+    if (query.error != GRFermiLATDataServerQueryErrorNotProcessed && query.error != GRFermiLATDataServerQueryErrorNotRead && query.error != GRFermiLATDataServerQueryErrorOk) {
         error = GRBurstErrorQueryError;
         errorDescription = query.errorDescription;
         return;
