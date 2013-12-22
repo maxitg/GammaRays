@@ -128,6 +128,7 @@ float GRDistribution::kolmogorovSmirnovTest(GRDistribution distribution, double 
     vector <pair<double, double> > mevPoints;
     vector <pair<double, double> > gevPoints;
     
+    double bestSelfPoint, bestDistributionPoint, bestValue;
     for (int i = 0; i < values.size(); i++) {
         bool selfInProgress = (values[i] >= start) && (values[i] <= end);
         bool distributionInProgress = (values[i] >= distribution.start) && (values[i] <= distribution.end);
@@ -144,7 +145,13 @@ float GRDistribution::kolmogorovSmirnovTest(GRDistribution distribution, double 
         
         selfPoint = (double)(i+1) / values.size();
         if (plot) gevPoints.push_back(make_pair(values[i], selfPoint));
-        maxDistance = max(maxDistance, abs(selfPoint - distributionPoint));
+        
+        if (maxDistance < abs(selfPoint - distributionPoint)) {
+            maxDistance = abs(selfPoint - distributionPoint);
+            bestSelfPoint = selfPoint;
+            bestDistributionPoint = distributionPoint;
+            bestValue = values[i];
+        }
     }
     
     for (int i = 0; i < distribution.values.size(); i++) {
@@ -167,10 +174,16 @@ float GRDistribution::kolmogorovSmirnovTest(GRDistribution distribution, double 
         
         if (plot) mevPoints.push_back(make_pair(distribution.values[i], distributionPoint));
         
-        maxDistance = max(maxDistance, abs(selfPoint - distributionPoint));
+        if (maxDistance < abs(selfPoint - distributionPoint)) {
+            maxDistance = abs(selfPoint - distributionPoint);
+            bestSelfPoint = selfPoint;
+            bestDistributionPoint = distributionPoint;
+            bestValue = distribution.values[i];
+        }
     }
     
     if (plot) {
+        cout << lengthening << ": " << bestValue << " " << bestSelfPoint << " " << bestDistributionPoint << endl;
         sort(mevPoints.begin(), mevPoints.end());
         sort(gevPoints.begin(), gevPoints.end());
         for (int i = 0; i < mevPoints.size(); i++) {

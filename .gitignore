@@ -19,3 +19,9 @@ DerivedData
 *.out
 
 *.llt
+
+*.nav
+
+*.snm
+
+*.toc

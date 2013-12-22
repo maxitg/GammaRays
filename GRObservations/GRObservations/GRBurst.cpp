@@ -181,9 +181,15 @@ void GRBurst::evaluate() {
         maxLengthening[i] = 0.;
     }
     
+    double bestValue = 0., bestProbability = 0.;
     for (double value = LENGTHENING_MIN; value <= LENGTHENING_MAX; value *= LENGTHENING_STEP) {
+        double probability = gevDistribution.kolmogorovSmirnovTest(mevDistribution, value);
         lengtheningValues.push_back(value);
-        lengtheningProbabilities.push_back(gevDistribution.kolmogorovSmirnovTest(mevDistribution, value));
+        lengtheningProbabilities.push_back(probability);
+        if (probability > bestProbability) {
+            bestProbability = probability;
+            bestValue = value;
+        }
         
         for (int i = 0; i < 5; i++) {
             if (lengtheningProbabilities[lengtheningProbabilities.size()-1] < probabilityValues[i]) continue;
@@ -197,6 +203,10 @@ void GRBurst::evaluate() {
     trivialProbability = gevDistribution.kolmogorovSmirnovTest(mevDistribution, 1., true, mev, gev);
     mev.close();
     gev.close();
+    
+    mev.open((name + "/stretchedMeV").c_str());
+    gevDistribution.kolmogorovSmirnovTest(mevDistribution, bestValue, true, mev, gev);
+    mev.close();
     
     cout << endl;
 }

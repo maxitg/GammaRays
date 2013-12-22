@@ -92,7 +92,7 @@ int main(int argc, const char * argv[])
             else return -1;
         }
         
-        log << burstCatalog[i].name << " " << (burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.estimatedLinearComponent) << endl;
+        log << burstCatalog[i].name << " " << (burstCatalog[i].mevDistribution.values.size() - burstCatalog[i].mevDistribution.estimatedLinearComponent) << " " << (burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.estimatedLinearComponent) << endl;
         
         if ((burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.estimatedLinearComponent) < 10) {
             burstCatalog[i].clear();

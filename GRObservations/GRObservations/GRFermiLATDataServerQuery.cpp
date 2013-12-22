@@ -80,6 +80,7 @@ void GRFermiLATDataServerQuery::calculateHash() {
 void GRFermiLATDataServerQuery::init() {
     error = GRFermiLATDataServerQueryErrorNotDownloaded;
     calculateHash();
+    cout << this->hash << endl;
     
     ifstream status((hash + "/status").c_str());
     int statusCode = 0;
@@ -353,14 +354,14 @@ void GRFermiLATDataServerQuery::download() {
 }
 
 string GRFermiLATDataServerQuery::irfName(GRFermiEventClass eventClass, GRFermiConversionType conversionType) {
-    string irfName = "P7";
+    string irfName = "P7REP_";
     
     if (eventClass == GRFermiEventClassUltraclean) irfName += "ULTRACLEAN";
     else if (eventClass == GRFermiEventClassClean) irfName += "CLEAN";
     else if (eventClass == GRFermiEventClassSource) irfName += "SOURCE";
     else irfName += "TRANSIENT";
     
-    irfName += (string)"_V6" + (eventClass == GRFermiEventClassSource ? "MC" : "") + "::";
+    irfName += (string)"_V15::";
     
     if (conversionType == GRFermiConversionTypeBack) irfName += "BACK";
     else irfName += "FRONT";
@@ -391,7 +392,7 @@ int GRFermiLATDataServerQuery::gtmktime() {
     ostringstream cmd;
     cmd << fixed << "gtmktime" << " ";
     cmd << "scfile=" << hash << "/spacecraft.fits" << " ";
-    cmd << "filter=" << "\"DATA_QUAL==1 && LAT_CONFIG==1\"" << " ";
+    cmd << "filter=" << "\"DATA_QUAL>0 && LAT_CONFIG==1 && ABS(ROCK_ANGLE)<52\"" << " ";
     cmd << "roicut=" << "no" << " ";
     cmd << "evfile=" << hash << "/filtered.fits" << " ";
     cmd << "outfile=" << hash << "/timed.fits" << " ";
