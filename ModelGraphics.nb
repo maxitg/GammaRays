@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     70976,       1547]
-NotebookOptionsPosition[     70285,       1519]
-NotebookOutlinePosition[     70640,       1535]
-CellTagsIndexPosition[     70597,       1532]
+NotebookDataLength[     70510,       1532]
+NotebookOptionsPosition[     69819,       1504]
+NotebookOutlinePosition[     70174,       1520]
+CellTagsIndexPosition[     70131,       1517]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -330,12 +330,7 @@ Cell[BoxData[{
             RowBox[{"Opacity", "[", "1", "]"}], ",", 
             RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
           RowBox[{"Text", "[", 
-           RowBox[{
-            RowBox[{"Style", "[", 
-             RowBox[{
-             "\"\<\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\:0430\
-\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\>\"", ",", 
-              RowBox[{"FontSize", "\[Rule]", "14"}]}], "]"}], ",", 
+           RowBox[{"\"\<Central\\nEngine\>\"", ",", 
             RowBox[{"{", 
              RowBox[{"0", ",", 
               RowBox[{"-", 
@@ -379,12 +374,7 @@ Cell[BoxData[{
             RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
           "\[IndentingNewLine]", 
           RowBox[{"Text", "[", 
-           RowBox[{
-            RowBox[{"Style", "[", 
-             RowBox[{
-             "\"\<\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\:043b\
-\:044c\>\"", ",", 
-              RowBox[{"FontSize", "\[Rule]", "14"}]}], "]"}], ",", 
+           RowBox[{"\"\<Observer\>\"", ",", 
             RowBox[{"{", 
              RowBox[{"observerX", ",", 
               RowBox[{"observerY", "+", 
@@ -471,12 +461,7 @@ Cell[BoxData[{
             RowBox[{"Opacity", "[", "1", "]"}], ",", 
             RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
           RowBox[{"Text", "[", 
-           RowBox[{
-            RowBox[{"Style", "[", 
-             RowBox[{
-             "\"\<\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
-\:043b\:043d\:0430\>\"", ",", 
-              RowBox[{"FontSize", "\[Rule]", "14"}]}], "]"}], ",", 
+           RowBox[{"\"\<Shock\\nFront\>\"", ",", 
             RowBox[{"{", 
              RowBox[{
               RowBox[{"1.03", 
@@ -592,11 +577,8 @@ Cell[BoxData[{
             RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
           RowBox[{"Text", "[", 
            RowBox[{
-            RowBox[{"Style", "[", 
-             RowBox[{
-             "\"\<\!\(\*SuperscriptBox[\(e\), \(\[PlusMinus]\)]\), \
+           "\"\<\!\(\*SuperscriptBox[\(e\), \(\[PlusMinus]\)]\), \
 \!\(\*SuperscriptBox[\(p\), \(\[PlusMinus]\)]\)\>\"", ",", 
-              RowBox[{"FontSize", "\[Rule]", "14"}]}], "]"}], ",", 
             RowBox[{"{", 
              RowBox[{
               FractionBox["blueX", "2"], ",", 
@@ -627,10 +609,7 @@ Cell[BoxData[{
             RowBox[{"Opacity", "[", "1", "]"}], ",", 
             RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
           RowBox[{"Text", "[", 
-           RowBox[{
-            RowBox[{"Style", "[", 
-             RowBox[{"\"\<\[Gamma]\>\"", ",", 
-              RowBox[{"FontSize", "\[Rule]", "14"}]}], "]"}], ",", 
+           RowBox[{"\"\<\[Gamma]\>\"", ",", 
             RowBox[{"{", 
              RowBox[{
               FractionBox[
@@ -663,10 +642,7 @@ Cell[BoxData[{
             RowBox[{"Opacity", "[", "1", "]"}], ",", 
             RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
           RowBox[{"Text", "[", 
-           RowBox[{
-            RowBox[{"Style", "[", 
-             RowBox[{"\"\<\[Gamma]\>\"", ",", 
-              RowBox[{"FontSize", "\[Rule]", "14"}]}], "]"}], ",", 
+           RowBox[{"\"\<\[Gamma]\>\"", ",", 
             RowBox[{"{", 
              RowBox[{
               FractionBox[
@@ -722,7 +698,10 @@ Cell[BoxData[{
    3.5967817093056307`*^9, 3.596781729475387*^9}, {3.596781799871976*^9, 
    3.596781937873871*^9}, {3.5967819829703217`*^9, 3.5967820599275084`*^9}, {
    3.596782245816938*^9, 3.596782249579554*^9}, {3.596782289364414*^9, 
-   3.596782290228119*^9}, {3.596782384571208*^9, 3.596782426406927*^9}}],
+   3.596782290228119*^9}, {3.596782384571208*^9, 3.596782426406927*^9}, {
+   3.59689771717618*^9, 3.5968977319336023`*^9}, 3.59689786687252*^9, {
+   3.596897941633535*^9, 3.596897942228009*^9}, {3.596898036237802*^9, 
+   3.596898091585781*^9}}],
 
 Cell[CellGroupData[{
 
@@ -738,7 +717,10 @@ Cell[BoxData[
       RowBox[{"highAngle", "\[Rule]", "ha"}], ",", 
       RowBox[{"observerSize", "\[Rule]", "os"}], ",", 
       RowBox[{"observerDistance", "\[Rule]", "od"}], ",", 
-      RowBox[{"observerAngle", "\[Rule]", "oa"}]}], "]"}], ",", 
+      RowBox[{"observerAngle", "\[Rule]", "oa"}], ",", 
+      RowBox[{"centralEngineLabelQ", "\[Rule]", "True"}], ",", 
+      RowBox[{"jetLabelQ", "\[Rule]", "True"}], ",", 
+      RowBox[{"observerLabelQ", "\[Rule]", "True"}]}], "]"}], ",", 
     "\[IndentingNewLine]", 
     RowBox[{"{", 
      RowBox[{"ces", ",", "0", ",", "1"}], "}"}], ",", "\[IndentingNewLine]", 
@@ -761,7 +743,8 @@ Cell[BoxData[
   3.5958495991212254`*^9, 3.5958496033906593`*^9}, {3.595850422609438*^9, 
   3.595850502653233*^9}, {3.595850536807232*^9, 3.5958505439660883`*^9}, {
   3.5958509622115917`*^9, 3.5958509783041563`*^9}, {3.59585101813906*^9, 
-  3.595851018306987*^9}, {3.596689623463431*^9, 3.596689627446577*^9}}],
+  3.595851018306987*^9}, {3.596689623463431*^9, 3.596689627446577*^9}, {
+  3.596897811689021*^9, 3.596897841055121*^9}}],
 
 Cell[BoxData[
  DynamicBox[ToBoxes[
@@ -771,16 +754,18 @@ $CellContext`ces, $CellContext`jetRadius -> $CellContext`jr, \
 $CellContext`lowAngle -> $CellContext`la, $CellContext`highAngle -> \
 $CellContext`ha, $CellContext`observerSize -> $CellContext`os, \
 $CellContext`observerDistance -> $CellContext`od, $CellContext`observerAngle -> \
-$CellContext`oa], {$CellContext`ces, 0, 1}, {$CellContext`jr, 0, 
+$CellContext`oa, $CellContext`centralEngineLabelQ -> 
+     True, $CellContext`jetLabelQ -> True, $CellContext`observerLabelQ -> 
+     True], {$CellContext`ces, 0, 1}, {$CellContext`jr, 0, 
      1}, {$CellContext`la, 0, Pi}, {$CellContext`ha, 0, Pi}, {$CellContext`os,
       0, 1}, {$CellContext`od, 0, 1}, {$CellContext`oa, 0, Pi}], StandardForm],
-  ImageSizeCache->{401., {320., 325.}}]], "Output",
+  ImageSizeCache->{408., {340., 345.}}]], "Output",
  CellChangeTimes->{
   3.595848975620139*^9, 3.59584961943336*^9, 3.595850503862134*^9, 
    3.5958505451014338`*^9, 3.5958507369096127`*^9, 3.595850786297187*^9, {
    3.595850982112155*^9, 3.59585101879694*^9}, 3.595851113524775*^9, 
    3.595854216980577*^9, 3.595938886797866*^9, 3.596687960018248*^9, 
-   3.596689628571369*^9, 3.5967798375752077`*^9}]
+   3.596689628571369*^9, 3.5967798375752077`*^9, 3.596897841608822*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1510,7 +1495,7 @@ Cell[BoxData[
    3.5967822336964693`*^9, {3.596782295521102*^9, 3.59678230859417*^9}, 
    3.596782370484367*^9, 3.596782447148755*^9, {3.596782490008074*^9, 
    3.5967825621390142`*^9}}]
-}, Open  ]],
+}, Closed]],
 
 Cell[BoxData[
  RowBox[{"0.03", ",", "0.5", ",", "0.43", ",", "0.043", ",", "0.03", ",", "1",
@@ -1539,16 +1524,16 @@ Cell[CellGroupData[{
 Cell[9982, 238, 879, 16, 63, "Input"],
 Cell[10864, 256, 976, 16, 120, "Output"]
 }, Open  ]],
-Cell[11855, 275, 20257, 449, 917, "Input"],
+Cell[11855, 275, 19420, 428, 907, "Input"],
 Cell[CellGroupData[{
-Cell[32137, 728, 1625, 35, 193, "Input"],
-Cell[33765, 765, 1023, 17, 673, "Output"]
+Cell[31300, 707, 1851, 39, 193, "Input"],
+Cell[33154, 748, 1168, 19, 713, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[34825, 787, 4489, 90, 244, "Input"],
-Cell[39317, 879, 30764, 632, 746, "Output"]
-}, Open  ]],
-Cell[70096, 1514, 185, 3, 28, "Input"]
+Cell[34359, 772, 4489, 90, 233, "Input"],
+Cell[38851, 864, 30764, 632, 735, "Output"]
+}, Closed]],
+Cell[69630, 1499, 185, 3, 22, "Input"]
 }
 ]
 *)
