@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     26076,        608]
-NotebookOptionsPosition[     25420,        582]
-NotebookOutlinePosition[     25775,        598]
-CellTagsIndexPosition[     25732,        595]
+NotebookDataLength[     70976,       1547]
+NotebookOptionsPosition[     70285,       1519]
+NotebookOutlinePosition[     70640,       1535]
+CellTagsIndexPosition[     70597,       1532]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -259,7 +259,7 @@ Cell[BoxData[
    Manipulate[
     $CellContext`drawRadiation[$CellContext`t], {$CellContext`t, 0, 100}], 
    StandardForm],
-  ImageSizeCache->{381., {258., 263.}}]], "Output",
+  ImageSizeCache->{245., {49., 54.}}]], "Output",
  CellChangeTimes->{{3.595842621570582*^9, 3.595842661479677*^9}, {
    3.595842736585754*^9, 3.595842756786009*^9}, 3.595842805966773*^9, {
    3.5958428372991133`*^9, 3.5958429821707973`*^9}, {3.595843076452018*^9, 
@@ -281,12 +281,19 @@ Cell[BoxData[{
     RowBox[{
      RowBox[{"centralEngineSize", "\[Rule]", "0.03"}], ",", 
      RowBox[{"jetRadius", "\[Rule]", "0.3"}], ",", 
-     RowBox[{"jetCount", "\[Rule]", "3"}], ",", 
      RowBox[{"lowAngle", "\[Rule]", "0.1"}], ",", 
      RowBox[{"highAngle", "\[Rule]", "0.01"}], ",", 
      RowBox[{"observerSize", "\[Rule]", "0.03"}], ",", 
      RowBox[{"observerDistance", "\[Rule]", "1"}], ",", 
-     RowBox[{"observerAngle", "\[Rule]", "0.09"}]}], "}"}]}], 
+     RowBox[{"observerAngle", "\[Rule]", "0.09"}], ",", 
+     RowBox[{"centralEngineQ", "\[Rule]", "True"}], ",", 
+     RowBox[{"centralEngineLabelQ", "\[Rule]", "False"}], ",", 
+     RowBox[{"jetQ", "\[Rule]", "True"}], ",", 
+     RowBox[{"jetLabelQ", "\[Rule]", "False"}], ",", 
+     RowBox[{"epQ", "\[Rule]", "True"}], ",", 
+     RowBox[{"\[Gamma]Q", "\[Rule]", "True"}], ",", 
+     RowBox[{"observerQ", "\[Rule]", "True"}], ",", 
+     RowBox[{"observerLabelQ", "\[Rule]", "False"}]}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
@@ -302,12 +309,39 @@ Cell[BoxData[{
      RowBox[{"Graphics", "[", 
       RowBox[{"{", "\[IndentingNewLine]", 
        RowBox[{
-        RowBox[{"Disk", "[", 
+        RowBox[{"{", 
          RowBox[{
-          RowBox[{"{", 
-           RowBox[{"0", ",", "0"}], "}"}], ",", 
-          RowBox[{"OptionValue", "[", "centralEngineSize", "]"}]}], "]"}], 
-        ",", "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "centralEngineQ", "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
+          RowBox[{"Disk", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "0"}], "}"}], ",", 
+            RowBox[{"OptionValue", "[", "centralEngineSize", "]"}]}], "]"}]}],
+          "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"Black", ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "centralEngineLabelQ", "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+             "\"\<\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\:0430\
+\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\>\"", ",", 
+              RowBox[{"FontSize", "\[Rule]", "14"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", 
+              RowBox[{"-", 
+               RowBox[{"OptionValue", "[", "centralEngineSize", "]"}]}]}], 
+             "}"}], ",", "Top"}], "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
         RowBox[{
          RowBox[{"observerX", "=", 
           RowBox[{
@@ -324,33 +358,143 @@ Cell[BoxData[{
          RowBox[{"{", 
           RowBox[{
            RowBox[{"Darker", "[", "Green", "]"}], ",", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"OptionValue", "[", "observerQ", "]"}], ",", 
+             RowBox[{"Opacity", "[", "1", "]"}], ",", 
+             RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
            RowBox[{"Disk", "[", 
             RowBox[{
              RowBox[{"{", 
               RowBox[{"observerX", ",", "observerY"}], "}"}], ",", 
              RowBox[{"OptionValue", "[", "observerSize", "]"}]}], "]"}]}], 
           "}"}]}], ",", "\[IndentingNewLine]", 
-        RowBox[{"Table", "[", 
+        RowBox[{"{", 
          RowBox[{
-          RowBox[{"{", 
-           RowBox[{"Thick", ",", "Red", ",", 
-            RowBox[{"Circle", "[", 
+          RowBox[{"Darker", "[", "Green", "]"}], ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "observerLabelQ", "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
              RowBox[{
-              RowBox[{"{", 
-               RowBox[{"0", ",", "0"}], "}"}], ",", "ri", ",", 
-              RowBox[{"{", 
-               RowBox[{
-                RowBox[{"-", 
-                 RowBox[{"OptionValue", "[", "lowAngle", "]"}]}], ",", 
-                RowBox[{"OptionValue", "[", "lowAngle", "]"}]}], "}"}]}], 
-             "]"}]}], "}"}], ",", 
-          RowBox[{"{", 
-           RowBox[{"ri", ",", "0", ",", 
+             "\"\<\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\:043b\
+\:044c\>\"", ",", 
+              RowBox[{"FontSize", "\[Rule]", "14"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"observerX", ",", 
+              RowBox[{"observerY", "+", 
+               RowBox[{"OptionValue", "[", "centralEngineSize", "]"}]}]}], 
+             "}"}], ",", "Bottom"}], "]"}]}], "}"}], ",", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "jetQ", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0.1", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", "Red", ",", 
+          RowBox[{"Disk", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "0"}], "}"}], ",", 
             RowBox[{"OptionValue", "[", "jetRadius", "]"}], ",", 
-            FractionBox[
-             RowBox[{"OptionValue", "[", "jetRadius", "]"}], 
-             RowBox[{"OptionValue", "[", "jetCount", "]"}]]}], "}"}]}], "]"}],
-         ",", "\[IndentingNewLine]", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"OptionValue", "[", "lowAngle", "]"}]}], ",", 
+              RowBox[{"OptionValue", "[", "lowAngle", "]"}]}], "}"}]}], 
+           "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"Thick", ",", "Red", ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "jetQ", "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
+          RowBox[{"Circle", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "0"}], "}"}], ",", 
+            RowBox[{"OptionValue", "[", "jetRadius", "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"OptionValue", "[", "lowAngle", "]"}]}], ",", 
+              RowBox[{"OptionValue", "[", "lowAngle", "]"}]}], "}"}]}], 
+           "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "jetQ", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0.1", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", "Blue", ",", 
+          RowBox[{"Disk", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "0"}], "}"}], ",", 
+            RowBox[{"OptionValue", "[", "jetRadius", "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"OptionValue", "[", "highAngle", "]"}]}], ",", 
+              RowBox[{"OptionValue", "[", "highAngle", "]"}]}], "}"}]}], 
+           "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"Thick", ",", "Blue", ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "jetQ", "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
+          RowBox[{"Circle", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "0"}], "}"}], ",", 
+            RowBox[{"OptionValue", "[", "jetRadius", "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"OptionValue", "[", "highAngle", "]"}]}], ",", 
+              RowBox[{"OptionValue", "[", "highAngle", "]"}]}], "}"}]}], 
+           "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"Red", ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "jetLabelQ", "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+             "\"\<\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
+\:043b\:043d\:0430\>\"", ",", 
+              RowBox[{"FontSize", "\[Rule]", "14"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"1.03", 
+               RowBox[{"OptionValue", "[", "jetRadius", "]"}], 
+               RowBox[{"Cos", "[", 
+                FractionBox[
+                 RowBox[{"OptionValue", "[", "lowAngle", "]"}], "2"], "]"}]}],
+               ",", 
+              RowBox[{
+               RowBox[{"-", 
+                RowBox[{"OptionValue", "[", "jetRadius", "]"}]}], 
+               RowBox[{"Sin", "[", 
+                FractionBox[
+                 RowBox[{"OptionValue", "[", "lowAngle", "]"}], "2"], 
+                "]"}]}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"Left", ",", "Top"}], "}"}]}], "]"}]}], "}"}], ",", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
         RowBox[{
          RowBox[{"redX", "=", 
           RowBox[{
@@ -370,48 +514,6 @@ Cell[BoxData[{
               RowBox[{"OptionValue", "[", "lowAngle", "]"}], ",", 
               RowBox[{"OptionValue", "[", "observerAngle", "]"}]}], "]"}], 
             "]"}]}]}], ";", "\[IndentingNewLine]", 
-         RowBox[{"{", 
-          RowBox[{"Red", ",", 
-           RowBox[{"Line", "[", 
-            RowBox[{"{", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{"0", ",", "0"}], "}"}], ",", 
-              RowBox[{"{", 
-               RowBox[{"redX", ",", "redY"}], "}"}]}], "}"}], "]"}]}], 
-          "}"}]}], ",", "\[IndentingNewLine]", 
-        RowBox[{"{", 
-         RowBox[{"Dashed", ",", "Red", ",", 
-          RowBox[{"Line", "[", 
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"{", 
-              RowBox[{"redX", ",", "redY"}], "}"}], ",", 
-             RowBox[{"{", 
-              RowBox[{"observerX", ",", "observerY"}], "}"}]}], "}"}], 
-           "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
-        RowBox[{"Table", "[", 
-         RowBox[{
-          RowBox[{"{", 
-           RowBox[{"Thick", ",", "Blue", ",", 
-            RowBox[{"Circle", "[", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{"0", ",", "0"}], "}"}], ",", "ri", ",", 
-              RowBox[{"{", 
-               RowBox[{
-                RowBox[{"-", 
-                 RowBox[{"OptionValue", "[", "highAngle", "]"}]}], ",", 
-                RowBox[{"OptionValue", "[", "highAngle", "]"}]}], "}"}]}], 
-             "]"}]}], "}"}], ",", 
-          RowBox[{"{", 
-           RowBox[{"ri", ",", "0", ",", 
-            RowBox[{"OptionValue", "[", "jetRadius", "]"}], ",", 
-            FractionBox[
-             RowBox[{"OptionValue", "[", "jetRadius", "]"}], 
-             RowBox[{"OptionValue", "[", "jetCount", "]"}]]}], "}"}]}], "]"}],
-         ",", "\[IndentingNewLine]", 
-        RowBox[{
          RowBox[{"blueX", "=", 
           RowBox[{
            RowBox[{"OptionValue", "[", "jetRadius", "]"}], " ", 
@@ -431,17 +533,120 @@ Cell[BoxData[{
               RowBox[{"OptionValue", "[", "observerAngle", "]"}]}], "]"}], 
             "]"}]}]}], ";", "\[IndentingNewLine]", 
          RowBox[{"{", 
-          RowBox[{"Blue", ",", 
+          RowBox[{"Red", ",", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"OptionValue", "[", "epQ", "]"}], ",", 
+             RowBox[{"Opacity", "[", "1", "]"}], ",", 
+             RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
            RowBox[{"Line", "[", 
             RowBox[{"{", 
              RowBox[{
               RowBox[{"{", 
                RowBox[{"0", ",", "0"}], "}"}], ",", 
               RowBox[{"{", 
-               RowBox[{"blueX", ",", "blueY"}], "}"}]}], "}"}], "]"}]}], 
+               RowBox[{"redX", ",", "redY"}], "}"}]}], "}"}], "]"}]}], 
           "}"}]}], ",", "\[IndentingNewLine]", 
         RowBox[{"{", 
-         RowBox[{"Dashed", ",", "Blue", ",", 
+         RowBox[{"Red", ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "epQ", "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+             "\"\<\!\(\*SuperscriptBox[\(e\), \(\[PlusMinus]\)]\), \
+\!\(\*SuperscriptBox[\(p\), \(\[PlusMinus]\)]\)\>\"", ",", 
+              RowBox[{"FontSize", "\[Rule]", "14"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              FractionBox["redX", "2"], ",", 
+              FractionBox["redY", "2"]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"Right", ",", "Bottom"}], "}"}]}], "]"}]}], "}"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"Blue", ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "epQ", "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"blueX", ",", "blueY"}], "}"}]}], "}"}], "]"}]}], "}"}],
+         ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"Blue", ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "epQ", "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+             "\"\<\!\(\*SuperscriptBox[\(e\), \(\[PlusMinus]\)]\), \
+\!\(\*SuperscriptBox[\(p\), \(\[PlusMinus]\)]\)\>\"", ",", 
+              RowBox[{"FontSize", "\[Rule]", "14"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              FractionBox["blueX", "2"], ",", 
+              FractionBox["blueY", "2"]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"Left", ",", "Top"}], "}"}]}], "]"}]}], "}"}], ",", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"Dashed", ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "\[Gamma]Q", "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", "Red", ",", 
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"redX", ",", "redY"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"observerX", ",", "observerY"}], "}"}]}], "}"}], 
+           "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"Red", ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "\[Gamma]Q", "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<\[Gamma]\>\"", ",", 
+              RowBox[{"FontSize", "\[Rule]", "14"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              FractionBox[
+               RowBox[{"redX", "+", "observerX"}], "2"], ",", 
+              FractionBox[
+               RowBox[{"redY", "+", "observerY"}], "2"]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"Right", ",", "Bottom"}], "}"}]}], "]"}]}], "}"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"Dashed", ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "\[Gamma]Q", "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", "Blue", ",", 
           RowBox[{"Line", "[", 
            RowBox[{"{", 
             RowBox[{
@@ -449,8 +654,29 @@ Cell[BoxData[{
               RowBox[{"blueX", ",", "blueY"}], "}"}], ",", 
              RowBox[{"{", 
               RowBox[{"observerX", ",", "observerY"}], "}"}]}], "}"}], 
-           "]"}]}], "}"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], 
-    "\[IndentingNewLine]", "]"}]}], ";"}]}], "Input",
+           "]"}]}], "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"Blue", ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "\[Gamma]Q", "]"}], ",", 
+            RowBox[{"Opacity", "[", "1", "]"}], ",", 
+            RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<\[Gamma]\>\"", ",", 
+              RowBox[{"FontSize", "\[Rule]", "14"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              FractionBox[
+               RowBox[{"blueX", "+", "observerX"}], "2"], ",", 
+              FractionBox[
+               RowBox[{"blueY", "+", "observerY"}], "2"]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"Left", ",", "Top"}], "}"}]}], "]"}]}], "}"}]}], 
+       "\[IndentingNewLine]", "}"}], "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}]}], "Input",
  CellChangeTimes->{{3.59584258302489*^9, 3.595842753897132*^9}, {
    3.595842866470069*^9, 3.595843023059347*^9}, {3.5958430677816467`*^9, 
    3.5958431941824017`*^9}, {3.5958432468544703`*^9, 
@@ -479,7 +705,24 @@ Cell[BoxData[{
    3.5958503872146177`*^9, 3.595850410469344*^9}, {3.595850909831037*^9, 
    3.595850958011393*^9}, {3.595851096062984*^9, 3.5958511093251038`*^9}, {
    3.596106391455682*^9, 3.596106432801447*^9}, {3.5961066456897917`*^9, 
-   3.596106795833003*^9}, {3.596106829082934*^9, 3.596106829647687*^9}}],
+   3.596106795833003*^9}, {3.596106829082934*^9, 3.596106829647687*^9}, {
+   3.596688117293392*^9, 3.596688157190686*^9}, {3.596688190391107*^9, 
+   3.596688233012302*^9}, {3.596688265779335*^9, 3.5966883863185263`*^9}, {
+   3.596688515421413*^9, 3.596688541441328*^9}, {3.596688588310276*^9, 
+   3.596688595438533*^9}, {3.5966886419729557`*^9, 3.5966887878932457`*^9}, {
+   3.596688968852488*^9, 3.5966890781907883`*^9}, {3.596689172201785*^9, 
+   3.596689218587696*^9}, {3.59668927951291*^9, 3.5966893196614733`*^9}, {
+   3.5966893841110973`*^9, 3.596689479557109*^9}, {3.596689568825287*^9, 
+   3.596689616188999*^9}, {3.596690070496655*^9, 3.596690163421999*^9}, {
+   3.59669027622727*^9, 3.596690304155649*^9}, {3.596690434232877*^9, 
+   3.5966905012092543`*^9}, {3.5967800124369993`*^9, 
+   3.5967800815207453`*^9}, {3.5967812315048656`*^9, 3.596781250104906*^9}, {
+   3.59678132901854*^9, 3.596781339422022*^9}, {3.596781472637253*^9, 
+   3.596781530231028*^9}, {3.5967815615265913`*^9, 3.596781647606608*^9}, {
+   3.5967817093056307`*^9, 3.596781729475387*^9}, {3.596781799871976*^9, 
+   3.596781937873871*^9}, {3.5967819829703217`*^9, 3.5967820599275084`*^9}, {
+   3.596782245816938*^9, 3.596782249579554*^9}, {3.596782289364414*^9, 
+   3.596782290228119*^9}, {3.596782384571208*^9, 3.596782426406927*^9}}],
 
 Cell[CellGroupData[{
 
@@ -491,7 +734,6 @@ Cell[BoxData[
      RowBox[{
       RowBox[{"centralEngineSize", "\[Rule]", "ces"}], ",", 
       RowBox[{"jetRadius", "\[Rule]", "jr"}], ",", 
-      RowBox[{"jetCount", "\[Rule]", "jc"}], ",", 
       RowBox[{"lowAngle", "\[Rule]", "la"}], ",", 
       RowBox[{"highAngle", "\[Rule]", "ha"}], ",", 
       RowBox[{"observerSize", "\[Rule]", "os"}], ",", 
@@ -502,9 +744,6 @@ Cell[BoxData[
      RowBox[{"ces", ",", "0", ",", "1"}], "}"}], ",", "\[IndentingNewLine]", 
     RowBox[{"{", 
      RowBox[{"jr", ",", "0", ",", "1"}], "}"}], ",", "\[IndentingNewLine]", 
-    RowBox[{"{", 
-     RowBox[{"jc", ",", "1", ",", "10", ",", "1"}], "}"}], ",", 
-    "\[IndentingNewLine]", 
     RowBox[{"{", 
      RowBox[{"la", ",", "0", ",", "\[Pi]"}], "}"}], ",", 
     "\[IndentingNewLine]", 
@@ -522,63 +761,761 @@ Cell[BoxData[
   3.5958495991212254`*^9, 3.5958496033906593`*^9}, {3.595850422609438*^9, 
   3.595850502653233*^9}, {3.595850536807232*^9, 3.5958505439660883`*^9}, {
   3.5958509622115917`*^9, 3.5958509783041563`*^9}, {3.59585101813906*^9, 
-  3.595851018306987*^9}}],
+  3.595851018306987*^9}, {3.596689623463431*^9, 3.596689627446577*^9}}],
 
 Cell[BoxData[
  DynamicBox[ToBoxes[
    Manipulate[
     $CellContext`drawScheme[$CellContext`centralEngineSize -> \
 $CellContext`ces, $CellContext`jetRadius -> $CellContext`jr, \
-$CellContext`jetCount -> $CellContext`jc, $CellContext`lowAngle -> \
-$CellContext`la, $CellContext`highAngle -> $CellContext`ha, \
-$CellContext`observerSize -> $CellContext`os, $CellContext`observerDistance -> \
-$CellContext`od, $CellContext`observerAngle -> $CellContext`oa], \
-{$CellContext`ces, 0, 1}, {$CellContext`jr, 0, 1}, {$CellContext`jc, 1, 10, 
+$CellContext`lowAngle -> $CellContext`la, $CellContext`highAngle -> \
+$CellContext`ha, $CellContext`observerSize -> $CellContext`os, \
+$CellContext`observerDistance -> $CellContext`od, $CellContext`observerAngle -> \
+$CellContext`oa], {$CellContext`ces, 0, 1}, {$CellContext`jr, 0, 
      1}, {$CellContext`la, 0, Pi}, {$CellContext`ha, 0, Pi}, {$CellContext`os,
       0, 1}, {$CellContext`od, 0, 1}, {$CellContext`oa, 0, Pi}], StandardForm],
-  ImageSizeCache->{656., {180., 186.}}]], "Output",
+  ImageSizeCache->{401., {320., 325.}}]], "Output",
  CellChangeTimes->{
   3.595848975620139*^9, 3.59584961943336*^9, 3.595850503862134*^9, 
    3.5958505451014338`*^9, 3.5958507369096127`*^9, 3.595850786297187*^9, {
    3.595850982112155*^9, 3.59585101879694*^9}, 3.595851113524775*^9, 
-   3.595854216980577*^9, 3.595938886797866*^9}],
+   3.595854216980577*^9, 3.595938886797866*^9, 3.596687960018248*^9, 
+   3.596689628571369*^9, 3.5967798375752077`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{
-  StyleBox[
-   RowBox[{"OptionValue", "::", "optnf"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Option name \[NoBreak]\\!\\(jr\\)\[NoBreak] not found in \
-defaults for \[NoBreak]\\!\\(drawScheme\\)\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\
-\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
-ButtonData:>\\\"paclet:ref/OptionValue\\\", ButtonNote -> \
-\\\"OptionValue::optnf\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.5961066945346003`*^9}],
+ RowBox[{"Flatten", "[", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"drawScheme", "[", 
+     RowBox[{
+      RowBox[{"centralEngineSize", "\[Rule]", "0.03"}], ",", 
+      RowBox[{"jetRadius", "\[Rule]", "0.5"}], ",", 
+      RowBox[{"lowAngle", "\[Rule]", "0.43"}], ",", 
+      RowBox[{"highAngle", "\[Rule]", "0.043"}], ",", 
+      RowBox[{"observerSize", "\[Rule]", "0.03"}], ",", 
+      RowBox[{"observerDistance", "\[Rule]", "1"}], ",", 
+      RowBox[{"observerAngle", "\[Rule]", "0.4"}], ",", 
+      RowBox[{"centralEngineQ", "\[Rule]", "False"}], ",", 
+      RowBox[{"jetQ", "\[Rule]", "False"}], ",", 
+      RowBox[{"epQ", "\[Rule]", "False"}], ",", 
+      RowBox[{"\[Gamma]Q", "\[Rule]", "False"}], ",", 
+      RowBox[{"observerQ", "\[Rule]", "True"}], ",", 
+      RowBox[{"jetLabelQ", "\[Rule]", "False"}]}], "]"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"drawScheme", "[", 
+     RowBox[{
+      RowBox[{"centralEngineSize", "\[Rule]", "0.03"}], ",", 
+      RowBox[{"jetRadius", "\[Rule]", "0.5"}], ",", 
+      RowBox[{"lowAngle", "\[Rule]", "0.43"}], ",", 
+      RowBox[{"highAngle", "\[Rule]", "0.043"}], ",", 
+      RowBox[{"observerSize", "\[Rule]", "0.03"}], ",", 
+      RowBox[{"observerDistance", "\[Rule]", "1"}], ",", 
+      RowBox[{"observerAngle", "\[Rule]", "0.4"}], ",", 
+      RowBox[{"centralEngineQ", "\[Rule]", "True"}], ",", 
+      RowBox[{"jetQ", "\[Rule]", "False"}], ",", 
+      RowBox[{"epQ", "\[Rule]", "False"}], ",", 
+      RowBox[{"\[Gamma]Q", "\[Rule]", "False"}], ",", 
+      RowBox[{"observerQ", "\[Rule]", "True"}], ",", 
+      RowBox[{"jetLabelQ", "\[Rule]", "False"}]}], "]"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"drawScheme", "[", 
+       RowBox[{
+        RowBox[{"centralEngineSize", "\[Rule]", "0.03"}], ",", 
+        RowBox[{"jetRadius", "\[Rule]", "jri"}], ",", 
+        RowBox[{"lowAngle", "\[Rule]", "0.43"}], ",", 
+        RowBox[{"highAngle", "\[Rule]", "0.043"}], ",", 
+        RowBox[{"observerSize", "\[Rule]", "0.03"}], ",", 
+        RowBox[{"observerDistance", "\[Rule]", "1"}], ",", 
+        RowBox[{"observerAngle", "\[Rule]", "0.4"}], ",", 
+        RowBox[{"centralEngineQ", "\[Rule]", "True"}], ",", 
+        RowBox[{"jetQ", "\[Rule]", "True"}], ",", 
+        RowBox[{"epQ", "\[Rule]", "False"}], ",", 
+        RowBox[{"\[Gamma]Q", "\[Rule]", "False"}], ",", 
+        RowBox[{"observerQ", "\[Rule]", "True"}], ",", 
+        RowBox[{"jetLabelQ", "\[Rule]", "False"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"jri", ",", "0", ",", "0.5", ",", "0.1"}], "}"}]}], "]"}], ",",
+     "\[IndentingNewLine]", 
+    RowBox[{"drawScheme", "[", 
+     RowBox[{
+      RowBox[{"centralEngineSize", "\[Rule]", "0.03"}], ",", 
+      RowBox[{"jetRadius", "\[Rule]", "0.5"}], ",", 
+      RowBox[{"lowAngle", "\[Rule]", "0.43"}], ",", 
+      RowBox[{"highAngle", "\[Rule]", "0.043"}], ",", 
+      RowBox[{"observerSize", "\[Rule]", "0.03"}], ",", 
+      RowBox[{"observerDistance", "\[Rule]", "1"}], ",", 
+      RowBox[{"observerAngle", "\[Rule]", "0.4"}], ",", 
+      RowBox[{"centralEngineQ", "\[Rule]", "True"}], ",", 
+      RowBox[{"jetQ", "\[Rule]", "True"}], ",", 
+      RowBox[{"epQ", "\[Rule]", "True"}], ",", 
+      RowBox[{"\[Gamma]Q", "\[Rule]", "False"}], ",", 
+      RowBox[{"observerQ", "\[Rule]", "True"}], ",", 
+      RowBox[{"jetLabelQ", "\[Rule]", "False"}]}], "]"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"drawScheme", "[", 
+     RowBox[{
+      RowBox[{"centralEngineSize", "\[Rule]", "0.03"}], ",", 
+      RowBox[{"jetRadius", "\[Rule]", "0.5"}], ",", 
+      RowBox[{"lowAngle", "\[Rule]", "0.43"}], ",", 
+      RowBox[{"highAngle", "\[Rule]", "0.043"}], ",", 
+      RowBox[{"observerSize", "\[Rule]", "0.03"}], ",", 
+      RowBox[{"observerDistance", "\[Rule]", "1"}], ",", 
+      RowBox[{"observerAngle", "\[Rule]", "0.4"}], ",", 
+      RowBox[{"centralEngineQ", "\[Rule]", "True"}], ",", 
+      RowBox[{"jetQ", "\[Rule]", "True"}], ",", 
+      RowBox[{"epQ", "\[Rule]", "True"}], ",", 
+      RowBox[{"\[Gamma]Q", "\[Rule]", "True"}], ",", 
+      RowBox[{"observerQ", "\[Rule]", "True"}], ",", 
+      RowBox[{"jetLabelQ", "\[Rule]", "False"}]}], "]"}]}], 
+   "\[IndentingNewLine]", "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.596782078577881*^9, 3.5967822328614597`*^9}, {
+  3.596782300755981*^9, 3.596782308299842*^9}, {3.596782366545835*^9, 
+  3.596782369960639*^9}, {3.596782463436596*^9, 3.5967825616828337`*^9}}],
 
 Cell[BoxData[
- RowBox[{
-  StyleBox[
-   RowBox[{"OptionValue", "::", "optnf"}], "MessageName"], 
+ RowBox[{"{", 
   RowBox[{
-  ":", " "}], "\<\"Option name \[NoBreak]\\!\\(jr\\)\[NoBreak] not found in \
-defaults for \[NoBreak]\\!\\(drawScheme\\)\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\
-\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
-ButtonData:>\\\"paclet:ref/OptionValue\\\", ButtonNote -> \
-\\\"OptionValue::optnf\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.596106694633086*^9}],
+   GraphicsBox[{
+     {Opacity[0], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
+\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0, -0.03}, Top]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
+      DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
+\:043b\:044c\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+     {RGBColor[1, 0, 0], Opacity[0], DiskBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
+     {RGBColor[1, 0, 0], Thickness[Large], Opacity[0], 
+      CircleBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], DiskBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
+     {RGBColor[0, 0, 1], Thickness[Large], Opacity[0], 
+      CircleBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
+\:043b\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.5031428430165341, -0.10667371415039115`}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      LineBox[{{0, 0}, {0.46053049700144255`, 0.19470917115432526`}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.23026524850072128`, 0.09735458557716263}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      LineBox[{{0, 0}, {0.4995378212206311, 0.02149337502917488}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.24976891061031556`, 0.01074668751458744}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.46053049700144255`, 0.19470917115432526`}, {
+       0.9210609940028851, 0.3894183423086505}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.6907957455021638, 0.2920637567314879}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.4995378212206311, 0.02149337502917488}, {0.9210609940028851,
+        0.3894183423086505}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.7102994076117581, 0.2054558586689127}, {
+       Left, Top}]}},
+    ImageSize->{275.07421875, Automatic}], ",", 
+   GraphicsBox[{
+     {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
+\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0, -0.03}, Top]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
+      DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
+\:043b\:044c\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+     {RGBColor[1, 0, 0], Opacity[0], DiskBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
+     {RGBColor[1, 0, 0], Thickness[Large], Opacity[0], 
+      CircleBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], DiskBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
+     {RGBColor[0, 0, 1], Thickness[Large], Opacity[0], 
+      CircleBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
+\:043b\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.5031428430165341, -0.10667371415039115`}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      LineBox[{{0, 0}, {0.46053049700144255`, 0.19470917115432526`}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.23026524850072128`, 0.09735458557716263}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      LineBox[{{0, 0}, {0.4995378212206311, 0.02149337502917488}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.24976891061031556`, 0.01074668751458744}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.46053049700144255`, 0.19470917115432526`}, {
+       0.9210609940028851, 0.3894183423086505}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.6907957455021638, 0.2920637567314879}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.4995378212206311, 0.02149337502917488}, {0.9210609940028851,
+        0.3894183423086505}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.7102994076117581, 0.2054558586689127}, {
+       Left, Top}]}},
+    ImageSize->{274.609375, Automatic}], ",", 
+   GraphicsBox[{
+     {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
+\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0, -0.03}, Top]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
+      DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
+\:043b\:044c\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+     {RGBColor[1, 0, 0], Opacity[0.1], DiskBox[{0, 0}, 0., {-0.43, 0.43}]}, 
+     {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0., {-0.43, 0.43}]}, 
+     {RGBColor[0, 0, 1], Opacity[0.1], 
+      DiskBox[{0, 0}, 0., {-0.043, 0.043}]}, 
+     {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0., {-0.043, 0.043}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
+\:043b\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0., 0.}, {Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], LineBox[{{0, 0}, {0., 0.}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0., 0.}, {Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], LineBox[{{0, 0}, {0., 0.}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0., 0.}, {Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0., 0.}, {0.9210609940028851, 0.3894183423086505}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.46053049700144255`, 0.19470917115432526`}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0., 0.}, {0.9210609940028851, 0.3894183423086505}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.46053049700144255`, 0.19470917115432526`}, {
+       Left, Top}]}},
+    ImageSize->{307.9375, Automatic}], ",", 
+   GraphicsBox[{
+     {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
+\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0, -0.03}, Top]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
+      DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
+\:043b\:044c\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+     {RGBColor[1, 0, 0], Opacity[0.1], DiskBox[{0, 0}, 0.1, {-0.43, 0.43}]}, 
+     {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0.1, {-0.43, 0.43}]}, 
+     {RGBColor[0, 0, 1], Opacity[0.1], DiskBox[{0, 0}, 0.1, {-0.043, 0.043}]}, 
+     {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0.1, {-0.043, 0.043}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
+\:043b\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.10062856860330682`, -0.021334742830078232`}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      LineBox[{{0, 0}, {0.09210609940028852, 0.03894183423086506}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.04605304970014426, 0.01947091711543253}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      LineBox[{{0, 0}, {0.09990756424412622, 0.004298675005834976}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.04995378212206311, 0.002149337502917488}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.09210609940028852, 0.03894183423086506}, {
+       0.9210609940028851, 0.3894183423086505}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.5065835467015868, 0.2141800882697578}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.09990756424412622, 0.004298675005834976}, {
+       0.9210609940028851, 0.3894183423086505}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.5104842791235057, 0.19685850865724275`}, {
+       Left, Top}]}},
+    ImageSize->{308.1640625, Automatic}], ",", 
+   GraphicsBox[{
+     {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
+\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0, -0.03}, Top]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
+      DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
+\:043b\:044c\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+     {RGBColor[1, 0, 0], Opacity[0.1], DiskBox[{0, 0}, 0.2, {-0.43, 0.43}]}, 
+     {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0.2, {-0.43, 0.43}]}, 
+     {RGBColor[0, 0, 1], Opacity[0.1], DiskBox[{0, 0}, 0.2, {-0.043, 0.043}]}, 
+     {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0.2, {-0.043, 0.043}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
+\:043b\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.20125713720661365`, -0.042669485660156464`}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      LineBox[{{0, 0}, {0.18421219880057704`, 0.07788366846173012}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.09210609940028852, 0.03894183423086506}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      LineBox[{{0, 0}, {0.19981512848825245`, 0.008597350011669952}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.09990756424412622, 0.004298675005834976}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.18421219880057704`, 0.07788366846173012}, {
+       0.9210609940028851, 0.3894183423086505}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.552636596401731, 0.23365100538519032`}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.19981512848825245`, 0.008597350011669952}, {
+       0.9210609940028851, 0.3894183423086505}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.5604380612455688, 0.19900784616016023`}, {
+       Left, Top}]}},
+    ImageSize->{302.44921875, Automatic}], ",", 
+   GraphicsBox[{
+     {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
+\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0, -0.03}, Top]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
+      DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
+\:043b\:044c\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+     {RGBColor[1, 0, 0], Opacity[0.1], 
+      DiskBox[{0, 0}, 0.30000000000000004`, {-0.43, 0.43}]}, 
+     {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0.30000000000000004`, {-0.43, 0.43}]}, 
+     {RGBColor[0, 0, 1], Opacity[0.1], 
+      DiskBox[{0, 0}, 0.30000000000000004`, {-0.043, 0.043}]}, 
+     {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0.30000000000000004`, {-0.043, 0.043}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
+\:043b\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.3018857058099205, -0.0640042284902347}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      LineBox[{{0, 0}, {0.27631829820086556`, 0.11682550269259517`}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.13815914910043278`, 0.05841275134629759}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      LineBox[{{0, 0}, {0.2997226927323787, 0.01289602501750493}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.14986134636618936`, 0.006448012508752465}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.27631829820086556`, 0.11682550269259517`}, {
+       0.9210609940028851, 0.3894183423086505}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.5986896461018754, 0.2531219225006228}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.2997226927323787, 0.01289602501750493}, {0.9210609940028851,
+        0.3894183423086505}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.6103918433676319, 0.20115718366307772`}, {
+       Left, Top}]}},
+    ImageSize->{291.19140625, Automatic}], ",", 
+   GraphicsBox[{
+     {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
+\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0, -0.03}, Top]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
+      DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
+\:043b\:044c\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+     {RGBColor[1, 0, 0], Opacity[0.1], DiskBox[{0, 0}, 0.4, {-0.43, 0.43}]}, 
+     {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0.4, {-0.43, 0.43}]}, 
+     {RGBColor[0, 0, 1], Opacity[0.1], DiskBox[{0, 0}, 0.4, {-0.043, 0.043}]}, 
+     {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0.4, {-0.043, 0.043}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
+\:043b\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.4025142744132273, -0.08533897132031293}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      LineBox[{{0, 0}, {0.3684243976011541, 0.15576733692346023`}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.18421219880057704`, 0.07788366846173012}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      LineBox[{{0, 0}, {0.3996302569765049, 0.017194700023339903`}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.19981512848825245`, 0.008597350011669952}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.3684243976011541, 0.15576733692346023`}, {
+       0.9210609940028851, 0.3894183423086505}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.6447426958020196, 0.2725928396160554}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.3996302569765049, 0.017194700023339903`}, {
+       0.9210609940028851, 0.3894183423086505}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.660345625489695, 0.2033065211659952}, {Left, Top}]}},
+    ImageSize->{282.8515625, Automatic}], ",", 
+   GraphicsBox[{
+     {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
+\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0, -0.03}, Top]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
+      DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
+\:043b\:044c\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+     {RGBColor[1, 0, 0], Opacity[0.1], DiskBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
+     {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
+     {RGBColor[0, 0, 1], Opacity[0.1], DiskBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
+     {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
+\:043b\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.5031428430165341, -0.10667371415039115`}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      LineBox[{{0, 0}, {0.46053049700144255`, 0.19470917115432526`}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.23026524850072128`, 0.09735458557716263}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      LineBox[{{0, 0}, {0.4995378212206311, 0.02149337502917488}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.24976891061031556`, 0.01074668751458744}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.46053049700144255`, 0.19470917115432526`}, {
+       0.9210609940028851, 0.3894183423086505}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.6907957455021638, 0.2920637567314879}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.4995378212206311, 0.02149337502917488}, {0.9210609940028851,
+        0.3894183423086505}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.7102994076117581, 0.2054558586689127}, {
+       Left, Top}]}},
+    ImageSize->{275.05078125, Automatic}], ",", 
+   GraphicsBox[{
+     {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
+\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0, -0.03}, Top]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
+      DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
+\:043b\:044c\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+     {RGBColor[1, 0, 0], Opacity[0.1], DiskBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
+     {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
+     {RGBColor[0, 0, 1], Opacity[0.1], DiskBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
+     {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
+\:043b\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.5031428430165341, -0.10667371415039115`}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[1], 
+      LineBox[{{0, 0}, {0.46053049700144255`, 0.19470917115432526`}}]}, 
+     {RGBColor[1, 0, 0], Opacity[1], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.23026524850072128`, 0.09735458557716263}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[1], 
+      LineBox[{{0, 0}, {0.4995378212206311, 0.02149337502917488}}]}, 
+     {RGBColor[0, 0, 1], Opacity[1], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.24976891061031556`, 0.01074668751458744}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.46053049700144255`, 0.19470917115432526`}, {
+       0.9210609940028851, 0.3894183423086505}}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.6907957455021638, 0.2920637567314879}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
+      LineBox[{{0.4995378212206311, 0.02149337502917488}, {0.9210609940028851,
+        0.3894183423086505}}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.7102994076117581, 0.2054558586689127}, {
+       Left, Top}]}},
+    ImageSize->{273.75390625, Automatic}], ",", 
+   GraphicsBox[{
+     {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
+\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0, -0.03}, Top]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
+      DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
+     {RGBColor[0, 
+       NCache[
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
+\:043b\:044c\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+     {RGBColor[1, 0, 0], Opacity[0.1], DiskBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
+     {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
+     {RGBColor[0, 0, 1], Opacity[0.1], DiskBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
+     {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
+      CircleBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
+       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
+\:043b\:043d\:0430\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.5031428430165341, -0.10667371415039115`}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[1], 
+      LineBox[{{0, 0}, {0.46053049700144255`, 0.19470917115432526`}}]}, 
+     {RGBColor[1, 0, 0], Opacity[1], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.23026524850072128`, 0.09735458557716263}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[1], 
+      LineBox[{{0, 0}, {0.4995378212206311, 0.02149337502917488}}]}, 
+     {RGBColor[0, 0, 1], Opacity[1], InsetBox[
+       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.24976891061031556`, 0.01074668751458744}, {
+       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[1], Dashing[{Small, Small}], 
+      LineBox[{{0.46053049700144255`, 0.19470917115432526`}, {
+       0.9210609940028851, 0.3894183423086505}}]}, 
+     {RGBColor[1, 0, 0], Opacity[1], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.6907957455021638, 0.2920637567314879}, {
+       Right, Bottom}]}, 
+     {RGBColor[0, 0, 1], Opacity[1], Dashing[{Small, Small}], 
+      LineBox[{{0.4995378212206311, 0.02149337502917488}, {0.9210609940028851,
+        0.3894183423086505}}]}, 
+     {RGBColor[0, 0, 1], Opacity[1], InsetBox[
+       StyleBox["\<\"\[Gamma]\"\>",
+        StripOnInput->False,
+        FontSize->14], {0.7102994076117581, 0.2054558586689127}, {
+       Left, Top}]}},
+    ImageSize->{274.48046875, Automatic}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.596782105096882*^9, {3.596782135666658*^9, 3.5967821931104527`*^9}, 
+   3.5967822336964693`*^9, {3.596782295521102*^9, 3.59678230859417*^9}, 
+   3.596782370484367*^9, 3.596782447148755*^9, {3.596782490008074*^9, 
+   3.5967825621390142`*^9}}]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{
-  StyleBox[
-   RowBox[{"OptionValue", "::", "optnf"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Option name \[NoBreak]\\!\\(jr\\)\[NoBreak] not found in \
-defaults for \[NoBreak]\\!\\(drawScheme\\)\[NoBreak]. \\!\\(\\*ButtonBox[\\\"\
-\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
-ButtonData:>\\\"paclet:ref/OptionValue\\\", ButtonNote -> \
-\\\"OptionValue::optnf\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.5961067043091497`*^9}]
-}, Open  ]]
+ RowBox[{"0.03", ",", "0.5", ",", "0.43", ",", "0.043", ",", "0.03", ",", "1",
+   ",", "0.4"}]], "Input",
+ CellChangeTimes->{{3.596689541101017*^9, 3.596689561347228*^9}}]
 },
 WindowSize->{1221, 756},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
@@ -597,19 +1534,21 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[557, 20, 9400, 214, 567, "Input"],
+Cell[557, 20, 9400, 214, 556, "Input"],
 Cell[CellGroupData[{
 Cell[9982, 238, 879, 16, 63, "Input"],
-Cell[10864, 256, 978, 16, 538, "Output"]
+Cell[10864, 256, 976, 16, 120, "Output"]
 }, Open  ]],
-Cell[11857, 275, 9262, 206, 512, "Input"],
+Cell[11855, 275, 20257, 449, 917, "Input"],
 Cell[CellGroupData[{
-Cell[21144, 485, 1741, 39, 199, "Input"],
-Cell[22888, 526, 1024, 17, 383, "Output"],
-Cell[23915, 545, 495, 10, 24, "Message"],
-Cell[24413, 557, 493, 10, 24, "Message"],
-Cell[24909, 569, 495, 10, 24, "Message"]
-}, Open  ]]
+Cell[32137, 728, 1625, 35, 193, "Input"],
+Cell[33765, 765, 1023, 17, 673, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34825, 787, 4489, 90, 244, "Input"],
+Cell[39317, 879, 30764, 632, 746, "Output"]
+}, Open  ]],
+Cell[70096, 1514, 185, 3, 28, "Input"]
 }
 ]
 *)
