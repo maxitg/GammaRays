@@ -43,11 +43,11 @@ public:
 private:
     string conversionTypeName();
     string eventClassName();
-    string energyDescription();
     
 public:
     GRFermiLATPhoton(double time, GRLocation location, float energy, GRFermiConversionType conversionType, GRFermiEventClass fermiEventClass) : time(time), location(location), energy(energy), conversionType(conversionType), eventClass(fermiEventClass) {};
     bool operator<(GRFermiLATPhoton right) const;
+    string energyDescription();
     string description();
 };
 

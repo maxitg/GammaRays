@@ -44,6 +44,8 @@ public:
     
     double startOffset;
     double endOffset;
+    
+    double redshift;
         
 public:
     GRFermiLATDataServerQuery backgroundQuery;
@@ -67,9 +69,22 @@ public:
     
     double trivialProbability;
     
+    string topEnergyDescription (int n);
+    
+    double flux(double minEnergy, double maxEnergy);
+    double backgroundFlux(double minEnergy, double maxEnergy);
+    int photonCount(double minEnergy, double maxEnergy);
+    int backgroundPhotonCount(double minEnergy, double maxEnergy);
+    
 private:
     void calculateBackground();
-        
+    double middleTime();
+    double duration();
+    double startTime();
+    double endTime();
+    double backgroundStartTime();
+    double backgroundEndTime();
+            
 public:
     void init();
     void download();

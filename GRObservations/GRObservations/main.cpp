@@ -9,6 +9,7 @@
 #include <math.h>
 #include <string>
 #include <iostream>
+#include <sstream>
 
 #include "GRBurst.h"
 
@@ -55,8 +56,9 @@ int main(int argc, const char * argv[])
         float error;
         double startOffset;
         double endOffset;
+        double redshift;
         
-        burstsFile >> name >> time >> ra >> dec >> error >> startOffset >> endOffset;
+        burstsFile >> name >> time >> ra >> dec >> error >> startOffset >> endOffset >> redshift;
         
         if (name == "") continue;
         
@@ -69,8 +71,9 @@ int main(int argc, const char * argv[])
             burst.location.error = error;
             burst.startOffset = startOffset;
             burst.endOffset = endOffset;
+            burst.redshift = redshift;
             burstCatalog.push_back(burst);
-            cout << name << " " << time << " " << GRLocation(GRCoordinateSystemJ2000, ra, dec, error).description() << endl;
+            cout << name << " " << time << " " << GRLocation(GRCoordinateSystemJ2000, ra, dec, error).description() << " z = " << redshift << endl;
         }
     }
     
@@ -86,7 +89,6 @@ int main(int argc, const char * argv[])
         if (burstCatalog[i].error != GRBurstErrorOk) {
             cout << "error " << burstCatalog[i].error << " " << burstCatalog[i].query.error << " " << burstCatalog[i].backgroundQuery.error << " : " << burstCatalog[i].errorDescription << endl;
             if (burstCatalog[i].query.error == 19) {
-                burstCatalog[i].clear();
                 continue;
             }
             else return -1;
@@ -95,7 +97,6 @@ int main(int argc, const char * argv[])
         log << burstCatalog[i].name << " " << (burstCatalog[i].mevDistribution.values.size() - burstCatalog[i].mevDistribution.estimatedLinearComponent) << " " << (burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.estimatedLinearComponent) << endl;
         
         if ((burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.estimatedLinearComponent) < 10) {
-            burstCatalog[i].clear();
             continue;
         }
         
@@ -112,12 +113,36 @@ int main(int argc, const char * argv[])
             probs << burstCatalog[i].lengtheningValues[j] << " " << burstCatalog[i].lengtheningProbabilities[j] << endl;
         }
         probs.close();
-        
-        burstCatalog[i].clear();
     }
     
     log.close();
     interestingLog.close();
+    
+    double minRef, divisionRef;
+    double maxRedshift = -1;
+    for (int i = 0; i < burstCatalog.size(); i++) {
+        if (burstCatalog[i].redshift > maxRedshift) maxRedshift = burstCatalog[i].redshift;
+    }
+    
+    minRef = 100. * (1 + maxRedshift);
+    divisionRef = 1000.;
+    
+    ofstream flux("flux");
+    
+    for (int i = 0; i < burstCatalog.size(); i++) if (burstCatalog[i].redshift > 0.) {
+        double min = minRef / (1 + burstCatalog[i].redshift);
+        double division = divisionRef / (1 + burstCatalog[i].redshift);
+        
+        flux << burstCatalog[i].name << " ";
+        flux << burstCatalog[i].redshift << " ";
+        flux << burstCatalog[i].flux(min, division) - burstCatalog[i].backgroundFlux(min, division) << " ";
+        flux << burstCatalog[i].flux(min, division) / sqrt(burstCatalog[i].photonCount(min, division)) << " ";
+        flux << burstCatalog[i].flux(division, INFINITY) - burstCatalog[i].backgroundFlux(division, INFINITY) << " ";
+        flux << burstCatalog[i].flux(division, INFINITY) / sqrt(burstCatalog[i].photonCount(division, INFINITY)) << " ";
+        flux << endl;
+    }
+    
+    flux.close();
     
     return 0;
 }

@@ -53,6 +53,7 @@
 		69585EB21854B9C20063EE83 /* GRPsf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRPsf.h; sourceTree = "<group>"; };
 		69585EBA1854BAC90063EE83 /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = usr/lib/libcurl.dylib; sourceTree = SDKROOT; };
 		69585EBC1854BADD0063EE83 /* libcfitsio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcfitsio.a; path = ../../../../../usr/local/lib/libcfitsio.a; sourceTree = "<group>"; };
+		69C902DE1888EFD600F34781 /* bursts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bursts; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +105,7 @@
 				69585EB11854B9C20063EE83 /* GRPsf.cpp */,
 				69585EB21854B9C20063EE83 /* GRPsf.h */,
 				69585E9C1854B9830063EE83 /* main.cpp */,
+				69C902DE1888EFD600F34781 /* bursts */,
 				69585E9E1854B9830063EE83 /* GRObservations.1 */,
 			);
 			path = GRObservations;
@@ -287,6 +289,7 @@
 				69585EA41854B9830063EE83 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

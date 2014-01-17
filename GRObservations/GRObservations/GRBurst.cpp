@@ -22,25 +22,42 @@
 #define LENGTHENING_MAX       10.
 #define LENGTHENING_STEP      1.001
 
-void GRBurst::init() {    
-    double duration = (endOffset - startOffset) * TIME_EXTENTION_FACTOR;
-    double center = time + (startOffset + endOffset) / 2.;
-    double startTime = center - duration/2.;
-    double endTime = center + duration/2.;
-        
-    query.startTime = startTime;
-    query.endTime = endTime;
+#define BACKGROUND_DURATION   86400
+
+double GRBurst::middleTime() {
+    return time + (startOffset + endOffset) / 2.;
+}
+
+double GRBurst::duration() {
+    return (endOffset - startOffset) * TIME_EXTENTION_FACTOR;
+}
+
+double GRBurst::startTime() {
+    return middleTime() - duration()/2.;
+}
+
+double GRBurst::endTime() {
+    return middleTime() + duration()/2.;
+}
+
+double GRBurst::backgroundStartTime() {
+    return startTime() - BACKGROUND_DURATION;
+}
+
+double GRBurst::backgroundEndTime() {
+    return startTime();
+}
+
+void GRBurst::init() {
+    
+    query.startTime = startTime();
+    query.endTime = endTime();
     query.location = location;
         
     query.init();
     
-    //duration = duration * 100;
-    duration = 86400;
-    endTime = startTime;
-    startTime = startTime - duration;
-    
-    backgroundQuery.startTime = startTime;
-    backgroundQuery.endTime = endTime;
+    backgroundQuery.startTime = backgroundStartTime();
+    backgroundQuery.endTime = backgroundEndTime();
     backgroundQuery.location = location;
     
     backgroundQuery.init();
@@ -133,7 +150,8 @@ void GRBurst::read() {
     for (int i = 0; i < query.events.size(); i++) {
         GRFermiLATPhoton photon = query.events[i];
         photon.location.error = query.psfs[photon.eventClass][photon.conversionType].spread(photon.energy, PHOTONS_QUALITY);
-        if (photon.eventClass == GRFermiEventClassTransient) continue;
+        //if (photon.eventClass == GRFermiEventClassTransient) continue;
+        if (photon.time < startTime() || photon.time > endTime()) continue;
         if (location.isSeparated(photon.location)) continue;
         
         if (photon.energy < 1000.) mevPhotons.push_back(photon);
@@ -145,7 +163,8 @@ void GRBurst::read() {
     for (int i = 0; i < backgroundQuery.events.size(); i++) {
         GRFermiLATPhoton photon = backgroundQuery.events[i];
         photon.location.error = backgroundQuery.psfs[photon.eventClass][photon.conversionType].spread(photon.energy, PHOTONS_QUALITY);
-        if (photon.eventClass == GRFermiEventClassTransient) continue;
+        //if (photon.eventClass == GRFermiEventClassTransient) continue;
+        if (photon.time < backgroundStartTime() || photon.time > backgroundEndTime()) continue;
         if (location.isSeparated(photon.location)) continue;
         
         if (photon.energy < 1000.) mevBackgroundPhotons.push_back(photon);
@@ -165,6 +184,39 @@ void GRBurst::read() {
     }
         
     error = GRBurstErrorOk;
+}
+
+double GRBurst::flux(double minEnergy, double maxEnergy) {
+    double result = 0.;
+    for (int i = 0; i < mevPhotons.size(); i++) if (mevPhotons[i].energy >= minEnergy && mevPhotons[i].energy <= maxEnergy) {
+        result += duration() / query.exposureMaps[mevPhotons[i].eventClass][mevPhotons[i].conversionType].exposure(mevPhotons[i].energy, mevPhotons[i].location);
+    }
+    
+    for (int i = 0; i < gevPhotons.size(); i++) if (gevPhotons[i].energy >= minEnergy && gevPhotons[i].energy <= maxEnergy) {
+        result += duration() / query.exposureMaps[gevPhotons[i].eventClass][gevPhotons[i].conversionType].exposure(gevPhotons[i].energy, gevPhotons[i].location);
+    }
+    
+    return result;
+}
+
+int GRBurst::photonCount(double minEnergy, double maxEnergy) {
+    int result = 0;
+    for (int i = 0; i < mevPhotons.size(); i++) if (mevPhotons[i].energy >= minEnergy && mevPhotons[i].energy <= maxEnergy) result++;
+    for (int i = 0; i < gevPhotons.size(); i++) if (gevPhotons[i].energy >= minEnergy && gevPhotons[i].energy <= maxEnergy) result++;
+    return result;
+}
+
+double GRBurst::backgroundFlux(double minEnergy, double maxEnergy) {
+    double result = 0.;
+    for (int i = 0; i < mevBackgroundPhotons.size(); i++) if (mevBackgroundPhotons[i].energy >= minEnergy && mevBackgroundPhotons[i].energy <= maxEnergy) {
+        result += duration() / backgroundQuery.exposureMaps[mevBackgroundPhotons[i].eventClass][mevBackgroundPhotons[i].conversionType].exposure(mevBackgroundPhotons[i].energy, mevBackgroundPhotons[i].location);
+    }
+    
+    for (int i = 0; i < gevBackgroundPhotons.size(); i++) if (gevBackgroundPhotons[i].energy >= minEnergy && gevBackgroundPhotons[i].energy <= maxEnergy) {
+        result += duration() / backgroundQuery.exposureMaps[gevBackgroundPhotons[i].eventClass][gevBackgroundPhotons[i].conversionType].exposure(gevBackgroundPhotons[i].energy, gevBackgroundPhotons[i].location);
+    }
+    
+    return result;
 }
 
 void GRBurst::evaluate() {
@@ -219,6 +271,7 @@ void GRBurst::clear() {
     location = GRLocation(GRCoordinateSystemJ2000, 0., 0., 0.);
     startOffset = 0.;
     endOffset = 0.;
+    redshift = -1.;
     
     backgroundQuery = GRFermiLATDataServerQuery();
     query = GRFermiLATDataServerQuery();
@@ -238,4 +291,22 @@ void GRBurst::clear() {
     
     lengtheningValues.clear();
     lengtheningProbabilities.clear();
+}
+
+bool energyCompare(GRFermiLATPhoton left, GRFermiLATPhoton right) {
+    return left.energy < right.energy;
+}
+
+string GRBurst::topEnergyDescription(int n) {
+    vector <GRFermiLATPhoton> photons;
+    if (gevPhotons.size() < n) {
+        n -= gevPhotons.size();
+        photons = mevPhotons;
+        sort(photons.begin(), photons.end(), energyCompare);
+        return photons[n-1].energyDescription();
+    } else {
+        photons = gevPhotons;
+        sort(photons.begin(), photons.end(), energyCompare);
+        return photons[n-1].energyDescription();
+    }
 }
