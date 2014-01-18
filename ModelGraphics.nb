@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     70510,       1532]
-NotebookOptionsPosition[     69819,       1504]
-NotebookOutlinePosition[     70174,       1520]
-CellTagsIndexPosition[     70131,       1517]
+NotebookDataLength[     64201,       1383]
+NotebookOptionsPosition[     63510,       1355]
+NotebookOutlinePosition[     63865,       1371]
+CellTagsIndexPosition[     63822,       1368]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -259,7 +259,7 @@ Cell[BoxData[
    Manipulate[
     $CellContext`drawRadiation[$CellContext`t], {$CellContext`t, 0, 100}], 
    StandardForm],
-  ImageSizeCache->{245., {49., 54.}}]], "Output",
+  ImageSizeCache->{405., {226., 231.}}]], "Output",
  CellChangeTimes->{{3.595842621570582*^9, 3.595842661479677*^9}, {
    3.595842736585754*^9, 3.595842756786009*^9}, 3.595842805966773*^9, {
    3.5958428372991133`*^9, 3.5958429821707973`*^9}, {3.595843076452018*^9, 
@@ -541,11 +541,8 @@ Cell[BoxData[{
             RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
           RowBox[{"Text", "[", 
            RowBox[{
-            RowBox[{"Style", "[", 
-             RowBox[{
-             "\"\<\!\(\*SuperscriptBox[\(e\), \(\[PlusMinus]\)]\), \
+           "\"\<\!\(\*SuperscriptBox[\(e\), \(\[PlusMinus]\)]\), \
 \!\(\*SuperscriptBox[\(p\), \(\[PlusMinus]\)]\)\>\"", ",", 
-              RowBox[{"FontSize", "\[Rule]", "14"}]}], "]"}], ",", 
             RowBox[{"{", 
              RowBox[{
               FractionBox["redX", "2"], ",", 
@@ -701,7 +698,8 @@ Cell[BoxData[{
    3.596782290228119*^9}, {3.596782384571208*^9, 3.596782426406927*^9}, {
    3.59689771717618*^9, 3.5968977319336023`*^9}, 3.59689786687252*^9, {
    3.596897941633535*^9, 3.596897942228009*^9}, {3.596898036237802*^9, 
-   3.596898091585781*^9}}],
+   3.596898091585781*^9}, {3.5990189917401447`*^9, 3.599019013321988*^9}, {
+   3.599019082329637*^9, 3.599019088026582*^9}}],
 
 Cell[CellGroupData[{
 
@@ -759,13 +757,14 @@ $CellContext`oa, $CellContext`centralEngineLabelQ ->
      True], {$CellContext`ces, 0, 1}, {$CellContext`jr, 0, 
      1}, {$CellContext`la, 0, Pi}, {$CellContext`ha, 0, Pi}, {$CellContext`os,
       0, 1}, {$CellContext`od, 0, 1}, {$CellContext`oa, 0, Pi}], StandardForm],
-  ImageSizeCache->{408., {340., 345.}}]], "Output",
+  ImageSizeCache->{395., {343., 348.}}]], "Output",
  CellChangeTimes->{
   3.595848975620139*^9, 3.59584961943336*^9, 3.595850503862134*^9, 
    3.5958505451014338`*^9, 3.5958507369096127`*^9, 3.595850786297187*^9, {
    3.595850982112155*^9, 3.59585101879694*^9}, 3.595851113524775*^9, 
    3.595854216980577*^9, 3.595938886797866*^9, 3.596687960018248*^9, 
-   3.596689628571369*^9, 3.5967798375752077`*^9, 3.596897841608822*^9}]
+   3.596689628571369*^9, 3.5967798375752077`*^9, 3.596897841608822*^9, 
+   3.599019022281653*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -867,34 +866,26 @@ Cell[BoxData[
   RowBox[{
    GraphicsBox[{
      {Opacity[0], DiskBox[{0, 0}, 0.03]}, 
-     {GrayLevel[0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
-\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0, -0.03}, Top]}, 
+     {GrayLevel[0], Opacity[0], 
+      InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
        NCache[
         Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
       DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
      {RGBColor[0, 
        NCache[
-        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
-\:043b\:044c\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], 
+      InsetBox["\<\"Observer\"\>", {0.9210609940028851, 0.4194183423086505}, 
+       Bottom]}, 
      {RGBColor[1, 0, 0], Opacity[0], DiskBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
      {RGBColor[1, 0, 0], Thickness[Large], Opacity[0], 
       CircleBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
      {RGBColor[0, 0, 1], Opacity[0], DiskBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
      {RGBColor[0, 0, 1], Thickness[Large], Opacity[0], 
       CircleBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
-\:043b\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.5031428430165341, -0.10667371415039115`}, {
-       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"Shock\\nFront\"\>", \
+{0.5031428430165341, -0.10667371415039115`}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], 
       LineBox[{{0, 0}, {0.46053049700144255`, 0.19470917115432526`}}]}, 
      {RGBColor[1, 0, 0], Opacity[0], InsetBox[
@@ -905,59 +896,44 @@ Cell[BoxData[
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], 
       LineBox[{{0, 0}, {0.4995378212206311, 0.02149337502917488}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
-\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.24976891061031556`, 0.01074668751458744}, {
-       Left, Top}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>", \
+{0.24976891061031556`, 0.01074668751458744}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.46053049700144255`, 0.19470917115432526`}, {
        0.9210609940028851, 0.3894183423086505}}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.6907957455021638, 0.2920637567314879}, {
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", {0.6907957455021638, 0.2920637567314879}, {
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.4995378212206311, 0.02149337502917488}, {0.9210609940028851,
         0.3894183423086505}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.7102994076117581, 0.2054558586689127}, {
-       Left, Top}]}},
-    ImageSize->{275.07421875, Automatic}], ",", 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", {0.7102994076117581, 0.2054558586689127}, {
+       Left, Top}]}}], ",", 
    GraphicsBox[{
      {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
-     {GrayLevel[0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
-\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0, -0.03}, Top]}, 
+     {GrayLevel[0], Opacity[0], 
+      InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
        NCache[
         Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
       DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
      {RGBColor[0, 
        NCache[
-        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
-\:043b\:044c\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], 
+      InsetBox["\<\"Observer\"\>", {0.9210609940028851, 0.4194183423086505}, 
+       Bottom]}, 
      {RGBColor[1, 0, 0], Opacity[0], DiskBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
      {RGBColor[1, 0, 0], Thickness[Large], Opacity[0], 
       CircleBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
      {RGBColor[0, 0, 1], Opacity[0], DiskBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
      {RGBColor[0, 0, 1], Thickness[Large], Opacity[0], 
       CircleBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
-\:043b\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.5031428430165341, -0.10667371415039115`}, {
-       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"Shock\\nFront\"\>", \
+{0.5031428430165341, -0.10667371415039115`}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], 
       LineBox[{{0, 0}, {0.46053049700144255`, 0.19470917115432526`}}]}, 
      {RGBColor[1, 0, 0], Opacity[0], InsetBox[
@@ -968,47 +944,35 @@ Cell[BoxData[
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], 
       LineBox[{{0, 0}, {0.4995378212206311, 0.02149337502917488}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
-\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.24976891061031556`, 0.01074668751458744}, {
-       Left, Top}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>", \
+{0.24976891061031556`, 0.01074668751458744}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.46053049700144255`, 0.19470917115432526`}, {
        0.9210609940028851, 0.3894183423086505}}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.6907957455021638, 0.2920637567314879}, {
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", {0.6907957455021638, 0.2920637567314879}, {
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.4995378212206311, 0.02149337502917488}, {0.9210609940028851,
         0.3894183423086505}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.7102994076117581, 0.2054558586689127}, {
-       Left, Top}]}},
-    ImageSize->{274.609375, Automatic}], ",", 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", {0.7102994076117581, 0.2054558586689127}, {
+       Left, Top}]}}], ",", 
    GraphicsBox[{
      {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
-     {GrayLevel[0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
-\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0, -0.03}, Top]}, 
+     {GrayLevel[0], Opacity[0], 
+      InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
        NCache[
         Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
       DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
      {RGBColor[0, 
        NCache[
-        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
-\:043b\:044c\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], 
+      InsetBox["\<\"Observer\"\>", {0.9210609940028851, 0.4194183423086505}, 
+       Bottom]}, 
      {RGBColor[1, 0, 0], Opacity[0.1], DiskBox[{0, 0}, 0., {-0.43, 0.43}]}, 
      {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
       CircleBox[{0, 0}, 0., {-0.43, 0.43}]}, 
@@ -1016,11 +980,8 @@ Cell[BoxData[
       DiskBox[{0, 0}, 0., {-0.043, 0.043}]}, 
      {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
       CircleBox[{0, 0}, 0., {-0.043, 0.043}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
-\:043b\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0., 0.}, {Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"Shock\\nFront\"\>", {0., 0.}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], LineBox[{{0, 0}, {0., 0.}}]}, 
      {RGBColor[1, 0, 0], Opacity[0], InsetBox[
        StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
@@ -1028,56 +989,42 @@ Cell[BoxData[
         StripOnInput->False,
         FontSize->14], {0., 0.}, {Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], LineBox[{{0, 0}, {0., 0.}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
-\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
-        StripOnInput->False,
-        FontSize->14], {0., 0.}, {Left, Top}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>", {0., 0.}, {
+       Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0., 0.}, {0.9210609940028851, 0.3894183423086505}}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.46053049700144255`, 0.19470917115432526`}, {
-       Right, Bottom}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", \
+{0.46053049700144255`, 0.19470917115432526`}, {Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0., 0.}, {0.9210609940028851, 0.3894183423086505}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.46053049700144255`, 0.19470917115432526`}, {
-       Left, Top}]}},
-    ImageSize->{307.9375, Automatic}], ",", 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", \
+{0.46053049700144255`, 0.19470917115432526`}, {Left, Top}]}}], ",", 
    GraphicsBox[{
      {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
-     {GrayLevel[0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
-\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0, -0.03}, Top]}, 
+     {GrayLevel[0], Opacity[0], 
+      InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
        NCache[
         Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
       DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
      {RGBColor[0, 
        NCache[
-        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
-\:043b\:044c\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], 
+      InsetBox["\<\"Observer\"\>", {0.9210609940028851, 0.4194183423086505}, 
+       Bottom]}, 
      {RGBColor[1, 0, 0], Opacity[0.1], DiskBox[{0, 0}, 0.1, {-0.43, 0.43}]}, 
      {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
       CircleBox[{0, 0}, 0.1, {-0.43, 0.43}]}, 
      {RGBColor[0, 0, 1], Opacity[0.1], DiskBox[{0, 0}, 0.1, {-0.043, 0.043}]}, 
      {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
       CircleBox[{0, 0}, 0.1, {-0.043, 0.043}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
-\:043b\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.10062856860330682`, -0.021334742830078232`}, {
-       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"Shock\\nFront\"\>", \
+{0.10062856860330682`, -0.021334742830078232`}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], 
       LineBox[{{0, 0}, {0.09210609940028852, 0.03894183423086506}}]}, 
      {RGBColor[1, 0, 0], Opacity[0], InsetBox[
@@ -1088,59 +1035,44 @@ Cell[BoxData[
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], 
       LineBox[{{0, 0}, {0.09990756424412622, 0.004298675005834976}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
-\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.04995378212206311, 0.002149337502917488}, {
-       Left, Top}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>", \
+{0.04995378212206311, 0.002149337502917488}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.09210609940028852, 0.03894183423086506}, {
        0.9210609940028851, 0.3894183423086505}}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.5065835467015868, 0.2141800882697578}, {
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", {0.5065835467015868, 0.2141800882697578}, {
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.09990756424412622, 0.004298675005834976}, {
        0.9210609940028851, 0.3894183423086505}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.5104842791235057, 0.19685850865724275`}, {
-       Left, Top}]}},
-    ImageSize->{308.1640625, Automatic}], ",", 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", \
+{0.5104842791235057, 0.19685850865724275`}, {Left, Top}]}}], ",", 
    GraphicsBox[{
      {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
-     {GrayLevel[0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
-\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0, -0.03}, Top]}, 
+     {GrayLevel[0], Opacity[0], 
+      InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
        NCache[
         Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
       DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
      {RGBColor[0, 
        NCache[
-        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
-\:043b\:044c\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], 
+      InsetBox["\<\"Observer\"\>", {0.9210609940028851, 0.4194183423086505}, 
+       Bottom]}, 
      {RGBColor[1, 0, 0], Opacity[0.1], DiskBox[{0, 0}, 0.2, {-0.43, 0.43}]}, 
      {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
       CircleBox[{0, 0}, 0.2, {-0.43, 0.43}]}, 
      {RGBColor[0, 0, 1], Opacity[0.1], DiskBox[{0, 0}, 0.2, {-0.043, 0.043}]}, 
      {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
       CircleBox[{0, 0}, 0.2, {-0.043, 0.043}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
-\:043b\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.20125713720661365`, -0.042669485660156464`}, {
-       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"Shock\\nFront\"\>", \
+{0.20125713720661365`, -0.042669485660156464`}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], 
       LineBox[{{0, 0}, {0.18421219880057704`, 0.07788366846173012}}]}, 
      {RGBColor[1, 0, 0], Opacity[0], InsetBox[
@@ -1151,47 +1083,35 @@ Cell[BoxData[
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], 
       LineBox[{{0, 0}, {0.19981512848825245`, 0.008597350011669952}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
-\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.09990756424412622, 0.004298675005834976}, {
-       Left, Top}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>", \
+{0.09990756424412622, 0.004298675005834976}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.18421219880057704`, 0.07788366846173012}, {
        0.9210609940028851, 0.3894183423086505}}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.552636596401731, 0.23365100538519032`}, {
-       Right, Bottom}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", {0.552636596401731, 0.23365100538519032`}, \
+{Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.19981512848825245`, 0.008597350011669952}, {
        0.9210609940028851, 0.3894183423086505}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.5604380612455688, 0.19900784616016023`}, {
-       Left, Top}]}},
-    ImageSize->{302.44921875, Automatic}], ",", 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", \
+{0.5604380612455688, 0.19900784616016023`}, {Left, Top}]}}], ",", 
    GraphicsBox[{
      {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
-     {GrayLevel[0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
-\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0, -0.03}, Top]}, 
+     {GrayLevel[0], Opacity[0], 
+      InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
        NCache[
         Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
       DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
      {RGBColor[0, 
        NCache[
-        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
-\:043b\:044c\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], 
+      InsetBox["\<\"Observer\"\>", {0.9210609940028851, 0.4194183423086505}, 
+       Bottom]}, 
      {RGBColor[1, 0, 0], Opacity[0.1], 
       DiskBox[{0, 0}, 0.30000000000000004`, {-0.43, 0.43}]}, 
      {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
@@ -1200,12 +1120,9 @@ Cell[BoxData[
       DiskBox[{0, 0}, 0.30000000000000004`, {-0.043, 0.043}]}, 
      {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
       CircleBox[{0, 0}, 0.30000000000000004`, {-0.043, 0.043}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
-\:043b\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.3018857058099205, -0.0640042284902347}, {
-       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"Shock\\nFront\"\>", \
+{0.3018857058099205, -0.0640042284902347}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], 
       LineBox[{{0, 0}, {0.27631829820086556`, 0.11682550269259517`}}]}, 
      {RGBColor[1, 0, 0], Opacity[0], InsetBox[
@@ -1216,59 +1133,44 @@ Cell[BoxData[
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], 
       LineBox[{{0, 0}, {0.2997226927323787, 0.01289602501750493}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
-\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.14986134636618936`, 0.006448012508752465}, {
-       Left, Top}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>", \
+{0.14986134636618936`, 0.006448012508752465}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.27631829820086556`, 0.11682550269259517`}, {
        0.9210609940028851, 0.3894183423086505}}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.5986896461018754, 0.2531219225006228}, {
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", {0.5986896461018754, 0.2531219225006228}, {
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.2997226927323787, 0.01289602501750493}, {0.9210609940028851,
         0.3894183423086505}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.6103918433676319, 0.20115718366307772`}, {
-       Left, Top}]}},
-    ImageSize->{291.19140625, Automatic}], ",", 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", \
+{0.6103918433676319, 0.20115718366307772`}, {Left, Top}]}}], ",", 
    GraphicsBox[{
      {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
-     {GrayLevel[0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
-\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0, -0.03}, Top]}, 
+     {GrayLevel[0], Opacity[0], 
+      InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
        NCache[
         Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
       DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
      {RGBColor[0, 
        NCache[
-        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
-\:043b\:044c\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], 
+      InsetBox["\<\"Observer\"\>", {0.9210609940028851, 0.4194183423086505}, 
+       Bottom]}, 
      {RGBColor[1, 0, 0], Opacity[0.1], DiskBox[{0, 0}, 0.4, {-0.43, 0.43}]}, 
      {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
       CircleBox[{0, 0}, 0.4, {-0.43, 0.43}]}, 
      {RGBColor[0, 0, 1], Opacity[0.1], DiskBox[{0, 0}, 0.4, {-0.043, 0.043}]}, 
      {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
       CircleBox[{0, 0}, 0.4, {-0.043, 0.043}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
-\:043b\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.4025142744132273, -0.08533897132031293}, {
-       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"Shock\\nFront\"\>", \
+{0.4025142744132273, -0.08533897132031293}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], 
       LineBox[{{0, 0}, {0.3684243976011541, 0.15576733692346023`}}]}, 
      {RGBColor[1, 0, 0], Opacity[0], InsetBox[
@@ -1279,58 +1181,44 @@ Cell[BoxData[
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], 
       LineBox[{{0, 0}, {0.3996302569765049, 0.017194700023339903`}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
-\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.19981512848825245`, 0.008597350011669952}, {
-       Left, Top}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>", \
+{0.19981512848825245`, 0.008597350011669952}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.3684243976011541, 0.15576733692346023`}, {
        0.9210609940028851, 0.3894183423086505}}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.6447426958020196, 0.2725928396160554}, {
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", {0.6447426958020196, 0.2725928396160554}, {
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.3996302569765049, 0.017194700023339903`}, {
        0.9210609940028851, 0.3894183423086505}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.660345625489695, 0.2033065211659952}, {Left, Top}]}},
-    ImageSize->{282.8515625, Automatic}], ",", 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", {0.660345625489695, 0.2033065211659952}, {
+       Left, Top}]}}], ",", 
    GraphicsBox[{
      {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
-     {GrayLevel[0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
-\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0, -0.03}, Top]}, 
+     {GrayLevel[0], Opacity[0], 
+      InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
        NCache[
         Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
       DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
      {RGBColor[0, 
        NCache[
-        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
-\:043b\:044c\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], 
+      InsetBox["\<\"Observer\"\>", {0.9210609940028851, 0.4194183423086505}, 
+       Bottom]}, 
      {RGBColor[1, 0, 0], Opacity[0.1], DiskBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
      {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
       CircleBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
      {RGBColor[0, 0, 1], Opacity[0.1], DiskBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
      {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
       CircleBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
-\:043b\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.5031428430165341, -0.10667371415039115`}, {
-       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"Shock\\nFront\"\>", \
+{0.5031428430165341, -0.10667371415039115`}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], 
       LineBox[{{0, 0}, {0.46053049700144255`, 0.19470917115432526`}}]}, 
      {RGBColor[1, 0, 0], Opacity[0], InsetBox[
@@ -1341,59 +1229,44 @@ Cell[BoxData[
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], 
       LineBox[{{0, 0}, {0.4995378212206311, 0.02149337502917488}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
-\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.24976891061031556`, 0.01074668751458744}, {
-       Left, Top}]}, 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>", \
+{0.24976891061031556`, 0.01074668751458744}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.46053049700144255`, 0.19470917115432526`}, {
        0.9210609940028851, 0.3894183423086505}}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.6907957455021638, 0.2920637567314879}, {
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", {0.6907957455021638, 0.2920637567314879}, {
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.4995378212206311, 0.02149337502917488}, {0.9210609940028851,
         0.3894183423086505}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.7102994076117581, 0.2054558586689127}, {
-       Left, Top}]}},
-    ImageSize->{275.05078125, Automatic}], ",", 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", {0.7102994076117581, 0.2054558586689127}, {
+       Left, Top}]}}], ",", 
    GraphicsBox[{
      {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
-     {GrayLevel[0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
-\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0, -0.03}, Top]}, 
+     {GrayLevel[0], Opacity[0], 
+      InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
        NCache[
         Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
       DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
      {RGBColor[0, 
        NCache[
-        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
-\:043b\:044c\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], 
+      InsetBox["\<\"Observer\"\>", {0.9210609940028851, 0.4194183423086505}, 
+       Bottom]}, 
      {RGBColor[1, 0, 0], Opacity[0.1], DiskBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
      {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
       CircleBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
      {RGBColor[0, 0, 1], Opacity[0.1], DiskBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
      {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
       CircleBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
-\:043b\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.5031428430165341, -0.10667371415039115`}, {
-       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"Shock\\nFront\"\>", \
+{0.5031428430165341, -0.10667371415039115`}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[1], 
       LineBox[{{0, 0}, {0.46053049700144255`, 0.19470917115432526`}}]}, 
      {RGBColor[1, 0, 0], Opacity[1], InsetBox[
@@ -1404,59 +1277,44 @@ Cell[BoxData[
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[1], 
       LineBox[{{0, 0}, {0.4995378212206311, 0.02149337502917488}}]}, 
-     {RGBColor[0, 0, 1], Opacity[1], InsetBox[
-       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
-\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.24976891061031556`, 0.01074668751458744}, {
-       Left, Top}]}, 
+     {RGBColor[0, 0, 1], Opacity[1], 
+      InsetBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>", \
+{0.24976891061031556`, 0.01074668751458744}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.46053049700144255`, 0.19470917115432526`}, {
        0.9210609940028851, 0.3894183423086505}}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.6907957455021638, 0.2920637567314879}, {
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", {0.6907957455021638, 0.2920637567314879}, {
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], Dashing[{Small, Small}], 
       LineBox[{{0.4995378212206311, 0.02149337502917488}, {0.9210609940028851,
         0.3894183423086505}}]}, 
-     {RGBColor[0, 0, 1], Opacity[0], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.7102994076117581, 0.2054558586689127}, {
-       Left, Top}]}},
-    ImageSize->{273.75390625, Automatic}], ",", 
+     {RGBColor[0, 0, 1], Opacity[0], 
+      InsetBox["\<\"\[Gamma]\"\>", {0.7102994076117581, 0.2054558586689127}, {
+       Left, Top}]}}], ",", 
    GraphicsBox[{
      {Opacity[1], DiskBox[{0, 0}, 0.03]}, 
-     {GrayLevel[0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0426\:0435\:043d\:0442\:0440\:0430\:043b\:044c\:043d\
-\:0430\:044f\\n\:043c\:0430\:0448\:0438\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0, -0.03}, Top]}, 
+     {GrayLevel[0], Opacity[0], 
+      InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
        NCache[
         Rational[2, 3], 0.6666666666666666], 0], Opacity[1], 
       DiskBox[{0.9210609940028851, 0.3894183423086505}, 0.03]}, 
      {RGBColor[0, 
        NCache[
-        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:041d\:0430\:0431\:043b\:044e\:0434\:0430\:0442\:0435\
-\:043b\:044c\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.9210609940028851, 0.4194183423086505}, Bottom]}, 
+        Rational[2, 3], 0.6666666666666666], 0], Opacity[0], 
+      InsetBox["\<\"Observer\"\>", {0.9210609940028851, 0.4194183423086505}, 
+       Bottom]}, 
      {RGBColor[1, 0, 0], Opacity[0.1], DiskBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
      {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
       CircleBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
      {RGBColor[0, 0, 1], Opacity[0.1], DiskBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
      {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
       CircleBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], InsetBox[
-       StyleBox["\<\"\:0423\:0434\:0430\:0440\:043d\:0430\:044f\\n\:0432\:043e\
-\:043b\:043d\:0430\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.5031428430165341, -0.10667371415039115`}, {
-       Left, Top}]}, 
+     {RGBColor[1, 0, 0], Opacity[0], 
+      InsetBox["\<\"Shock\\nFront\"\>", \
+{0.5031428430165341, -0.10667371415039115`}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[1], 
       LineBox[{{0, 0}, {0.46053049700144255`, 0.19470917115432526`}}]}, 
      {RGBColor[1, 0, 0], Opacity[1], InsetBox[
@@ -1467,35 +1325,28 @@ Cell[BoxData[
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[1], 
       LineBox[{{0, 0}, {0.4995378212206311, 0.02149337502917488}}]}, 
-     {RGBColor[0, 0, 1], Opacity[1], InsetBox[
-       StyleBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
-\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.24976891061031556`, 0.01074668751458744}, {
-       Left, Top}]}, 
+     {RGBColor[0, 0, 1], Opacity[1], 
+      InsetBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>", \
+{0.24976891061031556`, 0.01074668751458744}, {Left, Top}]}, 
      {RGBColor[1, 0, 0], Opacity[1], Dashing[{Small, Small}], 
       LineBox[{{0.46053049700144255`, 0.19470917115432526`}, {
        0.9210609940028851, 0.3894183423086505}}]}, 
-     {RGBColor[1, 0, 0], Opacity[1], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.6907957455021638, 0.2920637567314879}, {
+     {RGBColor[1, 0, 0], Opacity[1], 
+      InsetBox["\<\"\[Gamma]\"\>", {0.6907957455021638, 0.2920637567314879}, {
        Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[1], Dashing[{Small, Small}], 
       LineBox[{{0.4995378212206311, 0.02149337502917488}, {0.9210609940028851,
         0.3894183423086505}}]}, 
-     {RGBColor[0, 0, 1], Opacity[1], InsetBox[
-       StyleBox["\<\"\[Gamma]\"\>",
-        StripOnInput->False,
-        FontSize->14], {0.7102994076117581, 0.2054558586689127}, {
-       Left, Top}]}},
-    ImageSize->{274.48046875, Automatic}]}], "}"}]], "Output",
+     {RGBColor[0, 0, 1], Opacity[1], 
+      InsetBox["\<\"\[Gamma]\"\>", {0.7102994076117581, 0.2054558586689127}, {
+       Left, Top}]}}]}], "}"}]], "Output",
  CellChangeTimes->{
   3.596782105096882*^9, {3.596782135666658*^9, 3.5967821931104527`*^9}, 
    3.5967822336964693`*^9, {3.596782295521102*^9, 3.59678230859417*^9}, 
    3.596782370484367*^9, 3.596782447148755*^9, {3.596782490008074*^9, 
-   3.5967825621390142`*^9}}]
-}, Closed]],
+   3.5967825621390142`*^9}, 3.599018810346307*^9}]
+}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"0.03", ",", "0.5", ",", "0.43", ",", "0.043", ",", "0.03", ",", "1",
@@ -1519,21 +1370,21 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[557, 20, 9400, 214, 556, "Input"],
+Cell[557, 20, 9400, 214, 567, "Input"],
 Cell[CellGroupData[{
 Cell[9982, 238, 879, 16, 63, "Input"],
-Cell[10864, 256, 976, 16, 120, "Output"]
+Cell[10864, 256, 978, 16, 474, "Output"]
 }, Open  ]],
-Cell[11855, 275, 19420, 428, 907, "Input"],
+Cell[11857, 275, 19391, 426, 907, "Input"],
 Cell[CellGroupData[{
-Cell[31300, 707, 1851, 39, 193, "Input"],
-Cell[33154, 748, 1168, 19, 713, "Output"]
+Cell[31273, 705, 1851, 39, 193, "Input"],
+Cell[33127, 746, 1194, 20, 719, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[34359, 772, 4489, 90, 233, "Input"],
-Cell[38851, 864, 30764, 632, 735, "Output"]
-}, Closed]],
-Cell[69630, 1499, 185, 3, 22, "Input"]
+Cell[34358, 771, 4489, 90, 244, "Input"],
+Cell[38850, 863, 24456, 484, 290, "Output"]
+}, Open  ]],
+Cell[63321, 1350, 185, 3, 28, "Input"]
 }
 ]
 *)

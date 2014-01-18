@@ -57,13 +57,21 @@ We argue that these two processes are correlated, because they happen due to the
         \centering
         \includegraphics[width=0.7\textwidth]{modelOverview}
         \caption{
- %       	Model Overview. Since the total path (first as a plasma particle, then as a photon) is longer for high energies particles, the high energy emission is stretched compared to low energy emission.
- 			Here the red cone represents the propagation volume of low energy plasma, while the blue cone stands for high energy radiators. The green disk is the observer. $\theta_2$ and $\theta_1$ are opening angles of high and low energy jets, $\chi$ is an observer's off-axis angle. Every ``particle'' emitted from the central engine should go through two stages before being observer: traveling in plasma to the radiation point, and then traveling to the observer as photons, If $\chi < \theta_1$, then due to the relativistic beaming effect, the majority of observed photons is radiated near the point $R_1$, which lies on the line from the central engine to the observer. However, it might be different for the high energy radiation. If $\theta_2 < \chi$, then there is no high energy plasma near $R_1$, and ``particles'' will have to move near the jet axis first, and then turn at emission to the observer's direction. For each moment of emission, this path is longer, therefore the high energy emission will be stretched with respect to the low energies.
+        	Model Overview. Here the red and the blue cones represent volumes through which low and high energy plasma propagates. In the case depicted the observer's off-axis angle is smaller than the opening angle of the low energy jet, so most of the observable low energy photons will travel along the straight line from the central engine (due to the relativistic beaming effect). In the same time, the observer's off-axis angle is larger that the opening angle of the high energy jet, so high energy radiation will still originate near the center of the jet (because it is the only place where there are high energy radiators). The observation time of a photon is a sum of two things: the time interval spent in plasma as a radiator (which is approximately a distance from the central engine to the point of emission); and the time interval from emission to detection (which is the distance from the point of emission to the observer's location). Given a position of the shock front, this sum is larger for high energy photons. Because of that, high energy emission will be observed later throughout the burst duration, therefore the high energy light curve will be stretched.
         }
         \label{fig:modelOverview}
 \end{figure}
 
-Finally, this assumption is able to explain the non-trivial stretching factor of the GRB 090926A. The detailed computations will be described in the following sections, however, you can see why the stretching is happening on the figure \ref{fig:modelOverview}.
+\begin{figure}[sampleLightCurve]
+	\centering
+	\includegraphics[width=0.49\textwidth]{sampleLightCurve}
+	\caption{
+		High and low energy light curves produced by the geometrical model. Parameter values are the same as discussed in the section \ref{sec:parameters}. Cosmological redshift of the burst $z = 1$. Observer's off-axis angle $\chi = 0.01$.
+	}
+	\label{fig:sampleLightCurve}
+\end{figure}
+
+Finally, this assumption is able to explain the non-trivial stretching factor of the GRB 090926A. The detailed computations will be described in the following sections, but you can see why the stretching is happening on the figure \ref{fig:modelOverview}. The computations confirm that this qualitative picture is indeed correct, you can see a sample light curve on the figure \ref{fig:sampleLightCurve}, and predicted distribution of stretching factors on the figure \ref{fig:kappaDistribution}.
 
 \section{Observations}
 
@@ -526,6 +534,7 @@ The ratio for our set of parameters is $f_m = 0.072$. The LAT burst catalog \cit
 which means that the model doesn't contradict observations in this test.
 
 \subsection{Parameter values}
+\label{sec:parameters}
 
 \subsection{Results}
 
