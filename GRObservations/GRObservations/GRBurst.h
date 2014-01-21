@@ -69,13 +69,6 @@ public:
     
     double trivialProbability;
     
-    string topEnergyDescription (int n);
-    
-    double flux(double minEnergy, double maxEnergy);
-    double backgroundFlux(double minEnergy, double maxEnergy);
-    int photonCount(double minEnergy, double maxEnergy);
-    int backgroundPhotonCount(double minEnergy, double maxEnergy);
-    
 private:
     void calculateBackground();
     double middleTime();
@@ -91,8 +84,6 @@ public:
     void process();
     void read();
     void evaluate();
-    
-    void clear();
 };
 
 #endif /* defined(__Gamma_Rays__GRBurst__) */
