@@ -38,7 +38,6 @@ double sigma(double prob) {
 int main(int argc, const char * argv[])
 {
     ofstream log("log");
-    ofstream interestingLog("interestingLog");
     
     vector <GRBurst> burstCatalog;
     
@@ -56,11 +55,11 @@ int main(int argc, const char * argv[])
         float error;
         double startOffset;
         double endOffset;
-        double redshift;
         
-        burstsFile >> name >> time >> ra >> dec >> error >> startOffset >> endOffset >> redshift;
+        burstsFile >> name >> time >> ra >> dec >> error >> startOffset >> endOffset;
         
         if (name == "") continue;
+        if (name[0] == '#') continue;
         
         if ((endOffset - startOffset) != 0) {
             GRBurst burst;
@@ -71,9 +70,8 @@ int main(int argc, const char * argv[])
             burst.location.error = error;
             burst.startOffset = startOffset;
             burst.endOffset = endOffset;
-            burst.redshift = redshift;
             burstCatalog.push_back(burst);
-            cout << name << " " << time << " " << GRLocation(GRCoordinateSystemJ2000, ra, dec, error).description() << " z = " << redshift << endl;
+            cout << name << " " << time << " " << GRLocation(GRCoordinateSystemJ2000, ra, dec, error).description() << endl;
         }
     }
     
@@ -94,19 +92,23 @@ int main(int argc, const char * argv[])
             else return -1;
         }
         
-        log << burstCatalog[i].name << " " << (burstCatalog[i].mevDistribution.values.size() - burstCatalog[i].mevDistribution.estimatedLinearComponent) << " " << (burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.estimatedLinearComponent) << endl;
+        log << burstCatalog[i].name << ":" << endl;
+        log << "\tLow energy count  = " << burstCatalog[i].mevDistribution.values.size() - burstCatalog[i].mevDistribution.estimatedLinearComponent << endl;
+        log << "\tHigh energy count = " << burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.estimatedLinearComponent << endl;
+        
         
         if ((burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.estimatedLinearComponent) < 10) {
+            log << "\tnot enought high energy photons" << endl << endl;
             continue;
         }
         
         burstCatalog[i].evaluate();
         
-        interestingLog << burstCatalog[i].name << " " << sigma(burstCatalog[i].trivialProbability) << endl;
+        log << "\tprobability not to be stretched = " << sigma(burstCatalog[i].trivialProbability) << endl;
         for (int k = 0; k < 5; k++) {
-            interestingLog << "\t" << k+1 << " -> (" << burstCatalog[i].minLengthening[k] << ", " << burstCatalog[i].maxLengthening[k] << ")" << endl;
+            log << "\t" << k+1 << "σ -> stretching factor in ranges (" << burstCatalog[i].minLengthening[k] << ", " << burstCatalog[i].maxLengthening[k] << ")" << endl;
         }
-        interestingLog << endl;
+        log << endl;
         
         ofstream probs((burstCatalog[i].name + "/probs").c_str());
         for (int j = 0; j < burstCatalog[i].lengtheningValues.size(); j++) {
@@ -116,33 +118,6 @@ int main(int argc, const char * argv[])
     }
     
     log.close();
-    interestingLog.close();
-    
-    double minRef, divisionRef;
-    double maxRedshift = -1;
-    for (int i = 0; i < burstCatalog.size(); i++) {
-        if (burstCatalog[i].redshift > maxRedshift) maxRedshift = burstCatalog[i].redshift;
-    }
-    
-    minRef = 100. * (1 + maxRedshift);
-    divisionRef = 1000.;
-    
-    ofstream flux("flux");
-    
-    for (int i = 0; i < burstCatalog.size(); i++) if (burstCatalog[i].redshift > 0.) {
-        double min = minRef / (1 + burstCatalog[i].redshift);
-        double division = divisionRef / (1 + burstCatalog[i].redshift);
-        
-        flux << burstCatalog[i].name << " ";
-        flux << burstCatalog[i].redshift << " ";
-        flux << burstCatalog[i].flux(min, division) - burstCatalog[i].backgroundFlux(min, division) << " ";
-        flux << burstCatalog[i].flux(min, division) / sqrt(burstCatalog[i].photonCount(min, division)) << " ";
-        flux << burstCatalog[i].flux(division, INFINITY) - burstCatalog[i].backgroundFlux(division, INFINITY) << " ";
-        flux << burstCatalog[i].flux(division, INFINITY) / sqrt(burstCatalog[i].photonCount(division, INFINITY)) << " ";
-        flux << endl;
-    }
-    
-    flux.close();
     
     return 0;
 }
