@@ -6,6 +6,7 @@
 \usepackage{subcaption}
 \usepackage{units}
 \usepackage{hyperref}
+\usepackage{siunitx}
 
 \allowdisplaybreaks
 
@@ -75,10 +76,72 @@ Finally, our assumption is able to explain the non-trivial stretching factor of 
 
 \section{Observations}
 
-\subsection{Download and Process}
+\subsection{Burst Data Queries}
 
-Download in progress.
+\begin{table}[bursts]
+	\centering
+	\small
+	\begin{tabular}{ l | S[table-format=9.3] | S[table-format=3.3] | S[table-format=2.3] | S[table-format=1.5] | S[table-format=2.1] | S[table-format=3.1] }
+		\multicolumn{1}{ c |}{\texttt{name}} & $\mathrm{\texttt{time}}$ & \texttt{location.ra} & \texttt{location.dec} & \texttt{location.err} & \texttt{startOffset} & \texttt{endOffset} \\
+		\multicolumn{1}{ c |}{GRB} & $\mathrm{GBM\ Trigger\ Time}$ & $\mathrm{R.A.}$ & $\mathrm{Dec.}$ & $\mathrm{Location\ Error}$ & $T_{05}$ & $T_{95}$ \\
+		\multicolumn{1}{ c |}{Name}& $\mathrm{MET,\ sec}$ & $\mathrm{J2000,\ deg}$ & $\mathrm{J2000,\ deg}$ & $\mathrm{deg}$ & $\mathrm{sec}$ & $\mathrm{sec}$ \\
+		\hline
+		080825C	&	241366429.105	&	233.9  	&	 -4.5  	&	0.75   	&	 3.2	&	 29.4	\\
+		080916C	&	243216766.614	&	119.85 	&	-56.64 	&	0.0001 	&	 5.0	&	209.8	\\
+		081006 	&	244996175.173	&	136.32 	&	-62.05 	&	0.52   	&	 0.7	&	115.0	\\
+		081024B	&	246576161.864	&	322.95 	&	 21.2  	&	0.22   	&	 0.1	&	191.0	\\
+		090217 	&	256539404.560	&	204.83 	&	 -8.42 	&	0.35   	&	 6.2	&	 68.0	\\
+		090323 	&	259459364.630	&	190.71 	&	 17.053	&	0.0001 	&	15.9	&	293.9	\\
+		090328 	&	259925808.510	&	 90.67 	&	-41.715	&	0.0002 	&	18.8	&	652.9	\\
+		090510 	&	263607781.971	&	333.55 	&	-26.583	&	0.0004 	&	 0.6	&	 45.6	\\
+		090626 	&	267683530.880	&	170.03 	&	-33.49 	&	0.22   	&	52.2	&	299.9	\\
+		090902B	&	273582310.313	&	264.94 	&	 27.324	&	0.001  	&	 7.7	&	825.0	\\
+		090926A	&	275631628.990	&	353.4  	&	-66.32 	&	0.01   	&	 5.5	&	225.0	\\
+		091003 	&	276237347.585	&	251.52 	&	 36.625	&	0.0005 	&	 3.9	&	452.6	\\
+		091031 	&	278683230.850	&	 71.49 	&	-57.65 	&	0.23   	&	 3.1	&	206.2	\\
+		100116A	&	285370262.240	&	305.01 	&	 14.43 	&	0.17   	&	 3.0	&	141.0	\\
+		100414A	&	292904423.990	&	192.11 	&	  8.693	&	0.0005 	&	17.4	&	288.6	\\
+		110120A	&	317231981.230	&	 61.5  	&	-12.0  	&	0.36   	&	 0.5	&	112.8	\\
+		110428A	&	325675112.410	&	  5.59 	&	 64.849	&	0.00001	&	10.7	&	407.6	\\
+		110721A	&	332916465.760	&	333.2  	&	-38.5  	&	0.20   	&	 0.1	&	239.0	\\
+		110731A	&	333803371.954	&	280.504	&	-28.537	&	0.0001 	&	 3.0	&	 24.1
+	\end{tabular}
+	\caption{Burst data used in our study. The first row contains the corresponding \texttt{GRBurst} class variable names. The data is taken from the tables 2 and 4 of \cite{Ackermann:2013zfa}. \url{https://github.com/maxitg/GammaRays/blob/master/GRObservations/bursts}}
+	\label{tab:bursts}
+\end{table}
 
+Before we start to compute the Kolmogorov-Smirnov probabilities, we need to download the actual observational data from the Fermi LAT data server. We take the data about the bursts from the catalog \cite{Ackermann:2013zfa}, which contains all the bright bursts seen by the LAT since 2008 August 4 to 2011 August 1. Specifically, we take 4 pieces of information from the tables 2 and 4 there:
+\begin{itemize}
+	\item{GBM trigger time (table 2). It is used as a reference point for the GRB time.}
+	\item{Location of the GRB (table 2). We need burst locations to filter out photons coming from other sources.}
+	\item{Location error (table 2). Location errors are used to improve the accuracy of filtering, that is to avoid losing statistics by filtering too much.}
+	\item{$T_{05}$ -- $T_{95}$ interval of the LAT-detected emission (table 4). We need precise intervals for two things. First, to understand where is the fixed point of the stretching, $T_{05}$ is used as a good estimate for that. Second, the burst interval is used to download events data from the data server.}
+\end{itemize}
+The data obtained is summarized in the table \ref{tab:bursts}.
+
+Finally, to download the data about observed photons, we fill the form at the LAT data server front page with the following values:
+\begin{itemize}
+	\item{{\bf Object name or coordinates}. Here the coordinates are filled from the table \ref{tab:bursts}.}
+	\item{{\bf Coordinate system}. We use J2000 here.}
+	\item{{\bf Search radius (degrees)}. The value of $60$ is used here. Events will be filtered precisely later on by using the point spread functions (PSFs) of the LAT.}
+	\item{
+		{\bf Observation dates}. We extend the duration of the burst by $15\%$ relative to the table \ref{tab:bursts} values to both past and future to have a decent safety margin. So the time ranges we fill in here are:
+		\begin{align*}
+			\texttt{time} + \texttt{startOffset} &- 0.15\left(\texttt{endOffset}-\texttt{startOffset}\right),\\
+			\texttt{time} + \texttt{endOffset} &+ 0.15\left(\texttt{endOffset}-\texttt{startOffset}\right)
+		\end{align*}
+	}
+	\item{{\bf Time system}. MET is used.}
+	\item{{\bf Energy range (MeV)}. The whole energy range is required for our study. So we fill in $30,\,300000$.}
+	\item{{\bf LAT data type}. Extended, because we need transient photons for better statistics.}
+	\item{{\bf Spacecraft data}. Checked. We need it for both events filtering, and calculation of the PSFs and exposure maps.}
+\end{itemize}
+
+The data we downloaded contains a lot of background and radiation from other sources. We need to filter it before using it.
+
+\subsection{Data Filtering}
+\subsection{Point Spread Functions}
+\subsection{Exposure Maps}
 \subsection{Linear Component (background)}
 \subsection{KS-test}
 \subsection{Results}
