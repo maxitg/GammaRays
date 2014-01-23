@@ -392,8 +392,8 @@ int GRFermiLATDataServerQuery::gtmktime() {
     ostringstream cmd;
     cmd << fixed << "gtmktime" << " ";
     cmd << "scfile=" << hash << "/spacecraft.fits" << " ";
-    cmd << "filter=" << "\"DATA_QUAL>0 && LAT_CONFIG==1 && ABS(ROCK_ANGLE)<52\"" << " ";
-    cmd << "roicut=" << "no" << " ";
+    cmd << "filter=" << "\"DATA_QUAL>0 && LAT_CONFIG==1\"" << " ";
+    cmd << "roicut=" << "yes" << " ";
     cmd << "evfile=" << hash << "/filtered.fits" << " ";
     cmd << "outfile=" << hash << "/timed.fits" << " ";
     cmd << "chatter=" << 0 << " ";

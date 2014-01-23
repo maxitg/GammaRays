@@ -7,6 +7,9 @@
 \usepackage{units}
 \usepackage{hyperref}
 \usepackage{siunitx}
+\usepackage{listings}
+
+\lstset{columns=fullflexible,basicstyle=\ttfamily}
 
 \allowdisplaybreaks
 
@@ -76,7 +79,7 @@ Finally, our assumption is able to explain the non-trivial stretching factor of 
 
 \section{Observations}
 
-\subsection{Burst Data Queries}
+\subsection{Burst Data Download}
 
 \begin{table}[bursts]
 	\centering
@@ -125,7 +128,7 @@ Finally, to download the data about observed photons, we fill the form at the LA
 	\item{{\bf Coordinate system}. We use J2000 here.}
 	\item{{\bf Search radius (degrees)}. The value of $60$ is used here. Events will be filtered precisely later on by using the point spread functions (PSFs) of the LAT.}
 	\item{
-		{\bf Observation dates}. We extend the duration of the burst by $15\%$ relative to the table \ref{tab:bursts} values to both past and future to have a decent safety margin. So the time ranges we fill in here are:
+		{\bf Observation dates}. We extend the duration of the burst by $15\%$ relative to the table \ref{tab:bursts} values to both past and future to have a decent safety margin. So the time range we fill in here is:
 		\begin{align*}
 			\texttt{time} + \texttt{startOffset} &- 0.15\left(\texttt{endOffset}-\texttt{startOffset}\right),\\
 			\texttt{time} + \texttt{endOffset} &+ 0.15\left(\texttt{endOffset}-\texttt{startOffset}\right)
@@ -137,12 +140,34 @@ Finally, to download the data about observed photons, we fill the form at the LA
 	\item{{\bf Spacecraft data}. Checked. We need it for both events filtering, and calculation of the PSFs and exposure maps.}
 \end{itemize}
 
-The data we downloaded contains a lot of background and radiation from other sources. We need to filter it before using it.
+For background estimation purposes, we also download observational data during a day before the burst, specifically in the time range:
+\begin{align*}
+	\texttt{time} + \texttt{startOffset} &- 0.15\left(\texttt{endOffset} - \texttt{startOffset}\right) - \unit[86400]{sec},\\
+	\texttt{time} + \texttt{startOffset} &- 0.15\left(\texttt{endOffset} - \texttt{startOffset}\right)
+\end{align*}
+All other values filled in the form are the same.
 
-\subsection{Data Filtering}
+Before reading the data, we need to apply the basic filtering as described in Fermi guidelines. Two tools from the Fermi Science Tools package are used for that task (the same filtering is applied to both burst and background data).
+
+The first one is \texttt{gtselect}. It filters the Earth limb emission. We run the tool with the following parameters\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/explore_latdata_burst.html}}:
+\begin{lstlisting}
+gtselect infile=[eventFile] outfile=filtered.fits
+	ra=INDEF dec=INDEF rad=180 tmin=INDEF tmax=INDEF emin=100 emax=300000
+	zmax=100 evclass=0 convtype=-1 evtable=EVENTS
+\end{lstlisting}
+Here \texttt{[eventFile]} is the file downloaded in the previous step.
+
+The second one is \texttt{gtmktime}. It uses the spacecraft file as well as events file, and filters out time periods when Fermi LAT was not operational. Running \texttt{gtmktime} is also required for exposure maps calculation, which we'll need later on. Parameters are the following\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/data_preparation.html}}:
+\begin{lstlisting}
+gtmktime scfile=[spacecraft] evfile=filtered.fits outfile=timed.fits
+	filter="DATA_QUAL>0 && LAT_CONFIG==1" roicut=yes
+\end{lstlisting}
+where \texttt{[spacecraft]} is the FITS containing the spacecraft data.
+
+Now, with basic filtering done, we can read events data from \texttt{timed.fits}. This file, however, contains observations of a large area of the sky. Before using the data obtained from it, we should perform a more elaborate filtering by location using Fermi LAT's point spread function, which will be described in the following section.
+
 \subsection{Point Spread Functions}
 \subsection{Exposure Maps}
-\subsection{Linear Component (background)}
 \subsection{KS-test}
 \subsection{Results}
 
