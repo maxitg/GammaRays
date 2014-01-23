@@ -117,30 +117,30 @@ Before we start to compute the Kolmogorov-Smirnov probabilities, we need to down
 \begin{itemize}
 	\item{GBM trigger time (table 2). It is used as a reference point for the GRB time.}
 	\item{Location of the GRB (table 2). We need burst locations to filter out photons coming from other sources.}
-	\item{Location error (table 2). Location errors are used to improve the accuracy of filtering, that is to avoid losing statistics by filtering too much.}
-	\item{$T_{05}$ -- $T_{95}$ interval of the LAT-detected emission (table 4). We need precise intervals for two things. First, to understand where is the fixed point of the stretching, $T_{05}$ is used as a good estimate for that. Second, the burst interval is used to download events data from the data server.}
+	\item{Location error (table 2). Location errors are used to improve accuracy of filtering, specifically to avoid losing statistics by filtering too much.}
+	\item{$T_{05}$ -- $T_{95}$ interval of the LAT-detected emission (table 4). We need precise intervals for two things. First, to understand where is the fixed point of the stretching ($T_{05}$ is used as a proxy for that). Second, the burst interval is used to download events data from the data server.}
 \end{itemize}
 The data obtained is summarized in the table \ref{tab:bursts}.
 
 Finally, to download the data about observed photons, we fill the form at the LAT data server front page with the following values:
 \begin{itemize}
 	\item{{\bf Object name or coordinates}. Here the coordinates are filled from the table \ref{tab:bursts}.}
-	\item{{\bf Coordinate system}. We use J2000 here.}
-	\item{{\bf Search radius (degrees)}. The value of $60$ is used here. Events will be filtered precisely later on by using the point spread functions (PSFs) of the LAT.}
+	\item{{\bf Coordinate system}. J2000.}
+	\item{{\bf Search radius (degrees)}. $60$. Events will be filtered by location later on by using the point spread functions (PSFs) of the LAT.}
 	\item{
-		{\bf Observation dates}. We extend the duration of the burst by $15\%$ relative to the table \ref{tab:bursts} values to both past and future to have a decent safety margin. So the time range we fill in here is:
+		{\bf Observation dates}. To have a decent safety margin, we extend the duration of the burst by $15\%$ to both past and future relative to the table \ref{tab:bursts} time ranges. So, we fill in the following values:
 		\begin{align*}
 			\texttt{time} + \texttt{startOffset} &- 0.15\left(\texttt{endOffset}-\texttt{startOffset}\right),\\
 			\texttt{time} + \texttt{endOffset} &+ 0.15\left(\texttt{endOffset}-\texttt{startOffset}\right)
 		\end{align*}
 	}
-	\item{{\bf Time system}. MET is used.}
-	\item{{\bf Energy range (MeV)}. The whole energy range is required for our study. So we fill in $30,\,300000$.}
+	\item{{\bf Time system}. MET.}
+	\item{{\bf Energy range (MeV)}. $30,\,300000$. The whole energy range is required for our study.}
 	\item{{\bf LAT data type}. Extended, because we need transient photons for better statistics.}
-	\item{{\bf Spacecraft data}. Checked. We need it for both events filtering, and calculation of the PSFs and exposure maps.}
+	\item{{\bf Spacecraft data}. Checked. It is required for both events filtering, and calculation of the PSFs and exposure maps.}
 \end{itemize}
 
-For background estimation purposes, we also download observational data during a day before the burst, specifically in the time range:
+For background estimation, we also download observational data during a day before the burst. All the values are put the same into the form, except the time range:
 \begin{align*}
 	\texttt{time} + \texttt{startOffset} &- 0.15\left(\texttt{endOffset} - \texttt{startOffset}\right) - \unit[86400]{sec},\\
 	\texttt{time} + \texttt{startOffset} &- 0.15\left(\texttt{endOffset} - \texttt{startOffset}\right)
