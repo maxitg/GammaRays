@@ -392,10 +392,13 @@ int GRFermiLATDataServerQuery::gtmktime() {
     ostringstream cmd;
     cmd << fixed << "gtmktime" << " ";
     cmd << "scfile=" << hash << "/spacecraft.fits" << " ";
+    cmd << "sctable=" << "SC_DATA" << " ";
     cmd << "filter=" << "\"DATA_QUAL>0 && LAT_CONFIG==1\"" << " ";
     cmd << "roicut=" << "yes" << " ";
     cmd << "evfile=" << hash << "/filtered.fits" << " ";
+    cmd << "evtable=" << "EVENTS" << " ";
     cmd << "outfile=" << hash << "/timed.fits" << " ";
+    cmd << "apply_filter=" << "yes" << " ";
     cmd << "chatter=" << 0 << " ";
     return system(cmd.str().c_str());
 }
@@ -410,6 +413,32 @@ int GRFermiLATDataServerQuery::gtltcube() {
     cmd << "outfile=" << hash << "/ltcube.fits" << " ";
     cmd << "dcostheta=" << 0.025 << " ";
     cmd << "binsz=" << 1 << " ";
+    cmd << "phibins=" << 0 << " ";
+    cmd << "tmin=" << 0 << " ";
+    cmd << "tmax=" << 0 << " ";
+    cmd << "zmax=" << 180 << " ";
+    cmd << "zmin=" << 0 << " ";
+    cmd << "chatter=" << 0 << " ";
+    return system(cmd.str().c_str());
+}
+
+int GRFermiLATDataServerQuery::gtpsf(GRFermiEventClass eventClass, GRFermiConversionType conversionType) {
+    string irf = irfName(eventClass, conversionType);
+    string psfFilename = "psf_" + irf + ".fits";
+    
+    ostringstream cmd;
+    cmd << fixed << "gtpsf" << " ";
+    cmd << "expcube=" << hash << "/ltcube.fits" << " ";
+    cmd << "outfile=" << hash << "/" << psfFilename << " ";
+    cmd << "outtable=" << "PSF" << " ";
+    cmd << "irfs=" << irf << " ";
+    cmd << "ra=" << location.ra << " ";
+    cmd << "dec=" << location.dec << " ";
+    cmd << "emin=" << 100. << " ";
+    cmd << "emax=" << 1000000. << " ";
+    cmd << "nenergies=" << 41 << " ";
+    cmd << "thetamax=" << 30 << " ";
+    cmd << "ntheta=" << 300 << " ";
     cmd << "chatter=" << 0 << " ";
     return system(cmd.str().c_str());
 }
@@ -446,27 +475,6 @@ int GRFermiLATDataServerQuery::gtexpcube(GRFermiEventClass eventClass, GRFermiCo
     cmd << "clobber=" << "yes" << " ";
     cmd << "debug=" << "no" << " ";
     cmd << "mode=" << "ql" << " ";
-    return system(cmd.str().c_str());
-}
-
-int GRFermiLATDataServerQuery::gtpsf(GRFermiEventClass eventClass, GRFermiConversionType conversionType) {
-    string irf = irfName(eventClass, conversionType);
-    string psfFilename = "psf_" + irf + ".fits";
-    
-    ostringstream cmd;
-    cmd << fixed << "gtpsf" << " ";
-    cmd << "expcube=" << hash << "/ltcube.fits" << " ";
-    cmd << "outfile=" << hash << "/" << psfFilename << " ";
-    cmd << "outtable=" << "PSF" << " ";
-    cmd << "irfs=" << irf << " ";
-    cmd << "ra=" << location.ra << " ";
-    cmd << "dec=" << location.dec << " ";
-    cmd << "emin=" << 100. << " ";
-    cmd << "emax=" << 1000000. << " ";
-    cmd << "nenergies=" << 41 << " ";
-    cmd << "thetamax=" << 30 << " ";
-    cmd << "ntheta=" << 300 << " ";
-    cmd << "chatter=" << 0 << " ";
     return system(cmd.str().c_str());
 }
 

@@ -17,8 +17,8 @@
 
 \title{Time Stretching of the GeV Emission of GRBs: Fermi LAT data vs geometrical model}
 \author{
-	Maxim S. Piskunov$^{1}$\thanks{maxit@ms2.inr.ac.ru} and
-	Grigory I. Rubtsov$^{1}$\thanks{grisha@ms2.inr.ac.ru} \\
+	Maxim S. Piskunov$^{1}$\thanks{\href{mailto:maxit@ms2.inr.ac.ru}{maxit@ms2.inr.ac.ru}} and
+	Grigory I. Rubtsov$^{1}$\thanks{\href{mailto:grisha@ms2.inr.ac.ru}{grisha@ms2.inr.ac.ru}} \\
 	$^{1}$Institute for Nuclear Research RAS, 117312, Moscow, Russia\\
 }
 
@@ -149,7 +149,7 @@ All other values filled in the form are the same.
 
 Before reading the data, we need to apply the basic filtering as described in Fermi guidelines. Two tools from the Fermi Science Tools package are used for that task (the same filtering is applied to both burst and background data).
 
-The first one is \texttt{gtselect}. It filters the Earth limb emission. We run the tool with the following parameters\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/explore_latdata_burst.html}}:
+The first one is \texttt{gtselect}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtselect.txt}}. It filters the Earth limb emission. We run the tool with the following parameters\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/explore_latdata_burst.html}}:
 \begin{lstlisting}
 gtselect infile=[eventFile] outfile=filtered.fits
 	ra=INDEF dec=INDEF rad=180 tmin=INDEF tmax=INDEF emin=100 emax=300000
@@ -157,16 +157,39 @@ gtselect infile=[eventFile] outfile=filtered.fits
 \end{lstlisting}
 Here \texttt{[eventFile]} is the file downloaded in the previous step.
 
-The second one is \texttt{gtmktime}. It uses the spacecraft file as well as events file, and filters out time periods when Fermi LAT was not operational. Running \texttt{gtmktime} is also required for exposure maps calculation, which we'll need later on. Parameters are the following\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/data_preparation.html}}:
+The second one is \texttt{gtmktime}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtmktime.txt}}. It uses the spacecraft file as well as events file, and filters out time periods when Fermi LAT was not operational. Running \texttt{gtmktime} is also required for exposure maps calculation, which we'll need later on. Parameters are the following\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/data_preparation.html}}:
 \begin{lstlisting}
-gtmktime scfile=[spacecraft] evfile=filtered.fits outfile=timed.fits
+gtmktime scfile=[spacecraft] sctable=SC_DATA
 	filter="DATA_QUAL>0 && LAT_CONFIG==1" roicut=yes
+	evfile=filtered.fits evtable=EVENTS outfile=timed.fits
+	apply_fiter=yes
 \end{lstlisting}
 where \texttt{[spacecraft]} is the FITS containing the spacecraft data.
 
 Now, with basic filtering done, we can read events data from \texttt{timed.fits}. This file, however, contains observations of a large area of the sky. Before using the data obtained from it, we should perform a more elaborate filtering by location using Fermi LAT's point spread function, which will be described in the following section.
 
 \subsection{Point Spread Functions}
+
+\texttt{gtpsf}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtpsf.txt}} tool requires the livetime map to generate the PSFs. This map is computed by \texttt{gtltcube}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtltcube.txt}} with the following parameters:
+\begin{lstlisting}
+gtltcube evfile=timed.fits evtable=EVENTS scfile=[spacecraft] sctable=SC_DATA
+	outfile=ltcube.fits
+	dcostheta=0.025 binsz=1 phibins=0 tmin=0 tmax=0 zmax=180 zmin=0
+\end{lstlisting}
+
+Having the maps, we can compute the PSFs:
+\begin{lstlisting}
+gtpsf expcube=ltcube.fits outfile=psf_[IrfName].fits outtable=PSF irfs=[IrfName]
+	ra=[RA] dec=[DEC] emin=100 emax=1000000 nenergies=41 thetamax=30 ntheta=300
+\end{lstlisting}
+Here \texttt{[RA]} and \texttt{[DEC]} are the coordinates of the burst, and \texttt{[IrfName]} is the Instrument Response Function, which depends on photon's event class (transient, source, clean, or ultraclean) and conversion type (back, or front). The list of IRF names can be obtained by using the \texttt{gtirfs}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtirfs.txt}} tool. We need to compute PSFs for all of them.
+
+Produced files contain the probability densities as a function of the angular distance to the source. But we need an integral value, that is given the distance $d$, we want to find a fraction of photons coming from this source, which are observed to be closer than $d$ to the source. To find that we sum over the probability densities:
+\begin{equation*}
+	p\left(n\right) = \sum_{i=0}^{n} \frac{\texttt{pdf[i]} + \texttt{pdf[i+1]}}{2} 2\pi \left(\cos\left(\texttt{angles[i]}\right) - \cos\left(\texttt{angles[i+1]}\right)\right)
+\end{equation*}
+Here \texttt{pdf[i]} is the observation probability density in the point separated with the source by the angle \texttt{angles[i]}. And $p\left(n\right)$ is the probability to observe the photon closer to the source than \texttt{angles[n]}. We find probabilities for intermediate angles by linear interpolation. Finally, we can compute the inverse value (that is distance as a function of probability) by binary search.
+
 \subsection{Exposure Maps}
 \subsection{KS-test}
 \subsection{Results}
