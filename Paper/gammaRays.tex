@@ -168,7 +168,7 @@ where \texttt{[spacecraft]} is the FITS containing the spacecraft data.
 
 Now, with basic filtering done, we can read events data from \texttt{timed.fits}. This file, however, contains observations of a large area of the sky. Before using the data obtained from it, we should perform a more elaborate filtering by location using Fermi LAT's point spread function, which will be described in the following section.
 
-\subsection{Point Spread Functions}
+\subsection{Point Spread Functions and Location Filtering}
 
 \texttt{gtpsf}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtpsf.txt}} tool requires the livetime map to generate the PSFs. This map is computed by \texttt{gtltcube}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtltcube.txt}} with the following parameters:
 \begin{lstlisting}
@@ -184,13 +184,29 @@ gtpsf expcube=ltcube.fits outfile=psf_[IrfName].fits outtable=PSF irfs=[IrfName]
 \end{lstlisting}
 Here \texttt{[RA]} and \texttt{[DEC]} are the coordinates of the burst, and \texttt{[IrfName]} is the Instrument Response Function, which depends on photon's event class (transient, source, clean, or ultraclean) and conversion type (back, or front). The list of IRF names can be obtained by using the \texttt{gtirfs}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtirfs.txt}} tool. We need to compute PSFs for all of them.
 
-Produced files contain the probability densities as a function of the angular distance to the source. But we need an integral value, that is given the distance $d$, we want to find a fraction of photons coming from this source, which are observed to be closer than $d$ to the source. To find that we sum over the probability densities:
+Imagine a stream of photons coming from some source locate at some coordinates $\theta, \phi$. Ideally, all the coordinates measured for the photons coming from the source should be the same. However, due to measurement errors, they would be spread across some region of the sky. If we find the region such that, say, $95\%$ of photons coming from the source are measured inside of it, we can filter out all the other photons without losing too much statistics, and significantly reducing background. \texttt{gtpsf} approximates these regions as circles, and the files generated in the previous step contain the observation probability densities as functions of distance from the source, and photon energies. We, however, need an integral quantity, that is given the radius, we want to know the fraction of photons observed inside the circle of this radius. We can compute this fraction by summing over the probability densities:
 \begin{equation*}
 	p\left(n\right) = \sum_{i=0}^{n} \frac{\texttt{pdf[i]} + \texttt{pdf[i+1]}}{2} 2\pi \left(\cos\left(\texttt{angles[i]}\right) - \cos\left(\texttt{angles[i+1]}\right)\right)
 \end{equation*}
-Here \texttt{pdf[i]} is the observation probability density in the point separated with the source by the angle \texttt{angles[i]}. And $p\left(n\right)$ is the probability to observe the photon closer to the source than \texttt{angles[n]}. We find probabilities for intermediate angles by linear interpolation. Finally, we can compute the inverse value (that is distance as a function of probability) by binary search.
+Here \texttt{pdf[i]} is the probability density in the point separated from the source by an angle \texttt{angles[i]}. And $p\left(n\right)$ is the probability to observe a photon closer to the source than \texttt{angles[n]}. We find probabilities for intermediate angles by linear interpolation. Finally, we can compute the inverse value $\theta_{\text{spread}}\left(p\right)$ (that is a distance as a function of probability) by binary search. Note, that $\theta_{\text{spread}}\left(p\right)$ depends on the photon energy, event class, and conversion type. We should use the appropriate function for each photon. The spread angles for intermediate energies are linearly interpolated.
 
-\subsection{Exposure Maps}
+Finally, to finish the filtering, we filter out all the photons, for which their location is separated from the source by more that $\theta_{\text{spread}}\left(0.95\right) + \texttt{location.err}$, where \texttt{location.err} is the uncertainty in the burst location (see table \ref{tab:bursts}).
+
+Now we have a decent set of photons, which we can use for analysis. However, some of the photons in this set are still originated from background, and not from the source. We cannot filter out these photons, however, we can substitute a linear component of background by estimating it from a long time period before the burst. In order to perform this computation, we'll need an exposure map, which will be discussed in the following section.
+
+\subsection{Exposure Maps and Background Estimation}
+
+The exposure map can be computed with the \texttt{gtexpcube2}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtexpcube2.txt}} tool. We use the following parameter set for it:
+\begin{lstlisting}
+gtexpcube2 infile=ltcube.fits cmap=none outfile=expcube_[IrfName].fits irfs=[IrfName]
+	nxpix=360 nypix=180 binsz=1 coordsys=CEL xref=0 yref=0 axisrot=0
+	proj=CAR ebinalg=log emin=100 emax=1000000 enumbins=40
+	ebinfile=NONE bincalc=EDGE ignorephi=no thmax=180 thmin=0 table=Exposure
+\end{lstlisting}
+The generated \texttt{expcube} files contain exposures as functions of energy and location on the sky\footnote{Note, that in the \texttt{expcube} FITS files R.A. coordinates are indexed in reverse order and starting from 180, for example, $\texttt{ra[0]}=180$, $\texttt{ra[1]}=179$, and so on.}. We use trilinear interpolation to compute exposures for all energies and locations.
+
+Knowing the exposures, we can now use the method introduced in the appendix of \cite{Rubtsov:2011qq} to estimate the linear component of background from the data observed before the burst. We compute two background estimates: for low and high energy bands.
+
 \subsection{KS-test}
 \subsection{Results}
 
