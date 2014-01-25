@@ -45,8 +45,6 @@ public:
     double startOffset;
     double endOffset;
     
-    double redshift;
-        
 public:
     GRFermiLATDataServerQuery backgroundQuery;
     GRFermiLATDataServerQuery query;
@@ -62,21 +60,15 @@ public:
     GRDistribution gevDistribution;
     
 public:
-    double minLengthening[5];
-    double maxLengthening[5];
-    vector <float> lengtheningValues;
-    vector <float> lengtheningProbabilities;
+    double minStretching[5];
+    double maxStretching[5];
+    vector <float> stretchingValues;
+    vector <float> stretchingProbabilities;
     
     double trivialProbability;
     
 private:
     void calculateBackground();
-    double middleTime();
-    double duration();
-    double startTime();
-    double endTime();
-    double backgroundStartTime();
-    double backgroundEndTime();
             
 public:
     void init();

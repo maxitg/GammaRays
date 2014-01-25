@@ -16,13 +16,13 @@
 
 #include "GRBurst.h"
 
-#define TIME_EXTENTION_FACTOR 1.3
-#define PHOTONS_QUALITY       0.95
-#define LENGTHENING_MIN       0.1
-#define LENGTHENING_MAX       10.
-#define LENGTHENING_STEP      1.001
+#define TIME_EXTENTION_FACTOR   1.3
+#define PHOTONS_QUALITY         0.95
+#define STRETCHING_MIN          0.1
+#define STRETCHING_MAX          10.
+#define STRETCHING_STEP         1.001
 
-#define BACKGROUND_DURATION   86400
+#define BACKGROUND_DURATION     86400
 
 void GRBurst::init() {
     
@@ -99,11 +99,11 @@ void GRBurst::calculateBackground() {
         }
     }
         
-    mevDistribution.estimatedLinearComponent = mevExpectationValue;
+    mevDistribution.linearComponent = - mevExpectationValue + gevExpectationValue;
     mevDistribution.start = query.startTime - (time + startOffset);
     mevDistribution.end = query.endTime - (time + startOffset);
     
-    gevDistribution.estimatedLinearComponent = gevExpectationValue;
+    gevDistribution.linearComponent = 0.;
     gevDistribution.start = query.startTime - (time + startOffset);
     gevDistribution.end = query.endTime - (time + startOffset);
     
@@ -123,8 +123,6 @@ void GRBurst::read() {
         errorDescription = backgroundQuery.errorDescription;
         return;
     }
-    
-    cout << "event counts: " << query.events.size() << " " << backgroundQuery.events.size() << endl;
     
     for (int i = 0; i < query.events.size(); i++) {
         GRFermiLATPhoton photon = query.events[i];
@@ -148,6 +146,8 @@ void GRBurst::read() {
     sort(gevPhotons.begin(), gevPhotons.end());
     sort(gevBackgroundPhotons.begin(), gevBackgroundPhotons.end());
     
+    cout << "event counts: " << mevPhotons.size() + gevPhotons.size() << " " << mevBackgroundPhotons.size() + gevBackgroundPhotons.size() << endl;
+    
     calculateBackground();
     
     for (int i = 0; i < mevPhotons.size(); i++) {
@@ -168,39 +168,45 @@ void GRBurst::evaluate() {
         }
     }
     
+    ofstream mev((name + "/mev").c_str());
+    vector <struct GRDistributionCDFPoint> mevCdf = mevDistribution.cdf();
+    for (int i = 0; i != mevCdf.size(); ++i) {
+        mev << mevCdf[i].value << " " << mevCdf[i].probability << endl;
+    }
+    mev.close();
+    
+    ofstream gev((name + "/gev").c_str());
+    vector <struct GRDistributionCDFPoint> gevCdf = gevDistribution.cdf();
+    for (int i = 0; i != gevCdf.size(); ++i) {
+        gev << gevCdf[i].value << " " << gevCdf[i].probability << endl;
+    }
+    gev.close();
+    
     double probabilityValues[5];
     for (int i = 0; i < 5; i++) {
         probabilityValues[i] = 1-erf((double)(i+1)/sqrt(2.));
-        minLengthening[i] = INFINITY;
-        maxLengthening[i] = 0.;
+        minStretching[i] = INFINITY;
+        maxStretching[i] = 0.;
     }
     
     double bestValue = 0., bestProbability = 0.;
-    for (double value = LENGTHENING_MIN; value <= LENGTHENING_MAX; value *= LENGTHENING_STEP) {
+    for (double value = STRETCHING_MIN; value <= STRETCHING_MAX; value *= STRETCHING_STEP) {
         double probability = gevDistribution.kolmogorovSmirnovTest(mevDistribution, value);
-        lengtheningValues.push_back(value);
-        lengtheningProbabilities.push_back(probability);
+        stretchingValues.push_back(value);
+        stretchingProbabilities.push_back(probability);
         if (probability > bestProbability) {
             bestProbability = probability;
             bestValue = value;
         }
         
         for (int i = 0; i < 5; i++) {
-            if (lengtheningProbabilities[lengtheningProbabilities.size()-1] < probabilityValues[i]) continue;
-            minLengthening[i] = min(value, minLengthening[i]);
-            maxLengthening[i] = max(value, maxLengthening[i]);
+            if (stretchingProbabilities[stretchingProbabilities.size()-1] < probabilityValues[i]) continue;
+            minStretching[i] = min(value, minStretching[i]);
+            maxStretching[i] = max(value, maxStretching[i]);
         }
     }
     
-    ofstream mev((name + "/mev").c_str());
-    ofstream gev((name + "/gev").c_str());
-    trivialProbability = gevDistribution.kolmogorovSmirnovTest(mevDistribution, 1., true, mev, gev);
-    mev.close();
-    gev.close();
-    
-    mev.open((name + "/stretchedMeV").c_str());
-    gevDistribution.kolmogorovSmirnovTest(mevDistribution, bestValue, true, mev, gev);
-    mev.close();
+    trivialProbability = gevDistribution.kolmogorovSmirnovTest(mevDistribution, 1.);
     
     cout << endl;
 }

@@ -6,29 +6,12 @@
 //  Copyright (c) 2013 Maxim Piskunov. All rights reserved.
 //
 
-#include <math.h>
 #include <cmath>
+#include <algorithm>
 
 #include <fstream>
 
-#include <glpk.h>
-
 #include "GRDistribution.h"
-
-vector <GRDistributionCDFPoint> GRDistribution::cdf() {
-    vector <GRDistributionCDFPoint> result;
-    result.reserve(2*values.size());
-    for (int i = 0; i < values.size(); i++) {
-        GRDistributionCDFPoint point;
-        point.value = values[i];
-        point.probability = (double)i/values.size();
-        result.push_back(point);
-        point.value = values[i];
-        point.probability = (double)(i+1)/values.size();
-        result.push_back(point);
-    }
-    return result;
-}
 
 double GRDistribution::kolmogorovSmirnovProbability(double distance, int n1, int n2) {
     double n = (double)n1*n2/(n1+n2);
@@ -83,9 +66,92 @@ double GRDistribution::kolmogorovSmirnovDistance(double probability, int n1, int
     return z / (sqrt(n) + 0.12 + 0.11/sqrt(n));
 }
 
+pair<double, double> GRDistribution::cdfValueRange(double time) {
+    if (time < start) return make_pair(0, 0);
+    if (time > end) return make_pair(1, 1);
+    
+    vector<double>::iterator low = lower_bound(values.begin(), values.end(), time);
+    vector<double>::iterator high = upper_bound(values.begin(), values.end(), time);
+    
+    pair<double, double> result = make_pair(low-values.begin(), high-values.begin());
+    
+    result.first += linearComponent * (time - start) / (end - start);
+    result.second += linearComponent * (time - start) / (end - start);
+    
+    double total = values.size() + linearComponent;
+    
+    result.first /= total;
+    result.second /= total;
+    
+    return result;
+}
+
+vector <struct GRDistributionCDFPoint> GRDistribution::cdf() {
+    vector <double> times;
+    times.reserve(values.size() + 2);
+    times.push_back(start);
+    for (int i = 0; i != values.size(); ++i) {
+        times.push_back(values[i]);
+    }
+    times.push_back(end);
+    
+    vector <struct GRDistributionCDFPoint> result;
+    result.reserve(2*values.size() + 2);
+    
+    for (int i = 0; i != times.size(); ++i) {
+        pair<double, double> values = cdfValueRange(times[i]);
+        
+        GRDistributionCDFPoint lower;
+        lower.value = times[i];
+        lower.probability = values.first;
+        result.push_back(lower);
+        
+        if (values.first != values.second) {
+            GRDistributionCDFPoint upper;
+            upper.value = times[i];
+            upper.probability = values.second;
+            result.push_back(upper);
+        }
+    }
+    
+    return result;
+}
+
+// this is supposed to be GeV distribution
+// distribution is MeV distribution
+
+float GRDistribution::kolmogorovSmirnovTest(GRDistribution distribution, double stretching) {
+    vector<GRDistributionCDFPoint> thisCDF = this->cdf();
+    vector<GRDistributionCDFPoint> distributionCDF = distribution.cdf();
+    
+    double maxDistance = 0.;
+    
+    for (int i = 0; i != thisCDF.size(); ++i) {
+        double time = thisCDF[i].value;
+        double thisProbability = thisCDF[i].probability;
+        
+        pair<double, double> distributionProbabilityRange = distribution.cdfValueRange(time / stretching);
+        
+        maxDistance = max(maxDistance, abs(thisProbability - distributionProbabilityRange.first));
+        maxDistance = max(maxDistance, abs(thisProbability - distributionProbabilityRange.second));
+    }
+    
+    for (int i = 0; i != distributionCDF.size(); ++i) {
+        double time = distributionCDF[i].value;
+        double distributionProbability = distributionCDF[i].probability;
+        
+        pair<double, double> thisProbabilityRange = this->cdfValueRange(time * stretching);
+        
+        maxDistance = max(maxDistance, abs(distributionProbability - thisProbabilityRange.first));
+        maxDistance = max(maxDistance, abs(distributionProbability - thisProbabilityRange.second));
+    }
+    
+    return kolmogorovSmirnovProbability(maxDistance, (int)values.size(), (int)distribution.values.size());
+}
+
 //  self is GeV distribution
 //  distribution is MeV distribution
-float GRDistribution::kolmogorovSmirnovTest(GRDistribution distribution, double lengthening, bool plot, ostream &mev, ostream &gev) {
+/*float GRDistribution::kolmogorovSmirnovTest(GRDistribution distribution, double lengthening, bool plot, ostream &mev, ostream &gev) {
     for (int i = 0; i < distribution.values.size(); i++) {
         distribution.values[i] *= lengthening;
     }
@@ -121,9 +187,9 @@ float GRDistribution::kolmogorovSmirnovTest(GRDistribution distribution, double 
         }
     }
         
-    double descretePart = (double)distribution.values.size() / (distribution.values.size() + estimatedLinearComponent - distribution.estimatedLinearComponent);
-    double selfPart = estimatedLinearComponent / (distribution.values.size() + estimatedLinearComponent - distribution.estimatedLinearComponent);
-    double distributionPart = -distribution.estimatedLinearComponent / (distribution.values.size() + estimatedLinearComponent - distribution.estimatedLinearComponent);
+    double descretePart = (double)distribution.values.size() / (distribution.values.size() + linearComponent - distribution.linearComponent);
+    double selfPart = linearComponent / (distribution.values.size() + linearComponent - distribution.linearComponent);
+    double distributionPart = -distribution.linearComponent / (distribution.values.size() + linearComponent - distribution.linearComponent);
     
     vector <pair<double, double> > mevPoints;
     vector <pair<double, double> > gevPoints;
@@ -195,8 +261,4 @@ float GRDistribution::kolmogorovSmirnovTest(GRDistribution distribution, double 
     }
     
     return kolmogorovSmirnovProbability(maxDistance, (int)values.size(), (int)distribution.values.size());
-}
-
-pair<double, double> GRDistribution::lengtheningLimits(GRDistribution distribution, float probability, bool *success) {
-    return make_pair(0., 0.);
-}
+}*/

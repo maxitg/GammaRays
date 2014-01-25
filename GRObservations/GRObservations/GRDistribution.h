@@ -23,7 +23,7 @@ struct GRDistributionCDFPoint {
 class GRDistribution {
 public:
     vector <double> values;
-    double estimatedLinearComponent;
+    double linearComponent;
     double start;
     double end;
     
@@ -31,9 +31,11 @@ private:
     double kolmogorovSmirnovProbability(double distance, int n1, int n2);
     double kolmogorovSmirnovDistance(double probability, int n1, int n2);
 public:
-    vector <GRDistributionCDFPoint> cdf();
-    float kolmogorovSmirnovTest(GRDistribution distribution, double lengthening = 1., bool plot = false, ostream &mev = cout, ostream &gev = cout);
-    pair<double, double> lengtheningLimits(GRDistribution distribution, float probability, bool *success);
+    pair<double, double> cdfValueRange(double time);
+    vector <struct GRDistributionCDFPoint> cdf();
+    
+    float kolmogorovSmirnovTest(GRDistribution distribution, double stretching = 1.);
+    
 };
 
 #endif /* defined(__Gamma_Rays__GRDistribution__) */

@@ -93,11 +93,11 @@ int main(int argc, const char * argv[])
         }
         
         log << burstCatalog[i].name << ":" << endl;
-        log << "\tLow energy count  = " << burstCatalog[i].mevDistribution.values.size() - burstCatalog[i].mevDistribution.estimatedLinearComponent << endl;
-        log << "\tHigh energy count = " << burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.estimatedLinearComponent << endl;
+        log << "\tLow energy count  = " << burstCatalog[i].mevDistribution.values.size() - burstCatalog[i].mevDistribution.linearComponent << endl;
+        log << "\tHigh energy count = " << burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.linearComponent << endl;
         
         
-        if ((burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.estimatedLinearComponent) < 10) {
+        if ((burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.linearComponent) < 10) {
             log << "\tnot enought high energy photons" << endl << endl;
             continue;
         }
@@ -106,13 +106,13 @@ int main(int argc, const char * argv[])
         
         log << "\tprobability not to be stretched = " << sigma(burstCatalog[i].trivialProbability) << endl;
         for (int k = 0; k < 5; k++) {
-            log << "\t" << k+1 << "σ -> stretching factor in ranges (" << burstCatalog[i].minLengthening[k] << ", " << burstCatalog[i].maxLengthening[k] << ")" << endl;
+            log << "\t" << k+1 << "σ -> stretching factor in ranges (" << burstCatalog[i].minStretching[k] << ", " << burstCatalog[i].maxStretching[k] << ")" << endl;
         }
         log << endl;
         
         ofstream probs((burstCatalog[i].name + "/probs").c_str());
-        for (int j = 0; j < burstCatalog[i].lengtheningValues.size(); j++) {
-            probs << burstCatalog[i].lengtheningValues[j] << " " << burstCatalog[i].lengtheningProbabilities[j] << endl;
+        for (int j = 0; j < burstCatalog[i].stretchingValues.size(); j++) {
+            probs << burstCatalog[i].stretchingValues[j] << " " << burstCatalog[i].stretchingProbabilities[j] << endl;
         }
         probs.close();
     }
