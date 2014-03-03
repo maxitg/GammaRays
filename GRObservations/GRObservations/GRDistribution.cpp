@@ -120,11 +120,13 @@ vector <struct GRDistributionCDFPoint> GRDistribution::cdf() {
 // this is supposed to be GeV distribution
 // distribution is MeV distribution
 
-float GRDistribution::kolmogorovSmirnovTest(GRDistribution distribution, double stretching) {
+float GRDistribution::kolmogorovSmirnovTest(GRDistribution distribution, double stretching, double *time, double *thisValue, double *distributionValue) {
     vector<GRDistributionCDFPoint> thisCDF = this->cdf();
     vector<GRDistributionCDFPoint> distributionCDF = distribution.cdf();
     
     double maxDistance = 0.;
+    double maxDistanceTime = 0.;
+    pair<double, double> maxDistanceRange = make_pair(0, 0);
     
     for (int i = 0; i != thisCDF.size(); ++i) {
         double time = thisCDF[i].value;
@@ -132,8 +134,17 @@ float GRDistribution::kolmogorovSmirnovTest(GRDistribution distribution, double 
         
         pair<double, double> distributionProbabilityRange = distribution.cdfValueRange(time / stretching);
         
-        maxDistance = max(maxDistance, abs(thisProbability - distributionProbabilityRange.first));
-        maxDistance = max(maxDistance, abs(thisProbability - distributionProbabilityRange.second));
+        if (abs(thisProbability - distributionProbabilityRange.first) > maxDistance) {
+            maxDistance = abs(thisProbability - distributionProbabilityRange.first);
+            maxDistanceTime = time;
+            maxDistanceRange = make_pair(thisProbability, distributionProbabilityRange.first);
+        }
+        
+        if (abs(thisProbability - distributionProbabilityRange.second) > maxDistance) {
+            maxDistance = abs(thisProbability - distributionProbabilityRange.second);
+            maxDistanceTime = time;
+            maxDistanceRange = make_pair(thisProbability, distributionProbabilityRange.second);
+        }
     }
     
     for (int i = 0; i != distributionCDF.size(); ++i) {
@@ -142,9 +153,22 @@ float GRDistribution::kolmogorovSmirnovTest(GRDistribution distribution, double 
         
         pair<double, double> thisProbabilityRange = this->cdfValueRange(time * stretching);
         
-        maxDistance = max(maxDistance, abs(distributionProbability - thisProbabilityRange.first));
-        maxDistance = max(maxDistance, abs(distributionProbability - thisProbabilityRange.second));
+        if (abs(distributionProbability - thisProbabilityRange.first) > maxDistance) {
+            maxDistance = abs(distributionProbability - thisProbabilityRange.first);
+            maxDistanceTime = time;
+            maxDistanceRange = make_pair(thisProbabilityRange.first, distributionProbability);
+        }
+        
+        if (abs(distributionProbability - thisProbabilityRange.second) > maxDistance) {
+            maxDistance = abs(distributionProbability - thisProbabilityRange.second);
+            maxDistanceTime = time;
+            maxDistanceRange = make_pair(thisProbabilityRange.second, distributionProbability);
+        }
     }
+    
+    if (time != NULL) *time = maxDistanceTime;
+    if (thisValue != NULL) *thisValue = maxDistanceRange.first;
+    if (distributionValue != NULL) *distributionValue = maxDistanceRange.second;
     
     return kolmogorovSmirnovProbability(maxDistance, (int)values.size(), (int)distribution.values.size());
 }

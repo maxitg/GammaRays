@@ -15,8 +15,7 @@
 #include <sstream>
 
 #include "GRBurst.h"
-
-#define TIME_EXTENTION_FACTOR   1.3
+#define TIME_EXTENSION_FACTOR   2.0
 #define PHOTONS_QUALITY         0.95
 #define STRETCHING_MIN          0.1
 #define STRETCHING_MAX          10.
@@ -27,12 +26,12 @@
 void GRBurst::init() {
     
     double middle = time + (startOffset + endOffset) / 2.;
-    double duration = (endOffset - startOffset) * TIME_EXTENTION_FACTOR;
+    double duration = (endOffset - startOffset) * TIME_EXTENSION_FACTOR;
     
     query.startTime = middle - duration/2.;
     query.endTime = middle + duration/2.;
     query.location = location;
-        
+    
     query.init();
     
     backgroundQuery.startTime = query.startTime - BACKGROUND_DURATION;
@@ -127,23 +126,25 @@ void GRBurst::read() {
     for (int i = 0; i < query.events.size(); i++) {
         GRFermiLATPhoton photon = query.events[i];
         photon.location.error = query.psfs[photon.eventClass][photon.conversionType].spread(photon.energy, PHOTONS_QUALITY);
+        if (photon.eventClass == GRFermiEventClassTransient) continue;
         if (location.isSeparated(photon.location)) continue;
         
         if (photon.energy < 1000.) mevPhotons.push_back(photon);
         else gevPhotons.push_back(photon);
     }
     sort(mevPhotons.begin(), mevPhotons.end());
-    sort(mevBackgroundPhotons.begin(), mevBackgroundPhotons.end());
+    sort(gevPhotons.begin(), gevPhotons.end());
     
     for (int i = 0; i < backgroundQuery.events.size(); i++) {
         GRFermiLATPhoton photon = backgroundQuery.events[i];
         photon.location.error = backgroundQuery.psfs[photon.eventClass][photon.conversionType].spread(photon.energy, PHOTONS_QUALITY);
+        if (photon.eventClass == GRFermiEventClassTransient) continue;
         if (location.isSeparated(photon.location)) continue;
         
         if (photon.energy < 1000.) mevBackgroundPhotons.push_back(photon);
         else gevBackgroundPhotons.push_back(photon);
     }
-    sort(gevPhotons.begin(), gevPhotons.end());
+    sort(mevBackgroundPhotons.begin(), mevBackgroundPhotons.end());
     sort(gevBackgroundPhotons.begin(), gevBackgroundPhotons.end());
     
     cout << "event counts: " << mevPhotons.size() + gevPhotons.size() << " " << mevBackgroundPhotons.size() + gevBackgroundPhotons.size() << endl;
@@ -191,9 +192,14 @@ void GRBurst::evaluate() {
     
     double bestValue = 0., bestProbability = 0.;
     for (double value = STRETCHING_MIN; value <= STRETCHING_MAX; value *= STRETCHING_STEP) {
-        double probability = gevDistribution.kolmogorovSmirnovTest(mevDistribution, value);
+        double time, gevValue, mevValue;
+        double probability = gevDistribution.kolmogorovSmirnovTest(mevDistribution, value, &time, &gevValue, &mevValue);
         stretchingValues.push_back(value);
         stretchingProbabilities.push_back(probability);
+        maxDistanceTimes.push_back(time);
+        maxDistanceGevValue.push_back(gevValue);
+        maxDistanceMevValue.push_back(mevValue);
+        
         if (probability > bestProbability) {
             bestProbability = probability;
             bestValue = value;

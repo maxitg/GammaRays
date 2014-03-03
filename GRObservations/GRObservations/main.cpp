@@ -55,11 +55,15 @@ int main(int argc, const char * argv[])
         float error;
         double startOffset;
         double endOffset;
+        char isReadable;
         
-        burstsFile >> name >> time >> ra >> dec >> error >> startOffset >> endOffset;
+        burstsFile >> isReadable >> name >> time >> ra >> dec >> error >> startOffset;
         
-        if (name == "") continue;
-        if (name[0] == '#') continue;
+        if (burstsFile.eof()) continue;
+
+        burstsFile >> endOffset;
+        
+        if (isReadable == '#') continue;
         
         if ((endOffset - startOffset) != 0) {
             GRBurst burst;
@@ -96,7 +100,6 @@ int main(int argc, const char * argv[])
         log << "\tLow energy count  = " << burstCatalog[i].mevDistribution.values.size() - burstCatalog[i].mevDistribution.linearComponent << endl;
         log << "\tHigh energy count = " << burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.linearComponent << endl;
         
-        
         if ((burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.linearComponent) < 10) {
             log << "\tnot enought high energy photons" << endl << endl;
             continue;
@@ -112,7 +115,7 @@ int main(int argc, const char * argv[])
         
         ofstream probs((burstCatalog[i].name + "/probs").c_str());
         for (int j = 0; j < burstCatalog[i].stretchingValues.size(); j++) {
-            probs << burstCatalog[i].stretchingValues[j] << " " << burstCatalog[i].stretchingProbabilities[j] << endl;
+            probs << burstCatalog[i].stretchingValues[j] << " " << burstCatalog[i].stretchingProbabilities[j] << " " << burstCatalog[i].maxDistanceTimes[j] << " " << burstCatalog[i].maxDistanceGevValue[j] << " " << burstCatalog[i].maxDistanceMevValue[j] << endl;
         }
         probs.close();
     }

@@ -64,6 +64,9 @@ public:
     double maxStretching[5];
     vector <float> stretchingValues;
     vector <float> stretchingProbabilities;
+    vector <double> maxDistanceTimes;
+    vector <double> maxDistanceGevValue;
+    vector <double> maxDistanceMevValue;
     
     double trivialProbability;
     

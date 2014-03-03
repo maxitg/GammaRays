@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     72574,       1537]
-NotebookOptionsPosition[     71881,       1509]
-NotebookOutlinePosition[     72236,       1525]
-CellTagsIndexPosition[     72193,       1522]
+NotebookDataLength[     69901,       1489]
+NotebookOptionsPosition[     69209,       1461]
+NotebookOutlinePosition[     69564,       1477]
+CellTagsIndexPosition[     69521,       1474]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -270,7 +270,7 @@ Cell[BoxData[
    3.595843847001895*^9, 3.5958438762360573`*^9}, {3.595843911686893*^9, 
    3.595843947786912*^9}, 3.595844098213407*^9, 3.595844815149091*^9, {
    3.595844916499063*^9, 3.595844925730116*^9}, 3.5958452000360518`*^9, 
-   3.595846054354067*^9, 3.5958542073545218`*^9, 3.6015465753084307`*^9}]
+   3.595846054354067*^9, 3.5958542073545218`*^9}]
 }, Open  ]],
 
 Cell[BoxData[{
@@ -315,7 +315,7 @@ Cell[BoxData[{
            RowBox[{"If", "[", 
             RowBox[{
              RowBox[{"OptionValue", "[", "centralEngineQ", "]"}], ",", 
-             "Black", ",", "Transparent"}], "]"}], ",", 
+             "White", ",", "Transparent"}], "]"}], ",", 
            RowBox[{"Disk", "[", 
             RowBox[{
              RowBox[{"{", 
@@ -645,7 +645,8 @@ Cell[BoxData[{
              RowBox[{"{", 
               RowBox[{"Left", ",", "Top"}], "}"}]}], "]"}]}], "}"}]}], 
         "\[IndentingNewLine]", "}"}], ",", 
-       RowBox[{"ImageSize", "\[Rule]", "225"}], ",", " ", 
+       RowBox[{"ImageSize", "\[Rule]", "225"}], ",", 
+       RowBox[{"Background", "\[Rule]", "Black"}], ",", 
        RowBox[{"PlotRange", "\[Rule]", 
         RowBox[{"{", 
          RowBox[{
@@ -667,20 +668,15 @@ Cell[BoxData[{
              RowBox[{"-", "0.5"}], 
              RowBox[{"Sin", "[", 
               RowBox[{"OptionValue", "[", "lowAngle", "]"}], "]"}]}], ",", 
-            RowBox[{"Max", "[", 
+            RowBox[{
              RowBox[{
-              RowBox[{
-               RowBox[{
-                RowBox[{"OptionValue", "[", "observerDistance", "]"}], 
-                RowBox[{"Sin", "[", 
-                 RowBox[{"OptionValue", "[", "observerAngle", "]"}], "]"}]}], 
-               "+", 
-               RowBox[{"OptionValue", "[", "observerSize", "]"}]}], ",", 
-              RowBox[{"0.5", 
-               RowBox[{"Sin", "[", 
-                RowBox[{"OptionValue", "[", "lowAngle", "]"}], "]"}]}]}], 
-             "]"}]}], "}"}]}], "}"}]}]}], "]"}]}], "\[IndentingNewLine]", 
-    "]"}]}], ";"}]}], "Input",
+              RowBox[{"OptionValue", "[", "observerDistance", "]"}], 
+              RowBox[{"Sin", "[", 
+               RowBox[{"OptionValue", "[", "observerAngle", "]"}], "]"}]}], 
+             "+", 
+             RowBox[{"OptionValue", "[", "observerSize", "]"}]}]}], "}"}]}], 
+         "}"}]}]}], "]"}]}], "\[IndentingNewLine]", "]"}]}], ";"}]}], "Input",\
+
  CellChangeTimes->{{3.59584258302489*^9, 3.595842753897132*^9}, {
    3.595842866470069*^9, 3.595843023059347*^9}, {3.5958430677816467`*^9, 
    3.5958431941824017`*^9}, {3.5958432468544703`*^9, 
@@ -739,7 +735,8 @@ Cell[BoxData[{
    3.6014383666959953`*^9}, {3.6014384109282293`*^9, 3.601438435990241*^9}, {
    3.601529779770904*^9, 3.6015297930707073`*^9}, {3.6015298356640873`*^9, 
    3.6015298494016027`*^9}, {3.601529887048574*^9, 3.60152988717455*^9}, {
-   3.6015467050791073`*^9, 3.601546734246442*^9}}],
+   3.6015299558847313`*^9, 3.60152999190344*^9}, {3.601530067525361*^9, 
+   3.601530067966017*^9}}],
 
 Cell[CellGroupData[{
 
@@ -797,7 +794,7 @@ $CellContext`oa, $CellContext`centralEngineLabelQ ->
      True], {$CellContext`ces, 0, 1}, {$CellContext`jr, 0, 
      1}, {$CellContext`la, 0, Pi}, {$CellContext`ha, 0, Pi}, {$CellContext`os,
       0, 1}, {$CellContext`od, 0, 1}, {$CellContext`oa, 0, Pi}], StandardForm],
-  ImageSizeCache->{270., {238., 243.}}]], "Output",
+  ImageSizeCache->{743., {444., 449.}}]], "Output",
  CellChangeTimes->{
   3.595848975620139*^9, 3.59584961943336*^9, 3.595850503862134*^9, 
    3.5958505451014338`*^9, 3.5958507369096127`*^9, 3.595850786297187*^9, {
@@ -805,7 +802,7 @@ $CellContext`oa, $CellContext`centralEngineLabelQ ->
    3.595854216980577*^9, 3.595938886797866*^9, 3.596687960018248*^9, 
    3.596689628571369*^9, 3.5967798375752077`*^9, 3.596897841608822*^9, 
    3.599019022281653*^9, 3.6014355515547*^9, 3.6014363170139093`*^9, 
-   3.601529772950861*^9, 3.601529888255381*^9, 3.601546578546184*^9}]
+   3.601529772950861*^9, 3.601529888255381*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -912,22 +909,6 @@ Cell[BoxData[
       RowBox[{"epQ", "\[Rule]", "True"}], ",", 
       RowBox[{"\[Gamma]Q", "\[Rule]", "True"}], ",", 
       RowBox[{"observerQ", "\[Rule]", "True"}], ",", 
-      RowBox[{"jetLabelQ", "\[Rule]", "False"}]}], "]"}], ",", 
-    "\[IndentingNewLine]", 
-    RowBox[{"drawScheme", "[", 
-     RowBox[{
-      RowBox[{"centralEngineSize", "\[Rule]", "0.03"}], ",", 
-      RowBox[{"jetRadius", "\[Rule]", "0.5"}], ",", 
-      RowBox[{"lowAngle", "\[Rule]", "0.43"}], ",", 
-      RowBox[{"highAngle", "\[Rule]", "0.043"}], ",", 
-      RowBox[{"observerSize", "\[Rule]", "0.03"}], ",", 
-      RowBox[{"observerDistance", "\[Rule]", "1"}], ",", 
-      RowBox[{"observerAngle", "\[Rule]", "0."}], ",", 
-      RowBox[{"centralEngineQ", "\[Rule]", "True"}], ",", 
-      RowBox[{"jetQ", "\[Rule]", "True"}], ",", 
-      RowBox[{"epQ", "\[Rule]", "True"}], ",", 
-      RowBox[{"\[Gamma]Q", "\[Rule]", "True"}], ",", 
-      RowBox[{"observerQ", "\[Rule]", "True"}], ",", 
       RowBox[{"jetLabelQ", "\[Rule]", "False"}]}], "]"}]}], 
    "\[IndentingNewLine]", "}"}], "]"}]], "Input",
  CellChangeTimes->{{3.596782078577881*^9, 3.5967822328614597`*^9}, {
@@ -936,8 +917,7 @@ Cell[BoxData[
   3.601435800012575*^9, 3.601435812695196*^9}, {3.6014373447638273`*^9, 
   3.601437381691105*^9}, {3.601437518649973*^9, 3.601437520296109*^9}, {
   3.601437976074442*^9, 3.6014379762663307`*^9}, {3.601438100234929*^9, 
-  3.601438128483831*^9}, {3.601438712352265*^9, 3.60143874381787*^9}, {
-  3.6015465824177647`*^9, 3.60154660171795*^9}}],
+  3.601438128483831*^9}, {3.601438712352265*^9, 3.60143874381787*^9}}],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -986,11 +966,12 @@ Cell[BoxData[
      {RGBColor[0, 0, 1], Opacity[0], 
       InsetBox["\<\"\[Gamma]\"\>", {0.7102994076117581, 0.2054558586689127}, {
        Left, Top}]}},
+    Background->GrayLevel[0],
     ImageSize->225,
     PlotRange->{{-0.03, 0.9510609940028851}, {-0.20843540121460538`, 
      0.4194183423086505}}], ",", 
    GraphicsBox[{
-     {GrayLevel[0], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[1], DiskBox[{0, 0}, 0.03]}, 
      {GrayLevel[0], Opacity[0], 
       InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
@@ -1033,11 +1014,12 @@ Cell[BoxData[
      {RGBColor[0, 0, 1], Opacity[0], 
       InsetBox["\<\"\[Gamma]\"\>", {0.7102994076117581, 0.2054558586689127}, {
        Left, Top}]}},
+    Background->GrayLevel[0],
     ImageSize->225,
     PlotRange->{{-0.03, 0.9510609940028851}, {-0.20843540121460538`, 
      0.4194183423086505}}], ",", 
    GraphicsBox[{
-     {GrayLevel[0], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[1], DiskBox[{0, 0}, 0.03]}, 
      {GrayLevel[0], Opacity[0], 
       InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
@@ -1075,11 +1057,12 @@ Cell[BoxData[
      {RGBColor[0, 0, 1], Opacity[0], 
       InsetBox["\<\"\[Gamma]\"\>", \
 {0.46053049700144255`, 0.19470917115432526`}, {Left, Top}]}},
+    Background->GrayLevel[0],
     ImageSize->225,
     PlotRange->{{-0.03, 0.9510609940028851}, {-0.20843540121460538`, 
      0.4194183423086505}}], ",", 
    GraphicsBox[{
-     {GrayLevel[0], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[1], DiskBox[{0, 0}, 0.03]}, 
      {GrayLevel[0], Opacity[0], 
       InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
@@ -1120,11 +1103,12 @@ Cell[BoxData[
      {RGBColor[0, 0, 1], Opacity[0], 
       InsetBox["\<\"\[Gamma]\"\>", \
 {0.5105304970014426, 0.19470917115432526`}, {Left, Top}]}},
+    Background->GrayLevel[0],
     ImageSize->225,
     PlotRange->{{-0.03, 0.9510609940028851}, {-0.20843540121460538`, 
      0.4194183423086505}}], ",", 
    GraphicsBox[{
-     {GrayLevel[0], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[1], DiskBox[{0, 0}, 0.03]}, 
      {GrayLevel[0], Opacity[0], 
       InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
@@ -1165,11 +1149,12 @@ Cell[BoxData[
      {RGBColor[0, 0, 1], Opacity[0], 
       InsetBox["\<\"\[Gamma]\"\>", \
 {0.5605304970014425, 0.19470917115432526`}, {Left, Top}]}},
+    Background->GrayLevel[0],
     ImageSize->225,
     PlotRange->{{-0.03, 0.9510609940028851}, {-0.20843540121460538`, 
      0.4194183423086505}}], ",", 
    GraphicsBox[{
-     {GrayLevel[0], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[1], DiskBox[{0, 0}, 0.03]}, 
      {GrayLevel[0], Opacity[0], 
       InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
@@ -1214,11 +1199,12 @@ Cell[BoxData[
      {RGBColor[0, 0, 1], Opacity[0], 
       InsetBox["\<\"\[Gamma]\"\>", \
 {0.6105304970014426, 0.19470917115432526`}, {Left, Top}]}},
+    Background->GrayLevel[0],
     ImageSize->225,
     PlotRange->{{-0.03, 0.9510609940028851}, {-0.20843540121460538`, 
      0.4194183423086505}}], ",", 
    GraphicsBox[{
-     {GrayLevel[0], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[1], DiskBox[{0, 0}, 0.03]}, 
      {GrayLevel[0], Opacity[0], 
       InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
@@ -1259,11 +1245,12 @@ Cell[BoxData[
      {RGBColor[0, 0, 1], Opacity[0], 
       InsetBox["\<\"\[Gamma]\"\>", \
 {0.6605304970014425, 0.19470917115432526`}, {Left, Top}]}},
+    Background->GrayLevel[0],
     ImageSize->225,
     PlotRange->{{-0.03, 0.9510609940028851}, {-0.20843540121460538`, 
      0.4194183423086505}}], ",", 
    GraphicsBox[{
-     {GrayLevel[0], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[1], DiskBox[{0, 0}, 0.03]}, 
      {GrayLevel[0], Opacity[0], 
       InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
@@ -1304,11 +1291,12 @@ Cell[BoxData[
      {RGBColor[0, 0, 1], Opacity[0], 
       InsetBox["\<\"\[Gamma]\"\>", \
 {0.7105304970014426, 0.19470917115432526`}, {Left, Top}]}},
+    Background->GrayLevel[0],
     ImageSize->225,
     PlotRange->{{-0.03, 0.9510609940028851}, {-0.20843540121460538`, 
      0.4194183423086505}}], ",", 
    GraphicsBox[{
-     {GrayLevel[0], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[1], DiskBox[{0, 0}, 0.03]}, 
      {GrayLevel[0], Opacity[0], 
       InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
@@ -1331,8 +1319,8 @@ Cell[BoxData[
       LineBox[{{0, 0}, {0.46053049700144255`, 0.19470917115432526`}}]}, 
      {RGBColor[1, 0, 0], Opacity[0], 
       InsetBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
-\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>", \
-{0.23026524850072128`, 0.09735458557716263}, {Right, Bottom}]}, 
+\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>", {0.23026524850072128`, 0.09735458557716263},
+        {Right, Bottom}]}, 
      {RGBColor[0, 0, 1], Opacity[0], 
       LineBox[{{0, 0}, {0.4995378212206311, 0.02149337502917488}}]}, 
      {RGBColor[0, 0, 1], Opacity[0], 
@@ -1351,11 +1339,12 @@ Cell[BoxData[
      {RGBColor[0, 0, 1], Opacity[0], 
       InsetBox["\<\"\[Gamma]\"\>", {0.7102994076117581, 0.2054558586689127}, {
        Left, Top}]}},
+    Background->GrayLevel[0],
     ImageSize->225,
     PlotRange->{{-0.03, 0.9510609940028851}, {-0.20843540121460538`, 
      0.4194183423086505}}], ",", 
    GraphicsBox[{
-     {GrayLevel[0], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[1], DiskBox[{0, 0}, 0.03]}, 
      {GrayLevel[0], Opacity[0], 
       InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
@@ -1398,11 +1387,12 @@ Cell[BoxData[
      {RGBColor[0, 0, 1], Opacity[0], 
       InsetBox["\<\"\[Gamma]\"\>", {0.7102994076117581, 0.2054558586689127}, {
        Left, Top}]}},
+    Background->GrayLevel[0],
     ImageSize->225,
     PlotRange->{{-0.03, 0.9510609940028851}, {-0.20843540121460538`, 
      0.4194183423086505}}], ",", 
    GraphicsBox[{
-     {GrayLevel[0], DiskBox[{0, 0}, 0.03]}, 
+     {GrayLevel[1], DiskBox[{0, 0}, 0.03]}, 
      {GrayLevel[0], Opacity[0], 
       InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
      {RGBColor[0, 
@@ -1445,48 +1435,10 @@ Cell[BoxData[
      {RGBColor[0, 0, 1], Opacity[1], 
       InsetBox["\<\"\[Gamma]\"\>", {0.7102994076117581, 0.2054558586689127}, {
        Left, Top}]}},
+    Background->GrayLevel[0],
     ImageSize->225,
     PlotRange->{{-0.03, 0.9510609940028851}, {-0.20843540121460538`, 
-     0.4194183423086505}}], ",", 
-   GraphicsBox[{
-     {GrayLevel[0], DiskBox[{0, 0}, 0.03]}, 
-     {GrayLevel[0], Opacity[0], 
-      InsetBox["\<\"Central\\nEngine\"\>", {0, -0.03}, Top]}, 
-     {RGBColor[0, 
-       NCache[
-        Rational[2, 3], 0.6666666666666666], 0], DiskBox[{1., 0.}, 0.03]}, 
-     {GrayLevel[0], Opacity[0], 
-      InsetBox["\<\"Observer\"\>", {1., 0.03}, Bottom]}, 
-     {RGBColor[1, 0, 0], Opacity[0.1], DiskBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
-     {RGBColor[1, 0, 0], Thickness[Large], Opacity[1], 
-      CircleBox[{0, 0}, 0.5, {-0.43, 0.43}]}, 
-     {RGBColor[0, 0, 1], Opacity[0.1], DiskBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
-     {RGBColor[0, 0, 1], Thickness[Large], Opacity[1], 
-      CircleBox[{0, 0}, 0.5, {-0.043, 0.043}]}, 
-     {RGBColor[1, 0, 0], Opacity[0], 
-      InsetBox["\<\"Shock\\nFront\"\>", \
-{0.5031428430165341, -0.10667371415039115`}, {Left, Top}]}, 
-     {RGBColor[1, 0, 0], Opacity[1], LineBox[{{0, 0}, {0.5, 0.}}]}, 
-     {RGBColor[1, 0, 0], Opacity[1], 
-      InsetBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
-\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>", {0.25, 0.}, {
-       Right, Bottom}]}, 
-     {RGBColor[0, 0, 1], Opacity[1], LineBox[{{0, 0}, {0.5, 0.}}]}, 
-     {RGBColor[0, 0, 1], Opacity[1], 
-      InsetBox["\<\"\\!\\(\\*SuperscriptBox[\\(e\\), \\(\[PlusMinus]\\)]\\), \
-\\!\\(\\*SuperscriptBox[\\(p\\), \\(\[PlusMinus]\\)]\\)\"\>", {0.25, 0.}, {
-       Left, Top}]}, 
-     {RGBColor[1, 0, 0], Opacity[1], Dashing[{Small, Small}], 
-      LineBox[{{0.5, 0.}, {1., 0.}}]}, 
-     {RGBColor[1, 0, 0], Opacity[1], 
-      InsetBox["\<\"\[Gamma]\"\>", {0.75, 0.}, {Right, Bottom}]}, 
-     {RGBColor[0, 0, 1], Opacity[1], Dashing[{Small, Small}], 
-      LineBox[{{0.5, 0.}, {1., 0.}}]}, 
-     {RGBColor[0, 0, 1], Opacity[1], 
-      InsetBox["\<\"\[Gamma]\"\>", {0.75, 0.}, {Left, Top}]}},
-    ImageSize->225,
-    PlotRange->{{-0.03, 1.03}, {-0.20843540121460538`, 
-     0.20843540121460538`}}]}], "}"}]], "Output",
+     0.4194183423086505}}]}], "}"}]], "Output",
  CellChangeTimes->{
   3.596782105096882*^9, {3.596782135666658*^9, 3.5967821931104527`*^9}, 
    3.5967822336964693`*^9, {3.596782295521102*^9, 3.59678230859417*^9}, 
@@ -1498,8 +1450,8 @@ Cell[BoxData[
    3.601437360497301*^9, 3.6014373834793043`*^9}, {3.601437977103801*^9, 
    3.6014379903532887`*^9}, {3.601438104497511*^9, 3.601438128994609*^9}, 
    3.601438442309821*^9, {3.601438716476433*^9, 3.601438744249675*^9}, {
-   3.601529866521059*^9, 3.601529889876265*^9}, {3.601546580336473*^9, 
-   3.601546602323715*^9}, 3.6015467379558563`*^9}]
+   3.601529866521059*^9, 3.601529889876265*^9}, 3.601529966182073*^9, 
+   3.601530082413055*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -1526,19 +1478,19 @@ CellTagsIndex->{}
 Notebook[{
 Cell[557, 20, 9400, 214, 567, "Input"],
 Cell[CellGroupData[{
-Cell[9982, 238, 879, 16, 74, "Input"],
-Cell[10864, 256, 1002, 16, 369, "Output"]
+Cell[9982, 238, 879, 16, 63, "Input"],
+Cell[10864, 256, 978, 16, 358, "Output"]
 }, Open  ]],
-Cell[11881, 275, 21537, 466, 952, "Input"],
+Cell[11857, 275, 21409, 463, 935, "Input"],
 Cell[CellGroupData[{
-Cell[33443, 745, 1851, 39, 193, "Input"],
-Cell[35297, 786, 1308, 21, 509, "Output"]
+Cell[33291, 742, 1851, 39, 193, "Input"],
+Cell[35145, 783, 1286, 21, 921, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[36642, 812, 6422, 127, 295, "Input"],
-Cell[43067, 941, 28610, 560, 512, "Output"]
+Cell[36468, 809, 5576, 110, 261, "Input"],
+Cell[42047, 921, 26958, 532, 512, "Output"]
 }, Open  ]],
-Cell[71692, 1504, 185, 3, 28, "Input"]
+Cell[69020, 1456, 185, 3, 28, "Input"]
 }
 ]
 *)

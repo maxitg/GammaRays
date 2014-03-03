@@ -34,7 +34,7 @@ public:
     pair<double, double> cdfValueRange(double time);
     vector <struct GRDistributionCDFPoint> cdf();
     
-    float kolmogorovSmirnovTest(GRDistribution distribution, double stretching = 1.);
+    float kolmogorovSmirnovTest(GRDistribution distribution, double stretching = 1., double *time = NULL, double *thisValue = NULL, double *distributionValue = NULL);
     
 };
 
