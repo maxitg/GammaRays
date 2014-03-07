@@ -105,9 +105,11 @@ int main(int argc, const char * argv[])
             continue;
         }
         
+        log << "\tBackground to signal ratio = " << - burstCatalog[i].mevDistribution.linearComponent / burstCatalog[i].mevPhotons.size() << endl;
+        
         burstCatalog[i].evaluate();
         
-        log << "\tprobability not to be stretched = " << sigma(burstCatalog[i].trivialProbability) << endl;
+        log << "\tProbability not to be stretched = " << sigma(burstCatalog[i].trivialProbability) << endl;
         for (int k = 0; k < 5; k++) {
             log << "\t" << k+1 << "σ -> stretching factor in ranges (" << burstCatalog[i].minStretching[k] << ", " << burstCatalog[i].maxStretching[k] << ")" << endl;
         }

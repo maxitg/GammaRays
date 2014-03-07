@@ -13,7 +13,7 @@
 
 #include "GRDistribution.h"
 
-double GRDistribution::kolmogorovSmirnovProbability(double distance, int n1, int n2) {
+double GRDistribution::kolmogorovSmirnovProbability(double distance, double n1, double n2) {
     double n = (double)n1*n2/(n1+n2);
     double z = (sqrt(n) + 0.12 + 0.11/sqrt(n)) * distance;
     
@@ -27,7 +27,7 @@ double GRDistribution::kolmogorovSmirnovProbability(double distance, int n1, int
     }
 }
 
-double GRDistribution::kolmogorovSmirnovDistance(double probability, int n1, int n2) {
+double GRDistribution::kolmogorovSmirnovDistance(double probability, double n1, double n2) {
     double y,logy,yp,x,xp,f,ff,u,t;
     double z;
     if (probability == 1.) z = 0.;
@@ -170,5 +170,5 @@ float GRDistribution::kolmogorovSmirnovTest(GRDistribution distribution, double 
     if (thisValue != NULL) *thisValue = maxDistanceRange.first;
     if (distributionValue != NULL) *distributionValue = maxDistanceRange.second;
     
-    return kolmogorovSmirnovProbability(maxDistance, (int)values.size(), (int)distribution.values.size());
+    return kolmogorovSmirnovProbability(maxDistance, (double)values.size() + linearComponent, (double)distribution.values.size() + distribution.linearComponent);
 }

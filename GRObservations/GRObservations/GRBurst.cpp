@@ -98,14 +98,13 @@ void GRBurst::calculateBackground() {
         }
     }
         
-    mevDistribution.linearComponent = - mevExpectationValue + gevExpectationValue;
+    mevDistribution.linearComponent = -mevExpectationValue;
     mevDistribution.start = query.startTime - (time + startOffset);
     mevDistribution.end = query.endTime - (time + startOffset);
     
-    gevDistribution.linearComponent = 0.;
+    gevDistribution.linearComponent = -gevExpectationValue;
     gevDistribution.start = query.startTime - (time + startOffset);
     gevDistribution.end = query.endTime - (time + startOffset);
-    
 }
 
 void GRBurst::read() {
@@ -147,7 +146,7 @@ void GRBurst::read() {
     sort(mevBackgroundPhotons.begin(), mevBackgroundPhotons.end());
     sort(gevBackgroundPhotons.begin(), gevBackgroundPhotons.end());
     
-    cout << "event counts: " << mevPhotons.size() + gevPhotons.size() << " " << mevBackgroundPhotons.size() + gevBackgroundPhotons.size() << endl;
+    cout << "event counts: signal {" << mevPhotons.size() << ", " << gevPhotons.size() << "} background {" << mevBackgroundPhotons.size() << ", " << gevBackgroundPhotons.size() << "}" << endl;
     
     calculateBackground();
     

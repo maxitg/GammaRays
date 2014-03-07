@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    198454,       4063]
-NotebookOptionsPosition[    196938,       4009]
-NotebookOutlinePosition[    197293,       4025]
-CellTagsIndexPosition[    197250,       4022]
+NotebookDataLength[    188944,       3851]
+NotebookOptionsPosition[    187466,       3798]
+NotebookOutlinePosition[    187821,       3814]
+CellTagsIndexPosition[    187778,       3811]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -58,21 +58,13 @@ GRObservations/Build/Products/Release/090926A/\>\""}], ";"}]], "Input",
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{
-  "dir131231A", "=", 
-   "\"\</Users/maxitg/Projects/GammaRays/GRObservations/DerivedData/\
-GRObservations/Build/Products/Release/131231A/\>\""}], ";"}]], "Input",
- CellChangeTimes->{{3.600613708863275*^9, 3.600613736497468*^9}, {
-  3.60221552486763*^9, 3.602215525784493*^9}}],
-
-Cell[BoxData[
- RowBox[{
   RowBox[{"bursts", "=", 
    RowBox[{"{", 
     RowBox[{
-    "dir080916C", ",", "dir090510", ",", "dir090902B", ",", "dir090926A", ",",
-      "dir131231A"}], "}"}]}], ";"}]], "Input",
- CellChangeTimes->{{3.60221589384475*^9, 3.602215906967279*^9}}],
+    "dir080916C", ",", "dir090510", ",", "dir090902B", ",", "dir090926A"}], 
+    "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.60221589384475*^9, 3.602215906967279*^9}, {
+  3.602831948142548*^9, 3.6028319482858*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -104,56 +96,57 @@ Cell[BoxData[
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"Table", "[", 
-  RowBox[{
-   RowBox[{"ListPlot", "[", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"mevData", "[", 
-        RowBox[{"[", "i", "]"}], "]"}], ",", 
-       RowBox[{"gevData", "[", 
-        RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
-     RowBox[{"Joined", "\[Rule]", "True"}], ",", 
-     RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-     RowBox[{"PlotStyle", "\[Rule]", 
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"ListPlot", "[", 
+     RowBox[{
       RowBox[{"{", 
        RowBox[{
-        RowBox[{"{", 
-         RowBox[{"Thick", ",", "Red"}], "}"}], ",", 
-        RowBox[{"{", 
-         RowBox[{"Thick", ",", "Blue"}], "}"}]}], "}"}]}], ",", 
-     RowBox[{"Frame", "\[Rule]", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"{", 
-         RowBox[{"True", ",", "False"}], "}"}], ",", 
-        RowBox[{"{", 
-         RowBox[{"True", ",", "False"}], "}"}]}], "}"}]}], ",", 
-     RowBox[{"PlotLabel", "\[Rule]", 
-      RowBox[{"bursts", "[", 
-       RowBox[{"[", "i", "]"}], "]"}]}], ",", 
-     RowBox[{"FrameLabel", "\[Rule]", 
-      RowBox[{"{", 
-       RowBox[{"\"\<Time, sec\>\"", ",", "\"\<Photons Fraction\>\""}], 
-       "}"}]}], ",", 
-     RowBox[{"PlotLegends", "\[Rule]", 
-      RowBox[{"Placed", "[", 
-       RowBox[{
-        RowBox[{"{", 
-         RowBox[{
-          RowBox[{"Style", "[", 
-           RowBox[{"\"\<100 MeV - 1 GeV\>\"", ",", "Red"}], "]"}], ",", 
-          RowBox[{"Style", "[", 
-           RowBox[{"\"\<1 GeV - 300 GeV\>\"", ",", "Blue"}], "]"}]}], "}"}], 
-        ",", 
-        RowBox[{"{", 
-         RowBox[{"0.7", ",", "0.25"}], "}"}]}], "]"}]}], ",", 
-     RowBox[{"ImageSize", "\[Rule]", "700"}], ",", 
-     RowBox[{"FrameStyle", "\[Rule]", "Gray"}]}], "]"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"i", ",", "1", ",", 
-     RowBox[{"Length", "[", "mevData", "]"}]}], "}"}]}], "]"}]], "Input",
+        RowBox[{"mevData", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], ",", 
+        RowBox[{"gevData", "[", 
+         RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+      RowBox[{"Joined", "\[Rule]", "True"}], ",", 
+      RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+      RowBox[{"PlotStyle", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"Thick", ",", "Red"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"Thick", ",", "Blue"}], "}"}]}], "}"}]}], ",", 
+      RowBox[{"Frame", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"True", ",", "False"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"True", ",", "False"}], "}"}]}], "}"}]}], ",", 
+      RowBox[{"PlotLabel", "\[Rule]", 
+       RowBox[{"bursts", "[", 
+        RowBox[{"[", "i", "]"}], "]"}]}], ",", 
+      RowBox[{"FrameLabel", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"\"\<Time, sec\>\"", ",", "\"\<Photons Fraction\>\""}], 
+        "}"}]}], ",", 
+      RowBox[{"PlotLegends", "\[Rule]", 
+       RowBox[{"Placed", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Style", "[", 
+            RowBox[{"\"\<100 MeV - 1 GeV\>\"", ",", "Red"}], "]"}], ",", 
+           RowBox[{"Style", "[", 
+            RowBox[{"\"\<1 GeV - 300 GeV\>\"", ",", "Blue"}], "]"}]}], "}"}], 
+         ",", 
+         RowBox[{"{", 
+          RowBox[{"0.7", ",", "0.25"}], "}"}]}], "]"}]}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "700"}], ",", 
+      RowBox[{"FrameStyle", "\[Rule]", "Gray"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", "1", ",", 
+      RowBox[{"Length", "[", "mevData", "]"}]}], "}"}]}], "]"}]}]], "Input",
  CellChangeTimes->{{3.596604627626752*^9, 3.596604674515398*^9}, {
    3.59660535451328*^9, 3.596605638106784*^9}, {3.5966056878189783`*^9, 
    3.5966057404758587`*^9}, {3.596605801355927*^9, 3.59660588217903*^9}, {
@@ -198,7 +191,7 @@ Cell[BoxData[
    3.601877099597351*^9, 3.60187714477807*^9}, {3.6018774419793177`*^9, 
    3.6018774426234207`*^9}, {3.602216024120215*^9, 3.6022161091922493`*^9}, {
    3.6022161828606367`*^9, 3.602216223087599*^9}, {3.602216294458541*^9, 
-   3.602216324571259*^9}}],
+   3.602216324571259*^9}, 3.602831950075047*^9}],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -1510,212 +1503,6 @@ GRObservations/Build/Products/Release/090926A/", PlotRangeClipping -> True}], {
     AutoDelete->True,
     Editable->True,
     SelectWithContents->False,
-    Selectable->True], ",", 
-   TagBox[
-    GraphicsBox[{{{}, {
-        {RGBColor[1, 0, 0], Thickness[Large], LineBox[CompressedData["
-1:eJxTTMoPSmViYGCwAGIQDQYO9QdgzNznv1d+vGThMP34rImO747sh/HX9LjZ
-ra/Ytd92duj81W+tHO7GXZJYuxjBz43cp3e4ftl+Tul5cZqbPRz2SpzqLBNd
-Beev+mH9uvVEk/21sDf6u+f7O7C1zgna+aQYzi//NUdMfNEG+znGi7aYnwhw
-8Pivln87CME/3jLDe9W2/fZg+wpDHe4qz179zHIfnH/V6eSTK+eO2d9VYWuc
-+jncIe9OUl1eBoK/PvZWQYTUOfvbP+uy9pTEO/gKeZ+6+/wMnD8zcfGa+z6X
-7A051shEHUl02Oa1wWLOz4twvqayHkPvpav2Ab3T84TyUx1qJy9zvGiD4H/I
-VuE8JHrTftvnv1cq3qY62Pz8cmMaI4J/Z6fBpe5bd+w1Y/oPfX2S6SB3l6O7
-ywLBv++ndGg/xwN7kHHNH3IcJBlF+xSm3ofz7yasOMy1/aG9QITllhPX8hxC
-lxy64TQBwe+b0Gizu+ax/TTn7pznwvkOm+0D8m6XI/hvtfkvBac8tW99HbhD
-TrbS4Qz3hn6/u4/hfJk3vjwnTz6173RMeHpBs8mh9pRh5J3/j+H8c6vOXw17
-89S+1t40btfDVoeipfNYF+55AuevmRibKbnymf2ekskSLG5tDhv9pr6X7ETw
-GfWNc6aUvrDf5cnDpL21zaFkFust2SAE/0jV4rAZdq/svYDc9i9tDu3+VhMT
-tBD8g9bAABV7Y79vvpT+XeZuB+YZRgUOp1/B+TYtHy/v2P7GvhwksKvboeDl
-jM89tQj+wZNmBexZ7+w3FGVMfHuv22FR3IdMvzgEv3XmtvpU1Q/2i1yBMXa2
-x+FqeV1g07/3cP6tkw80Kr9+sD/8VSOm/1S/w7ToKN7OagQ//+ucL/sKP9rv
-kAOGqMUEh0a7ieqe4Qh+1I3LfPW+n+zBmaxgugMkt32wBwDmw7X/
-          "]]}, 
-        {RGBColor[0, 0, 1], Thickness[Large], LineBox[CompressedData["
-1:eJxTTMoPSmViYGCQAGIQDQYO9QdgzPqsPSWTfzg5oPM3L8uYfdF1u/3BFUv8
-HLT9MPjstS/fnnc9bm/34uaaXxYBGPyjsvmfoksu2s/IE2o+MCkagw9Rf91+
-zhGFDUUvYjH4HneSXzqL37X3eFglsi44AYN/R9CPO67kob1AhOWWE0HJGPxa
-R25Oidgn9lzXFxfYvirB4MsWnmC75PrcvvKlmiGHVwMGf9+CVpYevVf2CU8v
-KN1O7MLgx19wYnITf2t/89z34MdTejH4kND8YA+mCqbD+QBoRaXU
-          "]]}}, {}}, 
-      InsetBox[
-       TemplateBox[{
-        StyleBox[
-         "\"100 MeV - 1 GeV\"", StripOnInput -> False, LineColor -> 
-          RGBColor[1, 0, 0], FrontFaceColor -> RGBColor[1, 0, 0], 
-          BackFaceColor -> RGBColor[1, 0, 0], GraphicsColor -> 
-          RGBColor[1, 0, 0], FontColor -> RGBColor[1, 0, 0]],StyleBox[
-         "\"1 GeV - 300 GeV\"", StripOnInput -> False, LineColor -> 
-          RGBColor[0, 0, 1], FrontFaceColor -> RGBColor[0, 0, 1], 
-          BackFaceColor -> RGBColor[0, 0, 1], GraphicsColor -> 
-          RGBColor[0, 0, 1], FontColor -> RGBColor[0, 0, 1]]},
-        "PointLegend",
-        DisplayFunction->(StyleBox[
-          StyleBox[
-           PaneBox[
-            TagBox[
-             GridBox[{{
-                TagBox[
-                 GridBox[{{
-                    GraphicsBox[{{}, {
-                    Directive[
-                    EdgeForm[{
-                    Opacity[0.3], 
-                    GrayLevel[0]}], 
-                    Thickness[Large], 
-                    RGBColor[1, 0, 0]], {
-                    Directive[
-                    EdgeForm[{
-                    Opacity[0.3], 
-                    GrayLevel[0]}], 
-                    Thickness[Large], 
-                    RGBColor[1, 0, 0]], 
-                    PointBox[
-                    NCache[{
-                    Scaled[{
-                    Rational[1, 2], 
-                    Rational[1, 2]}]}, {
-                    Scaled[{0.5, 0.5}]}]]}}}, AspectRatio -> Full, 
-                    ImageSize -> {10, 10}, PlotRangePadding -> None, 
-                    ImagePadding -> 1, 
-                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #}, {
-                    GraphicsBox[{{}, {
-                    Directive[
-                    EdgeForm[{
-                    Opacity[0.3], 
-                    GrayLevel[0]}], 
-                    Thickness[Large], 
-                    RGBColor[0, 0, 1]], {
-                    Directive[
-                    EdgeForm[{
-                    Opacity[0.3], 
-                    GrayLevel[0]}], 
-                    Thickness[Large], 
-                    RGBColor[0, 0, 1]], 
-                    PointBox[
-                    NCache[{
-                    Scaled[{
-                    Rational[1, 2], 
-                    Rational[1, 2]}]}, {
-                    Scaled[{0.5, 0.5}]}]]}}}, AspectRatio -> Full, 
-                    ImageSize -> {10, 10}, PlotRangePadding -> None, 
-                    ImagePadding -> 1, 
-                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #2}}, 
-                  GridBoxAlignment -> {
-                   "Columns" -> {Center, Left}, "Rows" -> {{Baseline}}}, 
-                  AutoDelete -> False, 
-                  GridBoxDividers -> {
-                   "Columns" -> {{False}}, "Rows" -> {{False}}}, 
-                  GridBoxItemSize -> {
-                   "Columns" -> {{All}}, "Rows" -> {{All}}}, 
-                  GridBoxSpacings -> {
-                   "Columns" -> {{0.5}}, "Rows" -> {{0.8}}}], "Grid"]}}, 
-              GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
-              AutoDelete -> False, 
-              GridBoxItemSize -> {
-               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
-              GridBoxSpacings -> {"Columns" -> {{1}}, "Rows" -> {{0}}}], 
-             "Grid"], Alignment -> Left, AppearanceElements -> None, 
-            ImageMargins -> {{5, 5}, {5, 5}}, ImageSizeAction -> 
-            "ResizeToFit"], LineIndent -> 0, StripOnInput -> False], {
-          FontFamily -> "Times"}, Background -> Automatic, StripOnInput -> 
-          False]& ),
-        Editable->True,
-        InterpretationFunction:>(RowBox[{"PointLegend", "[", 
-           RowBox[{
-             RowBox[{"{", 
-               RowBox[{
-                 RowBox[{"Directive", "[", 
-                   RowBox[{
-                    RowBox[{"Thickness", "[", "Large", "]"}], ",", 
-                    RowBox[{"RGBColor", "[", 
-                    RowBox[{"1", ",", "0", ",", "0"}], "]"}]}], "]"}], ",", 
-                 RowBox[{"Directive", "[", 
-                   RowBox[{
-                    RowBox[{"Thickness", "[", "Large", "]"}], ",", 
-                    RowBox[{"RGBColor", "[", 
-                    RowBox[{"0", ",", "0", ",", "1"}], "]"}]}], "]"}]}], 
-               "}"}], ",", 
-             RowBox[{"{", 
-               RowBox[{#, ",", #2}], "}"}], ",", 
-             RowBox[{"LegendLayout", "\[Rule]", "\"Column\""}], ",", 
-             RowBox[{"LegendMarkers", "\[Rule]", "False"}]}], "]"}]& )], 
-       Scaled[{0.7, 0.25}], ImageScaled[{0.5, 0.5}],
-       BaseStyle->{FontSize -> Larger},
-       FormatType->StandardForm]},
-     AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
-     Axes->True,
-     AxesOrigin->{0., 0.},
-     Frame->{{True, False}, {True, False}},
-     FrameLabel->{{
-        FormBox["\"Photons Fraction\"", TraditionalForm], None}, {
-        FormBox["\"Time, sec\"", TraditionalForm], None}},
-     FrameStyle->GrayLevel[0.5],
-     ImageSize->700,
-     Method->{},
-     PlotLabel->FormBox[
-      "\"/Users/maxitg/Projects/GammaRays/GRObservations/DerivedData/\
-GRObservations/Build/Products/Release/131231A/\"", TraditionalForm],
-     PlotRangeClipping->True],
-    InterpretTemplate[Legended[
-      Graphics[{{}, {
-         Hue[0.67, 0.6, 0.6], 
-         Directive[
-          Thickness[Large], 
-          RGBColor[1, 0, 0]], 
-         Line[CompressedData["
-1:eJxTTMoPSmViYGCwAGIQDQYO9QdgzNznv1d+vGThMP34rImO747sh/HX9LjZ
-ra/Ytd92duj81W+tHO7GXZJYuxjBz43cp3e4ftl+Tul5cZqbPRz2SpzqLBNd
-Beev+mH9uvVEk/21sDf6u+f7O7C1zgna+aQYzi//NUdMfNEG+znGi7aYnwhw
-8Pivln87CME/3jLDe9W2/fZg+wpDHe4qz179zHIfnH/V6eSTK+eO2d9VYWuc
-+jncIe9OUl1eBoK/PvZWQYTUOfvbP+uy9pTEO/gKeZ+6+/wMnD8zcfGa+z6X
-7A051shEHUl02Oa1wWLOz4twvqayHkPvpav2Ab3T84TyUx1qJy9zvGiD4H/I
-VuE8JHrTftvnv1cq3qY62Pz8cmMaI4J/Z6fBpe5bd+w1Y/oPfX2S6SB3l6O7
-ywLBv++ndGg/xwN7kHHNH3IcJBlF+xSm3ofz7yasOMy1/aG9QITllhPX8hxC
-lxy64TQBwe+b0Gizu+ax/TTn7pznwvkOm+0D8m6XI/hvtfkvBac8tW99HbhD
-TrbS4Qz3hn6/u4/hfJk3vjwnTz6173RMeHpBs8mh9pRh5J3/j+H8c6vOXw17
-89S+1t40btfDVoeipfNYF+55AuevmRibKbnymf2ekskSLG5tDhv9pr6X7ETw
-GfWNc6aUvrDf5cnDpL21zaFkFust2SAE/0jV4rAZdq/svYDc9i9tDu3+VhMT
-tBD8g9bAABV7Y79vvpT+XeZuB+YZRgUOp1/B+TYtHy/v2P7GvhwksKvboeDl
-jM89tQj+wZNmBexZ7+w3FGVMfHuv22FR3IdMvzgEv3XmtvpU1Q/2i1yBMXa2
-x+FqeV1g07/3cP6tkw80Kr9+sD/8VSOm/1S/w7ToKN7OagQ//+ucL/sKP9rv
-kAOGqMUEh0a7ieqe4Qh+1I3LfPW+n+zBmaxgugMkt32wBwDmw7X/
-          "]], 
-         Hue[0.9060679774997897, 0.6, 0.6], 
-         Directive[
-          Thickness[Large], 
-          RGBColor[0, 0, 1]], 
-         Line[CompressedData["
-1:eJxTTMoPSmViYGCQAGIQDQYO9QdgzPqsPSWTfzg5oPM3L8uYfdF1u/3BFUv8
-HLT9MPjstS/fnnc9bm/34uaaXxYBGPyjsvmfoksu2s/IE2o+MCkagw9Rf91+
-zhGFDUUvYjH4HneSXzqL37X3eFglsi44AYN/R9CPO67kob1AhOWWE0HJGPxa
-R25Oidgn9lzXFxfYvirB4MsWnmC75PrcvvKlmiGHVwMGf9+CVpYevVf2CU8v
-KN1O7MLgx19wYnITf2t/89z34MdTejH4kND8YA+mCqbD+QBoRaXU
-          "]]}, {}}, {
-       FrameLabel -> {{"Photons Fraction", None}, {"Time, sec", None}}, 
-        AspectRatio -> GoldenRatio^(-1), Axes -> True, AxesOrigin -> {0., 0.},
-         Frame -> {{True, False}, {True, False}}, 
-        FrameLabel -> {"Time, sec", "Photons Fraction"}, FrameStyle -> 
-        GrayLevel[0.5], ImageSize -> 700, Method -> {}, PlotLabel -> 
-        "/Users/maxitg/Projects/GammaRays/GRObservations/DerivedData/\
-GRObservations/Build/Products/Release/131231A/", PlotRangeClipping -> True}], {
-       Placed[
-        Unevaluated[
-         PointLegend[{
-           Directive[
-            Thickness[Large], 
-            RGBColor[1, 0, 0]], 
-           Directive[
-            Thickness[Large], 
-            RGBColor[0, 0, 1]]}, {
-           Style["100 MeV - 1 GeV", 
-            RGBColor[1, 0, 0]], 
-           Style["1 GeV - 300 GeV", 
-            RGBColor[0, 0, 1]]}, LegendLayout -> "Column", LegendMarkers -> 
-          False]], {0.7, 0.25}, Identity]}]& ],
-    AutoDelete->True,
-    Editable->True,
-    SelectWithContents->False,
     Selectable->True]}], "}"}]], "Output",
  CellChangeTimes->{
   3.6018777471660957`*^9, {3.601877828703487*^9, 3.6018778661877737`*^9}, {
@@ -1726,7 +1513,9 @@ GRObservations/Build/Products/Release/131231A/", PlotRangeClipping -> True}], {
    3.6022160357471867`*^9, {3.6022160831707077`*^9, 3.602216086731262*^9}, {
    3.60221618347853*^9, 3.602216203945492*^9}, {3.602216307767014*^9, 
    3.6022163251629267`*^9}, {3.602565355941066*^9, 3.60256536076123*^9}, 
-   3.6025658846322947`*^9, 3.602566067858265*^9}]
+   3.6025658846322947`*^9, 3.602566067858265*^9, {3.602823881758173*^9, 
+   3.602823899324836*^9}, 3.602831955659622*^9, 3.602832194531517*^9, {
+   3.6028322919507093`*^9, 3.602832298839262*^9}, 3.602832625077703*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -4024,46 +3813,45 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[557, 20, 314, 7, 39, "Input"],
-Cell[874, 29, 310, 7, 39, "Input"],
-Cell[1187, 38, 415, 8, 39, "Input"],
-Cell[1605, 48, 410, 8, 39, "Input"],
-Cell[2018, 58, 312, 7, 39, "Input"],
-Cell[2333, 67, 271, 7, 39, "Input"],
-Cell[2607, 76, 383, 11, 39, "Input"],
-Cell[2993, 89, 432, 12, 39, "Input"],
+Cell[557, 20, 314, 7, 28, "Input"],
+Cell[874, 29, 310, 7, 28, "Input"],
+Cell[1187, 38, 415, 8, 28, "Input"],
+Cell[1605, 48, 410, 8, 28, "Input"],
+Cell[2018, 58, 298, 8, 28, "Input"],
+Cell[2319, 68, 383, 11, 28, "Input"],
+Cell[2705, 81, 432, 12, 28, "Input"],
 Cell[CellGroupData[{
-Cell[3450, 105, 5064, 95, 91, "Input"],
-Cell[8517, 202, 77391, 1526, 2399, "Output"]
+Cell[3162, 97, 5171, 96, 97, "Input"],
+Cell[8336, 195, 68100, 1322, 1911, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[85945, 1733, 4442, 88, 80, "Input"],
-Cell[90390, 1823, 20521, 393, 164, "Output"]
+Cell[76473, 1522, 4442, 88, 80, "Input"],
+Cell[80918, 1612, 20521, 393, 164, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[110948, 2221, 397, 11, 28, "Input"],
-Cell[111348, 2234, 149, 2, 28, "Output"]
+Cell[101476, 2010, 397, 11, 28, "Input"],
+Cell[101876, 2023, 149, 2, 28, "Output"]
 }, Open  ]],
-Cell[111512, 2239, 929, 24, 28, "Input"],
+Cell[102040, 2028, 929, 24, 28, "Input"],
 Cell[CellGroupData[{
-Cell[112466, 2267, 2320, 63, 80, "Input"],
-Cell[114789, 2332, 16330, 322, 164, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[131156, 2659, 4511, 92, 80, "Input"],
-Cell[135670, 2753, 25500, 482, 164, "Output"]
+Cell[102994, 2056, 2320, 63, 80, "Input"],
+Cell[105317, 2121, 16330, 322, 164, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[161207, 3240, 3011, 80, 97, "Input"],
-Cell[164221, 3322, 25821, 487, 164, "Output"]
+Cell[121684, 2448, 4511, 92, 80, "Input"],
+Cell[126198, 2542, 25500, 482, 164, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[190079, 3814, 207, 4, 28, "Input"],
-Cell[190289, 3820, 262, 6, 28, "Output"]
+Cell[151735, 3029, 3011, 80, 97, "Input"],
+Cell[154749, 3111, 25821, 487, 164, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[190588, 3831, 367, 10, 28, "Input"],
-Cell[190958, 3843, 5964, 163, 197, "Output"]
+Cell[180607, 3603, 207, 4, 28, "Input"],
+Cell[180817, 3609, 262, 6, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[181116, 3620, 367, 10, 28, "Input"],
+Cell[181486, 3632, 5964, 163, 197, "Output"]
 }, Open  ]]
 }
 ]

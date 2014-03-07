@@ -28,8 +28,8 @@ public:
     double end;
     
 private:
-    double kolmogorovSmirnovProbability(double distance, int n1, int n2);
-    double kolmogorovSmirnovDistance(double probability, int n1, int n2);
+    double kolmogorovSmirnovProbability(double distance, double n1, double n2);
+    double kolmogorovSmirnovDistance(double probability, double n1, double n2);
 public:
     pair<double, double> cdfValueRange(double time);
     vector <struct GRDistributionCDFPoint> cdf();

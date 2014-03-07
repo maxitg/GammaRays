@@ -205,9 +205,26 @@ gtexpcube2 infile=ltcube.fits cmap=none outfile=expcube_[IrfName].fits irfs=[Irf
 \end{lstlisting}
 The generated \texttt{expcube} files contain exposures as functions of energy and location on the sky\footnote{Note, that in the \texttt{expcube} FITS files R.A. coordinates are indexed in reverse order and starting from 180, for example, $\texttt{ra[0]}=180$, $\texttt{ra[1]}=179$, and so on.}. We use trilinear interpolation to compute exposures for all energies and locations.
 
-Knowing the exposures, we can now use the method introduced in the appendix of \cite{Rubtsov:2011qq} to estimate the linear component of background from the data observed before the burst. We compute two background estimates: for low and high energy bands.
+Knowing the exposures, we can now use the method introduced in the appendix of \cite{Rubtsov:2011qq} to estimate the linear component of background from the data observed before the burst. We compute two background estimates: for low and high energy bands. Because the background of transient class photons may depend on the spacecraft position, we have to filter them as well.
 
 \subsection{KS-test}
+
+We take care of remaining background by using the following functions with the Kolmogorov-Smirnov test:
+\begin{equation}
+	\Phi_i\left(t\right) = \frac{p_i\left(T_1, t\right) - b_i \frac{t-T_1}{T_2-T_1}}{p_i\left(T_1, T_2\right) - b_i}
+\end{equation}
+Here $\left(T_1, T_2\right)$ is the time range of observations, $p_i\left(t_1, t_2\right)$ is the number of photons observed in the time range $t_1$ to $t_2$ in the $i$'s energy band ($i=\text{low},\text{high}$ are for the low and high energy bands respectfully), and $b_i$ is the estimated number of background photons for the time range $T_1$ to $T_2$ in the $i$'s energy band.
+
+The numbers of degrees of freedom (used as an input for the KS-test) are $p_i\left(T_1, T_2\right) - b_i$.
+
+While we did not prove it, we assume that the Kolmogorov-Smirnov statistics computed for these functions with provided number of degrees of freedom has a similar distribution to that of the KS-statistics for ordinary CDFs (that is CDFs with no background).
+
+Finally, we compute KS-probabilities for pairs $\Phi_\text{low}\left(t\right), \Phi_\text{high}\left(\kappa t\right)$ to obtain the allowed ranges for stretching factors $\kappa$. We evaluate stretching factors in the range $\texttt{STRETCHING\_MIN} = 0.1$ to $\texttt{STRETCHING\_MAX} = 10.$ with a logarithmic step of $\texttt{STRETCHING\_STEP} = 1.001$.
+
+As a result of such calculation we can constraint the range of allowed stretching factors to values for which the KS-probabilities are not too small, in other words, given the sigma-significance value, compute the range outside of which stretching factors are elliminated by observations.
+
+You can see the results of such computation in the following section.
+
 \subsection{Results}
 
 \section{Model}

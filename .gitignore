@@ -27,3 +27,5 @@ DerivedData
 *.toc
 
 *.xccheckout
+
+*.xcuserstate
