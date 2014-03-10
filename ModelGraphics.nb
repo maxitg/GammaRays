@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     72574,       1537]
-NotebookOptionsPosition[     71881,       1509]
-NotebookOutlinePosition[     72236,       1525]
-CellTagsIndexPosition[     72193,       1522]
+NotebookDataLength[     73071,       1540]
+NotebookOptionsPosition[     72377,       1512]
+NotebookOutlinePosition[     72732,       1528]
+CellTagsIndexPosition[     72689,       1525]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -293,7 +293,8 @@ Cell[BoxData[{
      RowBox[{"epQ", "\[Rule]", "True"}], ",", 
      RowBox[{"\[Gamma]Q", "\[Rule]", "True"}], ",", 
      RowBox[{"observerQ", "\[Rule]", "True"}], ",", 
-     RowBox[{"observerLabelQ", "\[Rule]", "False"}]}], "}"}]}], 
+     RowBox[{"observerLabelQ", "\[Rule]", "False"}], ",", 
+     RowBox[{"fontSize", "\[Rule]", "10"}]}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
@@ -329,7 +330,11 @@ Cell[BoxData[{
              RowBox[{"OptionValue", "[", "centralEngineLabelQ", "]"}], ",", 
              "Black", ",", "Transparent"}], "]"}], ",", 
            RowBox[{"Text", "[", 
-            RowBox[{"\"\<Central\\nEngine\>\"", ",", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{"\"\<Central\\nEngine\>\"", ",", 
+               RowBox[{"FontSize", "\[Rule]", 
+                RowBox[{"OptionValue", "[", "fontSize", "]"}]}]}], "]"}], ",", 
              RowBox[{"{", 
               RowBox[{"0", ",", 
                RowBox[{"-", 
@@ -370,7 +375,11 @@ Cell[BoxData[{
              RowBox[{"Darker", "[", "Green", "]"}], ",", "Transparent"}], 
             "]"}], ",", "\[IndentingNewLine]", 
            RowBox[{"Text", "[", 
-            RowBox[{"\"\<Observer\>\"", ",", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{"\"\<Observer\>\"", ",", 
+               RowBox[{"FontSize", "\[Rule]", 
+                RowBox[{"OptionValue", "[", "fontSize", "]"}]}]}], "]"}], ",", 
              RowBox[{"{", 
               RowBox[{"observerX", ",", 
                RowBox[{"observerY", "+", 
@@ -457,7 +466,11 @@ Cell[BoxData[{
              RowBox[{"Opacity", "[", "1", "]"}], ",", 
              RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
            RowBox[{"Text", "[", 
-            RowBox[{"\"\<Shock\\nFront\>\"", ",", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{"\"\<Shock\\nFront\>\"", ",", 
+               RowBox[{"FontSize", "\[Rule]", 
+                RowBox[{"OptionValue", "[", "fontSize", "]"}]}]}], "]"}], ",", 
              RowBox[{"{", 
               RowBox[{
                RowBox[{"1.03", 
@@ -537,8 +550,12 @@ Cell[BoxData[{
              RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
            RowBox[{"Text", "[", 
             RowBox[{
-            "\"\<\!\(\*SuperscriptBox[\(e\), \(\[PlusMinus]\)]\), \
+             RowBox[{"Style", "[", 
+              RowBox[{
+              "\"\<\!\(\*SuperscriptBox[\(e\), \(\[PlusMinus]\)]\), \
 \!\(\*SuperscriptBox[\(p\), \(\[PlusMinus]\)]\)\>\"", ",", 
+               RowBox[{"FontSize", "\[Rule]", 
+                RowBox[{"OptionValue", "[", "fontSize", "]"}]}]}], "]"}], ",", 
              RowBox[{"{", 
               RowBox[{
                FractionBox["redX", "2"], ",", 
@@ -570,8 +587,12 @@ Cell[BoxData[{
              RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
            RowBox[{"Text", "[", 
             RowBox[{
-            "\"\<\!\(\*SuperscriptBox[\(e\), \(\[PlusMinus]\)]\), \
+             RowBox[{"Style", "[", 
+              RowBox[{
+              "\"\<\!\(\*SuperscriptBox[\(e\), \(\[PlusMinus]\)]\), \
 \!\(\*SuperscriptBox[\(p\), \(\[PlusMinus]\)]\)\>\"", ",", 
+               RowBox[{"FontSize", "\[Rule]", 
+                RowBox[{"OptionValue", "[", "fontSize", "]"}]}]}], "]"}], ",", 
              RowBox[{"{", 
               RowBox[{
                FractionBox["blueX", "2"], ",", 
@@ -602,7 +623,11 @@ Cell[BoxData[{
              RowBox[{"Opacity", "[", "1", "]"}], ",", 
              RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
            RowBox[{"Text", "[", 
-            RowBox[{"\"\<\[Gamma]\>\"", ",", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{"\"\<\[Gamma]\>\"", ",", 
+               RowBox[{"FontSize", "\[Rule]", 
+                RowBox[{"OptionValue", "[", "fontSize", "]"}]}]}], "]"}], ",", 
              RowBox[{"{", 
               RowBox[{
                FractionBox[
@@ -635,7 +660,11 @@ Cell[BoxData[{
              RowBox[{"Opacity", "[", "1", "]"}], ",", 
              RowBox[{"Opacity", "[", "0", "]"}]}], "]"}], ",", 
            RowBox[{"Text", "[", 
-            RowBox[{"\"\<\[Gamma]\>\"", ",", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{"\"\<\[Gamma]\>\"", ",", 
+               RowBox[{"FontSize", "\[Rule]", 
+                RowBox[{"OptionValue", "[", "fontSize", "]"}]}]}], "]"}], ",", 
              RowBox[{"{", 
               RowBox[{
                FractionBox[
@@ -645,42 +674,9 @@ Cell[BoxData[{
              RowBox[{"{", 
               RowBox[{"Left", ",", "Top"}], "}"}]}], "]"}]}], "}"}]}], 
         "\[IndentingNewLine]", "}"}], ",", 
-       RowBox[{"ImageSize", "\[Rule]", "225"}], ",", " ", 
-       RowBox[{"PlotRange", "\[Rule]", 
-        RowBox[{"{", 
-         RowBox[{
-          RowBox[{"{", 
-           RowBox[{
-            RowBox[{"0", "-", 
-             RowBox[{"OptionValue", "[", "centralEngineSize", "]"}]}], ",", 
-            RowBox[{
-             RowBox[{
-              RowBox[{"OptionValue", "[", "observerDistance", "]"}], 
-              RowBox[{"Cos", "[", 
-               RowBox[{"OptionValue", "[", "observerAngle", "]"}], "]"}]}], 
-             "+", 
-             RowBox[{"OptionValue", "[", "observerSize", "]"}]}]}], "}"}], 
-          ",", 
-          RowBox[{"{", 
-           RowBox[{
-            RowBox[{
-             RowBox[{"-", "0.5"}], 
-             RowBox[{"Sin", "[", 
-              RowBox[{"OptionValue", "[", "lowAngle", "]"}], "]"}]}], ",", 
-            RowBox[{"Max", "[", 
-             RowBox[{
-              RowBox[{
-               RowBox[{
-                RowBox[{"OptionValue", "[", "observerDistance", "]"}], 
-                RowBox[{"Sin", "[", 
-                 RowBox[{"OptionValue", "[", "observerAngle", "]"}], "]"}]}], 
-               "+", 
-               RowBox[{"OptionValue", "[", "observerSize", "]"}]}], ",", 
-              RowBox[{"0.5", 
-               RowBox[{"Sin", "[", 
-                RowBox[{"OptionValue", "[", "lowAngle", "]"}], "]"}]}]}], 
-             "]"}]}], "}"}]}], "}"}]}]}], "]"}]}], "\[IndentingNewLine]", 
-    "]"}]}], ";"}]}], "Input",
+       RowBox[{"ImageSize", "\[Rule]", "328.828514"}], ",", " ", 
+       RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]}], "Input",
  CellChangeTimes->{{3.59584258302489*^9, 3.595842753897132*^9}, {
    3.595842866470069*^9, 3.595843023059347*^9}, {3.5958430677816467`*^9, 
    3.5958431941824017`*^9}, {3.5958432468544703`*^9, 
@@ -739,7 +735,9 @@ Cell[BoxData[{
    3.6014383666959953`*^9}, {3.6014384109282293`*^9, 3.601438435990241*^9}, {
    3.601529779770904*^9, 3.6015297930707073`*^9}, {3.6015298356640873`*^9, 
    3.6015298494016027`*^9}, {3.601529887048574*^9, 3.60152988717455*^9}, {
-   3.6015467050791073`*^9, 3.601546734246442*^9}}],
+   3.6015467050791073`*^9, 3.601546734246442*^9}, {3.603446330880986*^9, 
+   3.6034463605953197`*^9}, {3.603446400763254*^9, 3.60344642557104*^9}, {
+   3.6034465070361233`*^9, 3.603446592925652*^9}, 3.603446797266532*^9}],
 
 Cell[CellGroupData[{
 
@@ -758,7 +756,8 @@ Cell[BoxData[
       RowBox[{"observerAngle", "\[Rule]", "oa"}], ",", 
       RowBox[{"centralEngineLabelQ", "\[Rule]", "True"}], ",", 
       RowBox[{"jetLabelQ", "\[Rule]", "True"}], ",", 
-      RowBox[{"observerLabelQ", "\[Rule]", "True"}]}], "]"}], ",", 
+      RowBox[{"observerLabelQ", "\[Rule]", "True"}], ",", 
+      RowBox[{"fontSize", "\[Rule]", "10"}]}], "]"}], ",", 
     "\[IndentingNewLine]", 
     RowBox[{"{", 
      RowBox[{"ces", ",", "0", ",", "1"}], "}"}], ",", "\[IndentingNewLine]", 
@@ -782,7 +781,8 @@ Cell[BoxData[
   3.595850502653233*^9}, {3.595850536807232*^9, 3.5958505439660883`*^9}, {
   3.5958509622115917`*^9, 3.5958509783041563`*^9}, {3.59585101813906*^9, 
   3.595851018306987*^9}, {3.596689623463431*^9, 3.596689627446577*^9}, {
-  3.596897811689021*^9, 3.596897841055121*^9}}],
+  3.596897811689021*^9, 3.596897841055121*^9}, {3.6034466106326237`*^9, 
+  3.603446643221092*^9}}],
 
 Cell[BoxData[
  DynamicBox[ToBoxes[
@@ -794,10 +794,11 @@ $CellContext`ha, $CellContext`observerSize -> $CellContext`os, \
 $CellContext`observerDistance -> $CellContext`od, $CellContext`observerAngle -> \
 $CellContext`oa, $CellContext`centralEngineLabelQ -> 
      True, $CellContext`jetLabelQ -> True, $CellContext`observerLabelQ -> 
-     True], {$CellContext`ces, 0, 1}, {$CellContext`jr, 0, 
-     1}, {$CellContext`la, 0, Pi}, {$CellContext`ha, 0, Pi}, {$CellContext`os,
-      0, 1}, {$CellContext`od, 0, 1}, {$CellContext`oa, 0, Pi}], StandardForm],
-  ImageSizeCache->{270., {238., 243.}}]], "Output",
+     True, $CellContext`fontSize -> 10], {$CellContext`ces, 0, 
+     1}, {$CellContext`jr, 0, 1}, {$CellContext`la, 0, Pi}, {$CellContext`ha, 
+     0, Pi}, {$CellContext`os, 0, 1}, {$CellContext`od, 0, 
+     1}, {$CellContext`oa, 0, Pi}], StandardForm],
+  ImageSizeCache->{374., {334., 339.}}]], "Output",
  CellChangeTimes->{
   3.595848975620139*^9, 3.59584961943336*^9, 3.595850503862134*^9, 
    3.5958505451014338`*^9, 3.5958507369096127`*^9, 3.595850786297187*^9, {
@@ -805,7 +806,9 @@ $CellContext`oa, $CellContext`centralEngineLabelQ ->
    3.595854216980577*^9, 3.595938886797866*^9, 3.596687960018248*^9, 
    3.596689628571369*^9, 3.5967798375752077`*^9, 3.596897841608822*^9, 
    3.599019022281653*^9, 3.6014355515547*^9, 3.6014363170139093`*^9, 
-   3.601529772950861*^9, 3.601529888255381*^9, 3.601546578546184*^9}]
+   3.601529772950861*^9, 3.601529888255381*^9, 3.601546578546184*^9, 
+   3.603446235124691*^9, 3.603446437929447*^9, {3.603446614848875*^9, 
+   3.6034466441006117`*^9}, 3.603446804987893*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1526,19 +1529,19 @@ CellTagsIndex->{}
 Notebook[{
 Cell[557, 20, 9400, 214, 567, "Input"],
 Cell[CellGroupData[{
-Cell[9982, 238, 879, 16, 74, "Input"],
-Cell[10864, 256, 1002, 16, 369, "Output"]
+Cell[9982, 238, 879, 16, 63, "Input"],
+Cell[10864, 256, 1002, 16, 358, "Output"]
 }, Open  ]],
-Cell[11881, 275, 21537, 466, 952, "Input"],
+Cell[11881, 275, 21774, 464, 1019, "Input"],
 Cell[CellGroupData[{
-Cell[33443, 745, 1851, 39, 193, "Input"],
-Cell[35297, 786, 1308, 21, 509, "Output"]
+Cell[33680, 743, 1953, 41, 193, "Input"],
+Cell[35636, 786, 1465, 24, 701, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[36642, 812, 6422, 127, 295, "Input"],
-Cell[43067, 941, 28610, 560, 512, "Output"]
+Cell[37138, 815, 6422, 127, 284, "Input"],
+Cell[43563, 944, 28610, 560, 501, "Output"]
 }, Open  ]],
-Cell[71692, 1504, 185, 3, 28, "Input"]
+Cell[72188, 1507, 185, 3, 28, "Input"]
 }
 ]
 *)

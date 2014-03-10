@@ -28,8 +28,8 @@
 \begin{abstract}
 Numerous observations confirm that the high energy $(> \unit[100]{MeV})$ emission of gamma ray bursts is delayed with respect to the low energy emission. However, the difference of light curves in various high energy bands has not been studied properly.
 
-In this paper we consider all the bursts observed by Fermi-LAT since 2008 August 4 to 2011 August 1, for which at least $10$ events with energies $\unit[1]{GeV}$ or higher were observed. There are $3$ of them: GRB080916C, GRB090902B, and GRB090926A. We study their light curves in two bands, $(\unit[100]{MeV}, \unit[1]{GeV})$ and $(\unit[1]{GeV}, \unit[300]{GeV})$.
-The Kolmogorov-Smirnov test is used to check whether the light curves for these two bands are the same. No significant difference was found for GRB080916C and GRB090902B. However, we observed with statistical significance of $3.4 \sigma$, that the higher energy light curve of GRB090926A is stretched with respect to the lower-energy one.
+In this paper we consider all the bursts observed by Fermi-LAT since 2008 August 4 to 2011 August 1, for which at least $10$ events with energies $\unit[1]{GeV}$ or higher were observed. There are $4$ of them: 080916C, 090510, 090902B, and 090926A. We study their light curves in two bands, $(\unit[100]{MeV}, \unit[1]{GeV})$ and $(\unit[1]{GeV}, \unit[300]{GeV})$.
+The Kolmogorov-Smirnov test is used to check whether the light curves for these two bands are the same. No significant difference was found for 080916C and 090510. However, we observed with statistical significance of $3.3 \sigma$, that the higher energy light curve of 090926A is stretched with respect to the lower-energy one, and with statistical significance of $2.2 \sigma$, that the lower energy light curve of 090902B is stretched with respect to the higher-energy one.
 
 We suggest a simple geometrical model to explain this result. The main assumption is the jet opening angle dependence on radiation energy -- the most energetic photons are emitted near the axis of the jet. To test this model, we compute the total energy of the burst, and confirm that it is below the constraint. We also compute the fraction of observable bursts in $(\unit[100]{MeV}, \unit[1]{GeV})$ band, which can also be observed in higher energies. This fraction matches the observations.
 Finally, we predict the distribution of observable stretching factors, which may be tested in the future when more observational data will be available.
@@ -226,6 +226,62 @@ As a result of such calculation we can constraint the range of allowed stretchin
 You can see the results of such computation in the following section.
 
 \subsection{Results}
+
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.49\textwidth}
+                \includegraphics[width=\textwidth]{lightCurve080916C}
+                \label{fig:lightCurve080916C}
+        \end{subfigure}
+        \begin{subfigure}{0.49\textwidth}
+                \includegraphics[width=\textwidth]{probabilities080916C}
+                \label{fig:probabilities080916C}
+        \end{subfigure}
+        \caption{080916C}
+        \label{fig:grb080916C}
+\end{figure}
+
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.49\textwidth}
+                \includegraphics[width=\textwidth]{lightCurve090510}
+                \label{fig:lightCurve090510}
+        \end{subfigure}
+        \begin{subfigure}{0.49\textwidth}
+                \includegraphics[width=\textwidth]{probabilities090510}
+                \label{fig:probabilities090510}
+        \end{subfigure}
+        \caption{090510}
+        \label{fig:grb090510}
+\end{figure}
+
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.49\textwidth}
+                \includegraphics[width=\textwidth]{lightCurve090902B}
+                \label{fig:lightCurve090902B}
+        \end{subfigure}
+        \begin{subfigure}{0.49\textwidth}
+                \includegraphics[width=\textwidth]{probabilities090902B}
+                \label{fig:probabilities090902B}
+        \end{subfigure}
+        \caption{090902B}
+        \label{fig:grb090902B}
+\end{figure}
+
+\begin{figure}
+        \centering
+        \begin{subfigure}{0.49\textwidth}
+                \includegraphics[width=\textwidth]{lightCurve090926A}
+                \label{fig:lightCurve090926A}
+        \end{subfigure}
+        \begin{subfigure}{0.49\textwidth}
+                \includegraphics[width=\textwidth]{probabilities090926A}
+                \label{fig:probabilities090926A}
+        \end{subfigure}
+        \caption{090926A}
+        \label{fig:grb090926A}
+\end{figure}
 
 \section{Model}
 
@@ -642,17 +698,17 @@ Now when we have all the ingredients, we can compute the sample with the followi
 \item{If the sample is not as big as we want yet, repeat from the step $3$.}
 \end{enumerate}
 
-\begin{figure}[kappaDistribution]
+\begin{figure}
         \centering
-        \begin{subfigure}[kappaDistributionHistogram]{0.49\textwidth}
+        \begin{subfigure}{0.49\textwidth}
                 \includegraphics[width=\textwidth]{kappaDistributionHistogram}
                 \label{fig:kappaDistributionHistogram}
         \end{subfigure}
-        \begin{subfigure}[kappaDistributionCDF]{0.49\textwidth}
+        \begin{subfigure}{0.49\textwidth}
                 \includegraphics[width=\textwidth]{kappaDistributionCDF}
                 \label{fig:kappaDistributionCDF}
         \end{subfigure}
-        \caption{The histogram and the CDF of the stretching factors sample produced by our model (blue). The sample contains $600$ points. The red curve is an empirical CDF of the observed sample (3 points).}
+        \caption{The histogram and the CDF of the stretching factors sample produced by our model (blue). The sample contains $600$ points. The gray curve is an empirical CDF of the observed sample (4 points).}
         \label{fig:kappaDistribution}
 \end{figure}
 
