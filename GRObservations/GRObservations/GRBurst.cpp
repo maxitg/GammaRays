@@ -17,9 +17,9 @@
 #include "GRBurst.h"
 #define TIME_EXTENSION_FACTOR   2.0
 #define PHOTONS_QUALITY         0.95
-#define STRETCHING_MIN          0.1
-#define STRETCHING_MAX          10.
-#define STRETCHING_STEP         1.001
+#define STRETCHING_MIN          0.01
+#define STRETCHING_MAX          100.
+#define STRETCHING_STEP         1.0001
 
 #define BACKGROUND_DURATION     86400
 
