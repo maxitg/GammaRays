@@ -350,6 +350,21 @@ The burst is fully specified by the following set of parameters:
 \item{$\alpha$, the bare spectral index, $\alpha < -2k - 1$}
 \end{itemize}
 
+Numerical values we used for these parameters are summarized in the table \ref{tab:parameters}.
+
+\begin{table}
+	\centering
+	\small
+	\begin{tabular}{ r | l | l }
+		Parameter	&	Value			&	Comments \\
+		\hline
+		$\gamma$		&	$100$		&	\\
+		$\eta_0$		&	$10^{45}$	&
+	\end{tabular}
+	\caption{Parameter values.}
+	\label{tab:parameters}
+\end{table}
+
 Now we have all we need to calculate the observed light curves, and then the stretching factors.
 
 \subsection{Photon observation time}
@@ -746,21 +761,48 @@ This is our 3rd test -- the ratio obtained should be compatible with the observe
 \subsection{Parameter values}
 \label{sec:parameters}
 
-Finally, we are in a position to use the tests to fit parameters of the model:
+Finally, we can use the tests to fit parameters of the model:
 
 \begin{itemize}
 	\item{
 		$v$, the velocity of the shell, $\gamma = \frac{1}{\sqrt{1-v^2}} \gg 1$.
+		
+		Observations suggest values for relativistic factors of plasma is a range from $\gamma = 100$ to $\gamma = 1000$.
+		We take $\gamma = 300$ as an order of magnitude estimate.
+	}
+	\item{
+		$\eta_0$, which defines the luminosity scale.
+		
+		From photon counts.
+	}
+	\item{
+		$r_0$, the characteristic jet length; $r_0 \ll \frac{1}{H\left(0\right)}$, $H\left(t\right)$ is the Hubble parameter;
+		
+		From durations.
+	}
+	\item{
+		$n$, which determines the sharpness of the jet end, $n > 3$;
 
 
 	}
-	\item{$\eta_0$, which defines the luminosity scale.}
-	\item{$r_0$, the characteristic jet length; $r_0 \ll \frac{1}{H\left(0\right)}$, $H\left(t\right)$ is the Hubble parameter;}
-	\item{$n$, which determines the sharpness of the jet end, $n > 3$;}
-	\item{$\omega_0$, a characteristic radiation frequency;}
-	\item{$\theta_0$, the opening angle of the jet for radiation with frequency $\omega_0$, $\theta_0 \ll 1$;}
-	\item{$k$, which determines how much the opening angle changes with frequency, $k < 0$;}
-	\item{$\alpha$, the bare spectral index, $\alpha < -2k - 1$}
+	\item{
+		$\omega_0$, a characteristic radiation frequency;
+
+		Non-physical
+	}
+	\item{
+		$\theta_0$, the opening angle of the jet for radiation with frequency $\omega_0$, $\theta_0 \ll 1$;
+
+
+	}
+	\item{
+		$k$, which determines how much the opening angle changes with frequency, $k < 0$;
+
+	}
+	\item{
+		$\alpha$, the bare spectral index, $\alpha < -2k - 1$
+
+	}
 \end{itemize}
 
 \subsection{Results}
