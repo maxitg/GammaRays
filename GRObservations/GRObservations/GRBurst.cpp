@@ -107,6 +107,25 @@ void GRBurst::calculateBackground() {
     gevDistribution.end = query.endTime - (time + startOffset);
 }
 
+double GRBurst::photonRatio() {
+    double mevCount;
+    double gevCount;
+    
+    vector <GRFermiLATPhoton> *photonLists[2] = {&mevPhotons, &gevPhotons};
+    double *countList[2] = {&mevCount, &gevCount};
+    
+    for (int i = 0; i < 2; i++) {
+        *(countList[i]) = 0.;
+        for (int j = 0; j < (*(photonLists[i])).size(); j++) {
+            GRFermiLATPhoton photon = (*(photonLists[i]))[j];
+            double grbExposure = query.exposureMaps[photon.eventClass][photon.conversionType].exposure(photon.energy, photon.location);
+            *(countList[i]) += 1. / grbExposure;
+        }
+    }
+    
+    return gevCount / mevCount;
+}
+
 void GRBurst::read() {
     if (query.error == GRFermiLATDataServerQueryErrorNotRead) query.read();
     if (query.error != GRFermiLATDataServerQueryErrorOk) {
