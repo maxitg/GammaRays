@@ -8,6 +8,7 @@
 \usepackage{hyperref}
 \usepackage{siunitx}
 \usepackage{listings}
+\usepackage{multicol}
 
 \lstset{columns=fullflexible,basicstyle=\ttfamily}
 
@@ -77,7 +78,7 @@ We argue that these two processes are correlated, for they happen due to the sam
 		\label{fig:sampleLightCurveLogPosivie}
 	\end{subfigure}
 	\caption{
-		High and low energy light curves produced by the geometrical model. Parameter values are the same as discussed in the section \ref{sec:parameters}. Redshift $z = 1$. Observer's off-axis angles are $\chi = 0$ for the left figure, and $\chi = 0.01$ for the right one.
+		High and low energy light curves produced by the geometrical model. Burst parameter values are the same as discussed in the section \ref{sec:parameters}. Redshift $z = 1$. Observer's off-axis angles are $\chi = 0$ for the left figure, and $\chi = 0.01$ for the right one.
 	}
 	\label{fig:sampleLightCurves}
 \end{figure}
@@ -559,6 +560,7 @@ The remaining integrals over $\theta$ and $\chi$ are hard to do symbolically, so
 \end{align*}
 Using that, and the observation that this integral is an even function of $\theta$, we arrive to the optimized expressions for $p$, $I$ and $J$:
 \begin{align}
+\label{eq:p}
 p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det}}{A_\text{ph}\left(z\right)}
 \frac{2\eta_0}{\left(v\gamma\left(1+z\right)\right)^{2-\alpha}}
 \int_0^{\infty} \dif \theta \int_0^{\pi} \dif \phi \frac{\theta}{\left(\frac{1}{v} - 1 + \frac{\theta^2}{2} + \frac{\chi^2}{2} - \theta\chi\cos\phi\right)^{5-\alpha}}\nonumber\\
@@ -675,6 +677,7 @@ This energy should not be larger than a typical mass $M_s$ of a massive star. So
 \end{equation}
 
 \subsection{Distribution of stretching factors}
+\label{sec:distribution}
 
 The second test is to calculate the distribution of the stretching factors of the observable bursts, and to compare it with observations.
 
@@ -695,9 +698,9 @@ Now when we have all the ingredients, we can compute the sample with the followi
 
 	Lets start by selecting a range for redshifts. Ideally, we want this range to start with $z=0$. Then, however, there will be visible jets for all possible off-axis angles, which will make our angles range too large. Note also, that since the bursts count increases with redshift as $z^3$, the probability to observe a low-redshift burst is very small. So instead of selecting the smallest redshift to be $0$, we select it to be a small number $z_\text{min}$.
 
-	$z_\text{max}$ is defined by the farthest jet, which can be observed. Since the burst observability $p_\infty\left(z,\chi,\omega_2,\omega_3\right)$ decreases with both redshift and $\chi$, we can find the maximum redshift by solving the following equation:
+	$z_\text{max}$ is defined by the farthest jet, which can be observed. Since the burst observability $p_\infty\left(z,\chi;\omega_2,\omega_3\right)$ decreases with both redshift and $\chi$, we can find the maximum redshift by solving the following equation:
 	\begin{equation}
-	p_\infty\left(z_\text{max},0,\omega_2,\omega_3\right) = p_\text{min}
+	p_\infty\left(z_\text{max},0;\omega_2,\omega_3\right) = p_\text{min}
 	\end{equation}
 	where $p_\text{min}$ is the minimum number of particles required to claim an observation.
 }
@@ -706,7 +709,7 @@ Now when we have all the ingredients, we can compute the sample with the followi
 
 	The observability declines with $z$ and $\chi$, so the observable burst with the largest $\chi$ should be located at the redshift $z_\text{min}$. We can find this angle by solving the similar equation, as we did for the redshifts:
 	\begin{equation}
-	p_\infty\left(z_\text{min},\chi_\text{max},\omega_2,\omega_3\right) = p_\text{min}
+	p_\infty\left(z_\text{min},\chi_\text{max};\omega_2,\omega_3\right) = p_\text{min}
 	\end{equation}
 }
 \item{
@@ -734,7 +737,7 @@ Now when we have all the ingredients, we can compute the sample with the followi
 	\end{align}
 	Here $y$ is an another random variable uniformly distributed in the range $0$ to $1$.
 }
-\item{Now we should check, if the burst in a selected position can be observed: $p_\infty\left(z,\chi,\omega_2,\omega_3\right) > p_\text{min}$. If it is, add $\kappa\left(z,\chi\right)$ to the sample. If not, repeat from the step $3$.}
+\item{Now we should check, if the burst in a selected position can be observed: $p_\infty\left(z,\chi;\omega_2,\omega_3\right) > p_\text{min}$. If it is, add $\kappa\left(z,\chi\right)$ to the sample. If not, repeat from the step $3$.}
 \item{If the sample is not as big as we want yet, repeat from the step $3$.}
 \end{enumerate}
 
@@ -758,52 +761,154 @@ f\left(\omega_1,\omega_2,\omega_3\right) = \frac{b\left(\omega_2,\omega_3\right)
 
 This is our 3rd test -- the ratio obtained should be compatible with the observed value.
 
-\subsection{Parameter values}
+\subsection{Parameter fit}
 \label{sec:parameters}
 
-Finally, we can use the tests to fit parameters of the model:
+For now we discussed how to compute various observables of the model, and how to test the model against the data from observations. However, we never considered specific values for parameters of the burst. We will do that in this section.
 
+First of all, we need to determine, which parameters to fit. At most, the observables of a particular burst depend on 10 parameters: 8 of the burst $\left(\gamma, \eta_0, r_0, n, \omega_0, \theta_0, k, \alpha\right)$, and 2 of the observer $\left(z, \chi\right)$. However, some of these parameters only change observables trivially, and, also, there are transformations of variables, which will not change observables at all (see equation \ref{eq:p}):
 \begin{itemize}
-	\item{
-		$v$, the velocity of the shell, $\gamma = \frac{1}{\sqrt{1-v^2}} \gg 1$.
-		
-		Observations suggest values for relativistic factors of plasma is a range from $\gamma = 100$ to $\gamma = 1000$.
-		We take $\gamma = 300$ as an order of magnitude estimate.
-	}
-	\item{
-		$\eta_0$, which defines the luminosity scale.
-		
-		From photon counts.
-	}
-	\item{
-		$r_0$, the characteristic jet length; $r_0 \ll \frac{1}{H\left(0\right)}$, $H\left(t\right)$ is the Hubble parameter;
-		
-		From durations.
-	}
-	\item{
-		$n$, which determines the sharpness of the jet end, $n > 3$;
+	\item{The number of photons $p$ depends linearly on $\eta_0$, so $\eta_0$ doesn't affect other observables like duration, or stretching factor. We can easily fit $\eta_0$ to match the observed photon count.}
+	\item{If we make a simultaneous transformation of $r_0 \rightarrow \lambda r_0$ and $\eta_0 \rightarrow \frac{1}{\lambda^3}\eta_0$, where $\lambda$ is a parameter of transformation, then only the duration of the burst will change. Other observables, like the total number of photons, or stretching factor, will not be affected.}
+	\item{Finally, if we make a following transformation: $\omega_0 \rightarrow \lambda \omega_0$, $\theta_0 \rightarrow \lambda^k \theta_0$, $\eta_0 \rightarrow \lambda^\alpha \eta_0$, where $\lambda$ is another transformation parameter, no observables will change whatsoever.}
+\end{itemize}
+Given these transformations, we can reduce the number of parameters for fit to 7: $\left(\gamma, n, \theta_0, k, \alpha, z, \chi\right)$.
 
+Also, some of the parameters we know from observations:
+\begin{itemize}
+	\item{Redshifts $z$ of many bursts have been measured \cite{Ackermann:2013zfa}.}
+	\item{We know that Lorentz factors $\gamma$ are on the order of magnitude\footnote{Our minimization procedure can find similar minimums for other values of $\gamma$, at least from $100$ to $1000$} of $\gamma = 300$ \cite{Ghirlanda:2011ux}.}
+\end{itemize}
+This knowledge allows us to reduce the number of parameters to minimize against to just 5: $\left(n, \theta_0, k, \alpha, \chi\right)$.
 
+We want then our cost function $C\left(n, \theta_0, k, \alpha, \chi\right)$ to satisfy the following objectives:
+\begin{itemize}
+	\item {
+		Total energy of the burst is finite (that is $k+\frac{\alpha}{2}+1 < 0$) and smaller than $\unit[6 \times 10^{53}]{GeV} \approx \unit[10^{51}]{erg}$ \cite{Gehrels:2013xd}.
 	}
-	\item{
-		$\omega_0$, a characteristic radiation frequency;
-
-		Non-physical
+	\item {
+		The stretching factor of the burst should be compatible with the value for the GRB 090926A.
 	}
-	\item{
-		$\theta_0$, the opening angle of the jet for radiation with frequency $\omega_0$, $\theta_0 \ll 1$;
-
-
+	\item {
+		We require all bursts to have the same burst parameters $\left(\gamma, \eta_0, r_0, n, \omega_0, \theta_0, k, \alpha\right)$. And we know that bursts with small stretching factors like GRB 090902B should be possible to observe. So we require that bursts with the stretching factor of GRB 090902B or lower appear in random samples by $z$ and $\chi$ (sampling is done the same way as in section \ref{sec:distribution}).
 	}
-	\item{
-		$k$, which determines how much the opening angle changes with frequency, $k < 0$;
-
+	\item {
+		The ratio of photons with high energies and low energies should be compatible with the value for the GRB 090926A, $\frac{p_{\infty} \left(z,\chi;\unit[1]{GeV},\infty\right)}{p_{\infty} \left(z,\chi;\unit[0.1]{GeV},\unit[1]{GeV}\right)} = 0.06$.
 	}
-	\item{
-		$\alpha$, the bare spectral index, $\alpha < -2k - 1$
-
+	\item {
+		Finally, the burst should not be too faint compared to other bursts from the sample. That is the total number of observed photons should approximately equal to the median among the sample.
 	}
 \end{itemize}
+
+The cost function is then computed by the following procedure:
+\begin{enumerate}
+	\item{
+		Set $\gamma = 300$, $\omega_0 = 1$, $z = 2.1062$ (which is the redshift of GRB 090926A)
+	}
+	\item{
+		Set $\eta_0$ and $r_0$ such that the duration of the burst, and the total number of observed photons are compatible with GRB 090926A, $T_{0.99}\left(z,\chi;\unit[0.1]{GeV},\infty\right) = 219.5$ and $p_{\infty} \left(z,\chi;\unit[0.1]{GeV},\infty\right) = 179.989$
+	}
+	\item{
+		If $k+\frac{\alpha}{2}+1 < 0$, or the energy of the burst $E\left(\unit[0.1]{GeV}\right) > \unit[6 \times 10^{53}]{GeV}$, the cost function equals to the penalization factor: $C\left(n, \theta_0, k, \alpha, \chi\right) = 400$.
+	}
+	\item{
+		\label{item:sample}
+		Compute the small sample of 10 bursts (we will need stretching factors and total photon counts) with the same fixed burst parameters $\left(\gamma, \eta_0, r_0, n, \omega_0, \theta_0, k, \alpha\right)$, and with $z$ and $\chi$ representatively distributed (as discussed in section \ref{sec:distribution}).
+	}
+	\item{
+		Compute the cost due to the stretching factor:
+		\begin{equation}
+			C_\kappa = \frac{
+				\log{\kappa\left(z,\chi;\unit[0.1]{GeV},\unit[1]{GeV},\infty\right)} - \log{\kappa_{090926A}}
+			}{\Delta\log\kappa_{090926A}}
+		\end{equation}
+		Here $\log\kappa_{090926A} = \frac{1}{2}\left(\log\left(6.62\right) + \log\left(1.99\right)\right)$ and $\Delta\log\kappa_{090926A} = \frac{1}{2}\left(\log\left(6.62\right) - \log\left(1.99\right)\right)$.
+	}
+	\item{
+		Compute the cost due to the minimal stretching factor from the sample:
+		\begin{equation}
+			C_{\kappa\text{min}} = \max\left(0, 
+				\frac{
+					\log{\kappa_\text{min}} - \log{\kappa_{090902B}}
+				}{\Delta\log\kappa_{090902B}}\right)
+		\end{equation}
+		Here $\kappa_\text{min}$ is the minimal stretching factor from the sample computed in the step \ref{item:sample}, $\log\kappa_{090902B} = \frac{1}{2}\left(\log\left(0.89\right) + \log\left(0.36\right)\right)$ and $\Delta\log\kappa_{090902B} = \frac{1}{2}\left(\log\left(0.89\right) - \log\left(0.36\right)\right)$.
+	}
+	\item{
+		Compute the cost due to the fraction of high and low energy photon counts:
+		\begin{equation}
+			C_f = \frac{
+				\log{\frac{
+					p_{\infty} \left(z,\chi;\unit[1]{GeV},\infty\right)
+				}{
+					p_{\infty} \left(z,\chi;\unit[0.1]{GeV},\unit[1]{GeV}\right)}
+				} - \log f_{090926A}
+			}{\log(10)}
+		\end{equation}
+		Here $f_{090926A} = 0.0606777$.
+	}
+	\item{
+		Compute the cost due to the brightness of the burst compared to the median:
+		\begin{equation}
+			C_b = \frac{
+				\log{\frac{
+					p_{\infty} \left(z,\chi;\unit[0.1]{GeV},\infty\right)
+				}{
+					p_\text{med}
+				}} - 0
+			}{\log(10)}
+		\end{equation}
+		Here $p_\text{med}$ is the median number of observed photons among the sample computed in the step \ref{item:sample}.
+	}
+	\item{
+		Finally, the value of the cost function is the sum of squares of the four:
+		\begin{equation}
+			C = C_\kappa^2 + C_{\kappa\text{min}}^2 + C_f^2 + C_b^2
+		\end{equation}
+	}
+\end{enumerate}
+
+\begin{table}
+	\centering
+	\small
+	\begin{tabular}{ S[table-format=2.4] | S[table-format=1.5] | S[table-format=-1.6] | S[table-format=-1.7] | S[table-format=1.8] }
+		$\mathrm{n}$ & $\mathrm{\theta_0}$ & $\mathrm{k}$ & $\mathrm{\alpha}$ & $\mathrm{\chi}$ \\
+		\hline
+		22.1525	&	$\mathrm{2.16424 \times 10^{-4}}$ 	&	-0.417021  	&	-1.3516300 	&	0.00704982 	\\
+		25.8640	&	$\mathrm{4.90222 \times 10^{-8}}$	&	-2.908750 	&	 3.5380100 	&	0.00028657 	\\
+		17.5380	&	$\mathrm{1.46284 \times 10^{-3}}$ 	&	-2.133600 	&	-2.1336000 	&	0.00152624 	\\
+		17.9736	&	$\mathrm{4.52631 \times 10^{-6}}$	&	-1.402620 	&	-0.0114132 	&	0.00032590 	\\
+		 5.0000	&	$\mathrm{1.12535 \times 10^{-7}}$	&	-0.200000	&	-2.0000000 	&	0.00473795 	\\
+		 7.0000	&	$\mathrm{2.00000 \times 10^{-12}}$	&	-3.000000	&	-3.0000000	&	0.00173795
+	\end{tabular}
+	\caption{}
+\end{table}
+
+We use the Nelder-Mead (downhill simplex) method for the minimization procedure. Initial points were chosen to include the areas in parameter space where each cost is close to $0$ (first $4$ points correspondingly), and to cover the large fraction of our parameter space:
+\begin{itemize}
+	\item{$n = 22.1525, \theta_0 = 0.000216424, k = -0.417021, \alpha = -1.35163, \chi = 0.00704982$}
+	\item{$n = 25.864, \theta_0 = 4.90222 \times 10^{-8}, k = -2.90875, \alpha = 3.53801, \chi = 0.00028657$}
+	\item{$n = 17.538, \theta_0 = 0.00146284, k = -0.20793, \alpha = -2.1336, \chi = 0.00152624$}
+	\item{$n = 17.9736, \theta_0 = 4.52631 \times 10^{-6}, k = -1.40262, \alpha = -0.0114132, \chi = 0.0003259$}
+	\item{$n = 5, \theta_0 = 1.12535 \times 10^{-7}, k = -0.2, \alpha = -2.0, \chi = 0.00473795$}
+	\item{$n = 7, \theta_0 = 2 \times 10^{-12}, k = -3, \alpha = -3, \chi = 0.00173795$}
+\end{itemize}
+
+The minimization then converged to the following parameter values:
+\begin{multicols}{2}
+\begin{itemize}
+		\item{p}
+		\item{p}
+		\item{p}
+		\item{p}
+		\item{p}
+		\item{p}
+		\item{p}
+		\item{p}
+		\item{p}
+		\item{p}
+\end{itemize}
+\end{multicols}
 
 \subsection{Results}
 
