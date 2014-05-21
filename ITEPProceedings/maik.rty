@@ -1,0 +1,147 @@
+%%
+%% This is file `maik.rty', 29.11.2001
+%%
+\ProvidesFile{maik.rty}
+          [2001/11/29 v0.2 (http://www.maik.ru/pub/tex/macros/maik/ for documentation)]%FileInfo
+%
+\textheight = 235mm
+\textwidth  = 165mm
+%
+\RequirePackage{amssymb,amsmath}
+\RequirePackage{eufrak}
+\RequirePackage{mathtext}
+\RequirePackage[cp866]{inputenc}
+\RequirePackage[T2A]{fontenc}
+\RequirePackage[russian,english]{babel}
+%
+% Переопределения для статьи на русском языке.
+%
+\addto\captionsrussian{%
+\def\notesname{Примечания}
+\def\partname{Часть}
+\def\tocname{Содержание}
+\def\lofname{Cписок илл.}
+\def\lotname{Cписок табл.}
+\def\refname{СПИСОК ЛИТЕРАТУРЫ}
+\def\indexname{Указатель}
+\def\figurename{Рис.}
+\def\figuresname{Рис.}%
+\def\tablename{Таблица}
+\def\tablesname{Таблицы}%
+\def\abstractname{}
+\def\appendixesname{ПРИЛОЖЕНИЯ}%
+\def\appendixname{ПРИЛОЖЕНИЕ}%
+\def\andname{\relax}%
+\def\acknowledgmentsname{Благодарности}
+\def\journalname{??}
+\def\copyrightname{??}
+\def\andname{\relax}%
+\def\@pacs@name{PACS numbers: }%
+\def\ppname{pp}
+\def\numbername{номер}
+\def\volumename{том}
+\def\Dated@name{ }%
+\def\Received@name{поступила в редакцию}%
+%\def\Received@name{{\cyr\CYRP}{\cyr\cyro\cyrs\cyrt\cyry\cyrp\cyri\cyrl\cyra\ \cyrv\ \cyrr\cyre\cyrd\cyra\cyrk\cyrc\cyri\cyryu\ }}%Поступила в редакцию
+\def\Revised@name{,после доработки }%
+\def\Accepted@name{ }%
+\def\Published@name{опубликовано }%
+}%
+\renewcommand*\email[1][Electronic address: ]{\begingroup\sanitize@url\@email{#1}}%
+\def\@email#1#2{%
+ \endgroup
+ \@AF@join{#1\href{mailto:#2}{#2}}%
+}%
+\def\@fnsymbol#1{\ensuremath{\ifcase#1\or \hbox{*\protect\phantom{***}}\or \hbox{**\protect\phantom{**}}\or \hbox{***\protect\phantom{*}}\or \hbox{****}\or
+  \hbox{*****}\or \hbox{******}\or \hbox{*******}\or  \hbox{********}\or \hbox{*********}\or
+  \hbox{**********}\or \hbox{***********}\or \hbox{************}
+  \else\@ctrerr\fi}}
+%
+%
+% Конец переопределения для статьи на русском языке
+%
+\RequirePackage{bm}
+\RequirePackage{array}
+\RequirePackage{longtable}
+\RequirePackage{graphicx}
+\RequirePackage{calc}
+\RequirePackage{ifthen}
+%
+%%%%% Следующие команды используются только с пакетом caption2 %%%%%
+%
+\RequirePackage{caption2}
+\setcaptionwidth{\linewidth}
+\renewcommand{\captionlabeldelim}{.~}
+\renewcommand{\captionlabelfont}{\bfseries}
+\renewcommand{\captionfont}{\footnotesize}
+\newcaptionstyle{nonumber}{%
+  \usecaptionmargin%
+  \captionfont%
+  \onelinecaption%
+    {{\parbox[t]{\realcaptionwidth}{\captiontext}}}%
+    {\captiontext}
+}%
+%%%%% Конец команд, используемых только с пакетом caption2 %%%%%%%%%
+%
+% Включение нумерации таблиц, рисунков и библиографии арабскими цифрами
+%
+\makeatletter
+\renewcommand \thefigure{\@arabic\c@figure}
+\renewcommand \thetable{\@arabic\c@table}
+\def\place@bibnumber@inl#1{#1.}%
+%
+%
+\def\thepart          {\Roman{part}} %
+\def\thesection       {\arabic{section}}
+\def\p@section        {}
+\def\thesubsection    {\thesection.\arabic{subsection}}
+\def\p@subsection     {\thesection.}
+\def\thesubsubsection {\thesection.\arabic{subsection}.\arabic{subsubsection}}
+\def\p@subsubsection  {\thesection\,\thesubsection\,}
+\def\theparagraph     {\alph{paragraph}}
+\def\thesubparagraph  {\theparagraph.\arabic{subparagraph}}
+
+\def\section{%
+  \@startsection
+    {section}%
+    {1}%
+    {\z@}%
+  {0.8cm \@plus1ex \@minus .2ex}%
+  {0.5cm \@plus1ex \@minus.2ex}%
+    {%
+      \normalfont
+      \centering
+      \MakeTextUppercase
+    }%
+}%
+\def\@sectioncntformat#1{\csname the#1\endcsname.\quad}%
+\def\subsection{%
+  \@startsection
+    {subsection}%
+    {2}%
+    {\z@}%
+    {.8cm \@plus1ex \@minus .2ex}%
+    {.5cm \@plus1ex \@minus.2ex}%
+    {%
+     \normalfont\slshape
+     \centering
+    }%
+}%
+\def\subsubsection{%
+  \@startsection
+    {subsubsection}%
+    {3}%
+    {\z@}%
+    {.8cm \@plus1ex \@minus .2ex}%
+    {.5cm \@plus1ex \@minus.2ex}%
+    {%
+     \normalfont\small\itshape
+     \centering
+    }%
+}%
+% Команда для определения типа библиографичечской ссылки
+\def\refitem#1{\ifthenelse{\boolean{hmode}}{\protect\newline{}}{}%
+\textbackslash{}refitem\{\hbox{\bfseries{}%
+\itshape{}#1}\}\ifthenelse{\boolean{hmode}}{\protect\linebreak{}}{}}%
+\makeatother
+\endinput
