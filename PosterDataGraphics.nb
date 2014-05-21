@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[    524035,       9797]
-NotebookOptionsPosition[    522068,       9728]
-NotebookOutlinePosition[    522423,       9744]
-CellTagsIndexPosition[    522380,       9741]
+NotebookDataLength[    524409,       9806]
+NotebookOptionsPosition[    522402,       9736]
+NotebookOutlinePosition[    522757,       9752]
+CellTagsIndexPosition[    522714,       9749]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1594,6 +1594,13 @@ Cell[CellGroupData[{
 Cell["Paper", "Subsubsection",
  CellChangeTimes->{{3.603448079805911*^9, 3.6034480802805767`*^9}}],
 
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"itepLineWidth", "=", "469.47046"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"itepFontSize", "=", "12"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.609668550938788*^9, 3.60966856768649*^9}}],
+
 Cell[CellGroupData[{
 
 Cell[BoxData[
@@ -1634,16 +1641,17 @@ Cell[BoxData[
          RowBox[{
           RowBox[{"Style", "[", 
            RowBox[{"\"\<100 MeV - 1 GeV\>\"", ",", 
-            RowBox[{"FontSize", "\[Rule]", "10"}]}], "]"}], ",", 
+            RowBox[{"FontSize", "\[Rule]", "itepFontSize"}]}], "]"}], ",", 
           RowBox[{"Style", "[", 
            RowBox[{"\"\<1 GeV - 300 GeV\>\"", ",", 
-            RowBox[{"FontSize", "\[Rule]", "10"}]}], "]"}]}], "}"}], ",", 
+            RowBox[{"FontSize", "\[Rule]", "itepFontSize"}]}], "]"}]}], "}"}],
+         ",", 
         RowBox[{"{", 
          RowBox[{"0.7", ",", "0.25"}], "}"}]}], "]"}]}], ",", 
-     RowBox[{"ImageSize", "\[Rule]", "230.1799598"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "itepLineWidth"}], ",", 
      RowBox[{"FrameStyle", "\[Rule]", 
       RowBox[{"Directive", "[", 
-       RowBox[{"FontSize", "\[Rule]", "10"}], "]"}]}]}], "]"}], ",", 
+       RowBox[{"FontSize", "\[Rule]", "itepFontSize"}], "]"}]}]}], "]"}], ",", 
    RowBox[{"{", 
     RowBox[{"i", ",", "1", ",", 
      RowBox[{"Length", "[", "mevData", "]"}]}], "}"}]}], "]"}]], "Input",
@@ -1694,7 +1702,7 @@ Cell[BoxData[
    3.602216324571259*^9}, 3.602831950075047*^9, {3.603448028213398*^9, 
    3.603448189881536*^9}, {3.603448245012093*^9, 3.6034482746573143`*^9}, {
    3.603448369059709*^9, 3.603448393817789*^9}, {3.603452290686983*^9, 
-   3.603452296042357*^9}}],
+   3.603452296042357*^9}, {3.6096685548707237`*^9, 3.609668586388967*^9}}],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -1776,9 +1784,9 @@ N/Y8TNrtYnOTMPgQ/76z/3TJN0ngRzIGH5IaPtgbg0ExnA8AHHMHeg==
        InsetBox[
        TemplateBox[{
         StyleBox[
-         "\"100 MeV - 1 GeV\"", StripOnInput -> False, FontSize -> 10],
+         "\"100 MeV - 1 GeV\"", StripOnInput -> False, FontSize -> 12],
          StyleBox[
-         "\"1 GeV - 300 GeV\"", StripOnInput -> False, FontSize -> 10]},
+         "\"1 GeV - 300 GeV\"", StripOnInput -> False, FontSize -> 12]},
         "PointLegend",
         DisplayFunction->(StyleBox[
           StyleBox[
@@ -1872,8 +1880,8 @@ N/Y8TNrtYnOTMPgQ/76z/3TJN0ngRzIGH5IaPtgbg0ExnA8AHHMHeg==
      FrameLabel->{{
         FormBox["\"Photons Fraction\"", TraditionalForm], None}, {
         FormBox["\"Time, sec\"", TraditionalForm], None}},
-     FrameStyle->Directive[FontSize -> 10],
-     ImageSize->230.1799598,
+     FrameStyle->Directive[FontSize -> 12],
+     ImageSize->469.47046,
      Method->{},
      PlotRange->{{-15., 300}, All},
      PlotRangeClipping->True,
@@ -1963,7 +1971,7 @@ N/Y8TNrtYnOTMPgQ/76z/3TJN0ngRzIGH5IaPtgbg0ExnA8AHHMHeg==
         AspectRatio -> GoldenRatio^(-1), Axes -> True, AxesOrigin -> {0, 0}, 
         Frame -> {{True, False}, {True, False}}, 
         FrameLabel -> {"Time, sec", "Photons Fraction"}, FrameStyle -> 
-        Directive[FontSize -> 10], ImageSize -> 230.1799598, Method -> {}, 
+        Directive[FontSize -> 12], ImageSize -> 469.47046, Method -> {}, 
         PlotRange -> {{-15., 300}, All}, PlotRangeClipping -> True, 
         PlotRangePadding -> {Automatic, Automatic}}], {
        Placed[
@@ -1973,8 +1981,8 @@ N/Y8TNrtYnOTMPgQ/76z/3TJN0ngRzIGH5IaPtgbg0ExnA8AHHMHeg==
             RGBColor[1, 0, 0]], 
            Directive[
             RGBColor[0, 0, 1]]}, {
-           Style["100 MeV - 1 GeV", FontSize -> 10], 
-           Style["1 GeV - 300 GeV", FontSize -> 10]}, LegendLayout -> 
+           Style["100 MeV - 1 GeV", FontSize -> 12], 
+           Style["1 GeV - 300 GeV", FontSize -> 12]}, LegendLayout -> 
           "Column", LegendMarkers -> False]], {0.7, 0.25}, Identity]}]& ],
     AutoDelete->True,
     Editable->True,
@@ -2052,9 +2060,9 @@ AM4HAInAkKU=
           "]]}}, {}}, InsetBox[
        TemplateBox[{
         StyleBox[
-         "\"100 MeV - 1 GeV\"", StripOnInput -> False, FontSize -> 10],
+         "\"100 MeV - 1 GeV\"", StripOnInput -> False, FontSize -> 12],
          StyleBox[
-         "\"1 GeV - 300 GeV\"", StripOnInput -> False, FontSize -> 10]},
+         "\"1 GeV - 300 GeV\"", StripOnInput -> False, FontSize -> 12]},
         "PointLegend",
         DisplayFunction->(StyleBox[
           StyleBox[
@@ -2148,8 +2156,8 @@ AM4HAInAkKU=
      FrameLabel->{{
         FormBox["\"Photons Fraction\"", TraditionalForm], None}, {
         FormBox["\"Time, sec\"", TraditionalForm], None}},
-     FrameStyle->Directive[FontSize -> 10],
-     ImageSize->230.1799598,
+     FrameStyle->Directive[FontSize -> 12],
+     ImageSize->469.47046,
      Method->{},
      PlotRange->{{-3., 60}, All},
      PlotRangeClipping->True,
@@ -2234,7 +2242,7 @@ AM4HAInAkKU=
         AspectRatio -> GoldenRatio^(-1), Axes -> True, AxesOrigin -> {0, 0}, 
         Frame -> {{True, False}, {True, False}}, 
         FrameLabel -> {"Time, sec", "Photons Fraction"}, FrameStyle -> 
-        Directive[FontSize -> 10], ImageSize -> 230.1799598, Method -> {}, 
+        Directive[FontSize -> 12], ImageSize -> 469.47046, Method -> {}, 
         PlotRange -> {{-3., 60}, All}, PlotRangeClipping -> True, 
         PlotRangePadding -> {Automatic, Automatic}}], {
        Placed[
@@ -2244,8 +2252,8 @@ AM4HAInAkKU=
             RGBColor[1, 0, 0]], 
            Directive[
             RGBColor[0, 0, 1]]}, {
-           Style["100 MeV - 1 GeV", FontSize -> 10], 
-           Style["1 GeV - 300 GeV", FontSize -> 10]}, LegendLayout -> 
+           Style["100 MeV - 1 GeV", FontSize -> 12], 
+           Style["1 GeV - 300 GeV", FontSize -> 12]}, LegendLayout -> 
           "Column", LegendMarkers -> False]], {0.7, 0.25}, Identity]}]& ],
     AutoDelete->True,
     Editable->True,
@@ -2380,9 +2388,9 @@ b6IZzg7mW1CuHvTJTUPxCVeNPoSp7L0+8M057Sloe6yMdQH68ttMwT/BhxOe
           "]]}}, {}}, InsetBox[
        TemplateBox[{
         StyleBox[
-         "\"100 MeV - 1 GeV\"", StripOnInput -> False, FontSize -> 10],
+         "\"100 MeV - 1 GeV\"", StripOnInput -> False, FontSize -> 12],
          StyleBox[
-         "\"1 GeV - 300 GeV\"", StripOnInput -> False, FontSize -> 10]},
+         "\"1 GeV - 300 GeV\"", StripOnInput -> False, FontSize -> 12]},
         "PointLegend",
         DisplayFunction->(StyleBox[
           StyleBox[
@@ -2476,8 +2484,8 @@ b6IZzg7mW1CuHvTJTUPxCVeNPoSp7L0+8M057Sloe6yMdQH68ttMwT/BhxOe
      FrameLabel->{{
         FormBox["\"Photons Fraction\"", TraditionalForm], None}, {
         FormBox["\"Time, sec\"", TraditionalForm], None}},
-     FrameStyle->Directive[FontSize -> 10],
-     ImageSize->230.1799598,
+     FrameStyle->Directive[FontSize -> 12],
+     ImageSize->469.47046,
      Method->{},
      PlotRange->{{-50., 1000}, All},
      PlotRangeClipping->True,
@@ -2619,7 +2627,7 @@ b6IZzg7mW1CuHvTJTUPxCVeNPoSp7L0+8M057Sloe6yMdQH68ttMwT/BhxOe
         AspectRatio -> GoldenRatio^(-1), Axes -> True, AxesOrigin -> {0, 0}, 
         Frame -> {{True, False}, {True, False}}, 
         FrameLabel -> {"Time, sec", "Photons Fraction"}, FrameStyle -> 
-        Directive[FontSize -> 10], ImageSize -> 230.1799598, Method -> {}, 
+        Directive[FontSize -> 12], ImageSize -> 469.47046, Method -> {}, 
         PlotRange -> {{-50., 1000}, All}, PlotRangeClipping -> True, 
         PlotRangePadding -> {Automatic, Automatic}}], {
        Placed[
@@ -2629,8 +2637,8 @@ b6IZzg7mW1CuHvTJTUPxCVeNPoSp7L0+8M057Sloe6yMdQH68ttMwT/BhxOe
             RGBColor[1, 0, 0]], 
            Directive[
             RGBColor[0, 0, 1]]}, {
-           Style["100 MeV - 1 GeV", FontSize -> 10], 
-           Style["1 GeV - 300 GeV", FontSize -> 10]}, LegendLayout -> 
+           Style["100 MeV - 1 GeV", FontSize -> 12], 
+           Style["1 GeV - 300 GeV", FontSize -> 12]}, LegendLayout -> 
           "Column", LegendMarkers -> False]], {0.7, 0.25}, Identity]}]& ],
     AutoDelete->True,
     Editable->True,
@@ -2726,9 +2734,9 @@ ur64YG0WBv/UUYmI44Vv7EFcW698DP6dZoEJ+gvf2vMwabeLLS/A4L9z5Dgx
           "]]}}, {}}, InsetBox[
        TemplateBox[{
         StyleBox[
-         "\"100 MeV - 1 GeV\"", StripOnInput -> False, FontSize -> 10],
+         "\"100 MeV - 1 GeV\"", StripOnInput -> False, FontSize -> 12],
          StyleBox[
-         "\"1 GeV - 300 GeV\"", StripOnInput -> False, FontSize -> 10]},
+         "\"1 GeV - 300 GeV\"", StripOnInput -> False, FontSize -> 12]},
         "PointLegend",
         DisplayFunction->(StyleBox[
           StyleBox[
@@ -2822,8 +2830,8 @@ ur64YG0WBv/UUYmI44Vv7EFcW698DP6dZoEJ+gvf2vMwabeLLS/A4L9z5Dgx
      FrameLabel->{{
         FormBox["\"Photons Fraction\"", TraditionalForm], None}, {
         FormBox["\"Time, sec\"", TraditionalForm], None}},
-     FrameStyle->Directive[FontSize -> 10],
-     ImageSize->230.1799598,
+     FrameStyle->Directive[FontSize -> 12],
+     ImageSize->469.47046,
      Method->{},
      PlotRange->{{-15., 300}, All},
      PlotRangeClipping->True,
@@ -2926,7 +2934,7 @@ ur64YG0WBv/UUYmI44Vv7EFcW698DP6dZoEJ+gvf2vMwabeLLS/A4L9z5Dgx
         AspectRatio -> GoldenRatio^(-1), Axes -> True, AxesOrigin -> {0, 0}, 
         Frame -> {{True, False}, {True, False}}, 
         FrameLabel -> {"Time, sec", "Photons Fraction"}, FrameStyle -> 
-        Directive[FontSize -> 10], ImageSize -> 230.1799598, Method -> {}, 
+        Directive[FontSize -> 12], ImageSize -> 469.47046, Method -> {}, 
         PlotRange -> {{-15., 300}, All}, PlotRangeClipping -> True, 
         PlotRangePadding -> {Automatic, Automatic}}], {
        Placed[
@@ -2936,8 +2944,8 @@ ur64YG0WBv/UUYmI44Vv7EFcW698DP6dZoEJ+gvf2vMwabeLLS/A4L9z5Dgx
             RGBColor[1, 0, 0]], 
            Directive[
             RGBColor[0, 0, 1]]}, {
-           Style["100 MeV - 1 GeV", FontSize -> 10], 
-           Style["1 GeV - 300 GeV", FontSize -> 10]}, LegendLayout -> 
+           Style["100 MeV - 1 GeV", FontSize -> 12], 
+           Style["1 GeV - 300 GeV", FontSize -> 12]}, LegendLayout -> 
           "Column", LegendMarkers -> False]], {0.7, 0.25}, Identity]}]& ],
     AutoDelete->True,
     Editable->True,
@@ -2946,7 +2954,7 @@ ur64YG0WBv/UUYmI44Vv7EFcW698DP6dZoEJ+gvf2vMwabeLLS/A4L9z5Dgx
  CellChangeTimes->{{3.603448184112233*^9, 3.603448190682094*^9}, {
    3.6034482486071053`*^9, 3.603448275277671*^9}, {3.603448380176857*^9, 
    3.603448394376898*^9}, 3.603448441340119*^9, 3.603452296695249*^9, 
-   3.603452479151663*^9}]
+   3.603452479151663*^9, 3.6096685890602417`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -9755,48 +9763,49 @@ Cell[4038, 124, 651, 19, 39, "Input"],
 Cell[CellGroupData[{
 Cell[4714, 147, 103, 1, 35, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[4842, 152, 5191, 97, 91, "Input"],
-Cell[10036, 251, 68802, 1336, 176, "Output"]
+Cell[4842, 152, 5191, 97, 80, "Input"],
+Cell[10036, 251, 68802, 1336, 165, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[78887, 1593, 98, 1, 35, "Subsubsection"],
+Cell[78988, 1596, 234, 5, 57, "Input"],
 Cell[CellGroupData[{
-Cell[79010, 1598, 5334, 98, 80, "Input"],
-Cell[84347, 1698, 64551, 1250, 168, "Output"]
+Cell[79247, 1605, 5423, 99, 91, "Input"],
+Cell[84673, 1706, 64559, 1250, 648, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[148935, 2953, 2676, 63, 148, "Input"],
-Cell[151614, 3018, 259412, 4428, 164, "Output"]
+Cell[149269, 2961, 2676, 63, 148, "Input"],
+Cell[151948, 3026, 259412, 4428, 164, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[411063, 7451, 4442, 88, 80, "Input"],
-Cell[415508, 7541, 20521, 393, 164, "Output"]
+Cell[411397, 7459, 4442, 88, 80, "Input"],
+Cell[415842, 7549, 20521, 393, 164, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[436066, 7939, 397, 11, 28, "Input"],
-Cell[436466, 7952, 149, 2, 28, "Output"]
+Cell[436400, 7947, 397, 11, 28, "Input"],
+Cell[436800, 7960, 149, 2, 28, "Output"]
 }, Open  ]],
-Cell[436630, 7957, 929, 24, 28, "Input"],
+Cell[436964, 7965, 929, 24, 28, "Input"],
 Cell[CellGroupData[{
-Cell[437584, 7985, 2320, 63, 80, "Input"],
-Cell[439907, 8050, 16330, 322, 164, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[456274, 8377, 4511, 92, 80, "Input"],
-Cell[460788, 8471, 25500, 482, 164, "Output"]
+Cell[437918, 7993, 2320, 63, 80, "Input"],
+Cell[440241, 8058, 16330, 322, 164, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[486325, 8958, 3011, 80, 97, "Input"],
-Cell[489339, 9040, 25821, 487, 164, "Output"]
+Cell[456608, 8385, 4511, 92, 80, "Input"],
+Cell[461122, 8479, 25500, 482, 164, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[515197, 9532, 207, 4, 28, "Input"],
-Cell[515407, 9538, 262, 6, 28, "Output"]
+Cell[486659, 8966, 3011, 80, 97, "Input"],
+Cell[489673, 9048, 25821, 487, 164, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[515706, 9549, 367, 10, 28, "Input"],
-Cell[516076, 9561, 5964, 163, 197, "Output"]
+Cell[515531, 9540, 207, 4, 28, "Input"],
+Cell[515741, 9546, 262, 6, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[516040, 9557, 367, 10, 28, "Input"],
+Cell[516410, 9569, 5964, 163, 197, "Output"]
 }, Open  ]]
 }, Open  ]]
 }
