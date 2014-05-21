@@ -54,6 +54,7 @@ centertags]%
 
 	We suggest a simple geometrical model to explain this result.
 	The main assumption is the jet opening angle dependence on radiation energy -- the most energetic photons are emitted near the axis of the jet.
+	We also assume that all bursts are the same in their reference frames (that is their light curves differ because of different redshifts and off-axis angles).
 	To test this model, we compute the total energy of the burst, and confirm that it is below the constraint.
 	We also compute the fraction of observable bursts in $(\unit[100]{MeV}, \unit[1]{GeV})$ band, which can also be observed in higher energies.
 	This fraction matches the observations.
@@ -65,6 +66,8 @@ centertags]%
 \maketitle
 
 \section{Introduction}
+	Sample citation: \cite{Ackermann:2013zfa}.
+
 For the purposes of this review,
 by anomalies one can understand violations
 of the Ehrenfest theorem according to which
@@ -92,22 +95,32 @@ is the mass of the charged particle.
 
 \begin{center}
 \large \bfseries %\MakeTextUppercase{%
-АНОМАЛИИ (ИЗБРАННЫЕ ТЕМЫ)
+ВРЕМЕННОЕ РАСТЯЖЕНИЕ ГЭВ ИЗЛУЧЕНИЯ ГАММА-ВСПЛЕСКОВ: FERMI LAT И ГЕОМЕТРИЧЕСКАЯ МОДЕЛЬ
 \end{center}
 %
 \begin{center}
 {\bfseries
-В.~И.~Захаров
+М.~С.~Пискунов
 }
 \end{center}
 %
 \begin{center}
 \begin{minipage}{\textwidth - 2cm}
-\small
+	\small
+	Наблюдения показывают, что излучение гамма-всплесков с энергией выше \unit[100]{МэВ} систематически наблюдается позже, чем низкоэнергичное излучение.
+	Различия же кривых блеска в различных диапазонах высокоэнергичного излучения (> \unit[100]{МэВ}) изучены хуже.
 
-Данный обзор имеет образовательный характер и посвящен
-киральным аномалиям и их наиболее существенным приложениям.
-Также рассматриваются современные вопросы решеточных измерений.
+	В данной работе мы изучаем различия кривых блеска в диапазонах (\unit[100]{МэВ}, \unit[1]{ГэВ}) и (\unit[1]{ГэВ}, \unit[300]{ГэВ}).
+	Для исследования выбраны все 4 гамма-всплеска из каталога Fermi, наблюдения которых содержат не менее 10 фотонов с энергией > \unit[1]{ГэВ}: 080916C, 090510, 090902B, 090926A.
+	Кривые блеска 080916C и 090510 в двух рассматриваемых диапазонах не различаются статистически значимо, однако для 090926A установлено со статистической значимостью $3.3\sigma$, что излучение в диапазоне (\unit[1]{ГэВ}, \unit[300]{ГэВ}) растянуто относительно менее энергичного, также для 090902B установлено со статистической значимостью $2.2\sigma$, что излучение в диапазоне (\unit[100]{МэВ}, \unit[1]{ГэВ}) растянуто относительно более энергичного.
+
+	Мы предлагаем простую геометрическую модель, объясняющую этот результат.
+	Основное предположение -- чем выше энергия излучения, тем ближе к оси джета оно излучается.
+	Мы также предполагаем, что все всплески одинаковы в собственной системе отсчета (то есть, различия кривых блеска объясняются исключительно разницой в красном смещении и углом наблюдения).
+	В рамках модели соблюдается ограничение на максимально допустимую энергию всплеска.
+	Также получена доля всплесков среди наблюдаемых в диапазоне (\unit[100]{МэВ}, \unit[1]{ГэВ}), которые также можно увидеть в диапазоне (\unit[1]{ГэВ}, \unit[300]{ГэВ}).
+	Полученная доля согласуется с наблюдениями.
+	Наконец, предсказано распределение коэффициентов растяжения, которое может быть проверено по мере накопления наблюдений.
 \end{minipage}
 \end{center}
 \selectlanguage{english}
@@ -116,30 +129,28 @@ is the mass of the charged particle.
 {\bf Figure captions}
 \vskip 1cm
 
-{\bf Fig.~1.}~Anomalous triangle graph. Momenta $q,k_1,k_2$ are
-carried by the axial current $a_\mu^5$ and
-two photons, respectively. The triangle corresponds to a fermion of small mass $m$.
+{\bf Fig.~1.}~Model Overview. Here the red and the blue cones represent the volumes through which low and high energy plasma propagates. In case depicted the observer's off-axis angle is smaller than the opening angle of the low energy jet, so, due to the relativistic beaming effect, the most of the observable low energy photons will travel along the straight line from the central engine. Also, the observer's off-axis angle is larger that the opening angle of the high energy jet, so the high energy radiation will still originate near the center of the jet (because it is the only place where there are high energy radiators). The observation time of a photon is a sum of two things: the time interval spent in plasma as a radiator (which approximately equals to the distance from the central engine to the point of emission); and the time interval from emission to detection (which is the distance from the point of emission to the observer's location). Given a position of the shock front, this sum is larger for high energy photons. Because of that, high energy emission will be observed later throughout the burst duration, therefore the high energy light curve will be stretched.
 
-{\bf Fig.~2.}~Imaginary part of the anomalous triangle graph.
-The intermediate fermions are on
-mass shell. (The signs are the same as in Fig. 1)
+%{\bf Fig.~2.}~Imaginary part of the anomalous triangle graph.
+%The intermediate fermions are on
+%mass shell. (The signs are the same as in Fig. 1)
 
-{\bf Fig.~3.}~Three-body intermediate state in the imaginary part. (The signs are the same as in Fig. 1)
+%{\bf Fig.~3.}~Three-body intermediate state in the imaginary part. (The signs are the same as in Fig. 1)
 
-{\bf Fig.~4.}~Radiative correction to the two-body contribution to the
-imaginary part. (The signs are the same as in Fig. 1)
+%{\bf Fig.~4.}~Radiative correction to the two-body contribution to the
+%imaginary part. (The signs are the same as in Fig. 1)
 
-{\bf Fig.~5.}~Graphic representation of the Banks--Casher evaluation of the quark condensate
-$\langle \bar{q}q\rangle$. Dashed lines with crosses represent external (vacuum) gluonic
-fields.
+%{\bf Fig.~5.}~Graphic representation of the Banks--Casher evaluation of the quark condensate
+%$\langle \bar{q}q\rangle$. Dashed lines with crosses represent external (vacuum) gluonic
+%fields.
 
 
 \newpage
 
-%\begin{figure}
-%\includegraphics{z1.eps}
-%\caption{Zakharov, Fig. 1}
-%\end{figure}
+\begin{figure}
+\includegraphics{p1.pdf}
+\caption{Piskunov, Fig. 1}
+\end{figure}
 
 %\begin{figure}
 %\includegraphics{z2.eps}
