@@ -12,6 +12,8 @@ showpacs,%
 centertags]%
 {revtex4}
 
+\usepackage{units}
+
 \newcommand{\exclude}[1]{}
 
 \begin{document}
@@ -31,28 +33,34 @@ centertags]%
 \newcommand{\beqn}{\begin{eqnarray}}
 \newcommand{\eeqn}{\end{eqnarray}}
 
-\title{ANOMALIES (SELECTED TOPICS)}
+\title{TIME STRETCHING OF THE GEV EMISSION OF GRBS: FERMI LAT DATA VS GEOMETRICAL MODEL}
 
-\author{\firstname{V.~I.}~\surname{Zakharov}}
+\author{\firstname{M.~S.}~\surname{Piskunov}}
 \email{maxitg@icloud.com}
-\affiliation{Institute for Theoretical and Experimental
-Physics, Moscow, Russia
-}
+\affiliation{Institute for Nuclear Research, Moscow, Russia}
 
 %\date{\today}
 
 \begin {abstract}
-The presentation is
-intended  to be mainly pedagogical and covers the chiral anomaly
-and
-its most significant applications. Finally, we  
-comment
-on recent issues,
-related to the lattice measurements.
+	Numerous observations confirm that the high energy $(> \unit[100]{MeV})$ emission of gamma ray bursts is delayed with respect to the low energy emission.
+	However, the difference of light curves in various high energy bands has not been studied properly.
 
+	In this paper we consider all the bursts observed by Fermi-LAT since 2008 August 4 to 2011 August 1, for which at least $10$ events with energies $\unit[1]{GeV}$ or higher were observed.
+	There are $4$ of them: 080916C, 090510, 090902B, and 090926A.
+	We study their light curves in two bands, $(\unit[100]{MeV}, \unit[1]{GeV})$ and $(\unit[1]{GeV}, \unit[300]{GeV})$.
+	The Kolmogorov-Smirnov test is used to check whether the light curves for these two bands are the same.
+	No significant difference was found for 080916C and 090510.
+	However, we observed with statistical significance of $3.3 \sigma$, that the higher energy light curve of 090926A is stretched with respect to the lower-energy one, and with statistical significance of $2.2 \sigma$, that the lower energy light curve of 090902B is stretched with respect to the higher-energy one.
+
+	We suggest a simple geometrical model to explain this result.
+	The main assumption is the jet opening angle dependence on radiation energy -- the most energetic photons are emitted near the axis of the jet.
+	To test this model, we compute the total energy of the burst, and confirm that it is below the constraint.
+	We also compute the fraction of observable bursts in $(\unit[100]{MeV}, \unit[1]{GeV})$ band, which can also be observed in higher energies.
+	This fraction matches the observations.
+	Finally, we predict the distribution of observable stretching factors, which may be tested in the future when more observational data will be available.
 \end{abstract}
 
-\pacs{11.10.Ef,~11.15.Bt,~11.15.Ha}
+\pacs{95.85.Pw,~97.60.Bw}
 
 \maketitle
 
