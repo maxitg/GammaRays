@@ -913,17 +913,21 @@ The minimization then converged to the following parameter values:
 \subsection{Results}
 
 \begin{figure}
-        \centering
-        \begin{subfigure}{0.49\textwidth}
-                \includegraphics[width=\textwidth]{kappaDistributionHistogram}
-                \label{fig:kappaDistributionHistogram}
-        \end{subfigure}
-        \begin{subfigure}{0.49\textwidth}
-                \includegraphics[width=\textwidth]{kappaDistributionCDF}
-                \label{fig:kappaDistributionCDF}
-        \end{subfigure}
-        \caption{The histogram and the CDF of the stretching factors sample produced by our model (blue). The sample contains $600$ points. The gray curve is an empirical CDF of the observed sample (4 points).}
-        \label{fig:kappaDistribution}
+	\hspace*{\fill}
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=\textwidth]{kappaDistributionHistogram}
+		\label{fig:kappaDistributionHistogram}
+		\caption{Histogram (blue) obtained from the model. Bar lines (black) show observed stretching factors.}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}{0.45\textwidth}
+		\includegraphics[width=\textwidth]{kappaDistributionCDF}
+		\label{fig:kappaDistributionCDF}
+		\caption{CDF (blue) obtained from the model. Gray curve and bar lines show observed stretching factors.}
+	\end{subfigure}
+	\hspace*{\fill}
+	\caption{Stretching factors histogram and CDF produced by our model. The sample contains $16$ bursts.}
+	\label{fig:kappaDistribution}
 \end{figure}
 
 \section{Discussion}
