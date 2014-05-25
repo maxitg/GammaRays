@@ -55,7 +55,7 @@ public:
     vector <GRFermiLATPhoton> gevPhotons;
     vector <GRFermiLATPhoton> gevBackgroundPhotons;
     
-    double photonRatio();
+    double highEnergyPhotonFraction();
     
 public:
     GRDistribution mevDistribution;

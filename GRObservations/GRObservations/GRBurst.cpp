@@ -107,7 +107,7 @@ void GRBurst::calculateBackground() {
     gevDistribution.end = query.endTime - (time + startOffset);
 }
 
-double GRBurst::photonRatio() {
+double GRBurst::highEnergyPhotonFraction() {
     double mevCount;
     double gevCount;
     
@@ -123,7 +123,7 @@ double GRBurst::photonRatio() {
         }
     }
     
-    return gevCount / mevCount;
+    return gevCount / (mevCount + gevCount);
 }
 
 void GRBurst::read() {

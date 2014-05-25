@@ -99,7 +99,7 @@ int main(int argc, const char * argv[])
         log << burstCatalog[i].name << ":" << endl;
         log << "\tLow energy count  = " << burstCatalog[i].mevDistribution.values.size() - burstCatalog[i].mevDistribution.linearComponent << endl;
         log << "\tHigh energy count = " << burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.linearComponent << endl;
-        log << "\tPhoton Ratio       = " << burstCatalog[i].photonRatio() << endl;
+        log << "\tPhoton Ratio       = " << burstCatalog[i].highEnergyPhotonFraction() << endl;
         
         if ((burstCatalog[i].gevDistribution.values.size() - burstCatalog[i].gevDistribution.linearComponent) < 10) {
             log << "\tnot enought high energy photons" << endl << endl;
