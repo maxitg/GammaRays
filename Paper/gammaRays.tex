@@ -9,6 +9,7 @@
 \usepackage{siunitx}
 \usepackage{listings}
 \usepackage{multicol}
+\usepackage{bm}
 
 \lstset{columns=fullflexible,basicstyle=\ttfamily}
 
@@ -808,10 +809,10 @@ We want then our cost function $C\left(n, \theta_0, k, \alpha, \chi\right)$ to s
 The cost function is then computed by the following procedure:
 \begin{enumerate}
 	\item{
-		Set $\gamma = 300$, $\omega_0 = 1$, $z = 2.1062$ (which is the redshift of GRB 090926A)
+		Set $\gamma = 300$, $\omega_0 = \unit[1]{GeV}$, $z = 2.1062$ (which is the redshift of GRB 090926A)
 	}
 	\item{
-		Set $\eta_0$ and $r_0$ such that the duration of the burst, and the total number of observed photons are compatible with GRB 090926A, $T_{0.99}\left(z,\chi;\unit[0.1]{GeV},\infty\right) = 219.5$ and $p_{\infty} \left(z,\chi;\unit[0.1]{GeV},\infty\right) = 179.989$
+		Set $\eta_0$ and $r_0$ such that the duration of the burst, and the total number of observed photons are compatible with GRB 090926A, $T_{0.99}\left(z,\chi;\unit[0.1]{GeV},\infty\right) = \unit[219.5]{sec}$ and $p_{\infty} \left(z,\chi;\unit[0.1]{GeV},\infty\right) = 179.989$
 	}
 	\item{
 		If $k+\frac{\alpha}{2}+1 < 0$, or the energy of the burst $E\left(\unit[0.1]{GeV}\right) > \unit[6 \times 10^{53}]{GeV}$, the cost function equals to the penalization factor: $C\left(n, \theta_0, k, \alpha, \chi\right) = 400$.
@@ -879,39 +880,32 @@ The cost function is then computed by the following procedure:
 	\begin{tabular}{ S[table-format=2.4] | S[table-format=1.5] | S[table-format=-1.6] | S[table-format=-1.7] | S[table-format=1.8] }
 		$\mathrm{n}$ & $\mathrm{\theta_0}$ & $\mathrm{k}$ & $\mathrm{\alpha}$ & $\mathrm{\chi}$ \\
 		\hline
-		22.1525	&	$\mathrm{2.16424 \times 10^{-4}}$ 	&	-0.417021  	&	-1.3516300 	&	0.00704982 	\\
-		25.8640	&	$\mathrm{4.90222 \times 10^{-8}}$	&	-2.908750 	&	 3.5380100 	&	0.00028657 	\\
-		17.5380	&	$\mathrm{1.46284 \times 10^{-3}}$ 	&	-2.133600 	&	-2.1336000 	&	0.00152624 	\\
-		17.9736	&	$\mathrm{4.52631 \times 10^{-6}}$	&	-1.402620 	&	-0.0114132 	&	0.00032590 	\\
-		 5.0000	&	$\mathrm{1.12535 \times 10^{-7}}$	&	-0.200000	&	-2.0000000 	&	0.00473795 	\\
-		 7.0000	&	$\mathrm{2.00000 \times 10^{-12}}$	&	-3.000000	&	-3.0000000	&	0.00173795
+		22.1525	&	$\mathrm{2.16424 \times 10^{-4}}$ 	&	-0.417021  	&	-1.3516300 	&	$\mathrm{7.04982 \times 10^{-3}}$	\\
+		25.8640	&	$\mathrm{4.90222 \times 10^{-8}}$	&	-2.908750 	&	 3.5380100 	&	$\mathrm{2.86570 \times 10^{-4}}$ 	\\
+		17.5380	&	$\mathrm{1.46284 \times 10^{-3}}$ 	&	-2.133600 	&	-2.1336000 	&	$\mathrm{1.52624 \times 10^{-3}}$ 	\\
+		17.9736	&	$\mathrm{4.52631 \times 10^{-6}}$	&	-1.402620 	&	-0.0114132 	&	$\mathrm{3.25900 \times 10^{-4}}$ 	\\
+		 5.0000	&	$\mathrm{1.12535 \times 10^{-7}}$	&	-0.200000	&	-2.0000000 	&	$\mathrm{4.73795 \times 10^{-3}}$ 	\\
+		 7.0000	&	$\mathrm{2.00000 \times 10^{-12}}$	&	-3.000000	&	-3.0000000	&	$\mathrm{1.73795 \times 10^{-3}}$
 	\end{tabular}
-	\caption{}
+	\caption{Initial points used for minimization procedure from section \ref{sec:parameters}.}
+	\label{tab:fitInitialPoints}
 \end{table}
 
-We use the Nelder-Mead (downhill simplex) method for the minimization procedure. Initial points were chosen to include the areas in parameter space where each cost is close to $0$ (first $4$ points correspondingly), and to cover the large fraction of our parameter space:
-\begin{itemize}
-	\item{$n = 22.1525, \theta_0 = 0.000216424, k = -0.417021, \alpha = -1.35163, \chi = 0.00704982$}
-	\item{$n = 25.864, \theta_0 = 4.90222 \times 10^{-8}, k = -2.90875, \alpha = 3.53801, \chi = 0.00028657$}
-	\item{$n = 17.538, \theta_0 = 0.00146284, k = -0.20793, \alpha = -2.1336, \chi = 0.00152624$}
-	\item{$n = 17.9736, \theta_0 = 4.52631 \times 10^{-6}, k = -1.40262, \alpha = -0.0114132, \chi = 0.0003259$}
-	\item{$n = 5, \theta_0 = 1.12535 \times 10^{-7}, k = -0.2, \alpha = -2.0, \chi = 0.00473795$}
-	\item{$n = 7, \theta_0 = 2 \times 10^{-12}, k = -3, \alpha = -3, \chi = 0.00173795$}
-\end{itemize}
+We use the Nelder-Mead (downhill simplex) method for the minimization procedure. Initial points were chosen to include the areas in parameter space where each cost is close to $0$ (first $4$ points correspondingly), and to cover the large fraction of the parameter space. You can see the values in table \ref{tab:fitInitialPoints}.
 
 The minimization then converged to the following parameter values:
 \begin{multicols}{2}
 \begin{itemize}
-		\item{p}
-		\item{p}
-		\item{p}
-		\item{p}
-		\item{p}
-		\item{p}
-		\item{p}
-		\item{p}
-		\item{p}
-		\item{p}
+		\item{$\gamma = 300$}
+		\item{$\eta_0 = \unit[8.14796255480381 \times 10^{34}]{sec^{-3} GeV^{-1}}$}
+		\item{$r_0 = \unit[3.357930930824906 \times 10^6]{sec}$}
+		\item{$\bm{n = 22.5269}$}
+		\item{$\omega_0 = \unit[1]{GeV}$}
+		\item{$\bm{\theta_0 = 5.02035 \times 10^{-5}}$}
+		\item{$\bm{k = -0.699813}$}
+		\item{$\bm{\alpha = -0.626944}$}
+		\item{$z = 2.1062$}
+		\item{$\bm{\chi = 0.00541037}$}
 \end{itemize}
 \end{multicols}
 
