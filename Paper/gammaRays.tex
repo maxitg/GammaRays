@@ -68,13 +68,17 @@
 	Most of the bursts in the catalog, however, do not have enough events with over $\unit[1]{GeV}$ energies to do desired computations, so we choose only those bursts, from which at least $10$ photons were detected in the high energy band.
 	It leaves $4$ of them: 080916C \cite{Tajima:2009az}, 090510 \cite{Ackermann:2010us}, 090902B \cite{Abdo:2009pg} and 090926A \cite{Bregeon:2011bu}.
 
-	For these 4 bursts we compute both high and low energy distributions of photon times, and subtract the background estimates from them.
+	For these 4 bursts we compute both high and low energy distributions of photon times, and subtract background estimates from them.
 	This makes CDFs non-monotonous and, rigorously speaking, we cannot use the 2-sample Kolmogorov-Smirnov test on it.
-	However, since the number of photons is much higher than estimated background, this non-monotonicity will be negligible, and will not harm the KS-test results much.
+	However, since the number of photons is much higher than estimated background, this non-monotonicity is negligible, and will not harm KS-test results much.
 
 	Finally, we stretch the high energy CDF by different factors, and compare it to the low energy CDF using the KS-test.
-	If we require $2\sigma$-significant probability to exclude a particular stretching factor, then the stretching factor of $1$ (which means no stretching) is allowed for GRBs 080916C and 090902B.
-	However, for 090926A, the stretching factor of $1$ is prohibited, so the high energy light curve should be stretched with respect to the low energy one.
+	If we require $2\sigma$-significant probability to exclude a particular stretching factor, then the stretching factor of $1$ (which means no stretching) is allowed for GRBs 080916C and 090510.
+	For the other two bursts the stretching factor of 1 is, however, prohibited.
+	For the GRB 090902B it is smaller than 1, so the low energy light curve is stretched with respect to the high energy one (see fig. \ref{fig:grb090902B}).
+	And for the GRB 090926A even more dramatic deviation from the stretching factor of 1 is observed in the opposite direction.
+	The high energy light curve of GRB 090926A is stretched with respect to the low energy one by at least a factor of 1.99 (see fig. \ref{fig:grb090926A}).
+	All observed stretching factors are summarized in table \ref{tab:observationResults}.
 
 	We propose that this result can be explained by the curvature effects (that is the effects of the jet geometry).
 	These effects were explored by multiple authors \cite{Nakamura:2001kd,Shen:2005ea,Shenoy:2013cba}.
