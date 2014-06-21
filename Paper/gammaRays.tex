@@ -66,13 +66,11 @@
 	We also download events during a day before the burst, and use the technique introduced in \cite{Rubtsov:2011qq} to estimate background radiation in both energy bands.
 
 	Most of the bursts in the catalog, however, do not have enough events with over $\unit[1]{GeV}$ energies to do desired computations, so we choose only those bursts, from which at least $10$ photons were detected in the high energy band.
-	This leaves $3$ of them: 080916C \cite{Tajima:2009az}, 090902B \cite{Abdo:2009pg} and 090926A \cite{Bregeon:2011bu}.
+	It leaves $4$ of them: 080916C \cite{Tajima:2009az}, 090510 \cite{Ackermann:2010us}, 090902B \cite{Abdo:2009pg} and 090926A \cite{Bregeon:2011bu}.
 
-	For these 3 bursts we compute both high and low energy distributions of photon times.
-	We subtract the low energy background estimate from the low energy CDF, and add the high energy background estimate to it.
-	This makes the low energy CDF non-monotonous and, rigorously speaking, we cannot use the 2-sample Kolmogorov-Smirnov test on it.
-	However, since there is a much greater number of photons on lower energies, we can think of the low energy CDF as continuous.
-	Therefore, this non-monotonicity will be negligible, and will not harm the KS-test results much.
+	For these 4 bursts we compute both high and low energy distributions of photon times, and subtract the background estimates from them.
+	This makes CDFs non-monotonous and, rigorously speaking, we cannot use the 2-sample Kolmogorov-Smirnov test on it.
+	However, since the number of photons is much higher than estimated background, this non-monotonicity will be negligible, and will not harm the KS-test results much.
 
 	Finally, we stretch the high energy CDF by different factors, and compare it to the low energy CDF using the KS-test.
 	If we require $2\sigma$-significant probability to exclude a particular stretching factor, then the stretching factor of $1$ (which means no stretching) is allowed for GRBs 080916C and 090902B.
