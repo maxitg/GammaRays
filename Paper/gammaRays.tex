@@ -75,8 +75,8 @@
 	Finally, we stretch the high energy CDF by different factors, and compare it to the low energy CDF using the KS-test.
 	If we require $2\sigma$-significant probability to exclude a particular stretching factor, then the stretching factor of $1$ (which means no stretching) is allowed for GRBs 080916C and 090510.
 	For the other two bursts the stretching factor of 1 is, however, prohibited.
-	For the GRB 090902B it is smaller than 1, so the low energy light curve is stretched with respect to the high energy one (see fig. \ref{fig:grb090902B}).
-	And for the GRB 090926A even more dramatic deviation from the stretching factor of 1 is observed in the opposite direction.
+	For GRB 090902B it is smaller than 1, so the low energy light curve is stretched with respect to the high energy one (see fig. \ref{fig:grb090902B}).
+	And for GRB 090926A even more dramatic deviation from the stretching factor of 1 is observed in the opposite direction.
 	The high energy light curve of GRB 090926A is stretched with respect to the low energy one by at least a factor of 1.99 (see fig. \ref{fig:grb090926A}).
 	All observed stretching factors are summarized in table \ref{tab:observationResults}.
 
@@ -88,13 +88,13 @@
 
 	First of all, there are around 750 GRBs detected by GBM, half of which were in the LAT field of view at the moment of observation \cite{Vianello:2013ela}.
 	However, only about 30 of them were detected by the LAT, and only 3 of them were bright in the high energy band.
-	If we extrapolate the uniform jet model to very high energies, this observation would mean that these groups of bursts are internally different: some of them produce VHE radiation, and other do not.
+	If we extrapolate the uniform jet model to very high energies, this observation would mean that these groups of bursts are internally different: some of them produce VHE radiation, while others do not.
 	These differences are hard to explain given that burst energetics are similar \cite{Bloom:2003wy}.
 	Nevertheless, these differences in burst counts can easily be explained by our model.
 	In our model, the opening angle of a jet is inversely proportional to the energy of photons it radiates.
-	Therefore the most common scenario is that the off-axis angle of the observer is smaller than the low energy jet opening angle, but larger than the opening angle of a high energy jet.
+	Therefore the most common scenario is that the off-axis angle of an observer is smaller than the low energy jet opening angle, but much larger than the opening angle of a high energy jet.
 	Because of that, most of the bursts can only be seen at low energies.
-	The 3 bursts we study in this paper, were seen, according to our model, from the lowest off-axis angles.
+	The 4 bursts we study in this paper were seen, according to our model, from the lowest off-axis angles.
 
 	Second, consider the plasma right after its ejection from the central engine.
 	Two processes happen there simultaneously:
@@ -110,7 +110,7 @@
         \includegraphics[width=0.7\textwidth]{modelOverview}
         \caption{
         	Model Overview.
-        	Here the red and the blue cones represent the volumes through which low and high energy plasma propagates.
+        	Here red and blue cones represent the regions through which low and high energy plasma propagates.
         	In case depicted the observer's off-axis angle is smaller than the opening angle of the low energy jet, so, due to the relativistic beaming effect, the most of the observable low energy photons will travel along the straight line from the central engine.
         	Also, the observer's off-axis angle is larger that the opening angle of the high energy jet, so the high energy radiation will still originate near the center of the jet (because it is the only place where there are high energy radiators).
         	The observation time of a photon is a sum of two things: the time interval spent in plasma as a radiator (which approximately equals to the distance from the central engine to the point of emission); and the time interval from emission to detection (which is the distance from the point of emission to the observer's location).
@@ -143,11 +143,12 @@
 	\end{figure}
 
 	Finally, our assumption is able to explain the non-trivial stretching factor of both GRBs 090902B and 090926A.
-	Detailed computations will be described in the following sections, but you can see the main idea on the figure \ref{fig:modelOverview}.
+	Detailed computations will be described in the following sections, but you can see the main idea on figure \ref{fig:modelOverview}.
 	The computations confirm that this qualitative picture is indeed correct.
-	You can see a sample light curves on the figure \ref{fig:sampleLightCurves}, and predicted distribution of stretching factors on the figure \ref{fig:kappaDistribution}.
+	You can see a sample light curves on figure \ref{fig:sampleLightCurves}, and predicted distribution of stretching factors on figure \ref{fig:kappaDistribution}.
 
 \section{Observations}
+\label{sec:observations}
 
 \subsection{Burst Data Download}
 
@@ -155,9 +156,9 @@
 	\centering
 	\small
 	\begin{tabular}{ l | S[table-format=9.3] | S[table-format=3.3] | S[table-format=-2.3] | S[table-format=1.5] | S[table-format=2.1] | S[table-format=3.1] }
-		\multicolumn{1}{ c |}{\texttt{name}} & $\mathrm{\texttt{time}}$ & \texttt{location.ra} & \texttt{location.dec} & \texttt{location.err} & \texttt{startOffset} & \texttt{endOffset} \\
 		\multicolumn{1}{ c |}{GRB} & $\mathrm{GBM\ Trigger\ Time}$ & $\mathrm{R.A.}$ & $\mathrm{Dec.}$ & $\mathrm{Location\ Error}$ & $T_{05}$ & $T_{95}$ \\
 		\multicolumn{1}{ c |}{Name}& $\mathrm{MET,\ sec}$ & $\mathrm{J2000,\ deg}$ & $\mathrm{J2000,\ deg}$ & $\mathrm{deg}$ & $\mathrm{sec}$ & $\mathrm{sec}$ \\
+		\multicolumn{1}{ c |}{\texttt{name}} & $\mathrm{\texttt{time}}$ & \texttt{location.ra} & \texttt{location.dec} & \texttt{location.err} & \texttt{startOffset} & \texttt{endOffset} \\
 		\hline
 		080825C	&	241366429.105	&	233.9  	&	 -4.5  	&	0.75   	&	 3.2	&	 29.4	\\
 		080916C	&	243216766.614	&	119.85 	&	-56.64 	&	0.0001 	&	 5.0	&	209.8	\\
@@ -179,47 +180,92 @@
 		110721A	&	332916465.760	&	333.2  	&	-38.5  	&	0.20   	&	 0.1	&	239.0	\\
 		110731A	&	333803371.954	&	280.504	&	-28.537	&	0.0001 	&	 3.0	&	 24.1
 	\end{tabular}
-	\caption{Burst data used in our study. The first row contains the corresponding \texttt{GRBurst} class variable names. The data is taken from the tables 2 and 4 of \cite{Ackermann:2013zfa}. \url{https://github.com/maxitg/GammaRays/blob/master/GRObservations/bursts}}
+	\caption{Burst data used in our study. The third row contains the corresponding \texttt{GRBurst} class variable names. The data is taken from the tables 2 and 4 of \cite{Ackermann:2013zfa}. \url{https://github.com/maxitg/GammaRays/blob/master/GRObservations/bursts}}
 	\label{tab:bursts}
 \end{table}
 
-Before we start to compute the Kolmogorov-Smirnov probabilities, we need to download the actual observational data from the Fermi LAT data server. We take the data about the bursts from the catalog \cite{Ackermann:2013zfa}, which contains all the bright bursts seen by the LAT since 2008 August 4 to 2011 August 1. Specifically, we take 4 pieces of information from the tables 2 and 4 there:
+Before we start to compute the Kolmogorov-Smirnov probabilities, we need to download the actual observational data from the Fermi LAT data server.
+We take the data about the bursts from the catalog \cite{Ackermann:2013zfa}, which contains all the bright bursts seen by the LAT since 2008 August 4 to 2011 August 1.
+Specifically, we take 4 pieces of information from the tables 2 and 4 there:
 \begin{itemize}
-	\item{GBM trigger time (table 2). It is used as a reference point for the GRB time.}
-	\item{Location of the GRB (table 2). We need burst locations to filter out photons coming from other sources.}
-	\item{Location error (table 2). Location errors are used to improve accuracy of filtering, specifically to avoid losing statistics by filtering too much.}
-	\item{$T_{05}$ -- $T_{95}$ interval of the LAT-detected emission (table 4). We need precise intervals for two things. First, to understand where is the fixed point of the stretching ($T_{05}$ is used as a proxy for that). Second, the burst interval is used to download events data from the data server.}
+	\item{
+		GBM trigger time (table 2).
+		It is used as a reference point for the GRB time.
+	}
+	\item{
+		Location of the GRB (table 2).
+		We need burst locations to filter out photons coming from other sources.
+	}
+	\item{
+		Location error (table 2).
+		Location errors are used to improve accuracy of filtering, specifically to avoid losing statistics by filtering too much.
+	}
+	\item{
+		$T_{05}$ -- $T_{95}$ interval of the LAT-detected emission (table 4).
+		We need precise intervals for two things.
+		First, to understand where is the fixed point of the stretching ($T_{05}$ is used as a proxy for that).
+		Second, the burst interval is used to download events data from the data server.
+	}
 \end{itemize}
-The data obtained is summarized in the table \ref{tab:bursts}.
+The data obtained is summarized in table \ref{tab:bursts}.
 
 Finally, to download the data about observed photons, we fill the form at the LAT data server front page with the following values:
 \begin{itemize}
-	\item{{\bf Object name or coordinates}. Here the coordinates are filled from the table \ref{tab:bursts}.}
-	\item{{\bf Coordinate system}. J2000.}
-	\item{{\bf Search radius (degrees)}. $60$. Events will be filtered by location later on by using the point spread functions (PSFs) of the LAT.}
 	\item{
-		{\bf Observation dates}. To have a decent safety margin, we extend the duration of the burst by $15\%$ to both past and future relative to the table \ref{tab:bursts} time ranges. So, we fill in the following values:
+		{\bf Object name or coordinates}.
+		Here the coordinates are filled from the table \ref{tab:bursts}.
+	}
+	\item{
+		{\bf Coordinate system}.
+		J2000.
+	}
+	\item{
+		{\bf Search radius (degrees)}.
+		$60$.
+		Events will be filtered by location later by using the point spread functions (PSFs) of the LAT.
+	}
+	\item{
+		{\bf Observation dates}.
+		To have a decent safety margin, we extend the duration of the burst by $50\%$ to both past and future relative to the table \ref{tab:bursts} time ranges.
+		So, we fill in the following values:
 		\begin{align*}
-			\texttt{time} + \texttt{startOffset} &- 0.15\left(\texttt{endOffset}-\texttt{startOffset}\right),\\
-			\texttt{time} + \texttt{endOffset} &+ 0.15\left(\texttt{endOffset}-\texttt{startOffset}\right)
+			\texttt{time} + \texttt{startOffset} &- 0.5\left(\texttt{endOffset}-\texttt{startOffset}\right),\\
+			\texttt{time} + \texttt{endOffset} &+ 0.5\left(\texttt{endOffset}-\texttt{startOffset}\right)
 		\end{align*}
 	}
-	\item{{\bf Time system}. MET.}
-	\item{{\bf Energy range (MeV)}. $30,\,300000$. The whole energy range is required for our study.}
-	\item{{\bf LAT data type}. Extended, because we need transient photons for better statistics.}
-	\item{{\bf Spacecraft data}. Checked. It is required for both events filtering, and calculation of the PSFs and exposure maps.}
+	\item{
+		{\bf Time system}.
+		MET.
+	}
+	\item{
+		{\bf Energy range (MeV)}.
+		$30,\,300000$.
+		The whole energy range is required for our study.
+	}
+	\item{
+		{\bf LAT data type}.
+		Extended.
+	}
+	\item{
+		{\bf Spacecraft data}.
+		Checked.
+		It is required for both events filtering, and calculation of the PSFs and exposure maps.
+	}
 \end{itemize}
 
-For background estimation, we also download observational data during a day before the burst. All the values are put the same into the form, except the time range:
+For background estimation, we also download observational data during a day before the burst.
+All the values are put the same into the form, except the time range:
 \begin{align*}
-	\texttt{time} + \texttt{startOffset} &- 0.15\left(\texttt{endOffset} - \texttt{startOffset}\right) - \unit[86400]{sec},\\
-	\texttt{time} + \texttt{startOffset} &- 0.15\left(\texttt{endOffset} - \texttt{startOffset}\right)
+	\texttt{time} + \texttt{startOffset} &- 0.5\left(\texttt{endOffset} - \texttt{startOffset}\right) - 86400,\\
+	\texttt{time} + \texttt{startOffset} &- 0.5\left(\texttt{endOffset} - \texttt{startOffset}\right)
 \end{align*}
-All other values filled in the form are the same.
 
-Before reading the data, we need to apply the basic filtering as described in Fermi guidelines. Two tools from the Fermi Science Tools package are used for that task (the same filtering is applied to both burst and background data).
+Before reading the data, we need to apply the basic filtering as described in Fermi guidelines.
+Two tools from the Fermi Science Tools package are used for that task (the same filtering is applied to both burst and background data).
 
-The first one is \texttt{gtselect}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtselect.txt}}. It filters the Earth limb emission. We run the tool with the following parameters\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/explore_latdata_burst.html}}:
+The first one is \texttt{gtselect}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtselect.txt}}.
+It filters the Earth limb emission.
+We run the tool with the following parameters\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/explore_latdata_burst.html}}:
 \begin{lstlisting}
 gtselect infile=[eventFile] outfile=filtered.fits
 	ra=INDEF dec=INDEF rad=180 tmin=INDEF tmax=INDEF emin=100 emax=300000
@@ -236,7 +282,7 @@ gtmktime scfile=[spacecraft] sctable=SC_DATA
 \end{lstlisting}
 where \texttt{[spacecraft]} is the FITS containing the spacecraft data.
 
-Now, with basic filtering done, we can read events data from \texttt{timed.fits}. This file, however, contains observations of a large area of the sky. Before using the data obtained from it, we should perform a more elaborate filtering by location using Fermi LAT's point spread function, which will be described in the following section.
+Now, with basic filtering done, we can read events data from \texttt{timed.fits}. This file, however, contains observations of a large area of the sky. Before using the data obtained from it, we should perform a more elaborate filtering by location using Fermi LAT's point spread function. The procedure is described in the following section.
 
 \subsection{Point Spread Functions and Location Filtering}
 
@@ -252,17 +298,18 @@ Having the maps, we can compute the PSFs:
 gtpsf expcube=ltcube.fits outfile=psf_[IrfName].fits outtable=PSF irfs=[IrfName]
 	ra=[RA] dec=[DEC] emin=100 emax=1000000 nenergies=41 thetamax=30 ntheta=300
 \end{lstlisting}
-Here \texttt{[RA]} and \texttt{[DEC]} are the coordinates of the burst, and \texttt{[IrfName]} is the Instrument Response Function, which depends on photon's event class (transient, source, clean, or ultraclean) and conversion type (back, or front). The list of IRF names can be obtained by using the \texttt{gtirfs}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtirfs.txt}} tool. We need to compute PSFs for all of them.
+Here \texttt{[RA]} and \texttt{[DEC]} are the coordinates of the burst, and \texttt{[IrfName]} is the Instrument Response Function, which depends on photon's event class (transient, source, clean, or ultraclean) and conversion type (back or front). The list of IRF names can be obtained with the \texttt{gtirfs}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtirfs.txt}} tool. We need to compute PSFs for all of them.
 
-Imagine a stream of photons coming from some source locate at some coordinates $\theta, \phi$. Ideally, all the coordinates measured for the photons coming from the source should be the same. However, due to measurement errors, they would be spread across some region of the sky. If we find the region such that, say, $95\%$ of photons coming from the source are measured inside of it, we can filter out all the other photons without losing too much statistics, and significantly reducing background. \texttt{gtpsf} approximates these regions as circles, and the files generated in the previous step contain the observation probability densities as functions of distance from the source, and photon energies. We, however, need an integral quantity, that is given the radius, we want to know the fraction of photons observed inside the circle of this radius. We can compute this fraction by summing over the probability densities:
-\begin{equation*}
-	p\left(n\right) = \sum_{i=0}^{n} \frac{\texttt{pdf[i]} + \texttt{pdf[i+1]}}{2} 2\pi \left(\cos\left(\texttt{angles[i]}\right) - \cos\left(\texttt{angles[i+1]}\right)\right)
-\end{equation*}
+To understand how to use obtained PSFs, imagine a stream of photons coming from some source located at some coordinates $\theta, \phi$. Ideally, all the coordinates measured for the photons coming from the source should be the same. However, due to measurement errors, they would be spread across some region of the sky. If we find the region such that, say, $95\%$ of photons coming from the source are measured inside of it, we can filter out all the other photons without losing too much statistics, and significantly reducing background. \texttt{gtpsf} approximates these regions as circles, and the files generated in the previous step contain the observation probability densities as functions of distance from the source and photon energies. We, however, need an integral quantity, that is given the radius, we want to know the fraction of photons observed inside the circle of this radius. We can compute this fraction by summing over the probability densities:
+\begin{align*}
+	p\left(n\right) &= \int_0^n \texttt{pdf[i]} 2\pi \sin\left(\texttt{angles[i]}\right) \dif i \\
+	&\approx \sum_{i=0}^{n} \frac{\texttt{pdf[i]} + \texttt{pdf[i+1]}}{2} 2\pi \left(\cos\left(\texttt{angles[i]}\right) - \cos\left(\texttt{angles[i+1]}\right)\right)
+\end{align*}
 Here \texttt{pdf[i]} is the probability density in the point separated from the source by an angle \texttt{angles[i]}. And $p\left(n\right)$ is the probability to observe a photon closer to the source than \texttt{angles[n]}. We find probabilities for intermediate angles by linear interpolation. Finally, we can compute the inverse value $\theta_{\text{spread}}\left(p\right)$ (that is a distance as a function of probability) by binary search. Note, that $\theta_{\text{spread}}\left(p\right)$ depends on the photon energy, event class, and conversion type. We should use the appropriate function for each photon. The spread angles for intermediate energies are linearly interpolated.
 
 Finally, to finish the filtering, we filter out all the photons, for which their location is separated from the source by more that $\theta_{\text{spread}}\left(0.95\right) + \texttt{location.err}$, where \texttt{location.err} is the uncertainty in the burst location (see table \ref{tab:bursts}).
 
-Now we have a decent set of photons, which we can use for analysis. However, some of the photons in this set are still originated from background, and not from the source. We cannot filter out these photons, however, we can substitute a linear component of background by estimating it from a long time period before the burst. In order to perform this computation, we'll need an exposure map, which will be discussed in the following section.
+Now we have a decent set of photons, which we can use for analysis. However, some of the photons in this set are still originated from background, and not from the source. We cannot filter out these photons, but we can substitute a linear component of background by estimating it from a long time period before the burst. In order to perform this computation, we'll need an exposure map, which will be discussed in the following section.
 
 \subsection{Exposure Maps and Background Estimation}
 
@@ -273,9 +320,9 @@ gtexpcube2 infile=ltcube.fits cmap=none outfile=expcube_[IrfName].fits irfs=[Irf
 	proj=CAR ebinalg=log emin=100 emax=1000000 enumbins=40
 	ebinfile=NONE bincalc=EDGE ignorephi=no thmax=180 thmin=0 table=Exposure
 \end{lstlisting}
-The generated \texttt{expcube} files contain exposures as functions of energy and location on the sky\footnote{Note, that in the \texttt{expcube} FITS files R.A. coordinates are indexed in reverse order and starting from 180, for example, $\texttt{ra[0]}=180$, $\texttt{ra[1]}=179$, and so on.}. We use trilinear interpolation to compute exposures for all energies and locations.
+The generated \texttt{expcube} files contain exposures as functions of energy and location on the sky\footnote{Note, that R.A. coordinates in the \texttt{expcube} FITS files are indexed in reverse order and starting from 180. For example, $\texttt{ra[0]}=180$, $\texttt{ra[1]}=179$, and so on.}. We use trilinear interpolation to compute exposures for all energies and locations.
 
-Knowing the exposures, we can now use the method introduced in the appendix of \cite{Rubtsov:2011qq} to estimate the linear component of background from the data observed before the burst. We compute two background estimates: for low and high energy bands. Because the background of transient class photons may depend on the spacecraft position, we have to filter them as well.
+Knowing the exposures, we can now use the method introduced in the appendix of \cite{Rubtsov:2011qq} to estimate the linear component of background from the data observed before the burst. We compute two background estimates: for low and high energy bands. Because the background of transient class photons may depend on the spacecraft position, we have to filter them completely.
 
 \subsection{KS-test}
 
@@ -291,7 +338,7 @@ While we did not prove it, we assume that the Kolmogorov-Smirnov statistics comp
 
 Finally, we compute KS-probabilities for pairs $\Phi_\text{low}\left(t\right), \Phi_\text{high}\left(\kappa t\right)$ to obtain the allowed ranges for stretching factors $\kappa$. We evaluate stretching factors in the range $\texttt{STRETCHING\_MIN} = 0.1$ to $\texttt{STRETCHING\_MAX} = 10.$ with a logarithmic step of $\texttt{STRETCHING\_STEP} = 1.001$.
 
-As a result of such calculation we can constraint the range of allowed stretching factors to values for which the KS-probabilities are not too small, in other words, given the sigma-significance value, compute the range outside of which stretching factors are elliminated by observations.
+As a result of such calculation we can constrain the range of allowed stretching factors to values for which the KS-probabilities are not too small, in other words, given the sigma-significance value, compute the range outside of which stretching factors are elliminated by observations.
 
 You can see the results of such computation in the following section.
 
@@ -303,7 +350,7 @@ Out of these 4 bursts, two (080916C and 090510) have stretching factors compatib
 
 GRB 090926A has, however, high energy radiation stretched with respect to low energy signal (that is $\kappa > 1$). In contrast to that, GRB 090902B has low energy radiation stretched with respect to high energy signal ($\kappa < 1$).
 
-So we obtained a preliminary (for significance is less than $5\sigma$) result that the stretching factors for observable bursts might be both larger and smaller than $1$.
+So we obtained a preliminary (for significance is only $2\sigma$) result that the stretching factors for observable bursts might be both larger and smaller than $1$.
 
 \begin{figure}
         \centering
@@ -343,7 +390,7 @@ So we obtained a preliminary (for significance is less than $5\sigma$) result th
                 \includegraphics[width=\textwidth]{probabilities090902B}
                 \label{fig:probabilities090902B}
         \end{subfigure}
-        \caption{GRB 090902B results. Low energy radiation is stretched ($\kappa < 1$) with significance of $2\sigma$.}
+        \caption{GRB 090902B results. Low energy radiation is stretched ($\kappa < 1$) with significance of $2.2\sigma$.}
         \label{fig:grb090902B}
 \end{figure}
 
@@ -357,7 +404,7 @@ So we obtained a preliminary (for significance is less than $5\sigma$) result th
                 \includegraphics[width=\textwidth]{probabilities090926A}
                 \label{fig:probabilities090926A}
         \end{subfigure}
-        \caption{GRB 090926A results. High energy radiation is stretched ($\kappa > 1$) with significance of $3\sigma$.}
+        \caption{GRB 090926A results. High energy radiation is stretched ($\kappa > 1$) with significance of $3.3\sigma$.}
         \label{fig:grb090926A}
 \end{figure}
 
@@ -412,21 +459,6 @@ The burst is fully specified by the following set of parameters:
 \item{$k$, which determines how much the opening angle changes with frequency, $k < 0$;}
 \item{$\alpha$, the bare spectral index, $\alpha < -2k - 1$}
 \end{itemize}
-
-Numerical values we used for these parameters are summarized in the table \ref{tab:parameters}.
-
-\begin{table}
-	\centering
-	\small
-	\begin{tabular}{ r | l | l }
-		Parameter	&	Value			&	Comments \\
-		\hline
-		$\gamma$		&	$100$		&	\\
-		$\eta_0$		&	$10^{45}$	&
-	\end{tabular}
-	\caption{Parameter values.}
-	\label{tab:parameters}
-\end{table}
 
 Now we have all we need to calculate the observed light curves, and then the stretching factors.
 
@@ -966,6 +998,32 @@ The minimization then converged to the following parameter values:
 \end{multicols}
 
 \subsection{Results}
+	
+	TODO: Connect this part.
+
+	Numerical simulations based on these assumptions are able to reproduce both stretching factors smaller than $1$ (like of GRB 090902B) and larger than $1$ (like of GRB 090926A) depending on redshift and observer's off-axis angle (see fig. \ref{fig:sampleLightCurves}).
+
+	To test the model against observations, we computed a few more things:
+	\begin{itemize}
+		\item{
+			Total energy emitted in $\unit[100]{MeV}$ and more energetic gamma rays $E < \unit[5.89 \times 10^{53}]{GeV}$, which is in agreement with \cite{Gehrels:2013xd}.
+		}
+		\item{
+			Distribution of stretching factors of observable bursts.
+			You can see the PDF and the CDF of it on fig. \ref{fig:kappaDistribution}.
+			This distribution doesn't contradict with the values of stretching factors obtained in section \ref{sec:observations}.
+		}
+		\item{
+			The fraction of bursts observable in low energy band, which are also observed in high energy band $f_m = 0.116$.
+			The Fermi LAT catalog contains $35$ bursts out of which $4$ can be observed in high energy band.
+			Therefore the observed value $f_o = 0.11 \pm 0.05$ (error obtained from binomial distribution) agrees with the model.
+		}
+		\item{
+			There is a correlation between the fraction of high energy photons (that is high energy photon count divided by the total photon count), the stretching factor and the observer's off-axis angle (see fig. \ref{fig:correlations}). It allows one to predict observer's off-axis angles.
+		}
+	\end{itemize}
+
+	So our model, though with some discrepancies, is able to explain the time stretching result from section \ref{sec:observations}.
 
 \begin{figure}
 	\hspace*{\fill}
@@ -993,6 +1051,44 @@ The minimization then converged to the following parameter values:
 \end{figure}
 
 \section{Discussion}
+
+\label{sec:discussion}
+
+	The main results of our study may be summarized as following:
+	\begin{enumerate}
+		\item{
+			The time stretching of GRB light curves between different VHE bands is confirmed with statistical significance of $3.3\sigma$.
+		}
+		\item{
+			This time stretching can be explained by geometry of the jet, without introducing any new spectral components.
+		}
+		\item{
+			All GRBs are assumed to be the same in their rest frames.
+			There is no need to vary internal burst parameters.
+		}
+	\end{enumerate}
+
+	There are, however, directions for improvement:
+	\begin{itemize}
+		\item{
+			The model prediction and observations on fig. \ref{fig:correlations} are, though close, not exactly agree.
+		}
+		\item{
+			Shapes of light curves produced by the model differ considerably from observed ones.
+		}
+		\item{
+			Assumption of energy dependence on off-axis angle should be better justified.
+		}
+		\item{
+			While we believe that all bursts are almost the same in their rest frames, they are certainly not exactly the same.
+			The minor differences between GRBs might be responsible for observable deviations from the model predictions.
+		}
+	\end{itemize}
+
+	We believe, however, that these problems are not unresolvable, and may be addressed by refining the model without changing its main assumptions.
+	And in the end, we think the main ideas of this paper will be close to truth.
+
+	{\small {\it Acknowledgments.} The work was supported by Russian Science Foundation grant 14-12-01340.}
 
 \bibliographystyle{hep}
 \bibliography{gammaRays.bib}
