@@ -28,7 +28,7 @@ using namespace std;
 
 #include <curl/curl.h>
 
-#include <fitsio.h>
+#include "fitsio.h"
 
 #include "GRFermiLATDataServerQuery.h"
 
@@ -174,13 +174,13 @@ void GRFermiLATDataServerQuery::download() {
     curl_formadd(&formpost,
                     &lastptr,
                     CURLFORM_COPYNAME, "energyfield",
-                    CURLFORM_COPYCONTENTS, "30, 300000",
+                    CURLFORM_COPYCONTENTS, "100, 300000",
                     CURLFORM_END);
     
     curl_formadd(&formpost,
                     &lastptr,
                     CURLFORM_COPYNAME, "photonOrExtendedOrNone",
-                    CURLFORM_COPYCONTENTS, "Extended",
+                    CURLFORM_COPYCONTENTS, "Photon",
                     CURLFORM_END);
     
     curl_formadd(&formpost,

@@ -47,7 +47,6 @@ float GRExposureMap::exposure(float energy, GRLocation location) {
 }
 
 float GRExposureMap::exposure(int energyIndex, GRLocation location) {
-#warning change to interpolation
     int raLow = location.ra;
     int raHigh = raLow+1;
     if (raHigh == 360) {

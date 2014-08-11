@@ -17,7 +17,7 @@
 		69585EB81854B9C20063EE83 /* GRLocation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69585EAF1854B9C20063EE83 /* GRLocation.cpp */; };
 		69585EB91854B9C20063EE83 /* GRPsf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69585EB11854B9C20063EE83 /* GRPsf.cpp */; };
 		69585EBB1854BAC90063EE83 /* libcurl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 69585EBA1854BAC90063EE83 /* libcurl.dylib */; };
-		69585EBD1854BADD0063EE83 /* libcfitsio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69585EBC1854BADD0063EE83 /* libcfitsio.a */; };
+		69B8D8B419975D69000F35F1 /* libcfitsio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69B8D8B319975D69000F35F1 /* libcfitsio.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,7 +52,9 @@
 		69585EB11854B9C20063EE83 /* GRPsf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GRPsf.cpp; sourceTree = "<group>"; };
 		69585EB21854B9C20063EE83 /* GRPsf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRPsf.h; sourceTree = "<group>"; };
 		69585EBA1854BAC90063EE83 /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = usr/lib/libcurl.dylib; sourceTree = SDKROOT; };
-		69585EBC1854BADD0063EE83 /* libcfitsio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcfitsio.a; path = ../../../../../usr/local/lib/libcfitsio.a; sourceTree = "<group>"; };
+		69B8D8B219975D57000F35F1 /* fitsio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fitsio.h; sourceTree = "<group>"; };
+		69B8D8B319975D69000F35F1 /* libcfitsio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcfitsio.a; sourceTree = "<group>"; };
+		69B8D8B519975DAD000F35F1 /* longnam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = longnam.h; path = GRObservations/longnam.h; sourceTree = "<group>"; };
 		69C902DE1888EFD600F34781 /* bursts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bursts; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -61,8 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69585EBD1854BADD0063EE83 /* libcfitsio.a in Frameworks */,
 				69585EBB1854BAC90063EE83 /* libcurl.dylib in Frameworks */,
+				69B8D8B419975D69000F35F1 /* libcfitsio.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +74,7 @@
 		69585E901854B9830063EE83 = {
 			isa = PBXGroup;
 			children = (
-				69585EBC1854BADD0063EE83 /* libcfitsio.a */,
+				69B8D8B619975DB8000F35F1 /* CFitsIO */,
 				69585EBA1854BAC90063EE83 /* libcurl.dylib */,
 				69585E9B1854B9830063EE83 /* GRObservations */,
 				69585E9A1854B9830063EE83 /* Products */,
@@ -109,6 +111,16 @@
 				69585E9E1854B9830063EE83 /* GRObservations.1 */,
 			);
 			path = GRObservations;
+			sourceTree = "<group>";
+		};
+		69B8D8B619975DB8000F35F1 /* CFitsIO */ = {
+			isa = PBXGroup;
+			children = (
+				69B8D8B519975DAD000F35F1 /* longnam.h */,
+				69B8D8B219975D57000F35F1 /* fitsio.h */,
+				69B8D8B319975D69000F35F1 /* libcfitsio.a */,
+			);
+			name = CFitsIO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,7 +264,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/local/include,
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -265,7 +277,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/local/include,
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

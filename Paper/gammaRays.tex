@@ -431,7 +431,7 @@ So we obtained a preliminary (for significance is only $2\sigma$) result that th
 To understand the observed spectral lag, lets explore geometry of the jet. First of all, lets make some assumptions:
 \begin{enumerate}
 \item{Time $t = 0$, a spherical shell of plasma is emitted. The center is called the central engine.}
-\item{The shell points propagate with a constant velocity $v \sim 1$, so at the time $t$ the radius of the shall is $v t$.}
+\item{The shell points propagate with a constant velocity $v = \frac{\sqrt{\gamma^2 - 1}}{\gamma} \sim 1$, so at the time $t$ the radius of the shall is $v t$.}
 \item{Each point of the shell is an isotropic radiator in its rest frame.}
 \item{
 	The radiation intensity is a function of the radiator position and the radiation frequency:
@@ -450,7 +450,7 @@ To understand the observed spectral lag, lets explore geometry of the jet. First
 
 The burst is fully specified by the following set of parameters:
 \begin{itemize}
-\item{$v$, the velocity of the shell, $\gamma = \frac{1}{\sqrt{1-v^2}} \gg 1$.}
+\item{$\gamma$, the relativistic factor of the shell, $\gamma \gg 1$.}
 \item{$\eta_0$, which defines the luminosity scale.}
 \item{$r_0$, the characteristic jet length; $r_0 \ll \frac{1}{H\left(0\right)}$, $H\left(t\right)$ is the Hubble parameter;}
 \item{$n$, which determines the sharpness of the jet end, $n > 3$;}
@@ -464,7 +464,7 @@ Now we have all we need to calculate the observed light curves, and then the str
 
 \subsection{Photon observation time}
 
-Lets begin by computing a time at which some particular photon is observed. This time is a function of the radiator location $\left(r, \theta, \phi\right)$, as well as the observer location $\left(d, \chi, 0\right)$. (Here we choose coordinates so that the rotation angle of the observer is $0$.) Lets assume for now that the observer is far enough to resolve the jet geometry, yet close enough so that the expansion of space is negligible. This assumption allows us to ignore the effects of cosmology for this calculation.
+Lets begin by computing a time at which some particular photon is observed. This time is a function of the radiator location $\left(r, \theta, \phi\right)$, as well as the observer location $\left(d, \chi, 0\right)$. (Here we choose coordinates so that the rotation angle of the observer is $0$.) Lets assume for now that the observer is too far from the jet to resolve its geometry, yet close enough so that the expansion of space is negligible. This assumption allows us to ignore the effects of cosmology for this calculation.
 
 The observation time is a sum of two terms: the time interval from $t = 0$ to the photon emission (the plasma time), and the time interval between the emission and the observation (the photon time):
 \begin{equation*}
@@ -508,7 +508,7 @@ Finally, we can use the spherical law of cosines to write this in terms of the g
 \tau \left(r, \theta, \phi, \chi\right) = r\left( \frac{1}{v} - \cos\sigma\left( \theta, \phi, \chi \right) \right)
 \end{equation}
 
-Note that $\tau$ doesn't depend on $d$ anymore. But this is only true if the scale factor did not change since emission to observation. For a distant observer we should account for the change in the scale factor, which will stretch the distances between photons:
+Note that $\tau$ doesn't depend on $d$ anymore. But this is only true if the scale factor did not change from emission to observation. For a distant observer we should account for the change in the scale factor, which will stretch the distances between photons:
 \begin{equation}
 \tau \left(r, \theta, \phi, z, \chi \right) = r\left( \frac{1}{v} - \cos\sigma\left( \theta, \phi, \chi \right) \right) \left( 1 + z \right)
 \end{equation}
@@ -529,7 +529,7 @@ We need to understand how the scale factor changes with time. For that we assume
 \dot{a}\left(t\right) &= a\left(t\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda} \\
 \dif t &= \frac{\dif a}{a\left(t\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}}
 \end{align*}
-Here $H_\text{obs} = H\left(t_\text{obs}\right) = \dot{a}\left( t_\text{obs} \right)$ is the Hubble parameter at the observation time.
+Here $H_\text{obs} = H\left(t_\text{obs}\right) = \frac{\dot{a}\left( t_\text{obs} \right)}{a\left( t_\text{obs} \right)} = \dot{a}\left( t_\text{obs} \right)$ is the Hubble parameter at the observation time.
 
 We also need to know the areas of two spheres: the photon sphere, a sphere over which photons emitted in a particular burst are spread; and the bursts sphere, a sphere over which bursts at a particular redshift are distributed.
 
@@ -572,7 +572,7 @@ We will need to know one more thing about the bursts sphere -- the volume of the
 \end{align}
 
 \subsection{Light curve}
-We now know enough to compute the observable quantity - the number of observed photons $p$. For that we need to integrate the radiation intensity $\eta$ over four things. Two burst-related things: radiator positions and frequencies at emission. Two observer-related things: observation time and frequencies at observation. We relate the first two and the second two with the delta functions:
+We now know enough to compute the observable quantity - the number of observed photons $p$. For that we need to integrate the radiation intensity $\eta$ over four things. Two burst-related things: radiator positions $\left(r, \theta, \phi\right)$ and frequencies at emission $\omega'$. Two observer-related things: observation time $\tau$ and frequencies at observation $\omega$. We relate the first two and the second two with the delta functions:
 \begin{align}
 p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det}}{A_\text{ph}\left(z\right)} \int_0^\infty \dif r \int_0^{\pi} r \dif \theta \int_0^{2\pi} r \sin{\theta} \dif \phi \int_0^\infty \dif \omega' \int_{\tau_1}^{\tau_2} \dif \tau \int_{\omega_1}^{\omega_2} \dif \omega \, \eta\left( r, \theta, \omega' \right) \nonumber\\
 &\qquad {} \times \underbrace{\frac{1}{\gamma^2\left( 1 - v \cos\sigma\left(\theta, \phi, \chi\right) \right)^2}}_{\text{aberration}} \underbrace{\frac{1}{\gamma\left( 1 - v \cos\sigma\left(\theta, \phi, \chi\right) \right)}}_{\text{time dilation}} \nonumber\\
@@ -600,7 +600,7 @@ p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det
 &\qquad {} \times \eta\left( \frac{\tau}{\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)\left(1+z\right)}, \theta, \gamma\left( 1 - v\cos\sigma\left(\theta, \phi, \chi\right) \right)\left(1+z\right)\omega  \right)
 \end{align}
 
-Furthermore, we can do the integrals over $\omega$ and $\tau$, if we write $\eta$ explicitly:
+Furthermore, if we write $\eta$ explicitly we can do the integrals over $\omega$ and $\tau$:
 \begin{align}
 p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det}}{A_\text{ph}\left(z\right)} \frac{1}{v^2 \gamma^2 \left(1+z\right)^2} \int_0^{\pi} \dif \theta \int_0^{2\pi} \dif \phi \int_{\omega_1}^{\omega_2} \dif \omega \int_{\tau_1}^{\tau_2} \dif \tau \, \tau^2 \frac{\sin\theta}{\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)^5} \nonumber\\
 &\qquad {} \times \frac{\eta_0}{1 + \left(\frac{\tau}{r_0\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)\left(1+z\right)}\right)^n} \nonumber\\
@@ -620,7 +620,7 @@ p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det
 \int_0^{\pi} \dif \theta \int_0^{2\pi} \dif \phi \frac{\sin\theta}{\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)^{5-\alpha}} \nonumber\\
 &\qquad {} \times \left( I\left(z,\chi,\omega_2; \theta,\phi\right) - I\left(z,\chi,\omega_1; \theta,\phi\right) \right) \left( J\left(z,\chi,\tau_2; \theta,\phi\right) - J\left( z,\chi,\tau_1; \theta,\phi \right) \right)
 \end{align}
-Here $I$ and $J$ are the indefinite integrals over $\omega$ and $\tau$:
+Here $I$ and $J$ are indefinite integrals over $\omega$ and $\tau$:
 \begin{align}
 I\left(z,\chi,\omega;\theta,\phi\right) &= \frac{
 	\omega
@@ -871,11 +871,11 @@ Given these transformations, we can reduce the number of parameters for fit to 7
 Also, some of the parameters we know from observations:
 \begin{itemize}
 	\item{Redshifts $z$ of many bursts have been measured \cite{Ackermann:2013zfa}.}
-	\item{We know that Lorentz factors $\gamma$ are on the order of magnitude\footnote{Our minimization procedure can find similar minimums for other values of $\gamma$, at least from $100$ to $1000$} of $\gamma = 300$ \cite{Ghirlanda:2011ux}.}
+	\item{We know that relativistic factors $\gamma$ are on the order of magnitude\footnote{Our minimization procedure can find similar minimums for other values of $\gamma$, at least from $100$ to $1000$} of $\gamma = 300$ \cite{Ghirlanda:2011ux}.}
 \end{itemize}
 This knowledge allows us to reduce the number of parameters to minimize against to just 5: $\left(n, \theta_0, k, \alpha, \chi\right)$.
 
-We want then our cost function $C\left(n, \theta_0, k, \alpha, \chi\right)$ to satisfy the following objectives:
+We want our cost function $C\left(n, \theta_0, k, \alpha, \chi\right)$ to satisfy the following objectives:
 \begin{itemize}
 	\item {
 		Total energy of the burst is finite (that is $k+\frac{\alpha}{2}+1 < 0$) and smaller than $\unit[6 \times 10^{53}]{GeV} \approx \unit[10^{51}]{erg}$ \cite{Gehrels:2013xd}.
@@ -890,7 +890,7 @@ We want then our cost function $C\left(n, \theta_0, k, \alpha, \chi\right)$ to s
 		The ratio of photons with high energies and low energies should be compatible with the value for the GRB 090926A, $\frac{p_{\infty} \left(z,\chi;\unit[1]{GeV},\infty\right)}{p_{\infty} \left(z,\chi;\unit[0.1]{GeV},\unit[1]{GeV}\right)} = 0.06$.
 	}
 	\item {
-		Finally, the burst should not be too faint compared to other bursts from the sample. That is the total number of observed photons should approximately equal to the median among the sample.
+		Finally, the burst should not be too faint compared to other bursts from the sample. In other words, the total number of observed photons should approximately equal to the median among the sample.
 	}
 \end{itemize}
 
@@ -997,11 +997,11 @@ The minimization then converged to the following parameter values:
 \end{itemize}
 \end{multicols}
 
+Note, that these parameter values (except for $z$ and $\chi$) are universal, and they can describe the whole population of observed bursts, as will be shown in the next section.
+
 \subsection{Results}
 	
-	TODO: Connect this part.
-
-	Numerical simulations based on these assumptions are able to reproduce both stretching factors smaller than $1$ (like of GRB 090902B) and larger than $1$ (like of GRB 090926A) depending on redshift and observer's off-axis angle (see fig. \ref{fig:sampleLightCurves}).
+	As was discussed in the previous section our model can reproduce both stretching factors smaller than $1$ (like of GRB 090902B) and larger than $1$ (like of GRB 090926A) depending on redshift and observer's off-axis angle (see fig. \ref{fig:sampleLightCurves}).
 
 	To test the model against observations, we computed a few more things:
 	\begin{itemize}
@@ -1046,7 +1046,7 @@ The minimization then converged to the following parameter values:
 \begin{figure}
         \centering
         \includegraphics[width=1.0\textwidth]{correlations}
-        \caption{Correlations between off-axis angles, stretching factors and high to low energy photon count ratios found in the sample produces by our model. The sample contains $4096$ bursts. Black crosses show observations. This correlation allows to estimate off-axis angles of observed bursts.}
+        \caption{Correlations between off-axis angles, stretching factors and high to low energy photon count ratios found in the sample produced by our model. The sample contains $4096$ bursts. Black crosses show observations with $2\sigma$ error bars. This correlation allows one to estimate off-axis angles of observed bursts.}
         \label{fig:correlations}
 \end{figure}
 
@@ -1063,7 +1063,7 @@ The minimization then converged to the following parameter values:
 			This time stretching can be explained by geometry of the jet, without introducing any new spectral components.
 		}
 		\item{
-			All GRBs are assumed to be the same in their rest frames.
+			All GRBs can be assumed to be the same in their rest frames.
 			There is no need to vary internal burst parameters.
 		}
 	\end{enumerate}
@@ -1077,7 +1077,7 @@ The minimization then converged to the following parameter values:
 			Shapes of light curves produced by the model differ considerably from observed ones.
 		}
 		\item{
-			Assumption of energy dependence on off-axis angle should be better justified.
+			Assumption of energy dependence on off-axis angle should be justified better.
 		}
 		\item{
 			While we believe that all bursts are almost the same in their rest frames, they are certainly not exactly the same.
@@ -1086,7 +1086,6 @@ The minimization then converged to the following parameter values:
 	\end{itemize}
 
 	We believe, however, that these problems are not unresolvable, and may be addressed by refining the model without changing its main assumptions.
-	And in the end, we think the main ideas of this paper will be close to truth.
 
 	{\small {\it Acknowledgments.} The work was supported by Russian Science Foundation grant 14-12-01340.}
 

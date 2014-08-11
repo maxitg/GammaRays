@@ -11,7 +11,7 @@
 #include <memory>
 #include <sstream>
 
-#include <fitsio.h>
+#include "fitsio.h"
 
 #include "GRPsf.h"
 
