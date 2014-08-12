@@ -180,7 +180,7 @@ void GRFermiLATDataServerQuery::download() {
     curl_formadd(&formpost,
                     &lastptr,
                     CURLFORM_COPYNAME, "photonOrExtendedOrNone",
-                    CURLFORM_COPYCONTENTS, "Photon",
+                    CURLFORM_COPYCONTENTS, "Extended",
                     CURLFORM_END);
     
     curl_formadd(&formpost,
