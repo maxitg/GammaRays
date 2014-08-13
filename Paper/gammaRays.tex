@@ -254,7 +254,7 @@ Finally, to download the data about observed photons, we fill the form at the LA
 \end{itemize}
 
 For background estimation, we also download observational data during a day before the burst.
-All the values are put the same into the form, except the time range:
+All the values are put the same into the form, except for the time range:
 \begin{align*}
 	\texttt{time} + \texttt{startOffset} &- 0.5\left(\texttt{endOffset} - \texttt{startOffset}\right) - 86400,\\
 	\texttt{time} + \texttt{startOffset} &- 0.5\left(\texttt{endOffset} - \texttt{startOffset}\right)
@@ -280,9 +280,9 @@ gtmktime scfile=[spacecraft] sctable=SC_DATA
 	evfile=filtered.fits evtable=EVENTS outfile=timed.fits
 	apply_fiter=yes
 \end{lstlisting}
-where \texttt{[spacecraft]} is the FITS containing the spacecraft data.
+where \texttt{[spacecraft]} is the FITS file containing the spacecraft data.
 
-Now, with basic filtering done, we can read events data from \texttt{timed.fits}. This file, however, contains observations of a large area of the sky. Before using the data obtained from it, we should perform a more elaborate filtering by location using Fermi LAT's point spread function. The procedure is described in the following section.
+Now, with basic filtering done, we can read events data from \texttt{timed.fits}. This file, however, contains observations of a large area of the sky. Before using the data obtained from it, we should perform a more elaborate filtering by location using the point spread function of Fermi LAT. The procedure is described in the following section.
 
 \subsection{Point Spread Functions and Location Filtering}
 
