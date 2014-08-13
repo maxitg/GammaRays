@@ -574,7 +574,7 @@ p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det
 &\qquad {} \times \delta\left( \frac{\omega'}{\underbrace{\gamma \left( 1 - v\cos\sigma\left(\theta, \phi, \chi\right) \right)}_{\text{relativistic shift}} \underbrace{\left(1+z\right)}_{\text{cosmological shift}}} - \omega \right) \nonumber\\
 &\qquad {} \times \delta\left( \tau - r\left( \frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right) \right) \left(1+z\right) \right)
 \end{align}
-Here $A_\text{det}$ is the effective area of the detector. We have taken account for the four relativistic effects, which affect intensities and frequencies of the radiators: relativistic aberration; time dilation of the radiators relative to the observer; relativistic blue/redshift; and cosmological redshift.
+Here $A_\text{det}$ is the effective area of the detector. We have taken account for four relativistic effects, which affect intensities and frequencies of the radiators: relativistic aberration; time dilation of the radiators relative to the observer; relativistic blue/redshift; and cosmological redshift.
 
 We can use the delta functions to do the integrals over $\omega'$ and $r$. For that lets transform the first one:
 \begin{align*}
@@ -586,7 +586,7 @@ And the second one:
 \delta\left(\tau - r\left( \frac{1}{v} - \cos\sigma \right)\left(1+z\right)\right) &= \delta\left( \left( \frac{1}{v} - \cos\sigma \right) \left( 1+z \right) \left( r - \frac{\tau}{\left(\frac{1}{v} - \cos\sigma\right)\left(1+z\right)} \right) \right) \\
 &= \frac{1}{\left(\frac{1}{v} - \cos\sigma\right)\left(1+z\right)} \delta\left( r - \frac{\tau}{\left(\frac{1}{v} - \cos\sigma\right)\left(1+z\right)} \right)
 \end{align*}
-After the transformations the expression for $p$ takes the following form:
+After the transformations expression for $p$ takes the following form:
 \begin{align}
 p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det}}{A_\text{ph}\left(z\right)} \int_0^{\pi} \dif \theta \int_0^{2\pi} \dif \phi \int_{\tau_1}^{\tau_2} \dif \tau \int_{\omega_1}^{\omega_2} \dif \omega \nonumber\\
 &\qquad {} \times \eta\left( \frac{\tau}{\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)\left(1+z\right)}, \theta, \gamma\left( 1 - v\cos\sigma\left(\theta, \phi, \chi\right) \right)\left(1+z\right)\omega  \right) \nonumber\\
@@ -640,14 +640,14 @@ _2F_1\left(
 	}\right)^n
 \right)
 \end{align}
-where $E_n$ function $E_n\left(x\right) = \int_1^\infty \frac{e^{-x t} \dif t}{t^n}$.
+where exponential integral function $E_n\left(x\right) = \int_1^\infty \frac{e^{-x t} \dif t}{t^n}$.
 
 The remaining integrals over $\theta$ and $\chi$ are hard to do symbolically, so we compute them numerically. To optimize this computation we can use the assumption of small $\theta$ and $\chi$, so that:
 \begin{align*}
 \sin\theta &\sim \theta \\
 \cos\sigma\left(\theta, \phi, \chi \right) &= \cos\theta \cos\chi + \sin\theta \sin\chi \cos\phi \sim 1 - \frac{\theta^2}{2} - \frac{\chi^2}{2} + \theta\chi\cos\phi
 \end{align*}
-Using that, and the observation that this integral is an even function of $\theta$, we arrive to the optimized expressions for $p$, $I$ and $J$:
+Using this assumption, and the evenness of the integral as a function of $\theta$, we arrive to the optimized expressions for $p$, $I$ and $J$:
 \begin{align}
 \label{eq:p}
 p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det}}{A_\text{ph}\left(z\right)}
@@ -687,7 +687,7 @@ and the limit of $J$ for $\tau \rightarrow \infty$ ($n > 3$ by assumption):
 J\left(z,\chi,\infty;\theta,\phi\right) = \lim_{\tau \rightarrow \infty} J\left(z,\chi,\tau;\theta,\phi\right) = \left(r_0 \left( \frac{1}{v} -  1 + \frac{\theta^2}{2} + \frac{\chi^2}{2} - \theta\chi\cos\phi \right) \left(1+z\right)\right)^3 \frac{\pi}{n\sin\frac{3\pi}{n}}
 \end{equation}
 
-Now, when we know $p$, we can compute many different things with it. Examples include:
+Now, when we know $p$, we can compute many different things with it. For example:
 \begin{itemize}
 \item{the total number of particles observed in a given energy range, $p_\infty\left(z,\chi; \omega_1,\omega_2\right) = p\left( z,\chi; 0,\infty; \omega_1,\omega_2 \right)$;}
 \item{the fraction of photons observed during a given time interval, $\Phi\left(z,\chi; \tau_1,\tau_2; \omega_1,\omega_2\right) = \frac{p\left( z,\chi; \tau_1,\tau_2; \omega_1,\omega_2\right)}{p_\infty\left( z,\chi; \omega_1,\omega_2 \right)}$;}
