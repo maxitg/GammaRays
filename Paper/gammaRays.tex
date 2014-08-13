@@ -309,7 +309,7 @@ Here \texttt{pdf[i]} is the probability density in the point separated from the 
 
 Finally, to finish the filtering, we filter out all the photons, for which their location is separated from the source by more that $\theta_{\text{spread}}\left(0.95\right) + \texttt{location.err}$, where \texttt{location.err} is the uncertainty in the burst location (see table \ref{tab:bursts}).
 
-Now we have a decent set of photons, which we can use for analysis. However, some of the photons in this set are still originated from background, and not from the source. We cannot filter out these photons, but we can substitute a linear component of background by estimating it from a long time period before the burst. In order to perform this computation, we'll need an exposure map, which will be discussed in the following section.
+Now we have a decent set of photons, which we can use for analysis. However, some of the photons in this set are still originated from background, and not from the source. We cannot filter out these photons, but we can substitute a linear component of background estimating it from a long time period before the burst. In order to perform this computation, we need an exposure map, which will be discussed in the following section.
 
 \subsection{Exposure Maps and Background Estimation}
 
