@@ -768,13 +768,13 @@ This energy should not be larger than a typical mass $M_s$ of a massive star. So
 \subsection{Distribution of stretching factors}
 \label{sec:distribution}
 
-The second test is to calculate the distribution of the stretching factors of the observable bursts, and to compare it with observations.
+The second test is to calculate the distribution of stretching factors of observable bursts, and to compare it to observations.
 
-The computation of the exact and precise distribution is technically hard (because stretching factors neither change monotonously with redshift, nor with off-axis angle), and computationally intensive. So we will not compute the precise distribution.
+The computation of the exact and precise distribution is technically hard (because stretching factors change monotonously neither with redshifts, nor with off-axis angles), and computationally intensive. So we will not compute the precise distribution.
 
 Instead, we will use the Monte-Carlo method to produce a large representative sample of stretching factors. Then, we will calculate an empirical CDF of this sample, which can be compared with observations using the KS-test. Since we can compute much larger sample than that of observations, we will not lose much precision due to this simplification.
 
-We still have one ingredient missing though -- the evolution of the bursts density. We assume that the density is roughly proportional to the stars density, and the stars density is roughly proportional to the matter density, which changes with $z$ as $\left(1+z\right)^3$. It is clear, however, that since no stars existed at very small redshifts, the burst density should decline there, so we add an exponential cutoff to it:
+We still have one ingredient missing though -- the evolution of the bursts density. We assume that the bursts density is roughly proportional to the stars density, and the stars density is roughly proportional to the matter density, which changes with $z$ as $\left(1+z\right)^3$. It is clear, however, that since no stars existed at very small redshifts, the burst density should decline there, so we add an exponential cutoff to it:
 \begin{equation}
 \rho = \rho_0 \left(1+z\right)^3 \exp\left(-\frac{z}{z_c}\right)
 \end{equation}
@@ -824,7 +824,7 @@ Now when we have all the ingredients, we can compute the sample with the followi
 	\Phi_\chi\left(\chi\right) = \left(\frac{\chi}{\chi_\text{max}}\right)^2 = y \\
 	\chi = \chi_\text{max}\sqrt{y}
 	\end{align}
-	Here $y$ is an another random variable uniformly distributed in the range $0$ to $1$.
+	Here $y$ is an another independent random variable uniformly distributed in the range $0$ to $1$.
 }
 \item{Now we should check, if the burst in a selected position can be observed: $p_\infty\left(z,\chi;\omega_2,\omega_3\right) > p_\text{min}$. If it is, add $\kappa\left(z,\chi\right)$ to the sample. If not, repeat from the step $3$.}
 \item{If the sample is not as big as we want yet, repeat from the step $3$.}
