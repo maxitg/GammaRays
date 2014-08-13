@@ -322,7 +322,7 @@ gtexpcube2 infile=ltcube.fits cmap=none outfile=expcube_[IrfName].fits irfs=[Irf
 \end{lstlisting}
 The generated \texttt{expcube} files contain exposures as functions of energy and location on the sky\footnote{Note, that R.A. coordinates in the \texttt{expcube} FITS files are indexed in reverse order and starting from 180. For example, $\texttt{ra[0]}=180$, $\texttt{ra[1]}=179$, and so on.}. We use trilinear interpolation to compute exposures for all energies and locations.
 
-Knowing the exposures, we can now use the method introduced in the appendix of \cite{Rubtsov:2011qq} to estimate the linear component of background from the data observed before the burst. We compute two background estimates: for low and high energy bands. Because the background of transient class photons may depend on the spacecraft position, we have to filter them completely.
+Knowing the exposures, we can now use the method introduced in the appendix of \cite{Rubtsov:2011qq} to estimate the linear component of background from the data observed before the burst. We compute two background estimates: for low and high energy bands. Also, we have to filter out transient class photons completely, because their background appers to depend on the spacecraft position.
 
 \subsection{KS-test}
 
