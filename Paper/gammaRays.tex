@@ -740,14 +740,14 @@ Now we can use the expression for $\eta$ to do the remaining integrals:
 \begin{align*}
 E = \frac{32\pi^2 \eta_0}{3}\left(\gamma^2 - \frac{1}{4}\right) \int_0^\infty \dif \omega \, \omega \left(\frac{\omega}{\omega_0}\right)^\alpha \int_0^\infty \dif r \, \frac{r^2}{1 + \left(\frac{r}{r_0}\right)^n} \int_0^\infty \dif \theta \, \theta \, \exp\left(-\left(\frac{\theta}{\theta_0}\right)^2\left(\frac{\omega}{\omega_0}\right)^{-2k}\right)
 \end{align*}
-The integrals over $r$ and $\theta$ can be done symbolically:
+The integrals over $r$ and $\theta$ can be computed symbolically:
 \begin{equation*}
 \int_0^\infty \dif r \, \frac{r^2}{1 + \left(\frac{r}{r_0}\right)^n} = \frac{\pi}{n\sin\left(\frac{3\pi}{n}\right)}r_0^3
 \end{equation*}
 \begin{equation*}
 \int_0^\infty \dif \theta \, \theta \, \exp\left(-\left(\frac{\theta}{\theta_0}\right)^2\left(\frac{\omega}{\omega_0}\right)^{-2k}\right) = \frac{1}{2}\theta_0^2 \left(\frac{\omega}{\omega_0}\right)^{2k}
 \end{equation*}
-Now we only have one integral left:
+Now we have only one integral left:
 \begin{equation}
 E = \frac{16\pi^3}{3 n\sin\left(\frac{3\pi}{n}\right)} \left(\gamma^2 - \frac{1}{4}\right) \, \eta_0 \, r_0^3 \, \theta_0^2 \int_0^\infty \dif \omega \, \omega \left(\frac{\omega}{\omega_0}\right)^{2k+\alpha}
 \end{equation}
