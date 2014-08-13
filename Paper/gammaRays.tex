@@ -858,12 +858,12 @@ For now we discussed how to compute various observables of the model, and how to
 First of all, we need to determine, which parameters to fit. At most, the observables of a particular burst depend on 10 parameters: 8 of the burst $\left(\gamma, \eta_0, r_0, n, \omega_0, \theta_0, k, \alpha\right)$, and 2 of the observer $\left(z, \chi\right)$. However, some of these parameters only change observables trivially, and, also, there are transformations of variables, which will not change observables at all (see equation \ref{eq:p}):
 \begin{itemize}
 	\item{The number of photons $p$ depends linearly on $\eta_0$, so $\eta_0$ doesn't affect other observables like duration, or stretching factor. We can easily fit $\eta_0$ to match the observed photon count.}
-	\item{If we make a simultaneous transformation of $r_0 \rightarrow \lambda r_0$ and $\eta_0 \rightarrow \frac{1}{\lambda^3}\eta_0$, where $\lambda$ is a parameter of transformation, then only the duration of the burst will change. Other observables, like the total number of photons, or stretching factor, will not be affected.}
+	\item{If we make a simultaneous transformation of $r_0 \rightarrow \lambda r_0$ and $\eta_0 \rightarrow \frac{1}{\lambda^3}\eta_0$, where $\lambda$ is a parameter of transformation, only duration of the burst will change. Other observables, like the total number of photons, or stretching factor, will not be affected.}
 	\item{Finally, if we make a following transformation: $\omega_0 \rightarrow \lambda \omega_0$, $\theta_0 \rightarrow \lambda^k \theta_0$, $\eta_0 \rightarrow \lambda^\alpha \eta_0$, where $\lambda$ is another transformation parameter, no observables will change whatsoever.}
 \end{itemize}
 Given these transformations, we can reduce the number of parameters for fit to 7: $\left(\gamma, n, \theta_0, k, \alpha, z, \chi\right)$.
 
-Also, some of the parameters we know from observations:
+Also, some of these parameters we know from observations:
 \begin{itemize}
 	\item{Redshifts $z$ of many bursts have been measured \cite{Ackermann:2013zfa}.}
 	\item{We know that relativistic factors $\gamma$ are on the order of magnitude\footnote{Our minimization procedure can find similar minimums for other values of $\gamma$, at least from $100$ to $1000$} of $\gamma = 300$ \cite{Ghirlanda:2011ux}.}
@@ -1025,13 +1025,13 @@ Note, that these parameter values (except for $z$ and $\chi$) are universal, and
 	\begin{subfigure}{0.45\textwidth}
 		\includegraphics[width=\textwidth]{kappaDistributionHistogram}
 		\label{fig:kappaDistributionHistogram}
-		\caption{Histogram (blue) obtained from the model. Bar lines (black) show observed stretching factors.}
+		\caption{Histogram (blue) obtained from the model. Black error bars show observed stretching factors.}
 	\end{subfigure}
 	\hfill
 	\begin{subfigure}{0.45\textwidth}
 		\includegraphics[width=\textwidth]{kappaDistributionCDF}
 		\label{fig:kappaDistributionCDF}
-		\caption{CDF (blue) obtained from the model. Gray curve and bar lines show observed stretching factors.}
+		\caption{CDF (blue) obtained from the model. Gray curve and black error bars show observed stretching factors.}
 	\end{subfigure}
 	\hspace*{\fill}
 	\caption{Stretching factors histogram and CDF produced by our model. The sample contains $4096$ bursts.}
