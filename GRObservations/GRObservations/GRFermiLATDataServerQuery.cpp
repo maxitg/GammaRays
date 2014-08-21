@@ -417,7 +417,7 @@ int GRFermiLATDataServerQuery::gtltcube() {
     cmd << "phibins=" << 0 << " ";
     cmd << "tmin=" << 0 << " ";
     cmd << "tmax=" << 0 << " ";
-    cmd << "zmax=" << 180 << " ";
+    cmd << "zmax=" << 100 << " ";
     cmd << "zmin=" << 0 << " ";
     cmd << "chatter=" << 0 << " ";
     return system(cmd.str().c_str());
