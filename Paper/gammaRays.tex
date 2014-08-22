@@ -246,7 +246,10 @@ The exposure map can be computed with the \texttt{gtexpcube2}\footnote{\url{http
 
 The generated \texttt{expcube} files contain exposures as functions of energy and location on the sky. We use trilinear interpolation to compute exposures for all energies and locations.
 
-Knowing the exposures, we can now use the method introduced in the appendix of \cite{Rubtsov:2011qq} to estimate the linear component of background from the data observed before the burst. We compute two background estimates: for low and high energy bands. Also, we have to filter out transient class photons completely, because their background appers to depend on the spacecraft position.
+Knowing the exposures, we can now use the method introduced in the appendix of \cite{Rubtsov:2011qq} to estimate the linear component of background from the data observed before the burst.
+We compute two background estimates: for low and high energy bands.
+Also, our method doesn't work for transient class photons, because their background appears to depend on the spacecraft position.
+So we had to filter them out completely.
 
 \subsection{KS-test}
 
