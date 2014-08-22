@@ -11,6 +11,8 @@
 \usepackage{multicol}
 \usepackage{bm}
 \usepackage{appendix}
+\usepackage{textcomp}
+\usepackage{gensymb}
 
 \lstset{columns=fullflexible,basicstyle=\ttfamily}
 
@@ -211,94 +213,21 @@ Specifically, we take 4 pieces of information from the tables 2 and 4 there:
 \end{itemize}
 The data obtained is summarized in table \ref{tab:bursts}.
 
-Finally, to download the data about observed photons, we fill the form at the LAT data server front page with the following values:
-\begin{itemize}
-	\item{
-		{\bf Object name or coordinates}.
-		Here the coordinates are filled from the table \ref{tab:bursts}.
-	}
-	\item{
-		{\bf Coordinate system}.
-		J2000.
-	}
-	\item{
-		{\bf Search radius (degrees)}.
-		$60$.
-		Events will be filtered by location later by using the point spread functions (PSFs) of the LAT.
-	}
-	\item{
-		{\bf Observation dates}.
-		To have a decent safety margin, we extend the duration of the burst by $50\%$ to both past and future relative to the table \ref{tab:bursts} time ranges.
-		So, we fill in the following values:
-		\begin{align*}
-			\texttt{time} + \texttt{startOffset} &- 0.5\left(\texttt{endOffset}-\texttt{startOffset}\right),\\
-			\texttt{time} + \texttt{endOffset} &+ 0.5\left(\texttt{endOffset}-\texttt{startOffset}\right)
-		\end{align*}
-	}
-	\item{
-		{\bf Time system}.
-		MET.
-	}
-	\item{
-		{\bf Energy range (MeV)}.
-		$100,\,300000$.
-		This includes our both energy ranges.
-	}
-	\item{
-		{\bf LAT data type}.
-		Extended.
-	}
-	\item{
-		{\bf Spacecraft data}.
-		Checked.
-		It is required for both events filtering, and calculation of the PSFs and exposure maps.
-	}
-\end{itemize}
+To have a decent safety margin, we download the data about observed photons extended in time by $50\%$ to both past and future relative to the table \ref{tab:bursts}. For background estimation, we also download observational data during a day before the burst. Exact values we put into the web form are listed in appendix \ref{sec:fermiCode}.
 
-For background estimation, we also download observational data during a day before the burst.
-All the values are put the same into the form, except for the time range:
-\begin{align*}
-	\texttt{time} + \texttt{startOffset} &- 0.5\left(\texttt{endOffset} - \texttt{startOffset}\right) - 86400,\\
-	\texttt{time} + \texttt{startOffset} &- 0.5\left(\texttt{endOffset} - \texttt{startOffset}\right)
-\end{align*}
-
-Before reading the data, we need to apply the basic filtering as described in Fermi guidelines.
+Before reading the data, we need to apply the basic filtering as described in Fermi guidelines (the actual code, and all parameters values we use to invoke Fermi Science tools are listed in appendix \ref{sec:fermiCode}).
 Two tools from the Fermi Science Tools package are used for that task (the same filtering is applied to both burst and background data).
 
-The first one is \texttt{gtselect}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtselect.txt}}.
-It filters the Earth limb emission.
-We run the tool with the following parameters\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/explore_latdata_burst.html}}:
-\begin{lstlisting}
-gtselect infile=[eventFile] outfile=filtered.fits
-	ra=INDEF dec=INDEF rad=180 tmin=INDEF tmax=INDEF emin=100 emax=300000
-	zmax=100 evclass=0 convtype=-1 evtable=EVENTS
-\end{lstlisting}
-Here \texttt{[eventFile]} is the file downloaded in the previous step.
+First, we use \texttt{gtselect}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtselect.txt}}.
+We filter the Earth limb emission with it below the zenith angle of $100\degree$.
 
-The second one is \texttt{gtmktime}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtmktime.txt}}. It uses the spacecraft file as well as events file, and filters out time periods when Fermi LAT was not operational. Running \texttt{gtmktime} is also required for exposure maps calculation, which we'll need later on. Parameters are the following\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/data_preparation.html}}:
-\begin{lstlisting}
-gtmktime scfile=[spacecraft] sctable=SC_DATA
-	filter="DATA_QUAL>0 && LAT_CONFIG==1" roicut=yes
-	evfile=filtered.fits evtable=EVENTS outfile=timed.fits
-	apply_fiter=yes
-\end{lstlisting}
-where \texttt{[spacecraft]} is the FITS file containing the spacecraft data.
+The second one we use is \texttt{gtmktime}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtmktime.txt}}. It uses the spacecraft file as well as events file, and filters out time periods when Fermi LAT was not operational. Running \texttt{gtmktime} is also required for exposure maps calculation, which we'll need later on.
 
-Now, with basic filtering done, we can read events data from \texttt{timed.fits}. This file, however, contains observations of a large area of the sky. Before using the data obtained from it, we should perform a more elaborate filtering by location using the point spread function of Fermi LAT, which can be computed with \texttt{gtpsf}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtpsf.txt}} tool.
-
-Before computing it, however, we should calculate the livetime map with \texttt{gtltcube}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtltcube.txt}} with the following parameters:
-\begin{lstlisting}
-gtltcube evfile=timed.fits evtable=EVENTS scfile=[spacecraft] sctable=SC_DATA
-	outfile=ltcube.fits
-	dcostheta=0.025 binsz=1 phibins=0 tmin=0 tmax=0 zmax=100 zmin=0
-\end{lstlisting}
-
-Having the maps, we can compute the PSFs:
-\begin{lstlisting}
-gtpsf expcube=ltcube.fits outfile=psf_[IrfName].fits outtable=PSF irfs=[IrfName]
-	ra=[RA] dec=[DEC] emin=100 emax=1000000 nenergies=41 thetamax=30 ntheta=300
-\end{lstlisting}
-Here \texttt{[RA]} and \texttt{[DEC]} are the coordinates of the burst, and \texttt{[IrfName]} is the Instrument Response Function, which depends on photon's event class (transient, source, clean, or ultraclean) and conversion type (back or front). The list of IRF names can be obtained with the \texttt{gtirfs}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtirfs.txt}} tool. We need to compute PSFs for all of them.
+Now, with basic filtering done, we can read events data from \texttt{timed.fits}. This file, however, contains observations of a large area of the sky.
+Before using the data obtained from it, we should perform a more elaborate filtering by location using the point spread function of Fermi LAT, which can be computed with \texttt{gtpsf}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtpsf.txt}} tool.
+We use 41 energy bins from \unit[100]{MeV} to \unit[1]{TeV}, and 300 angular bins with maximal angle being $30\degree$.
+We use \texttt{gtltcube}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtltcube.txt}} tool to compute livetime maps, which are \texttt{gtpsf} need.
+Note, that we need PSFs for all Instrument Response Functions of Fermi, that is for all event classes (transient, source, clean and ultraclean) and conversion types (back and front).
 
 To understand how to use obtained PSFs, imagine a stream of photons coming from some source located at some coordinates $\theta, \phi$. Ideally, all the coordinates measured for the photons coming from the source should be the same. However, due to measurement errors, they would be spread across some region of the sky. If we find the region such that, say, $95\%$ of photons coming from the source are measured inside of it, we can filter out all the other photons without losing too much statistics, and significantly reducing background. \texttt{gtpsf} approximates these regions as circles, and the files generated in the previous step contain the observation probability densities as functions of distance from the source and photon energies. We, however, need an integral quantity, that is given the radius, we want to know the fraction of photons observed inside the circle of this radius. We can compute this fraction by summing over the probability densities:
 \begin{align*}
@@ -313,14 +242,9 @@ Now we have a decent set of photons, which we can use for analysis. However, som
 
 \subsection{Exposure Maps and Background Estimation}
 
-The exposure map can be computed with the \texttt{gtexpcube2}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtexpcube2.txt}} tool. We use the following parameter set for it:
-\begin{lstlisting}
-gtexpcube2 infile=ltcube.fits cmap=none outfile=expcube_[IrfName].fits irfs=[IrfName]
-	nxpix=360 nypix=180 binsz=1 coordsys=CEL xref=0 yref=0 axisrot=0
-	proj=CAR ebinalg=log emin=100 emax=1000000 enumbins=40
-	ebinfile=NONE bincalc=EDGE ignorephi=no thmax=180 thmin=0 table=Exposure
-\end{lstlisting}
-The generated \texttt{expcube} files contain exposures as functions of energy and location on the sky\footnote{Note, that R.A. coordinates in the \texttt{expcube} FITS files are indexed in reverse order and starting from 180. For example, $\texttt{ra[0]}=180$, $\texttt{ra[1]}=179$, and so on.}. We use trilinear interpolation to compute exposures for all energies and locations.
+The exposure map can be computed with the \texttt{gtexpcube2}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtexpcube2.txt}} tool. We compute it with 40 energy bins from \unit[100]{MeV} to \unit[1]{TeV}.
+
+The generated \texttt{expcube} files contain exposures as functions of energy and location on the sky. We use trilinear interpolation to compute exposures for all energies and locations.
 
 Knowing the exposures, we can now use the method introduced in the appendix of \cite{Rubtsov:2011qq} to estimate the linear component of background from the data observed before the burst. We compute two background estimates: for low and high energy bands. Also, we have to filter out transient class photons completely, because their background appers to depend on the spacecraft position.
 
@@ -1089,7 +1013,7 @@ Note, that these parameter values (except for $z$ and $\chi$) are universal, and
 \label{sec:fermiCode}
 This appendix contains two things: exact values we are passing to a web form on the Fermi LAT data server, and the code we use to invoke the Fermi tools (including full list of options).
 
-Parameters that are passed to the web form of the Fermi LAT data server\footnote{\url{http://fermi.gsfc.nasa.gov/cgi-bin/ssc/LAT/LATDataQuery.cgi}} are the following:
+Parameters that are passed to the web form of the Fermi LAT data server to download the bursts data are the following:
 \begin{itemize}
 	\item{
 		{\bf Object name or coordinates}.
@@ -1132,6 +1056,12 @@ Parameters that are passed to the web form of the Fermi LAT data server\footnote
 		It is required for both events filtering, and calculation of the PSFs and exposure maps.
 	}
 \end{itemize}
+
+For background, all parameters are the same, except for the time ranges, which are the following:
+\begin{align*}
+	\texttt{time} + \texttt{startOffset} &- 0.5\left(\texttt{endOffset} - \texttt{startOffset}\right) - 86400,\\
+	\texttt{time} + \texttt{startOffset} &- 0.5\left(\texttt{endOffset} - \texttt{startOffset}\right)
+\end{align*}
 
 The commands we use to invoke Fermi Science tools are the following:
 \begin{lstlisting}
