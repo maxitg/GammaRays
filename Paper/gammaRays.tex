@@ -35,12 +35,12 @@
 	However, the difference of light curves in various high energy bands has not been studied properly.
 
 	In this paper we consider all the bursts observed by Fermi-LAT since 2008 August 4 to 2011 August 1, for which at least $10$ events with energies $\unit[1]{GeV}$ or higher were observed.
-	There are $4$ of them: 080916C, 090510, 090902B, and 090926A.
+	There are $4$ of them: GRB 080916C, GRB 090510, GRB 090902B, and GRB 090926A.
 	We study their light curves in two bands, $(\unit[100]{MeV}, \unit[1]{GeV})$ and $(\unit[1]{GeV}, \unit[300]{GeV})$.
 
 	The Kolmogorov-Smirnov test is used to check whether the light curves for these two bands are the same.
-	No significant difference was found for 080916C and 090510.
-	However, we observed with statistical significance of $3.3 \sigma$, that the higher energy light curve of 090926A is stretched with respect to the lower-energy one, and with statistical significance of $2.2 \sigma$, that the lower energy light curve of 090902B is stretched with respect to the higher-energy one.
+	No significant difference was found for GRB 080916C and GRB 090510.
+	However, we observed with statistical significance of $3.3 \sigma$, that the higher energy light curve of GRB 090926A is stretched with respect to the lower-energy one, and with statistical significance of $2.2 \sigma$, that the lower energy light curve of GRB 090902B is stretched with respect to the higher-energy one.
 
 	We suggest a simple geometrical model to explain this result.
 	The main assumption is the jet opening angle dependence on radiation energy -- the most energetic photons are emitted near the axis of the jet.
@@ -69,14 +69,14 @@
 	We also download events during a day before the burst, and use the technique introduced in \cite{Rubtsov:2011qq} to estimate background radiation in both energy bands.
 
 	Most of the bursts in the catalog, however, do not have enough events with over $\unit[1]{GeV}$ energies to do desired computations, so we choose only those bursts, from which at least $10$ photons were detected in the high energy band.
-	It leaves $4$ of them: 080916C \cite{Tajima:2009az}, 090510 \cite{Ackermann:2010us}, 090902B \cite{Abdo:2009pg} and 090926A \cite{Bregeon:2011bu}.
+	It leaves $4$ of them: GRB 080916C \cite{Tajima:2009az}, GRB 090510 \cite{Ackermann:2010us}, GRB 090902B \cite{Abdo:2009pg} and GRB 090926A \cite{Bregeon:2011bu}.
 
 	For these 4 bursts we compute both high and low energy distributions of photon arrival times, and subtract background estimates from them.
 	This makes CDFs non-monotonous and, rigorously speaking, we cannot use the 2-sample Kolmogorov-Smirnov test on it.
 	However, since the number of photons is much higher than estimated background, this non-monotonicity is negligible, and will not harm KS-test results much.
 
 	Finally, we stretch the high energy CDF by different factors, and compare it to the low energy CDF using the KS-test.
-	If we require $2\sigma$-significant probability to exclude a particular stretching factor, then the stretching factor of $1$ (which means no stretching) is allowed for GRBs 080916C and 090510.
+	If we require $2\sigma$-significant probability to exclude a particular stretching factor, then the stretching factor of $1$ (which means no stretching) is allowed for GRB 080916C and GRB 090510.
 	For the other two bursts the stretching factor of 1 is, however, excluded.
 	For GRB 090902B it should be smaller than 1, so the low energy light curve is stretched with respect to the high energy one (see fig. \ref{fig:grb090902B}).
 	And for GRB 090926A even more significant deviation from the stretching factor of 1 is observed in the opposite direction.
@@ -145,7 +145,7 @@
 		\label{fig:sampleLightCurves}
 	\end{figure}
 
-	Finally, our assumption is able to explain the non-trivial stretching factor of both GRBs 090902B and 090926A.
+	Finally, our assumption is able to explain the non-trivial stretching factor of both GRB 090902B and GRB 090926A.
 	Detailed computations will be described in the following sections, but you can see the main idea on figure \ref{fig:modelOverview}.
 	The computations confirm that this qualitative picture is indeed correct.
 	You can see a sample light curves on figure \ref{fig:sampleLightCurves}, and predicted distribution of stretching factors on figure \ref{fig:kappaDistribution}.
@@ -270,7 +270,7 @@ You can see the results of such computation in the following section.
 
 Out of 19 bursts studied, only 4 have at least 10 high energy events remaining after filtering, and thus eligible for computating the stretching factors. The results of this computation are shown on figures \ref{fig:grb080916C}, \ref{fig:grb090510}, \ref{fig:grb090902B}, \ref{fig:grb090926A} and table \ref{tab:observationResults}.
 
-Out of these 4 bursts, two (080916C and 090510) have stretching factors compatible with $\kappa = 1$ within $2\sigma$ range.
+Out of these 4 bursts, two (GRB 080916C and GRB 090510) have stretching factors compatible with $\kappa = 1$ within $2\sigma$ range.
 
 GRB 090926A has, however, high energy radiation stretched with respect to low energy radiation (that is $\kappa > 1$). In contrast to that, GRB 090902B has low energy radiation stretched with respect to high energy radiation ($\kappa < 1$).
 
@@ -834,20 +834,20 @@ The cost function is then computed by the following procedure:
 		Compute the cost due to the stretching factor:
 		\begin{equation}
 			C_\kappa = \frac{
-				\log{\kappa\left(z,\chi;\unit[0.1]{GeV},\unit[1]{GeV},\infty\right)} - \log{\kappa_{090926A}}
-			}{\Delta\log\kappa_{090926A}}
+				\log{\kappa\left(z,\chi;\unit[0.1]{GeV},\unit[1]{GeV},\infty\right)} - \log{\kappa_{\text{GRB090926A}}}
+			}{\Delta\log\kappa_{\text{GRB090926A}}}
 		\end{equation}
-		Here $\log\kappa_{090926A} = \frac{1}{2}\left(\log\left(6.62\right) + \log\left(1.99\right)\right)$ and $\Delta\log\kappa_{090926A} = \frac{1}{2}\left(\log\left(6.62\right) - \log\left(1.99\right)\right)$.
+		Here $\log\kappa_{\text{GRB090926A}} = \frac{1}{2}\left(\log\left(6.62\right) + \log\left(1.99\right)\right)$ and $\Delta\log\kappa_{\text{GRB090926A}} = \frac{1}{2}\left(\log\left(6.62\right) - \log\left(1.99\right)\right)$.
 	}
 	\item{
 		Compute the cost due to the minimal stretching factor from the sample:
 		\begin{equation}
 			C_{\kappa\text{min}} = \max\left(0, 
 				\frac{
-					\log{\kappa_\text{min}} - \log{\kappa_{090902B}}
-				}{\Delta\log\kappa_{090902B}}\right)
+					\log{\kappa_\text{min}} - \log{\kappa_{\text{GRB090902B}}}
+				}{\Delta\log\kappa_{\text{GRB090902B}}}\right)
 		\end{equation}
-		Here $\kappa_\text{min}$ is the minimal stretching factor from the sample computed in the step \ref{item:sample}, $\log\kappa_{090902B} = \frac{1}{2}\left(\log\left(0.89\right) + \log\left(0.36\right)\right)$ and $\Delta\log\kappa_{090902B} = \frac{1}{2}\left(\log\left(0.89\right) - \log\left(0.36\right)\right)$.
+		Here $\kappa_\text{min}$ is the minimal stretching factor from the sample computed in the step \ref{item:sample}, $\log\kappa_{\text{GRB090902B}} = \frac{1}{2}\left(\log\left(0.89\right) + \log\left(0.36\right)\right)$ and $\Delta\log\kappa_{\text{GRB090902B}} = \frac{1}{2}\left(\log\left(0.89\right) - \log\left(0.36\right)\right)$.
 	}
 	\item{
 		Compute the cost due to the fraction of high and low energy photon counts:
@@ -857,10 +857,10 @@ The cost function is then computed by the following procedure:
 					p_{\infty} \left(z,\chi;\unit[1]{GeV},\infty\right)
 				}{
 					p_{\infty} \left(z,\chi;\unit[0.1]{GeV},\unit[1]{GeV}\right)}
-				} - \log f_{090926A}
+				} - \log f_{\text{GRB090926A}}
 			}{\log(10)}
 		\end{equation}
-		Here $f_{090926A} = 0.0606777$.
+		Here $f_{\text{GRB090926A}} = 0.0606777$.
 	}
 	\item{
 		Compute the cost due to the brightness of the burst compared to the median:
