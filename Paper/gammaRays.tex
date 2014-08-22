@@ -10,6 +10,7 @@
 \usepackage{listings}
 \usepackage{multicol}
 \usepackage{bm}
+\usepackage{appendix}
 
 \lstset{columns=fullflexible,basicstyle=\ttfamily}
 
@@ -150,7 +151,8 @@
 \section{Observations}
 \label{sec:observations}
 
-\subsection{Burst Data Download}
+\subsection{Fermi LAT Photon Selection}
+\label{sec:photonSelection}
 
 \begin{table}
 	\centering
@@ -282,11 +284,9 @@ gtmktime scfile=[spacecraft] sctable=SC_DATA
 \end{lstlisting}
 where \texttt{[spacecraft]} is the FITS file containing the spacecraft data.
 
-Now, with basic filtering done, we can read events data from \texttt{timed.fits}. This file, however, contains observations of a large area of the sky. Before using the data obtained from it, we should perform a more elaborate filtering by location using the point spread function of Fermi LAT. The procedure is described in the following section.
+Now, with basic filtering done, we can read events data from \texttt{timed.fits}. This file, however, contains observations of a large area of the sky. Before using the data obtained from it, we should perform a more elaborate filtering by location using the point spread function of Fermi LAT, which can be computed with \texttt{gtpsf}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtpsf.txt}} tool.
 
-\subsection{Point Spread Functions and Location Filtering}
-
-\texttt{gtpsf}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtpsf.txt}} tool requires the livetime map to generate the PSFs. This map is computed by \texttt{gtltcube}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtltcube.txt}} with the following parameters:
+Before computing it, however, we should calculate the livetime map with \texttt{gtltcube}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtltcube.txt}} with the following parameters:
 \begin{lstlisting}
 gtltcube evfile=timed.fits evtable=EVENTS scfile=[spacecraft] sctable=SC_DATA
 	outfile=ltcube.fits
@@ -1082,6 +1082,73 @@ Note, that these parameter values (except for $z$ and $\chi$) are universal, and
 	We believe, however, that these problems are not unresolvable, and may be addressed by refining the model without changing its main assumptions.
 
 	{\small {\it Acknowledgments.} The work was supported by Russian Science Foundation grant 14-12-01340.}
+
+\begin{appendices}
+
+\section{Details of using Fermi Science tools}
+This appendix contains two things: exact values we are passing to a web form on the Fermi LAT data server, and the code we use to invoke the Fermi tools (including full list of options).
+
+Parameters that are passed to the web form of the Fermi LAT data server\footnote{\url{http://fermi.gsfc.nasa.gov/cgi-bin/ssc/LAT/LATDataQuery.cgi}} are the following:
+\begin{itemize}
+	\item{
+		{\bf Object name or coordinates}.
+		Coordinates are filled from the table \ref{tab:bursts}.
+	}
+	\item{
+		{\bf Coordinate system}.
+		J2000.
+	}
+	\item{
+		{\bf Search radius (degrees)}.
+		$60$.
+		Events are filtered by location separately by using the point spread functions (PSFs) of the LAT (as described in section \ref{sec:photonSelection}).
+	}
+	\item{
+		{\bf Observation dates}.
+		To have a decent safety margin, we extend the duration of the burst by $50\%$ to both past and future relative to the table \ref{tab:bursts} time ranges.
+		So, we fill in the following values:
+		\begin{align*}
+			\texttt{time} + \texttt{startOffset} &- 0.5\left(\texttt{endOffset}-\texttt{startOffset}\right),\\
+			\texttt{time} + \texttt{endOffset} &+ 0.5\left(\texttt{endOffset}-\texttt{startOffset}\right)
+		\end{align*}
+	}
+	\item{
+		{\bf Time system}.
+		MET.
+	}
+	\item{
+		{\bf Energy range (MeV)}.
+		$100,\,300000$.
+		This includes our both energy ranges.
+	}
+	\item{
+		{\bf LAT data type}.
+		Extended.
+	}
+	\item{
+		{\bf Spacecraft data}.
+		Checked.
+		It is required for both events filtering, and calculation of the PSFs and exposure maps.
+	}
+\end{itemize}
+
+The commands we use to invoke Fermi Science tools are the following:
+\begin{lstlisting}
+gtselect infile=[eventFile] outfile=filtered.fits
+	ra=INDEF dec=INDEF rad=180 tmin=INDEF tmax=INDEF emin=100 emax=300000
+	zmax=100 evclass=0 convtype=-1 evtable=EVENTS
+\end{lstlisting}
+
+\begin{lstlisting}
+gtmktime scfile=[spacecraft] sctable=SC_DATA
+	filter="DATA_QUAL>0 && LAT_CONFIG==1" roicut=yes
+	evfile=filtered.fits evtable=EVENTS outfile=timed.fits
+	apply_fiter=yes
+\end{lstlisting}
+
+
+
+\end{appendices}
 
 \bibliographystyle{hep}
 \bibliography{gammaRays.bib}
