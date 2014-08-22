@@ -1086,6 +1086,7 @@ Note, that these parameter values (except for $z$ and $\chi$) are universal, and
 \begin{appendices}
 
 \section{Details of using Fermi Science tools}
+\label{sec:fermiCode}
 This appendix contains two things: exact values we are passing to a web form on the Fermi LAT data server, and the code we use to invoke the Fermi tools (including full list of options).
 
 Parameters that are passed to the web form of the Fermi LAT data server\footnote{\url{http://fermi.gsfc.nasa.gov/cgi-bin/ssc/LAT/LATDataQuery.cgi}} are the following:
@@ -1138,6 +1139,7 @@ gtselect infile=[eventFile] outfile=filtered.fits
 	ra=INDEF dec=INDEF rad=180 tmin=INDEF tmax=INDEF emin=100 emax=300000
 	zmax=100 evclass=0 convtype=-1 evtable=EVENTS
 \end{lstlisting}
+Here \texttt{[eventFile]} is the file downloaded from the Fermi LAT data server.
 
 \begin{lstlisting}
 gtmktime scfile=[spacecraft] sctable=SC_DATA
@@ -1145,8 +1147,27 @@ gtmktime scfile=[spacecraft] sctable=SC_DATA
 	evfile=filtered.fits evtable=EVENTS outfile=timed.fits
 	apply_fiter=yes
 \end{lstlisting}
+where \texttt{[spacecraft]} is the FITS file containing the spacecraft data (also downloaded from the Fermi LAT data server).
 
+\begin{lstlisting}
+gtltcube evfile=timed.fits evtable=EVENTS scfile=[spacecraft] sctable=SC_DATA
+	outfile=ltcube.fits
+	dcostheta=0.025 binsz=1 phibins=0 tmin=0 tmax=0 zmax=100 zmin=0
+\end{lstlisting}
 
+\begin{lstlisting}
+gtpsf expcube=ltcube.fits outfile=psf_[IrfName].fits outtable=PSF irfs=[IrfName]
+	ra=[RA] dec=[DEC] emin=100 emax=1000000 nenergies=41 thetamax=30 ntheta=300
+\end{lstlisting}
+\texttt{[RA]} and \texttt{[DEC]} here are the coordinates of the burst, and \texttt{[IrfName]} is the Instrument Response Function, which depends on photon's event class (transient, source, clean, or ultraclean) and conversion type (back or front). The list of IRF names can be obtained with the \texttt{gtirfs}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtirfs.txt}} tool. We need to compute PSFs for all of them.
+
+\begin{lstlisting}
+gtexpcube2 infile=ltcube.fits cmap=none outfile=expcube_[IrfName].fits irfs=[IrfName]
+	nxpix=360 nypix=180 binsz=1 coordsys=CEL xref=0 yref=0 axisrot=0
+	proj=CAR ebinalg=log emin=100 emax=1000000 enumbins=40
+	ebinfile=NONE bincalc=EDGE ignorephi=no thmax=180 thmin=0 table=Exposure
+\end{lstlisting}
+Note, that R.A. coordinates in the \texttt{expcube} FITS files are indexed in reverse order and starting from 180. For example, $\texttt{ra[0]}=180$, $\texttt{ra[1]}=179$, and so on.
 
 \end{appendices}
 
