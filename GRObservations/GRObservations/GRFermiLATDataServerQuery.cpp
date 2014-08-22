@@ -437,7 +437,7 @@ int GRFermiLATDataServerQuery::gtpsf(GRFermiEventClass eventClass, GRFermiConver
     cmd << "dec=" << location.dec << " ";
     cmd << "emin=" << 100. << " ";
     cmd << "emax=" << 300000. << " ";
-    cmd << "nenergies=" << 41 << " ";
+    cmd << "nenergies=" << 300 << " ";
     cmd << "thetamax=" << 30 << " ";
     cmd << "ntheta=" << 300 << " ";
     cmd << "chatter=" << 0 << " ";
@@ -465,7 +465,7 @@ int GRFermiLATDataServerQuery::gtexpcube(GRFermiEventClass eventClass, GRFermiCo
     cmd << "ebinalg=" << "LOG" << " ";
     cmd << "emin=" << 100. << " ";
     cmd << "emax=" << 300000. << " ";
-    cmd << "enumbins=" << 40 << " ";
+    cmd << "enumbins=" << 300 << " ";
     cmd << "ebinfile=" << "NONE" << " ";
     cmd << "bincalc=" << "EDGE" << " ";
     cmd << "ignorephi=" << "no" << " ";
