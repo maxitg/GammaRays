@@ -441,58 +441,6 @@ Note that $\tau$ doesn't depend on $d$ anymore. But this is only true if we did 
 \end{equation}
 Here $z$ is the redshift of the burst from the point of view of the observer.
 
-\subsection{Cosmology}
-Before calculating light curves and stretching factors, we will need some equations from cosmology.
-
-First of all, the metric of the expanding Universe:
-\begin{equation}
-\dif s^2 = -\dif t^2 + a^2\left(t\right) \dif r^2 + a^2\left(t\right) r^2 \dif \Omega_2
-\end{equation}
-We define $a\left(t_\text{obs}\right) = 1$, where $t_\text{obs}$ is the observation time.
-
-We need to understand how the scale factor changes with time. For that we assume that the energy content of the Universe consists of matter $\Omega_m$ and vacuum energy $\Omega_\Lambda$ only, so that the Friedmann equation takes the following form:
-\begin{align*}
-\left( \frac{\dot{a}\left(t\right)}{a\left(t\right)} \right)^2 &= \Omega_m H_\text{obs}^2 \frac{1}{a^3\left(t\right)} + H_\text{obs}^2 \Omega_\Lambda \\
-\dot{a}\left(t\right) &= a\left(t\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda} \\
-\dif t &= \frac{\dif a}{a\left(t\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}}
-\end{align*}
-Here $H_\text{obs} = H\left(t_\text{obs}\right) = \frac{\dot{a}\left( t_\text{obs} \right)}{a\left( t_\text{obs} \right)} = \dot{a}\left( t_\text{obs} \right)$ is the Hubble parameter at the observation time.
-
-We also need to know the areas of two spheres: the photon sphere, a sphere over which photons emitted from a particular burst are spread; and the bursts sphere, a sphere over which bursts at a particular redshift are distributed.
-
-Lets begin with the photon sphere. This sphere has the origin at $r = 0$ and $t = 0$, at the central engine of a particular burst. Taking $\dif s = 0$ and $\dif \Omega_2 = 0$ in the equation for metric, we get:
-\begin{equation*}
-\dif r = \frac{\dif t}{a\left(t\right)}
-\end{equation*}
-And now we integrate over time to find the observer's position:
-\begin{align*}
-r\left(t_\text{obs}\right) &= \int_0^{t_\text{obs}}\frac{\dif t}{a\left(t\right)} \\
-&= \int_{a\left(0\right)}^1\frac{\dif a}{a^2\left(t\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}} \\
-&= \frac{\, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{a^3\left(0\right) \Omega_\Lambda }\right)-a\left(0\right) \, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{\Omega_\Lambda }\right)}{a\left(0\right) H_\text{obs} \sqrt{\Omega_\Lambda }}
-\end{align*}
-Here $_2F_1\left(a, b; c; z\right) = \frac{\Gamma\left(c\right)}{\Gamma\left(b\right)\Gamma\left(c-b\right)}\int_0^1 \frac{t^{b-1}\left(1-t\right)^{c-b-1}}{\left(1-t z\right)^a} \dif t$ is a hypergeometric function. We can substitute $a\left(0\right) = \frac{1}{1+z}$, so, finally,
-\begin{equation}
-r\left(z\right) = \frac{\left(1+z\right)\, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{\Omega_\Lambda}\left(1+z\right)^3\right) - \, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{\Omega_\Lambda }\right)}{H_\text{obs} \sqrt{\Omega_\Lambda }}
-\end{equation}
-The area of the photon sphere is then:
-\begin{equation}
-A_\text{ph}\left(z\right) = 4 \pi a^2\left(t_\text{obs}\right) r^2\left(z\right) = 4 \pi r^2\left(z\right)
-\end{equation}
-
-The second sphere is the bursts sphere. It has its origin at the observer's position, and the radius the same as the photon sphere. Therefore, its area is:
-\begin{equation}
-A_\text{b}\left(z\right) = 4 \pi a^2\left(0\right) r^2\left(z\right) = \frac{4 \pi r^2\left(z\right)}{\left(1+z\right)^2}
-\end{equation}
-
-We need to know one more thing about the bursts sphere -- the volume of the infinitesimal shell surrounding it. For that we can again use the metric:
-\begin{align}
-\dif V\left(z\right) &= - A_\text{b}\left(z\right) a\left(0\right) \dif r \nonumber\\
-&= - A_\text{b}\left(z\right) a\left(0\right) \frac{\dif a}{a^2\left(0\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}} \nonumber\\
-&= A_\text{b}\left(z\right) \frac{\frac{1}{\left(1+z\right)^2}\dif z \left(1+z\right)}{H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}} \nonumber\\
-&= A_\text{b}\left(z\right) \frac{1}{\left(1+z\right)} \frac{\dif z}{H_\text{obs} \sqrt{\Omega_m\left(1+z\right)^3 + \Omega_\Lambda}} \nonumber\\
-&= \frac{4\pi r^2\left(z\right)}{\left(1+z\right)^3} \frac{\dif z}{H_\text{obs} \sqrt{\Omega_m\left(1+z\right)^3 + \Omega_\Lambda}}
-\end{align}
-
 \subsection{Light curve}
 We now know enough to compute the observable quantity - the number of observed photons $p$. For that we need to integrate the radiation intensity $\eta$ over four things. Two burst-related things: radiator positions $\left(r, \theta, \phi\right)$ and frequencies at emission $\omega'$. Two observer-related things: observation time $\tau$ and frequencies at observation $\omega$. We relate the first two and the second two with the delta functions:
 \begin{align}
@@ -1103,6 +1051,58 @@ gtexpcube2 infile=ltcube.fits cmap=none outfile=expcube_[IrfName].fits irfs=[Irf
 	ebinfile=NONE bincalc=EDGE ignorephi=no thmax=180 thmin=0 table=Exposure
 \end{lstlisting}
 Note, that R.A. coordinates in the \texttt{expcube} FITS files are indexed in reverse order and starting from 180. For example, $\texttt{ra[0]}=180$, $\texttt{ra[1]}=179$, and so on.
+
+\section{Cosmology}
+Before calculating light curves and stretching factors, we will need some equations from cosmology.
+
+First of all, the metric of the expanding Universe:
+\begin{equation}
+\dif s^2 = -\dif t^2 + a^2\left(t\right) \dif r^2 + a^2\left(t\right) r^2 \dif \Omega_2
+\end{equation}
+We define $a\left(t_\text{obs}\right) = 1$, where $t_\text{obs}$ is the observation time.
+
+We need to understand how the scale factor changes with time. For that we assume that the energy content of the Universe consists of matter $\Omega_m$ and vacuum energy $\Omega_\Lambda$ only, so that the Friedmann equation takes the following form:
+\begin{align*}
+\left( \frac{\dot{a}\left(t\right)}{a\left(t\right)} \right)^2 &= \Omega_m H_\text{obs}^2 \frac{1}{a^3\left(t\right)} + H_\text{obs}^2 \Omega_\Lambda \\
+\dot{a}\left(t\right) &= a\left(t\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda} \\
+\dif t &= \frac{\dif a}{a\left(t\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}}
+\end{align*}
+Here $H_\text{obs} = H\left(t_\text{obs}\right) = \frac{\dot{a}\left( t_\text{obs} \right)}{a\left( t_\text{obs} \right)} = \dot{a}\left( t_\text{obs} \right)$ is the Hubble parameter at the observation time.
+
+We also need to know the areas of two spheres: the photon sphere, a sphere over which photons emitted from a particular burst are spread; and the bursts sphere, a sphere over which bursts at a particular redshift are distributed.
+
+Lets begin with the photon sphere. This sphere has the origin at $r = 0$ and $t = 0$, at the central engine of a particular burst. Taking $\dif s = 0$ and $\dif \Omega_2 = 0$ in the equation for metric, we get:
+\begin{equation*}
+\dif r = \frac{\dif t}{a\left(t\right)}
+\end{equation*}
+And now we integrate over time to find the observer's position:
+\begin{align*}
+r\left(t_\text{obs}\right) &= \int_0^{t_\text{obs}}\frac{\dif t}{a\left(t\right)} \\
+&= \int_{a\left(0\right)}^1\frac{\dif a}{a^2\left(t\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}} \\
+&= \frac{\, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{a^3\left(0\right) \Omega_\Lambda }\right)-a\left(0\right) \, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{\Omega_\Lambda }\right)}{a\left(0\right) H_\text{obs} \sqrt{\Omega_\Lambda }}
+\end{align*}
+Here $_2F_1\left(a, b; c; z\right) = \frac{\Gamma\left(c\right)}{\Gamma\left(b\right)\Gamma\left(c-b\right)}\int_0^1 \frac{t^{b-1}\left(1-t\right)^{c-b-1}}{\left(1-t z\right)^a} \dif t$ is a hypergeometric function. We can substitute $a\left(0\right) = \frac{1}{1+z}$, so, finally,
+\begin{equation}
+r\left(z\right) = \frac{\left(1+z\right)\, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{\Omega_\Lambda}\left(1+z\right)^3\right) - \, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{\Omega_\Lambda }\right)}{H_\text{obs} \sqrt{\Omega_\Lambda }}
+\end{equation}
+The area of the photon sphere is then:
+\begin{equation}
+A_\text{ph}\left(z\right) = 4 \pi a^2\left(t_\text{obs}\right) r^2\left(z\right) = 4 \pi r^2\left(z\right)
+\end{equation}
+
+The second sphere is the bursts sphere. It has its origin at the observer's position, and the radius the same as the photon sphere. Therefore, its area is:
+\begin{equation}
+A_\text{b}\left(z\right) = 4 \pi a^2\left(0\right) r^2\left(z\right) = \frac{4 \pi r^2\left(z\right)}{\left(1+z\right)^2}
+\end{equation}
+
+We need to know one more thing about the bursts sphere -- the volume of the infinitesimal shell surrounding it. For that we can again use the metric:
+\begin{align}
+\dif V\left(z\right) &= - A_\text{b}\left(z\right) a\left(0\right) \dif r \nonumber\\
+&= - A_\text{b}\left(z\right) a\left(0\right) \frac{\dif a}{a^2\left(0\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}} \nonumber\\
+&= A_\text{b}\left(z\right) \frac{\frac{1}{\left(1+z\right)^2}\dif z \left(1+z\right)}{H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}} \nonumber\\
+&= A_\text{b}\left(z\right) \frac{1}{\left(1+z\right)} \frac{\dif z}{H_\text{obs} \sqrt{\Omega_m\left(1+z\right)^3 + \Omega_\Lambda}} \nonumber\\
+&= \frac{4\pi r^2\left(z\right)}{\left(1+z\right)^3} \frac{\dif z}{H_\text{obs} \sqrt{\Omega_m\left(1+z\right)^3 + \Omega_\Lambda}}
+\end{align}
 
 \end{appendices}
 
