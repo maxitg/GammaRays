@@ -449,7 +449,7 @@ p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det
 &\qquad {} \times \delta\left( \frac{\omega'}{\underbrace{\gamma \left( 1 - v\cos\sigma\left(\theta, \phi, \chi\right) \right)}_{\text{relativistic shift}} \underbrace{\left(1+z\right)}_{\text{cosmological shift}}} - \omega \right) \nonumber\\
 &\qquad {} \times \delta\left( \tau - r\left( \frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right) \right) \left(1+z\right) \right)
 \end{align}
-Here $A_\text{det}$ is the effective area of the detector. We have taken account for four relativistic effects, which affect intensities and frequencies of the radiators: relativistic aberration; time dilation of the radiators relative to the observer; relativistic blue/redshift; and cosmological redshift.
+Here $A_\text{det}$ is the effective area of the detector, and $A_\text{ph}$ is an area of the sphere over which photons emitted in the burst are spread (see appendix \ref{sec:cosmology} for derivation). We have taken account for four relativistic effects, which affect intensities and frequencies of the radiators: relativistic aberration; time dilation of the radiators relative to the observer; relativistic blue/redshift; and cosmological redshift.
 
 We can use the delta functions to do the integrals over $\omega'$ and $r$. For that lets transform the first one:
 \begin{align*}
@@ -681,6 +681,7 @@ Now when we have all the ingredients, we can compute the sample with the followi
 	\begin{equation}
 	\Phi_z\left(z\right) = \frac{\int_{z_\text{min}}^z \rho\left(z'\right) \dif V\left(z'\right)}{\int_{z_\text{max}}^{z_\text{max}} \rho\left(z'\right) \dif V\left(z'\right)}
 	\end{equation}
+	where $\dif V\left(z'\right)$ is the volume of the infinitesimal shell surrounding a sphere over which bursts at redshift $z'$ are distributed (see appendix \ref{sec:cosmology} for derivation).
 
 	To generate a redshift, we should uniformly select a value of $\Phi_z$, and solve the corresponding equation for $z$:
 	\begin{equation}
@@ -1053,7 +1054,8 @@ gtexpcube2 infile=ltcube.fits cmap=none outfile=expcube_[IrfName].fits irfs=[Irf
 Note, that R.A. coordinates in the \texttt{expcube} FITS files are indexed in reverse order and starting from 180. For example, $\texttt{ra[0]}=180$, $\texttt{ra[1]}=179$, and so on.
 
 \section{Cosmology}
-This appendix contains a few formulas we need from cosmology, in particular the area of a photon sphere $A_{ph}\left(z\right)$, a sphere over which photons emitted in a particular burst at redshift $z$ are spread; and the volume of the infinitesimal shell surrounding a burst sphere $\dif V\left(z\right)$, a sphere over which bursts at redshift $z$ are distributed.
+\label{sec:cosmology}
+This appendix contains a few formulas we need from cosmology, in particular the area of a photon sphere $A_\text{ph}\left(z\right)$, a sphere over which photons emitted in a particular burst at redshift $z$ are spread; and the volume of the infinitesimal shell surrounding a burst sphere $\dif V\left(z\right)$, a sphere over which bursts at redshift $z$ are distributed.
 
 First of all, the metric of the expanding Universe:
 \begin{equation}
