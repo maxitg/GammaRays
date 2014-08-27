@@ -222,13 +222,15 @@ Specifically, we take 4 pieces of information from the tables 2 and 4 there:
 \end{itemize}
 The data obtained is summarized in table \ref{tab:bursts}.
 
-To have a decent safety margin, we download the data about observed photons extended in time by $50\%$ to both past and future relative to the table \ref{tab:bursts}. For background estimation, we also download observational data during a day before the burst. Exact values we put into the web form are listed in appendix \ref{sec:fermiCode}.
+To have a decent safety margin, we download the data about observed photons extended in time by $50\%$ to both past and future relative to the table \ref{tab:bursts}. For background estimation, we also download observational data during a day before the burst.
+Exact values we put into the web form are listed in appendix \ref{sec:fermiCode}.
 
 Before reading the data, we need to apply the basic filtering as described in Fermi guidelines (the actual code, and all parameters values we use to invoke Fermi Science tools are listed in appendix \ref{sec:fermiCode}).
 Two tools from the Fermi Science Tools package are used for that task (the same filtering is applied to both burst and background data).
 
 First, we use \texttt{gtselect}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtselect.txt}}.
 We filter the Earth limb emission with it below the zenith angle of $100\degree$.
+We also filter out photons with transient event class for a reason described in the next section.
 
 The second one we use is \texttt{gtmktime}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtmktime.txt}}. It uses the spacecraft file as well as events file, and filters out time periods when Fermi LAT was not operational. Running \texttt{gtmktime} is also required for exposure maps calculation, which we'll need later on.
 
@@ -257,8 +259,8 @@ The generated \texttt{expcube} files contain exposures as functions of energy an
 
 Knowing the exposures, we can now use the method introduced in the appendix of \cite{Rubtsov:2011qq} to estimate the linear component of background from the data observed before the burst.
 We compute two background estimates: for low and high energy bands.
-Also, our method doesn't work for transient class photons, because their background appears to depend on the spacecraft position.
-So we had to filter them out completely.
+Finally, our method doesn't work for transient class photons, because their background appears to depend on the spacecraft position.
+That is why we had to filter them out completely.
 
 \subsection{KS-test}
 
@@ -1051,7 +1053,7 @@ The commands we use to invoke Fermi Science tools are the following:
 \begin{lstlisting}
 gtselect infile=[eventFile] outfile=filtered.fits
 	ra=INDEF dec=INDEF rad=180 tmin=INDEF tmax=INDEF emin=100 emax=300000
-	zmax=100 evclass=0 convtype=-1 evtable=EVENTS
+	zmax=100 evclass=2 convtype=-1 evtable=EVENTS
 \end{lstlisting}
 Here \texttt{[eventFile]} is the file downloaded from the Fermi LAT data server.
 

@@ -381,7 +381,7 @@ int GRFermiLATDataServerQuery::gtselect() {
     cmd << "emin=" << 100. << " ";
     cmd << "emax=" << 300000. << " ";
     cmd << "zmax=" << 100. << " ";
-    cmd << "evclass=" << 0 << " ";
+    cmd << "evclass=" << 2 << " ";
     cmd << "convtype=" << -1 << " ";
     cmd << "evtable=" << "EVENTS" << " ";
     cmd << "chatter=" << 0 << " ";

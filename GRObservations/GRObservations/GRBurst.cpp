@@ -144,7 +144,10 @@ void GRBurst::read() {
     for (int i = 0; i < query.events.size(); i++) {
         GRFermiLATPhoton photon = query.events[i];
         photon.location.error = query.psfs[photon.eventClass][photon.conversionType].spread(photon.energy, PHOTONS_QUALITY);
-        if (photon.eventClass == GRFermiEventClassTransient) continue;
+        if (photon.eventClass == GRFermiEventClassTransient) {
+            cout << "Warning. Transients appeared even though they should have been filtered out by gtselect." << endl;
+            continue;
+        }
         if (location.isSeparated(photon.location)) continue;
         
         if (photon.energy < 1000.) mevPhotons.push_back(photon);
@@ -156,7 +159,10 @@ void GRBurst::read() {
     for (int i = 0; i < backgroundQuery.events.size(); i++) {
         GRFermiLATPhoton photon = backgroundQuery.events[i];
         photon.location.error = backgroundQuery.psfs[photon.eventClass][photon.conversionType].spread(photon.energy, PHOTONS_QUALITY);
-        if (photon.eventClass == GRFermiEventClassTransient) continue;
+        if (photon.eventClass == GRFermiEventClassTransient) {
+            cout << "Warning. Transients appeared even though they should have been filtered out by gtselect." << endl;
+            continue;
+        }
         if (location.isSeparated(photon.location)) continue;
         
         if (photon.energy < 1000.) mevBackgroundPhotons.push_back(photon);
