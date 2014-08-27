@@ -234,7 +234,7 @@ The second one we use is \texttt{gtmktime}\footnote{\url{http://fermi.gsfc.nasa.
 
 Now, with basic filtering done, we can read events data from \texttt{timed.fits}. This file, however, contains observations of a large area of the sky.
 Before using the data obtained from it, we should perform a more elaborate filtering by location using the point spread function of Fermi LAT, which can be computed with \texttt{gtpsf}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtpsf.txt}} tool.
-We use 41 energy bins from \unit[100]{MeV} to \unit[300]{GeV}, and 300 angular bins with maximal angle being $30\degree$.
+We use 300 energy bins from \unit[100]{MeV} to \unit[300]{GeV}, and 300 angular bins with maximal angle being $30\degree$.
 We use \texttt{gtltcube}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtltcube.txt}} tool to compute livetime maps, which are \texttt{gtpsf} need.
 Note, that we need PSFs for all Instrument Response Functions of Fermi, that is for all event classes (transient, source, clean and ultraclean) and conversion types (back and front).
 
@@ -251,7 +251,7 @@ Now we have a decent set of photons, which we can use for analysis. However, som
 
 \subsection{Exposure Maps and Background Estimation}
 
-The exposure map can be computed with the \texttt{gtexpcube2}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtexpcube2.txt}} tool. We compute it with 41 energy bins from \unit[100]{MeV} to \unit[300]{GeV}.
+The exposure map can be computed with the \texttt{gtexpcube2}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtexpcube2.txt}} tool. We compute it with 300 energy bins from \unit[100]{MeV} to \unit[300]{GeV}.
 
 The generated \texttt{expcube} files contain exposures as functions of energy and location on the sky. We use trilinear interpolation to compute exposures for all energies and locations.
 
