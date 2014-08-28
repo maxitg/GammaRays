@@ -225,19 +225,19 @@ The data obtained is summarized in table \ref{tab:bursts}.
 To have a decent safety margin, we download the data about observed photons extended in time by $50\%$ to both past and future relative to the table \ref{tab:bursts}. For background estimation, we also download observational data during a day before the burst.
 Exact values we put into the web form are listed in appendix \ref{sec:fermiCode}.
 
-Before reading the data, we need to apply the basic filtering as described in Fermi guidelines (the actual code, and all parameters values we use to invoke Fermi Science tools are listed in appendix \ref{sec:fermiCode}).
-Two tools from the Fermi Science Tools package are used for that task (the same filtering is applied to both burst and background data).
+Before reading the data, we need to apply the basic filtering as described in Fermi guidelines\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/data_preparation.html}} (the actual code, and all parameters values we use to invoke Fermi Science tools are listed in appendix \ref{sec:fermiCode}).
+Two tools from the Fermi Science Tools package\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/overview.html}} are used for that task (the same filtering is applied to both burst and background data).
 
-First, we use \texttt{gtselect}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtselect.txt}}.
+First, we use \texttt{gtselect}.
 We filter the Earth limb emission with it below the zenith angle of $100\degree$.
 We also filter out photons with transient event class for a reason described in the next section.
 
-The second one we use is \texttt{gtmktime}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtmktime.txt}}. It uses the spacecraft file as well as events file, and filters out time periods when Fermi LAT was not operational. Running \texttt{gtmktime} is also required for exposure maps calculation, which we'll need later on.
+The second one we use is \texttt{gtmktime}. It uses the spacecraft file as well as events file, and filters out time periods when Fermi LAT was not operational. Running \texttt{gtmktime} is also required for exposure maps calculation, which we'll need later on.
 
 Now, with basic filtering done, we can read events data from \texttt{timed.fits}. This file, however, contains observations of a large area of the sky.
-Before using the data obtained from it, we should perform a more elaborate filtering by location using the point spread function of Fermi LAT, which can be computed with \texttt{gtpsf}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtpsf.txt}} tool.
+Before using the data obtained from it, we should perform a more elaborate filtering by location using the point spread function of Fermi LAT, which can be computed with \texttt{gtpsf} tool.
 We use 300 energy bins from \unit[100]{MeV} to \unit[300]{GeV}, and 300 angular bins with maximal angle being $30\degree$.
-We use \texttt{gtltcube}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtltcube.txt}} tool to compute livetime maps, which are \texttt{gtpsf} need.
+We use \texttt{gtltcube} tool to compute livetime maps, which are \texttt{gtpsf} need.
 Note, that we need PSFs for all Instrument Response Functions of Fermi, that is for all event classes (transient, source, clean and ultraclean) and conversion types (back and front).
 
 To understand how to use obtained PSFs, imagine a stream of photons coming from some source located at some coordinates $\theta, \phi$. Ideally, all the coordinates measured for the photons coming from the source should be the same. However, due to measurement errors, they would be spread across some region of the sky. If we find the region such that, say, $95\%$ of photons coming from the source are measured inside of it, we can filter out all the other photons without losing too much statistics, and significantly reducing background. \texttt{gtpsf} approximates these regions as circles, and the files generated in the previous step contain the observation probability densities as functions of distance from the source and photon energies. We, however, need an integral quantity, that is given the radius, we want to know the fraction of photons observed inside the circle of this radius. We can compute this fraction by summing over the probability densities:
@@ -253,7 +253,7 @@ Now we have a decent set of photons, which we can use for analysis. However, som
 
 \subsection{Exposure Maps and Background Estimation}
 
-The exposure map can be computed with the \texttt{gtexpcube2}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtexpcube2.txt}} tool. We compute it with 300 energy bins from \unit[100]{MeV} to \unit[300]{GeV}.
+The exposure map can be computed with the \texttt{gtexpcube2} tool. We compute it with 300 energy bins from \unit[100]{MeV} to \unit[300]{GeV}.
 
 The generated \texttt{expcube} files contain exposures as functions of energy and location on the sky. We use trilinear interpolation to compute exposures for all energies and locations.
 
@@ -1075,7 +1075,7 @@ gtltcube evfile=timed.fits evtable=EVENTS scfile=[spacecraft] sctable=SC_DATA
 gtpsf expcube=ltcube.fits outfile=psf_[IrfName].fits outtable=PSF irfs=[IrfName]
 	ra=[RA] dec=[DEC] emin=100 emax=300000 nenergies=41 thetamax=30 ntheta=300
 \end{lstlisting}
-\texttt{[RA]} and \texttt{[DEC]} here are the coordinates of the burst, and \texttt{[IrfName]} is the Instrument Response Function, which depends on photon's event class (transient, source, clean, or ultraclean) and conversion type (back or front). The list of IRF names can be obtained with the \texttt{gtirfs}\footnote{\url{http://fermi.gsfc.nasa.gov/ssc/data/analysis/scitools/help/gtirfs.txt}} tool. We need to compute PSFs for all of them.
+\texttt{[RA]} and \texttt{[DEC]} here are the coordinates of the burst, and \texttt{[IrfName]} is the Instrument Response Function, which depends on photon's event class (transient, source, clean, or ultraclean) and conversion type (back or front). The list of IRF names can be obtained with the \texttt{gtirfs} tool. We need to compute PSFs for all of them.
 
 \begin{lstlisting}
 gtexpcube2 infile=ltcube.fits cmap=none outfile=expcube_[IrfName].fits irfs=[IrfName]
