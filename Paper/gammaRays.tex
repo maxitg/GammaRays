@@ -45,7 +45,7 @@
 
 	The Kolmogorov-Smirnov test is used to check whether the light curves for these two bands are the same.
 	No significant difference was found for GRB 080916C and GRB 090510.
-	However, we observed with statistical significance of $3.3 \sigma$, that the higher energy light curve of GRB 090926A is stretched with respect to the lower-energy one, and with statistical significance of $2.2 \sigma$, that the lower energy light curve of GRB 090902B is stretched with respect to the higher-energy one.
+	However, we observed with statistical significance of $3.3 \sigma$, that the higher energy light curve of GRB 090926A is stretched with respect to the lower-energy one, and with statistical significance of $2.3 \sigma$, that the lower energy light curve of GRB 090902B is stretched with respect to the higher-energy one.
 
 	We suggest a simple geometrical model to explain this result.
 	The main assumption is the jet opening angle dependence on radiation energy -- the most energetic photons are emitted near the axis of the jet.
@@ -136,13 +136,13 @@
 		\begin{subfigure}{0.45\textwidth}
 			\includegraphics[width=\textwidth]{sampleLightCurveLogNegative}
 			\label{fig:sampleLightCurveLogNegative}
-			\caption{Stretching factor $\kappa = 0.821$, redshift $z = 1.82$, off-axis angle $\chi = 0$.}
+			\caption{Stretching factor $\kappa = 0.819$, redshift $z = 1.82$, off-axis angle $\chi = 0$.}
 		\end{subfigure}
 		\hfill
 		\begin{subfigure}{0.45\textwidth}
 			\includegraphics[width=\textwidth]{sampleLightCurveLogPositive}
 			\label{fig:sampleLightCurveLogPosivie}
-			\caption{Stretching factor $\kappa = 2.26$, redshift $z = 2.106$, off-axis angle $\chi = 5.41 \times 10^{-3}$.}
+			\caption{Stretching factor $\kappa = 2.43$, redshift $z = 2.106$, off-axis angle $\chi = 5.90 \times 10^{-3}$.}
 		\end{subfigure}
 		\hspace*{\fill}
 		\caption{
@@ -328,7 +328,7 @@ So we obtained a preliminary (for significance is only $2\sigma$) result that th
                 \includegraphics[width=\textwidth]{probabilities090902B}
                 \label{fig:probabilities090902B}
         \end{subfigure}
-        \caption{GRB 090902B results. Low energy radiation is stretched ($\kappa < 1$) with significance of $2.2\sigma$.}
+        \caption{GRB 090902B results. Low energy radiation is stretched ($\kappa < 1$) with significance of $2.3\sigma$.}
         \label{fig:grb090902B}
 \end{figure}
 
@@ -354,7 +354,7 @@ So we obtained a preliminary (for significance is only $2\sigma$) result that th
 		\hline
 		080916C	&	1.04  & 2.24	&	0.67 & 3.32	&	0.42 & 5.83	&	0.19 & 14.9		&	0.087 & 35.7	\\
 		090501	&	0.58  & 1.1		&	0.43 & 1.61	&	0.32 & 2.29	&	0.22 &  3.03	&	0.17  &  5.11	\\
-		090902B	&	0.629 & 0.635	&	0.36 & 0.89	&	0.23 & 1.57	&	0.13 &  2.87	&	0.084 &  4.56	\\
+		090902B	&	0.604 & 0.613	&	0.35 & 0.89	&	0.22 & 1.53	&	0.13 &  2.86	&	0.078 &  4.49	\\
 		090926A &	2.61  & 3.33	&	1.99 & 6.62	&	1.34 & 9.15	&	0.73 & 13.5		&	0.48  & 19.4
 	\end{tabular}
 	\caption{Burst observation results. Ranges of allowed stretching factors are shown for studied bursts for multiple levels of significance.}
@@ -792,7 +792,7 @@ We want our cost function $C\left(n, \theta_0, k, \alpha, \chi\right)$ to satisf
 		We require all bursts to have the same burst parameters $\left(\gamma, \eta_0, r_0, n, \omega_0, \theta_0, k, \alpha\right)$. And we know that bursts with small stretching factors like GRB 090902B should be possible to observe. So we require that bursts with the stretching factor of GRB 090902B or lower appear in random samples by $z$ and $\chi$ (sampling is done the same way as in section \ref{sec:distribution}).
 	}
 	\item {
-		The ratio of photons with high energies and low energies should be compatible with the value for the GRB 090926A, $\frac{p_{\infty} \left(z,\chi;\unit[1]{GeV},\infty\right)}{p_{\infty} \left(z,\chi;\unit[0.1]{GeV},\unit[1]{GeV}\right)} = 0.06$.
+		The ratio of photons with high energies and low energies should be compatible with the value for the GRB 090926A, $\frac{p_{\infty} \left(z,\chi;\unit[1]{GeV},\infty\right)}{p_{\infty} \left(z,\chi;\unit[0.1]{GeV},\unit[1]{GeV}\right)} = 0.057$.
 	}
 	\item {
 		Finally, the burst should not be too faint compared to other bursts from the sample. In other words, the total number of observed photons should approximately equal to the median among the sample.
@@ -805,7 +805,7 @@ The cost function is then computed by the following procedure:
 		Set $\gamma = 300$, $\omega_0 = \unit[1]{GeV}$, $z = 2.1062$ (which is the redshift of GRB 090926A)
 	}
 	\item{
-		Set $\eta_0$ and $r_0$ such that the duration of the burst, and the total number of observed photons are compatible with GRB 090926A, $T_{0.99}\left(z,\chi;\unit[0.1]{GeV},\infty\right) = \unit[219.5]{sec}$ and $p_{\infty} \left(z,\chi;\unit[0.1]{GeV},\infty\right) = 179.989$
+		Set $\eta_0$ and $r_0$ such that the duration of the burst, and the total number of observed photons are compatible with GRB 090926A, $T_{0.99}\left(z,\chi;\unit[0.1]{GeV},\infty\right) = \unit[219.5]{sec}$ and $p_{\infty} \left(z,\chi;\unit[0.1]{GeV},\infty\right) = 179.996$
 	}
 	\item{
 		If $k+\frac{\alpha}{2}+1 < 0$, or the energy of the burst $E\left(\unit[0.1]{GeV}\right) > \unit[6 \times 10^{53}]{GeV}$, the cost function equals to the penalization factor: $C\left(n, \theta_0, k, \alpha, \chi\right) = 400$.
@@ -831,7 +831,7 @@ The cost function is then computed by the following procedure:
 					\log{\kappa_\text{min}} - \log{\kappa_{\text{GRB090902B}}}
 				}{\Delta\log\kappa_{\text{GRB090902B}}}\right)
 		\end{equation}
-		Here $\kappa_\text{min}$ is the minimal stretching factor from the sample computed in the step \ref{item:sample}, $\log\kappa_{\text{GRB090902B}} = \frac{1}{2}\left(\log\left(0.89\right) + \log\left(0.36\right)\right)$ and $\Delta\log\kappa_{\text{GRB090902B}} = \frac{1}{2}\left(\log\left(0.89\right) - \log\left(0.36\right)\right)$.
+		Here $\kappa_\text{min}$ is the minimal stretching factor from the sample computed in the step \ref{item:sample}, $\log\kappa_{\text{GRB090902B}} = \frac{1}{2}\left(\log\left(0.89\right) + \log\left(0.35\right)\right)$ and $\Delta\log\kappa_{\text{GRB090902B}} = \frac{1}{2}\left(\log\left(0.89\right) - \log\left(0.35\right)\right)$.
 	}
 	\item{
 		Compute the cost due to the fraction of high and low energy photon counts:
@@ -844,7 +844,7 @@ The cost function is then computed by the following procedure:
 				} - \log f_{\text{GRB090926A}}
 			}{\log(10)}
 		\end{equation}
-		Here $f_{\text{GRB090926A}} = 0.0606777$.
+		Here $f_{\text{GRB090926A}} = 0.0570003$.
 	}
 	\item{
 		Compute the cost due to the brightness of the burst compared to the median:
@@ -890,15 +890,15 @@ The minimization then converged to the following parameter values:
 \begin{multicols}{2}
 \begin{itemize}
 		\item{$\gamma = 300$}
-		\item{$\eta_0 = \unit[8.14796255480381 \times 10^{34}]{sec^{-3} GeV^{-1}}$}
-		\item{$r_0 = \unit[3.357930930824906 \times 10^6]{sec}$}
-		\item{$\bm{n = 22.5269}$}
+		\item{$\eta_0 = \unit[4.629640817921788 \times 10^{34}]{sec^{-3} GeV^{-1}}$}
+		\item{$r_0 = \unit[3.142715108207946 \times 10^6]{sec}$}
+		\item{$\bm{n = 22.9977}$}
 		\item{$\omega_0 = \unit[1]{GeV}$}
-		\item{$\bm{\theta_0 = 5.02035 \times 10^{-5}}$}
-		\item{$\bm{k = -0.699813}$}
-		\item{$\bm{\alpha = -0.626944}$}
+		\item{$\bm{\theta_0 = 7.93393 \times 10^{-5}}$}
+		\item{$\bm{k = -0.65356}$}
+		\item{$\bm{\alpha = -0.724394}$}
 		\item{$z = 2.1062$}
-		\item{$\bm{\chi = 0.00541037}$}
+		\item{$\bm{\chi = 0.00590163}$}
 \end{itemize}
 \end{multicols}
 
@@ -918,7 +918,7 @@ Note, that these parameter values (except for $z$ and $\chi$) are universal, and
 			This distribution does not contradict to the values of stretching factors obtained in section \ref{sec:observations}.
 		}
 		\item{
-			The fraction of bursts observable in low energy band, which are also observed in high energy band $f_m = 0.116$.
+			The fraction of bursts observable in low energy band, which are also observed in high energy band $f_m = 0.110$.
 			The Fermi LAT catalog contains $35$ bursts out of which $4$ can be observed in high energy band.
 			Therefore the observed value $f_o = 0.11 \pm 0.05$ (error obtained from binomial distribution) agrees with the model.
 		}
