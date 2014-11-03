@@ -13,6 +13,7 @@
 \usepackage{appendix}
 \usepackage{textcomp}
 \usepackage{gensymb}
+\usepackage{booktabs}
 
 \lstset{columns=fullflexible,basicstyle=\ttfamily}
 
@@ -21,14 +22,15 @@
 \DeclareMathOperator*{\argmin}{argmin}
 
 \title{
-	Time Stretching of the GeV Emission of GRBs: Fermi LAT data vs geometrical model \\
-	{\large \url{https://github.com/maxitg/GammaRays}}
+	Time stretching of the GeV emission of GRBs: Fermi LAT data vs geometrical model
 }
 
 \author{
-	Maxim S. Piskunov$^{1}$\thanks{\href{mailto:maxit@ms2.inr.ac.ru}{maxit@ms2.inr.ac.ru}} and
-	Grigory I. Rubtsov$^{1}$\thanks{\href{mailto:grisha@ms2.inr.ac.ru}{grisha@ms2.inr.ac.ru}} \\
-	$^{1}$Institute for Nuclear Research RAS, 117312, Moscow, Russia\\
+	Maxim S. Piskunov$^{1,2}$\thanks{\href{mailto:maxit@ms2.inr.ac.ru}{maxit@ms2.inr.ac.ru}} ~and
+	Grigory I. Rubtsov$^{2,3}$\thanks{\href{mailto:grisha@ms2.inr.ac.ru}{grisha@ms2.inr.ac.ru}} \\
+	{\small $^{1}$Faculty of Physics, Moscow State University, Moscow, Russia}\\
+	{\small $^{2}$Institute for Nuclear Research of the RAS, Moscow, Russia}\\
+	{\small $^{3}$Novosibirsk State University, Novosibirsk, Russia}
 }
 
 \begin{document}
@@ -36,39 +38,68 @@
 \maketitle
 
 \begin{abstract}
-	Numerous observations confirm that the high energy $(> \unit[100]{MeV})$ emission of gamma ray bursts is delayed with respect to the low energy emission.
-	However, the difference of light curves in various high energy bands has not been studied properly.
-
-	In this paper we consider all the bursts observed by Fermi-LAT since 2008 August 4 to 2011 August 1, for which at least $10$ events with energies $\unit[1]{GeV}$ or higher were observed.
-	There are $4$ of them: GRB 080916C, GRB 090510, GRB 090902B, and GRB 090926A.
-	We study their light curves in two bands, $(\unit[100]{MeV}, \unit[1]{GeV})$ and $(\unit[1]{GeV}, \unit[300]{GeV})$.
-
-	The Kolmogorov-Smirnov test is used to check whether the light curves for these two bands are the same.
-	No significant difference was found for GRB 080916C and GRB 090510.
-	However, we observed with statistical significance of $3.3 \sigma$, that the higher energy light curve of GRB 090926A is stretched with respect to the lower-energy one, and with statistical significance of $2.3 \sigma$, that the lower energy light curve of GRB 090902B is stretched with respect to the higher-energy one.
-
-	We suggest a simple geometrical model to explain this result.
-	The main assumption is the jet opening angle dependence on radiation energy -- the most energetic photons are emitted near the axis of the jet.
-	We also assume that all bursts are the same in their rest frames (that is their light curves differ only because of different redshifts and different view directions).
-	To test this model, we compute the total energy of the burst, and confirm that it is below the constraint.
-	We also compute the fraction of observable bursts in $(\unit[100]{MeV}, \unit[1]{GeV})$ band, which can also be observed in higher energies.
-	This fraction matches the observations.
-	We predict the distribution of observable stretching factors, which may be tested in the future when more observational data become available.
-	Finally, we propose a way to estimate observer's off-axis angles (view directions) based on stretching factors and fractions of high energy photons.
-
-	All our code is open source, and is available freely on GitHub for you to download and play with.
+	It is known that the high energy $(> \unit[100]{MeV})$
+        emission of gamma-ray bursts is delayed with respect to the
+        low energy emission.  However, the dependence of light curves
+        on energy has not been studied for the high energy bands.  In
+        this paper we consider the bursts observed by Fermi-LAT from
+        2008 August 4 to 2011 August 1, for which at least $10$
+        photons were observed with energy greater than
+        $\unit[1]{GeV}$. These include $4$ bursts: GRB 080916C, GRB
+        090510, GRB 090902B, and GRB 090926A.  We use the
+        Kolmogorov-Smirnov test to compare the light curves in the two
+        bands, $\unit[100]{MeV} < E < \unit[1]{GeV}$ and
+        $\unit[1]{GeV} < E < \unit[300]{GeV}$. For GRB 080916C and GRB
+        090510 the light curves in two bands are statistically
+        compatible. However, for GRB 090926A, the higher-energy light
+        curve is stretched compared to the lower-energy one with a
+        statistical significance of $3.3 \sigma$ and, for GRB 090902B,
+        on the contrary, the lower-energy curve is stretched with $2.3
+        \sigma$ significance. We argue that the observed diversity of
+        stretching factors may be explained in a simple geometrical
+        model. The model assumes that the jet opening angle depends on
+        the emission energy in a way that the most energetic photons
+        are radiated near the axis of the jet. All the bursts are
+        considered equivalent in their rest frames and the observed
+        light curves differ only due to different redshifts and view
+        directions. The model conforms to the total burst energy
+        constraint and matches the Fermi LAT observations of the
+        fraction of GRBs visible in $\unit[100]{MeV} < E <
+        \unit[1]{GeV}$ band, which may be observed at higher
+        energies. The model predicts the distribution of observable
+        stretching factors, which may be tested in the future
+        data. Finally, we propose a way to estimate observer's
+        off-axis angle based on stretching factor and fraction of the
+        high-energy photons. The code for modeling is open source and
+        is publicly available on GitHub
+        (\url{https://github.com/maxitg/GammaRays}).
 \end{abstract}
+
+%TODO: add grants
+%? ref to Lemoine GRB1
 
 \section{Introduction}
 
-	Gamma Ray Bursts (GRBs) are among the most energetic events in the Universe, therefore they might provide new knowledge for particle physics.
-	Modern observatories, specifically Fermi \cite{Ackermann:2012kna} and Swift \cite{Gehrels:2004gu} made possible to study these explosions extensively \cite{Vianello:2013ela,Gehrels:2013xd}.
-	These and previous studies led to several interesting results.
-	For example, the total energy emitted in gamma-rays during a burst was found to be similar among different bursts within an order of magnitude \cite{Bloom:2003wy}.
-	This suggests that most of the bursts must have similar energetics in their rest frames.
-	Temporal variations of spectra were also studied. The spectral lags were found between different low energy bands \cite{Yi:2005ht}.
-	The very high energy radiation was discovered to be extended relative to x-ray emission \cite{Castignani:2014gaa,Lange:2013uh,Vianello:2013ela}.
-	We decided to elaborate on that result, and, using the data from Large Area Telescope (LAT) of Fermi, explore the spectral variations between different high energy bands, specifically $(\unit[100]{MeV}, \unit[1]{GeV})$ and $(\unit[1]{GeV}, \unit[300]{GeV})$ (we call them low and high energy bands throughout the paper).
+Gamma-ray bursts (GRBs) are among the most energetic events in the
+Universe. Therefore, the studies of the emission mechanism and
+phenomenology of GRBs may provide the new knowledge in particle
+physics. Moreover, the GRBs are observed from cosmological distances
+and therefore bear an imprint of the late-time evolution of the
+Universe. An extensive studies of these explosions led to a number of
+interesting results, see~\cite{Vianello:2013ela,Gehrels:2013xd} for a
+review. In particular, the total energy emitted in gamma-rays during a
+burst was found to be similar for the different GRBs within an order
+of magnitude~\cite{Bloom:2003wy}. This indicates that the most of the
+bursts have similar energetics in their rest frames. Several
+observations are related to the temporal variations of spectra. This
+way, the spectral lags were found between different low energy bands
+\cite{Yi:2005ht} and the very-high-energy radiation was discovered to
+be extended relative to the x-ray emission
+\cite{Castignani:2014gaa,Lange:2013uh,Vianello:2013ela}.
+
+%% change the next statement
+	We decided to elaborate on that result, and, using the data
+        from Large Area Telescope (LAT) of Fermi satellite~\cite{Ackermann:2012kna}, explore the spectral variations between different high energy bands, specifically $(\unit[100]{MeV}, \unit[1]{GeV})$ and $(\unit[1]{GeV}, \unit[300]{GeV})$ (we call them low and high energy bands throughout the paper).
 	In particular, we use the Kolmogorov-Smirnov test to compute the time stretching of radiation in one of these bands compared to the other.
 
 	We take the GRB list from the Fermi-LAT catalog \cite{Ackermann:2013zfa}.
@@ -1146,7 +1177,7 @@ We need to know one more thing about the bursts sphere -- the volume of the infi
 
 \end{appendices}
 
-\bibliographystyle{hep}
+\bibliographystyle{ieeetr}
 \bibliography{gammaRays.bib}
 
 \end{document}
