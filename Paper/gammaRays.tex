@@ -44,13 +44,13 @@
         on energy has not been studied for the high energy bands.  In
         this paper we consider the bursts observed by Fermi-LAT from
         2008 August 4 to 2011 August 1, for which at least $10$
-        photons were observed with energy greater than
+        photons were observed with the energy greater than
         $\unit[1]{GeV}$. These include $4$ bursts: GRB 080916C, GRB
         090510, GRB 090902B, and GRB 090926A.  We use the
         Kolmogorov-Smirnov test to compare the light curves in the two
         bands, $\unit[100]{MeV} < E < \unit[1]{GeV}$ and
-        $\unit[1]{GeV} < E < \unit[300]{GeV}$. For GRB 080916C and GRB
-        090510 the light curves in two bands are statistically
+        $E > \unit[1]{GeV}$. For GRB 080916C and GRB
+        090510 the light curves in the two bands are statistically
         compatible. However, for GRB 090926A, the higher-energy light
         curve is stretched compared to the lower-energy one with a
         statistical significance of $3.3 \sigma$ and, for GRB 090902B,
@@ -68,17 +68,14 @@
         \unit[1]{GeV}$ band, which may be observed at higher
         energies. The model predicts the distribution of observable
         stretching factors, which may be tested in the future
-        data. Finally, we propose a way to estimate observer's
-        off-axis angle based on stretching factor and fraction of the
+        data. Finally, we propose a method to estimate observer's
+        off-axis angle based on the stretching factor and the fraction of the
         high-energy photons. The code for modeling is open source and
         is publicly available on GitHub
         (\url{https://github.com/maxitg/GammaRays}).
 \end{abstract}
 
-%TODO: add grants
-%? ref to Lemoine GRB1
-
-\section{Introduction}
+\section{Introduction and summary}
 
 Gamma-ray bursts (GRBs) are among the most energetic events in the
 Universe. Therefore, the studies of the emission mechanism and
@@ -90,61 +87,92 @@ interesting results, see~\cite{Vianello:2013ela,Gehrels:2013xd} for a
 review. In particular, the total energy emitted in gamma-rays during a
 burst was found to be similar for the different GRBs within an order
 of magnitude~\cite{Bloom:2003wy}. This indicates that the most of the
-bursts have similar energetics in their rest frames. Several
+bursts have similar energetics in their rest frames. Moreover, the
+high energy radiation of GRBs is shown to follow the predictions of
+the synchrotron radiation scenario~\cite{Wang:2013ptaw}.  Several
 observations are related to the temporal variations of spectra. This
 way, the spectral lags were found between different low energy bands
 \cite{Yi:2005ht} and the very-high-energy radiation was discovered to
 be extended relative to the x-ray emission
-\cite{Castignani:2014gaa,Lange:2013uh,Vianello:2013ela}.
+\cite{Castignani:2014gaa,Lange:2013uh,Vianello:2013ela}. In this paper
+we go further and compare the temporal extension of GRB gamma-ray
+radiation in the two energy bands $\unit[100]{MeV} < E <
+\unit[1]{GeV}$ and $E > \unit[1]{GeV}$ (hereafter, low and high-energy
+bands) using the data from the Large Area Telescope (LAT) of the Fermi
+satellite~\cite{Ackermann:2012kna}. 
 
-%% change the next statement
-	We decided to elaborate on that result, and, using the data
-        from Large Area Telescope (LAT) of Fermi satellite~\cite{Ackermann:2012kna}, explore the spectral variations between different high energy bands, specifically $(\unit[100]{MeV}, \unit[1]{GeV})$ and $(\unit[1]{GeV}, \unit[300]{GeV})$ (we call them low and high energy bands throughout the paper).
-	In particular, we use the Kolmogorov-Smirnov test to compute the time stretching of radiation in one of these bands compared to the other.
+We start with the location, time and duration of bursts from the
+Fermi-LAT Gamma-Ray Burst Catalog \cite{Ackermann:2013zfa}. The
+photons during the burst and the photons for 24 hours before the burst
+are downloaded from the LAT Data
+Server~\footnote{\url{http://fermi.gsfc.nasa.gov/cgi-bin/ssc/LAT/LATDataQuery.cgi}}.
+The latter are used for the background estimation in both energy bands
+with the technique introduced in \cite{Rubtsov:2011qq}. In order to
+have enough statistics we require that at least 10 photons are
+detected with the energy greater than $\unit[1]{GeV}$. This leaves are
+with the four bursts for the time span of the Fermi-LAT Gamma-Ray
+Burst Catalog. Namely, GRB~080916C \cite{Tajima:2009az}, GRB~090510
+\cite{Ackermann:2010us}, GRB~090902B \cite{Abdo:2009pg} and
+GRB~090926A \cite{Bregeon:2011bu}. For these bursts we stretch the
+high energy light curve by the arbitrary factor and compare with the
+low energy light curve using the Kolmogorov-Smirnov (KS) test. Within
+the $95\%$ confidence level the stretching factor is compatible to $1$
+(no stretching) for the GRB 080916C and GRB 090510. For the other two
+bursts the stretching factor of 1 is, however, excluded.  For GRB
+090902B it should be smaller than 1, so the low energy light curve is
+stretched with respect to the high energy one, see
+fig. \ref{fig:grb090902B}.  Even more significant deviation from the
+stretching factor of 1 in the opposite direction is observed for the
+GRB 090926A. The high energy light curve of GRB 090926A is stretched
+with respect to the low energy one by a factor of at least 1.99 (see
+fig. \ref{fig:grb090926A}).  The stretching of the GRB 090926A high
+energy light is found with $3.3\sigma$ significance.  All the observed
+stretching factors are summarized in table
+\ref{tab:observationResults}, and the detailed procedure for computing
+them is described in section \ref{sec:observations}.
 
-	We take the GRB list from the Fermi-LAT catalog \cite{Ackermann:2013zfa}.
-	Tables 2 and 4 in \cite{Ackermann:2013zfa} provide the time, durations and locations of the bursts, which we use to download observational data from the LAT Data Server\footnote{\url{http://fermi.gsfc.nasa.gov/cgi-bin/ssc/LAT/LATDataQuery.cgi}}.
-	We also download events during a day before the burst, and use the technique introduced in \cite{Rubtsov:2011qq} to estimate background radiation in both energy bands.
+We propose that the observed energy dependence of the time profiles
+may be explained without introduction of the new effects. We argue
+that the stretching may originate from the effects of the jet geometry
+called curvature effects. These effects were explored by multiple
+authors \cite{Nakamura:2001kd,Shen:2005ea,Shenoy:2013cba}.
+%% TODO here 
+ However,
+these studies concerned x-ray radiation, and, even more
+importantly, they assumed that the distribution of radiation sources
+is homogeneous throughout the jet.  We propose a contrary idea: that
+the highest energy radiators are concentrated near the axis of the
+jet, so that the jet opening angle depends on energy.  We cannot prove
+this assumption rigorously, but we have arguments supporting it.
 
-	Most of the bursts in the catalog, however, do not have enough events with over $\unit[1]{GeV}$ energies to do desired computations, so we choose only those bursts, from which at least $10$ photons were detected in the high energy band.
-	It leaves $4$ of them: GRB 080916C \cite{Tajima:2009az}, GRB 090510 \cite{Ackermann:2010us}, GRB 090902B \cite{Abdo:2009pg} and GRB 090926A \cite{Bregeon:2011bu}.
+First of all, there are around 750 GRBs detected by GBM, half of which
+were in the LAT field of view at the moment of observation
+\cite{Vianello:2013ela}.  However, only about 30 of them were detected
+by the LAT, and only 4 of them were bright in the high energy band.
+If we extrapolate the uniform jet model to very high energies, this
+observation would mean that these groups of bursts are internally
+different: some of them produce VHE radiation, while others do not.
+These differences are hard to explain given that burst energetics are
+similar \cite{Bloom:2003wy}.  Nevertheless, these differences in burst
+counts can easily be explained by our model.  In our model, the
+opening angle of a jet is inversely proportional to the energy of
+photons it radiates.  Therefore the most common scenario is that the
+off-axis angle of an observer is smaller than the low energy jet
+opening angle, but much larger than the opening angle of a high energy
+jet.  Because of that, most of the bursts can only be seen at low
+energies.  The 4 bursts we study in this paper were seen, according to
+our model, from the lowest off-axis angles.
 
-	For these 4 bursts we compute both high and low energy distributions of photon arrival times, and subtract background estimates from them.
-	This makes CDFs non-monotonous and, rigorously speaking, we cannot use the 2-sample Kolmogorov-Smirnov test on it.
-	However, since the number of photons is much higher than estimated background, this non-monotonicity is negligible, and will not harm KS-test results much.
-
-	Finally, we stretch the high energy CDF by different factors, and compare it to the low energy CDF using the KS-test.
-	If we require $2\sigma$-significant probability to exclude a particular stretching factor, then the stretching factor of $1$ (which means no stretching) is allowed for GRB 080916C and GRB 090510.
-	For the other two bursts the stretching factor of 1 is, however, excluded.
-	For GRB 090902B it should be smaller than 1, so the low energy light curve is stretched with respect to the high energy one (see fig. \ref{fig:grb090902B}).
-	And for GRB 090926A even more significant deviation from the stretching factor of 1 is observed in the opposite direction.
-	The high energy light curve of GRB 090926A is stretched with respect to the low energy one by a factor of at least 1.99 (see fig. \ref{fig:grb090926A}).
-	All observed stretching factors are summarized in table \ref{tab:observationResults}, and the detailed procedure for computing them is described in section \ref{sec:observations} of the paper.
-
-	We propose that this result can be explained by the curvature effects (that is the effects of the jet geometry).
-	These effects were explored by multiple authors \cite{Nakamura:2001kd,Shen:2005ea,Shenoy:2013cba}.
-	However, these studies were only concerned with x-ray radiation, and, even more importantly, they assumed that the distribution of radiation sources is homogeneous throughout the jet.
-	We propose a contrary idea: that the highest energy radiators are concentrated near the axis of the jet, so that the jet opening angle depends on energy.
-	We cannot prove this assumption rigorously, but we have arguments supporting it.
-
-	First of all, there are around 750 GRBs detected by GBM, half of which were in the LAT field of view at the moment of observation \cite{Vianello:2013ela}.
-	However, only about 30 of them were detected by the LAT, and only 4 of them were bright in the high energy band.
-	If we extrapolate the uniform jet model to very high energies, this observation would mean that these groups of bursts are internally different: some of them produce VHE radiation, while others do not.
-	These differences are hard to explain given that burst energetics are similar \cite{Bloom:2003wy}.
-	Nevertheless, these differences in burst counts can easily be explained by our model.
-	In our model, the opening angle of a jet is inversely proportional to the energy of photons it radiates.
-	Therefore the most common scenario is that the off-axis angle of an observer is smaller than the low energy jet opening angle, but much larger than the opening angle of a high energy jet.
-	Because of that, most of the bursts can only be seen at low energies.
-	The 4 bursts we study in this paper were seen, according to our model, from the lowest off-axis angles.
-
-	Second, consider the plasma right after its ejection from the central engine.
-	Two processes happen there simultaneously:
-	\begin{enumerate}
-		\item{Particles near the jet boundary collide and change their movement directions, therefore increasing the opening angle of the jet.}
-		\item{Particles lose energy, therefore decreasing radiation frequency emitted by the jet.}
-	\end{enumerate}
-	We argue that these two processes are correlated, for they happen due to the same particle interaction processes.
-	And since they are correlated, jets with larger opening angles should have lower energies, which is the assumption we are trying to justify.
+Second, consider the plasma right after its ejection from the central
+engine.  Two processes happen there simultaneously:
+\begin{enumerate}
+	\item{Particles near the jet boundary collide and change their movement directions, therefore increasing the opening angle of the jet.}
+	\item{Particles lose energy, therefore decreasing radiation frequency emitted by the jet.}
+\end{enumerate}
+We argue that these two processes are correlated, for they happen due
+to the same particle interaction processes.  And since they are
+correlated, jets with larger opening angles should have lower
+energies, which is the assumption we are trying to justify.
 
 	\begin{figure}
         \centering
@@ -183,12 +211,19 @@ be extended relative to the x-ray emission
 		\label{fig:sampleLightCurves}
 	\end{figure}
 
-	Finally, our assumption is able to explain the non-trivial stretching factor of both GRB 090902B and GRB 090926A.
-	Detailed computations are described in section \ref{sec:model}, but you can see the main idea on figure \ref{fig:modelOverview}.
-	Computations confirm that this qualitative picture is indeed correct.
-	You can see a sample light curves on figure \ref{fig:sampleLightCurves}, and predicted distribution of stretching factors on figure \ref{fig:kappaDistribution}.
+Finally, our assumption is able to explain the non-trivial stretching
+factor of both GRB 090902B and GRB 090926A.  Detailed computations are
+described in section \ref{sec:model}, but you can see the main idea on
+figure \ref{fig:modelOverview}.  Computations confirm that this
+qualitative picture is indeed correct.  You can see a sample light
+curves on figure \ref{fig:sampleLightCurves}, and predicted
+distribution of stretching factors on figure
+\ref{fig:kappaDistribution}.
 
-	Results of our study, including a few predictions of our model and a new method for estimating jet observation angles, are summarized in section \ref{sec:results}, and the caveats are discussed in section \ref{sec:summary}.
+Results of our study, including a few predictions of our model and a
+new method for estimating jet observation angles, are summarized in
+section \ref{sec:results}, and the caveats are discussed in section
+\ref{sec:conclusions}.
 
 \section{Observations}
 \label{sec:observations}
@@ -228,9 +263,13 @@ be extended relative to the x-ray emission
 	\label{tab:bursts}
 \end{table}
 
-Before we start to compute the Kolmogorov-Smirnov probabilities, we need to download the actual observational data from the Fermi LAT data server.
-We take the data about the bursts from the catalog \cite{Ackermann:2013zfa}, which contains all the bright bursts seen by the LAT since 2008 August 4 to 2011 August 1.
-Specifically, we take 4 pieces of information from the tables 2 and 4 there:
+%% TODO: change, add Pass 7REP (V15), ``SOURCE'' class
+Before we start to compute the Kolmogorov-Smirnov probabilities, we
+need to download the actual observational data from the Fermi LAT data
+server.  We take the data about the bursts from the catalog
+\cite{Ackermann:2013zfa}, which contains all the bright bursts seen by
+the LAT since 2008 August 4 to 2011 August 1.  Specifically, we take 4
+pieces of information from the tables 2 and 4 there:
 \begin{itemize}
 	\item{
 		GBM trigger time (table 2).
@@ -292,6 +331,8 @@ Knowing the exposures, we can now use the method introduced in the appendix of \
 We compute two background estimates: for low and high energy bands.
 Finally, our method doesn't work for transient class photons, because their background appears to depend on the spacecraft position.
 That is why we had to filter them out completely.
+%% TODO: rephrase positively, Method works for SOURCE-class photons,
+%% but ..
 
 \subsection{KS-test}
 
@@ -994,10 +1035,12 @@ Note, that these parameter values (except for $z$ and $\chi$) are universal, and
         \label{fig:correlations}
 \end{figure}
 
-\section{Summary}
+\section{Conclusions}
 
-\label{sec:summary}
-	
+\label{sec:conclusions}
+
+%% TODO: add more descriptive words
+
 	Our study can be summarized with 3 main conclusions.
 
 	First, the time stretching of GRB light curves between different VHE (in particular $(\unit[100]{MeV}, \unit[1]{GeV})$ and $(\unit[1]{GeV}, \unit[300]{GeV})$) bands is discovered with statistic significance of $3.3\sigma$.
@@ -1026,9 +1069,19 @@ Note, that these parameter values (except for $z$ and $\chi$) are universal, and
 	The differences in masses, metallicities, angular momenta of progenitor stars, and the differences in local conditions around them might account for differences in light curves of GRBs (or, even, for especially large stretching factor of GRB 090926A).
 	It means that minor variations of model parameters might be necessary on burst per burst basis.
 
-	It seems, however, that all these problems are not unresolvable, and may be addressed by refining the model without changing its main assumptions.
+It seems, however, that all these problems are not unresolvable, and
+may be addressed by refining the model without changing its main
+assumptions.
+%% TODO: remove unresolvable, rephrase
 
-	{\small {\it Acknowledgments.} The work was supported by Russian Science Foundation grant 14-12-01340.}
+{\bf Acknowledgments.} We thank M.~Pshirkov and S.~Troitsky for
+comments and inspiring discussions.  The work was supported by Russian
+Science Foundation grant 14-12-01340. The analysis is based on data
+and software provided by the Fermi Science Support Center (FSSC). The
+numerical part of the work was done at the cluster of the Theoretical
+Division of INR RAS. G.R. acknowledges the fellowship of the Dynasty
+foundation.
+
 
 \begin{appendices}
 
@@ -1123,6 +1176,7 @@ gtexpcube2 infile=ltcube.fits cmap=none outfile=expcube_[IrfName].fits irfs=[Irf
 Note, that R.A. coordinates in the \texttt{expcube} FITS files are indexed in reverse order and starting from 180. For example, $\texttt{ra[0]}=180$, $\texttt{ra[1]}=179$, and so on.
 
 \section{Cosmology}
+%% TODO: change title
 \label{sec:cosmology}
 This appendix contains a few formulas we need from cosmology, in particular the area of a photon sphere $A_\text{ph}\left(z\right)$, a sphere over which photons emitted in a particular burst at redshift $z$ are spread; and the volume of the infinitesimal shell surrounding a burst sphere $\dif V\left(z\right)$, a sphere over which bursts at redshift $z$ are distributed.
 
@@ -1140,9 +1194,17 @@ We need to understand how the scale factor changes with time. For that we assume
 \end{align*}
 Here $H_\text{obs} = H\left(t_\text{obs}\right) = \frac{\dot{a}\left( t_\text{obs} \right)}{a\left( t_\text{obs} \right)} = \dot{a}\left( t_\text{obs} \right)$ is the Hubble parameter at the observation time.
 
-We also need to know the areas of two spheres: the photon sphere, a sphere over which photons emitted in a particular burst are spread; and the bursts sphere, a sphere over which bursts at a particular redshift are distributed. These two spheres have the same radii -- a distance from the observer to the burst, but different centers: the photon sphere is centered on the burst, while the bursts sphere is centered on the observer. Also, they have different areas, because the scale factor differs at locations of burst and observer.
+We also need to know the areas of two spheres: the photon sphere, a
+sphere over which photons emitted in a particular burst are spread;
+and the bursts sphere, a sphere over which bursts at a particular
+redshift are distributed. These two spheres have the same radii -- a
+distance from the observer to the burst, but different centers: the
+photon sphere is centered on the burst, while the bursts sphere is
+centered on the observer. Also, they have different areas, because the
+scale factor differs at locations of burst and observer.
+%% TODO rephrase, mention back in time
 
-Lets begin with the photon sphere. This sphere has the origin at $r = 0$ and $t = 0$, at the central engine of a particular burst. Taking $\dif s = 0$ and $\dif \Omega_2 = 0$ in the equation for metric, we get:
+Let us begin with the photon sphere. This sphere has the origin at $r = 0$ and $t = 0$, at the central engine of a particular burst. Taking $\dif s = 0$ and $\dif \Omega_2 = 0$ in the equation for metric, we get:
 \begin{equation*}
 \dif r = \frac{\dif t}{a\left(t\right)}
 \end{equation*}
@@ -1161,7 +1223,10 @@ The area of the photon sphere is then:
 A_\text{ph}\left(z\right) = 4 \pi a^2\left(t_\text{obs}\right) r^2\left(z\right) = 4 \pi r^2\left(z\right)
 \end{equation}
 
-The second sphere is the bursts sphere. It has its origin at the observer's position, and the radius the same as the photon sphere. Therefore, its area is:
+The second sphere is the bursts sphere. It has its origin at the
+observer's position, and the radius the same as the photon
+sphere. Therefore, its area is:
+%% TODO: mention that this is the sphere in the past
 \begin{equation}
 A_\text{b}\left(z\right) = 4 \pi a^2\left(0\right) r^2\left(z\right) = \frac{4 \pi r^2\left(z\right)}{\left(1+z\right)^2}
 \end{equation}
