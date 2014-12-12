@@ -308,27 +308,6 @@ photons. We require that the photon is closer than $\mathrm{PSF}_{95}
 \ref{tab:bursts}). The details of the data request and
 analysis are given in appendix \ref{sec:fermiCode}.
 
-%To understand how to use obtained PSFs, imagine a stream of photons
-%coming from some source located at some coordinates $\theta,
-%\phi$. Ideally, all the coordinates measured for the photons coming
-%from the source should be the same. However, due to measurement
-%errors, they would be spread across some region of the sky. If we find
-%the region such that, say, $95\%$ of photons coming from the source
-%are measured inside of it, we can filter out all the other photons
-%without losing too much statistics, and significantly reducing
-%background. \texttt{gtpsf} approximates these regions as circles, and
-%the files generated in the previous step contain the observation
-%probability densities as functions of distance from the source and
-%photon energies. We, however, need an integral quantity, that is given
-%the radius, we want to know the fraction of photons observed inside
-%the circle of this radius. We can compute this fraction by summing
-%over the probability densities:
-%\begin{align*}
-%	p\left(n\right) &= \int_0^n \texttt{pdf[i]} 2\pi \sin\left(\texttt{angles[i]}\right) \dif i \\
-%	&\approx \sum_{i=0}^{n} \frac{\texttt{pdf[i]} + \texttt{pdf[i+1]}}{2} 2\pi \left(\cos\left(\texttt{angles[i]}\right) - \cos\left(\texttt{angles[i+1]}\right)\right)
-%\end{align*}
-%Here \texttt{pdf[i]} is the probability density in the point separated from the source by an angle \texttt{angles[i]}. And $p\left(n\right)$ is the probability to observe a photon closer to the source than \texttt{angles[n]}. We find probabilities for intermediate angles by linear interpolation. Finally, we can compute the inverse value $\theta_{\text{spread}}\left(p\right)$ (that is a distance as a function of probability) by binary search. Note, that $\theta_{\text{spread}}\left(p\right)$ depends on the photon energy, event class, and conversion type. We should use the appropriate function for each photon. The spread angles for intermediate energies are linearly interpolated.
-
 The set will be used for the analysis with the reservation that it
 unavoidably contains some background photons. We consider the
 background flux constant in time and estimate it using the data for 24
@@ -371,9 +350,6 @@ the probability and significance of the effect. The KS-probabilities
 are computed for pairs $\Phi_\text{low}\left(t\right),
 \Phi_\text{high}\left(\kappa t\right)$ to obtain the allowed ranges
 for stretching factors $\kappa$ for a given confidence level.
-% We evaluate stretching factors in the
-%range $\texttt{STRETCHING\_MIN} = 0.1$ to $\texttt{STRETCHING\_MAX} =
-%10.$ with a logarithmic step of $\texttt{STRETCHING\_STEP} = 1.001$.
 
 \subsection{Stretching factors}
 
@@ -472,49 +448,34 @@ observable bursts may take values both larger and smaller than $1$.
 \section{Model}
 \label{sec:model}
 
-The main idea behind our model is to assume that the burst opening angle depends on energy of emitted photons, or, equivalently, that the most energetic plasma particles are concentrated near the axis of the jet, while low energy particles are on the periphery.
-As you can see in Figure \ref{fig:modelOverview} this leads to a time stretching effect in some cases due to relativistic beaming.
+The main idea behind our model is to assume that the burst opening
+angle depends on the energy of emitted photons, or, equivalently, that the
+most energetic plasma particles are concentrated near the axis of the
+jet, while low energy particles are on the periphery.  As it's seen 
+in Figure \ref{fig:modelOverview} this leads to a time stretching
+effect due to relativistic beaming.
 
-At the moment, we do not have any rigorous proof of our assumption.
-There are arguments, however, supporting it.
-
-First of all, the number of observed GRBs rapidly decreases with energy.
-There are around 750 bursts detected by GBM in hard X-rays and low
-energy gamma rays \cite{Vianello:2013ela} (half of them were in a LAT
-field of view), only 30 or so were detected by LAT above
-\unit[100]{MeV}, and only about 4 of them were detected above GeV.
-
-% TODO merge 2
-First of all, the number of observed GRBs rapidly decreases with energy.
-There are around 750 bursts detected by GBM in hard X-rays and low
-energy gamma rays \cite{Vianello:2013ela} (half of them were in a LAT
-field of view), only 30 or so were detected by LAT above
-\unit[100]{MeV}, and only about 4 of them were detected above GeV.
-
+Although the details of the exact mechanism of the GRB are not known
+the are arguments in support of our model. 
 
 First of all, there are around 750 GRBs detected by GBM, half of which
-were in the LAT field of view at the moment of observation
+are in the LAT field of view at the moment of observation
 \cite{Vianello:2013ela}.  However, only about 30 of them were detected
 by the LAT, and only 4 of them were bright in the high energy band.
-If we extrapolate the uniform jet model to very high energies, this
-observation would mean that these groups of bursts are internally
-different: some of them produce VHE radiation, while others do not.
-These differences are hard to explain given that burst energetics are
-similar \cite{Bloom:2003wy}.  Nevertheless, these differences in burst
-counts can easily be explained by our model.  In our model, the
-opening angle of a jet is inversely proportional to the energy of
+If one extrapolates the uniform jet model to the very high energies,
+this observation would mean that these groups of bursts are internally
+different: some of them produce VHE radiation, while the others do
+not.  These differences are hard to explain given that the burst
+energetics are similar \cite{Bloom:2003wy}.  These differences in
+burst counts find natural explanation in our model, in which the
+opening angle of a jet is inversely proportional to the energy of the
 photons it radiates.  Therefore the most common scenario is that the
 off-axis angle of an observer is smaller than the low energy jet
 opening angle, but much larger than the opening angle of a high energy
-jet.  Because of that, most of the bursts can only be seen at low
+jet.  Due to that, most of the bursts can only be seen at low
 energies.  The 4 bursts we study in this paper were seen, according to
 our model, from the lowest off-axis angles.
 
-
-This observation is hard to explain in a framework of uniform jet model given that burst energetics are similar \cite{Bloom:2003wy}.
-It is, however, easy to explain in our model, given that small observation angles are rare, and the only way to produce high energy radiation is to have the observation angle small enough.
-
-% merge 
 Another argument comes from consideration of processes happening in
 jets, specifically the scattering of particles near the jet boundary.
 While plasma particles scatter, they simultaneously lose energy, and
@@ -523,31 +484,19 @@ therefore increasing the jet opening angle.  So, the processes of
 energy loss and increase of jet size are correlated, therefore the low
 energy particles should be closer to the jet boundary.
 
-Second, consider the plasma right after its ejection from the central
-engine.  Two processes happen there simultaneously:
+First, let us list the assumptions of the model:
+
 \begin{enumerate}
-	\item{Particles near the jet boundary collide and change their
-          movement directions, therefore increasing the opening angle
-          of the jet.}
-	\item{Particles lose energy, therefore decreasing radiation
-          frequency emitted by the jet.}
-\end{enumerate}
-We argue that these two processes are correlated, for they happen due
-to the same particle interaction processes.  And since they are
-correlated, jets with larger opening angles should have lower
-energies, which is the assumption we are trying to justify.
-
-
-In the following sections we will rigorously derive the procedure for computing time stretching factors from our model, and compare them to observations obtained in the previous section.
-
-To understand the observed spectral lag, lets explore geometry of the jet. First of all, lets make some assumptions:
-\begin{enumerate}
-\item{Time $t = 0$, a spherical shell of plasma is emitted. The center is called the central engine.}
-\item{The shell points propagate with a constant velocity $v = \frac{\sqrt{\gamma^2 - 1}}{\gamma} \sim 1$, so at the time $t$ the radius of the shall is $v t$.}
-\item{Each point of the shell is an isotropic radiator in its rest frame.}
-\item{
-	The radiation intensity is a function of the radiator position and the radiation frequency:
-	\begin{equation}
+\item{Time $t = 0$, a spherical shell of plasma is emitted. The center
+  is called the central engine.}
+\item{The shell points propagate with a constant velocity $v =
+  \frac{\sqrt{\gamma^2 - 1}}{\gamma} \sim 1$, so at the time $t$ the
+  radius of the shall is $v t$.}
+\item{Each point of the shell is an isotropic radiator in its rest
+  frame.}
+\item{ The radiation intensity is a function of the radiator position
+  and the radiation frequency:
+	\begin{equation}\label{eq:eta}
 		\eta\left(r,\theta,\omega\right) = 
 		\frac{\eta_0}{1 + \left(\frac{r}{r_0}\right)^n}
 		\exp\left(
@@ -556,11 +505,13 @@ To understand the observed spectral lag, lets explore geometry of the jet. First
 		\right)
 		\left(\frac{\omega}{\omega_0}\right)^\alpha
 	\end{equation}
-	$\eta$ is a number of particles emitted per volume per solid angle per frequency. It is a function of the distance $r$ from the central engine, of the off-axis angle $\theta$, and of the radiation frequency $\omega$.
-}
+	$\eta$ is a number of particles emitted per volume per solid
+        angle per frequency. It is a function of the distance $r$ from
+        the central engine, of the off-axis angle $\theta$, and of the
+        radiation frequency $\omega$.  }
 \end{enumerate}
 
-The burst is fully specified by the following set of parameters:
+The burst is fully defined by the following set of parameters:
 \begin{itemize}
 \item{$\gamma$, the relativistic factor of the shell, $\gamma \gg 1$.}
 \item{$\eta_0$, which defines the luminosity scale.}
@@ -572,13 +523,24 @@ The burst is fully specified by the following set of parameters:
 \item{$\alpha$, the bare spectral index, $\alpha < -2k - 1$}
 \end{itemize}
 
-Now we have all we need to calculate the observed light curves, and then the stretching factors.
+In the next step we calculate the observed light curves, and the
+stretching factors.
 
 \subsection{Photon observation time}
 
-Lets begin by computing a time at which some particular photon is observed. This time is a function of the radiator location $\left(r, \theta, \phi\right)$, as well as the observer location $\left(d, \chi, 0\right)$. (Here we choose coordinates so that the rotation angle of the observer is $0$.) Lets assume for now that the observer is too far from the jet to resolve its geometry, yet close enough so that the expansion of space is negligible. This assumption allows us to ignore the effects of cosmology for this calculation.
+We begin with computing a time at which some particular photon is
+observed. This time is a function of the radiator location $\left(r,
+\theta, \phi\right)$, as well as the observer location $\left(d, \chi,
+0\right)$ with respect to the burst center (we choose the coordinates
+so that the rotation angle of the observer is $0$.) We assume for now
+that the observer is too far from the jet to resolve its geometry, yet
+close enough so that the expansion of space is negligible. The latter
+assumption is made for simplicity of presentation. The cosmological
+expansion effect will be restored at the end of this section.
 
-The observation time is a sum of two terms: the time interval from $t = 0$ to the photon emission (the plasma time), and the time interval between the emission and the observation (the photon time):
+The observation time is a sum of two terms: the time interval from $t
+= 0$ to the photon emission (the plasma time), and the time interval
+between the emission and the observation (the photon time):
 \begin{equation*}
 t\left(r, \theta, \phi, d, \chi\right) = t_\text{plasma}\left(r\right) + t_\text{photon}\left(r, \theta, \phi, d, \chi\right)
 \end{equation*}
@@ -615,7 +577,7 @@ Since no photon can reach the observer faster than the speed of light, and the p
 \begin{equation*}
 \tau \left(r, \theta, \phi, \chi\right) = t\left(r, \theta, \phi, d, \chi\right) - d = r\left( \frac{1}{v} - \cos\theta \cos\chi - \sin\theta \cos\phi \sin\chi \right)
 \end{equation*}
-Finally, we can use the spherical law of cosines to write this in terms of the great-circle distance $\sigma\left( \theta, \phi, \chi \right)$ between the points $\left( \theta, \phi \right)$ and $\left( \chi, 0 \right)$:
+Finally, one can use the spherical law of cosines to write this in terms of the great-circle distance $\sigma\left( \theta, \phi, \chi \right)$ between the points $\left( \theta, \phi \right)$ and $\left( \chi, 0 \right)$:
 \begin{equation}
 \tau \left(r, \theta, \phi, \chi\right) = r\left( \frac{1}{v} - \cos\sigma\left( \theta, \phi, \chi \right) \right)
 \end{equation}
@@ -627,7 +589,14 @@ Note that $\tau$ doesn't depend on $d$ anymore. But this is only true if we did 
 Here $z$ is the redshift of the burst from the point of view of the observer.
 
 \subsection{Light curve}
-We now know enough to compute the observable quantity - the number of observed photons $p$. For that we need to integrate the radiation intensity $\eta$ over four things. Two burst-related things: radiator positions $\left(r, \theta, \phi\right)$ and frequencies at emission $\omega'$. Two observer-related things: observation time $\tau$ and frequencies at observation $\omega$. We relate the first two and the second two with the delta functions:
+We now know enough to compute the observable quantity - the number of
+observed photons $p$. For that we need to integrate the radiation
+intensity $\eta$ over the four groups of variables. Two groups are
+burst-related: radiator position $\left(r, \theta, \phi\right)$ and
+frequency at emission $\omega'$. The other two variables are related
+to observer: observation time $\tau$ and frequency at observation
+$\omega$. We relate the first two and the second two with the delta
+functions:
 \begin{align}
 p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det}}{A_\text{ph}\left(z\right)} \int_0^\infty \dif r \int_0^{\pi} r \dif \theta \int_0^{2\pi} r \sin{\theta} \dif \phi \int_0^\infty \dif \omega' \int_{\tau_1}^{\tau_2} \dif \tau \int_{\omega_1}^{\omega_2} \dif \omega \, \eta\left( r, \theta, \omega' \right) \nonumber\\
 &\qquad {} \times \underbrace{\frac{1}{\gamma^2\left( 1 - v \cos\sigma\left(\theta, \phi, \chi\right) \right)^2}}_{\text{aberration}} \underbrace{\frac{1}{\gamma\left( 1 - v \cos\sigma\left(\theta, \phi, \chi\right) \right)}}_{\text{time dilation}} \nonumber\\
@@ -636,13 +605,11 @@ p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det
 \end{align}
 Here $A_\text{det}$ is the effective area of the detector, and $A_\text{ph}$ is an area of the sphere over which photons emitted in the burst are spread (see appendix \ref{sec:cosmology} for derivation). We have taken account for four relativistic effects, which affect intensities and frequencies of the radiators: relativistic aberration; time dilation of the radiators relative to the observer; relativistic blue/redshift; and cosmological redshift.
 
-We can use the delta functions to do the integrals over $\omega'$ and $r$. For that lets transform the first one:
+We integrate over $\omega'$ and $r$ using the delta functions. For
+that we transform them as follows:
 \begin{align*}
 \delta\left( \frac{\omega'}{\gamma \left( 1 - v\cos\sigma \right)\left(1+z\right)} - \omega \right) &= \delta\left( \frac{1}{\gamma\left( 1-v\cos\sigma \right)\left(1+z\right)} \left( \omega' - \gamma\left( 1 - v\cos\sigma \right) \left(1+z\right) \omega \right) \right) \\
-&= \gamma\left( 1 - v\cos\sigma \right) \left(1+z\right) \delta\left( \omega' - \gamma\left( 1 - v\cos\sigma \right) \left(1+z\right) \omega \right)
-\end{align*}
-And the second one:
-\begin{align*}
+&= \gamma\left( 1 - v\cos\sigma \right) \left(1+z\right) \delta\left( \omega' - \gamma\left( 1 - v\cos\sigma \right) \left(1+z\right) \omega \right)\\
 \delta\left(\tau - r\left( \frac{1}{v} - \cos\sigma \right)\left(1+z\right)\right) &= \delta\left( \left( \frac{1}{v} - \cos\sigma \right) \left( 1+z \right) \left( r - \frac{\tau}{\left(\frac{1}{v} - \cos\sigma\right)\left(1+z\right)} \right) \right) \\
 &= \frac{1}{\left(\frac{1}{v} - \cos\sigma\right)\left(1+z\right)} \delta\left( r - \frac{\tau}{\left(\frac{1}{v} - \cos\sigma\right)\left(1+z\right)} \right)
 \end{align*}
@@ -655,7 +622,8 @@ p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det
 &\qquad {} \times \eta\left( \frac{\tau}{\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)\left(1+z\right)}, \theta, \gamma\left( 1 - v\cos\sigma\left(\theta, \phi, \chi\right) \right)\left(1+z\right)\omega  \right)
 \end{align}
 
-Furthermore, if we write $\eta$ explicitly we can do the integrals over $\omega$ and $\tau$:
+Furthermore, one may integrate over $\omega$ and $\tau$ after using an
+explicit form for $\eta$ Eq. \ref{eq:eta}:
 \begin{align}
 p\left( z, \chi; \tau_1, \tau_2; \omega_1, \omega_2 \right) &= \frac{A_\text{det}}{A_\text{ph}\left(z\right)} \frac{1}{v^2 \gamma^2 \left(1+z\right)^2} \int_0^{\pi} \dif \theta \int_0^{2\pi} \dif \phi \int_{\omega_1}^{\omega_2} \dif \omega \int_{\tau_1}^{\tau_2} \dif \tau \, \tau^2 \frac{\sin\theta}{\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)^5} \nonumber\\
 &\qquad {} \times \frac{\eta_0}{1 + \left(\frac{\tau}{r_0\left(\frac{1}{v} - \cos\sigma\left(\theta, \phi, \chi\right)\right)\left(1+z\right)}\right)^n} \nonumber\\
@@ -738,7 +706,10 @@ _2F_1\left(
 \right)
 \end{align}
 
-Finally, we will need to compute limits of $p$ for $\omega_2 \rightarrow \infty$ and $\tau_2 \rightarrow \infty$. It requires us to know the limit of $I$ for $\omega \rightarrow \infty$ (we assumed that $k < 0$):
+Finally, we need to compute the limits of $p$ for $\omega_2
+\rightarrow \infty$ and $\tau_2 \rightarrow \infty$. It requires us to
+know the limit of $I$ for $\omega \rightarrow \infty$ (here we assume that
+$k < 0$):
 \begin{equation}
 I\left(z,\chi,\infty;\theta,\phi\right) = \lim_{\omega \rightarrow \infty} I\left(z,\chi,\omega;\theta,\phi\right) = 0
 \end{equation}
@@ -747,21 +718,38 @@ and the limit of $J$ for $\tau \rightarrow \infty$ ($n > 3$ by assumption):
 J\left(z,\chi,\infty;\theta,\phi\right) = \lim_{\tau \rightarrow \infty} J\left(z,\chi,\tau;\theta,\phi\right) = \left(r_0 \left( \frac{1}{v} -  1 + \frac{\theta^2}{2} + \frac{\chi^2}{2} - \theta\chi\cos\phi \right) \left(1+z\right)\right)^3 \frac{\pi}{n\sin\frac{3\pi}{n}}
 \end{equation}
 
-Now, when we know $p$, we can compute many different things with it. For example:
+The following quantities of phenomenological importance may be
+computed with the use of $p$:
 \begin{itemize}
-\item{the total number of particles observed in a given energy range, $p_\infty\left(z,\chi; \omega_1,\omega_2\right) = p\left( z,\chi; 0,\infty; \omega_1,\omega_2 \right)$;}
-\item{the fraction of photons observed during a given time interval, $\Phi\left(z,\chi; \tau_1,\tau_2; \omega_1,\omega_2\right) = \frac{p\left( z,\chi; \tau_1,\tau_2; \omega_1,\omega_2\right)}{p_\infty\left( z,\chi; \omega_1,\omega_2 \right)}$;}
-\item{the duration of the burst $T_f\left( z,\chi;\omega_1,\omega_2 \right)$, that is the time by which the fraction $f$ of photons is observed. We can compute it by solving the following equation for $T_f$: $p\left( z,\chi; 0,T_f; \omega_1,\omega_2\right) = f p_\infty\left( z,\chi; \omega_1,\omega_2 \right)$;}
-\item{the stretching factor, which we will discuss in the next section.}
+\item{the total number of particles observed in a given energy range,
+  $p_\infty\left(z,\chi; \omega_1,\omega_2\right) = p\left( z,\chi;
+  0,\infty; \omega_1,\omega_2 \right)$;}
+\item{the fraction of photons observed during a given time interval,
+  $\Phi\left(z,\chi; \tau_1,\tau_2; \omega_1,\omega_2\right) =
+  \frac{p\left( z,\chi; \tau_1,\tau_2;
+    \omega_1,\omega_2\right)}{p_\infty\left( z,\chi; \omega_1,\omega_2
+    \right)}$;}
+\item{the duration of the burst $T_f\left( z,\chi;\omega_1,\omega_2
+  \right)$, that is the time by which the fraction $f$ of photons is
+  observed. One may compute it by solving the following equation for
+  $T_f$: $p\left( z,\chi; 0,T_f; \omega_1,\omega_2\right) = f
+  p_\infty\left( z,\chi; \omega_1,\omega_2 \right)$;}
+\item{the stretching factor, which will be discussed in the next
+  section.}
 \end{itemize}
 
 \subsection{Stretching factor}
-The stretching factor for a continuous light curve is defined exactly like the stretching factor for a discrete one. It is the value of $\kappa$ which makes the KS-distance minimal:
+The stretching factor for a continuous light curve is defined exactly
+like the stretching factor for a discrete one. It is the value of
+$\kappa$ which makes the KS-distance minimal:
 \begin{equation}
 \kappa\left(z,\chi; \omega_1, \omega_2, \omega_3\right) = \argmin_\kappa \max_\tau\left| \Phi\left(z,\chi; 0,\tau; \omega_1,\omega_2\right) - \Phi\left( z,\chi; 0,\kappa \tau; \omega_2,\omega_3 \right) \right|
 \end{equation}
 
-The maximum of an absolute value cannot be differentiated, so the computation of $\kappa$ by the given definition is complicated. Lets instead rewrite this expression in terms of a positive and a negative KS-distances:
+The maximum of an absolute value is not differentiable, so the
+computation of $\kappa$ by the given definition is complicated. One
+may instead rewrite this expression in terms of a positive and a
+negative KS-distances:
 \begin{align*}
 D_+\left(z,\chi; \kappa; \omega_1, \omega_2, \omega_3\right) &= \max_\tau\left( \Phi\left(z,\chi; 0,\tau; \omega_1,\omega_2\right) - \Phi\left( z,\chi; 0,\kappa \tau; \omega_2,\omega_3 \right) \right) \\
 D_-\left(z,\chi; \kappa; \omega_1, \omega_2, \omega_3\right) &= \min_\tau\left( \Phi\left(z,\chi; 0,\tau; \omega_1,\omega_2\right) - \Phi\left( z,\chi; 0,\kappa \tau; \omega_2,\omega_3 \right) \right) \\
@@ -774,18 +762,34 @@ D_+\left(z,\chi; \kappa; \omega_1, \omega_2, \omega_3\right) = -D_-\left(z,\chi;
 \end{equation}
 And this value of $\kappa$ also makes the $\max\left({D_+, -D_-}\right)$ minimal, since $D_+$ monotonously decrease, and $\left(-D_-\right)$ monotonously increase with $\kappa$.
 
-So we have now a simpler way to compute $\kappa$ by solving an equation instead of computing the minimum. And $\Phi$ can be differentiated, which makes it easier to compute maximums and minimums of their differences.
+So we arrive at a simpler way to compute $\kappa$ by solving an
+equation instead of computing the minimum. 
 
-Being able to compute the stretching factor, we could now compare our model predictions with observations given the position of an observer. We don't know the observer's off-axis angle $\chi$, however, so we cannot check the stretching factor prediction directly. Instead, we will focus on a series of tests, which will ensure that our model doesn't contradict existing observations. These tests will be discussed in the following sections.
-
+Being able to compute the stretching factor, we could now compare our
+model predictions with observations given the position of an
+observer. We don't know the observer's off-axis angle $\chi$, however,
+so we cannot check the stretching factor prediction on the
+burst-to-burst basis. Instead, we focus on a series of tests, which
+will ensure that our model doesn't contradict to existing
+observations. Namely the test of the total energy and comparison with
+Fermi-LAT data of the distribution of the stretching factors and the
+fraction of the high-energy bursts. These tests will be discussed in
+the following section.
 
 \section{Observational tests}
 \label{sec:tests}
 \subsection{Total energy}
 
-The first test is to compute the total energy radiated from the burst, and to ensure that it doesn't exceed the mass of the star from which the burst originated.
+In the first test we compute the total energy radiated from the burst,
+and to ensure that it doesn't exceed the mass of the star from which
+the burst originated.
 
-To compute the total energy, we need to multiply the radiation intensity by frequency, and integrate it over frequencies $\omega$, volume $\left(r,\theta,\phi\right)$, and observer positions $\left(\sigma, \xi\right)$. We assumed $\theta \ll 1$, and have taken into account the same relativistic effects as we did in the observed particle count computation:
+To compute the total energy, we need to multiply the radiation
+intensity by frequency, and integrate it over frequencies $\omega$,
+volume $\left(r,\theta,\phi\right)$, and observer positions
+$\left(\sigma, \xi\right)$. We assume $\theta \ll 1$, and have taken
+into account the same relativistic effects as we did in the observed
+particle count computation:
 \begin{align}
 E &= \int_0^\infty \dif \omega \int_0^\infty \dif r \int_0^\infty r \dif \theta \int_0^{2\pi} r \, \theta \dif \phi \int_0^\infty \dif \sigma \int_0^{2\pi} \sin\sigma \dif \xi \nonumber\\
 &\quad {} \times \eta\left( r,\theta,\omega \right) \underbrace{\frac{1}{\gamma\left(1-v\cos\sigma \right)}}_{\text{time dilation}} \underbrace{\frac{1}{\gamma^2\left(1-v\cos\sigma \right)^2}}_{\text{aberration}} \underbrace{\frac{\omega}{\gamma\left(1-v\cos\sigma \right)}}_{\text{relativistic shift}} \\
@@ -815,7 +819,15 @@ Now we have only one integral left:
 E = \frac{16\pi^3}{3 n\sin\left(\frac{3\pi}{n}\right)} \left(\gamma^2 - \frac{1}{4}\right) \, \eta_0 \, r_0^3 \, \theta_0^2 \int_0^\infty \dif \omega \, \omega \left(\frac{\omega}{\omega_0}\right)^{2k+\alpha}
 \end{equation}
 
-Note, however, that since $\alpha < -2k-1$ this integral diverges for $\omega \rightarrow 0$. But our model is not expected to describe low-energy radiation of the burst, so we should not integrate over low-frequency radiators. Nevertheless, we should ensure that the total energy of the high-energy radiation is not too large. To compute this energy we will only integrate over those radiators which emission we can observe, that is over the radiators with frequencies greater than $\frac{\omega_1}{\gamma}$, where $\omega_1$ is the smallest observable photon frequency. Now we can compute the last integral and get the final expression for $E$:
+Note, however, that since $\alpha < -2k-1$ this integral diverges for
+$\omega \rightarrow 0$. This is not a problem as long as our model is
+not expected to describe low-energy radiation of the burst. One should
+ensure that the total energy of the high-energy radiation is not too
+large. For this test, we integrate only over those radiators which
+emission is observed by Fermi LAT, that is over the frequencies
+greater than $\frac{\omega_1}{\gamma}$, where $\omega_1$ is the
+smallest observable photon frequency. Now we compute the last integral
+and get the final expression for $E$:
 \begin{align}
 E\left(\omega_1\right)
 &= \frac{16\pi^3}{3 n\sin\left(\frac{3\pi}{n}\right)} \left(\gamma^2 - \frac{1}{4}\right) \, \eta_0 \, r_0^3 \, \theta_0^2 \int_{\frac{\omega_1}{\gamma}}^\infty \dif \omega \, \omega \left(\frac{\omega}{\omega_0}\right)^{2k+\alpha} \nonumber\\
@@ -823,7 +835,9 @@ E\left(\omega_1\right)
 &= \frac{16\pi^3}{3 n\left(-2k-\alpha-2\right)\sin\left(\frac{3\pi}{n}\right)} \gamma^{-2k-\alpha} \left(1 - \frac{1}{4\gamma^2}\right) \, \eta_0 \, r_0^3 \, \theta_0^2 \frac{\omega_0^{-2k-\alpha}}{\omega_1^{-2k-\alpha-2}}
 \end{align}
 
-This energy should not be larger than a typical mass $M_s$ of a massive star. So, finally, we arrive at the first constraint for the burst parameters:
+This energy should not exceed a typical mass $M_s$ of a massive
+star. So, finally, we arrive at the first constraint for the burst
+parameters:
 \begin{equation}
 \frac{16\pi^3}{3 n\left(-2k-\alpha-2\right)\sin\left(\frac{3\pi}{n}\right)} \gamma^{-2k-\alpha} \left(1 - \frac{1}{4\gamma^2}\right) \, \eta_0 \, r_0^3 \, \theta_0^2 \frac{\omega_0^{-2k-\alpha}}{\omega_1^{-2k-\alpha-2}} < M_s
 \end{equation}
@@ -831,88 +845,136 @@ This energy should not be larger than a typical mass $M_s$ of a massive star. So
 \subsection{Distribution of stretching factors}
 \label{sec:distribution}
 
-The second test is to calculate the distribution of stretching factors of observable bursts, and to compare it to observations.
+The second test is to calculate the distribution of stretching factors
+of observable bursts, and to compare it to observations.
 
-The computation of the exact and precise distribution is technically hard (because stretching factors change monotonously neither with redshifts, nor with off-axis angles), and computationally intensive. So we will not compute the precise distribution.
+The computation of the exact and precise distribution is technically
+hard and computationally intensive because stretching factor is not a
+monotonic function of neither redshift nor off-axis angles.  We do not
+compute the distribution directly. Instead, we use the Monte-Carlo
+method to produce a large representative sample of stretching
+factors. Then, we calculate an empirical CDF of this sample, which can
+be compared with observations using the KS-test. Since one may compute
+much larger sample than that of observations, there is no precision
+loss due to this simplification.
 
-Instead, we will use the Monte-Carlo method to produce a large representative sample of stretching factors. Then, we will calculate an empirical CDF of this sample, which can be compared with observations using the KS-test. Since we can compute much larger sample than that of observations, we will not lose much precision due to this simplification.
-
-We still have one ingredient missing though -- the evolution of the bursts density. We assume that the bursts density is roughly proportional to the stars density, and the stars density is roughly proportional to the matter density, which changes with $z$ as $\left(1+z\right)^3$. It is clear, however, that since no stars existed at very small redshifts, the burst density should decline there, so we add an exponential cutoff to it:
-\begin{equation}
-\rho = \rho_0 \left(1+z\right)^3 \exp\left(-\frac{z}{z_c}\right)
+We still have one ingredient missing though -- the evolution of the
+bursts density. We assume that the bursts density is roughly
+proportional to the stars density, and the latter is roughly
+proportional to the matter density, which changes with $z$ as
+$\left(1+z\right)^3$. It is clear, however, that since no stars
+existed at very small redshifts, the burst density should decline
+there, so we add an exponential cutoff to it:
+\begin{equation}\label{eq:redshift}
+\rho = \rho_0 \left(1+z\right)^3 \exp\left(-\frac{z}{z_c}\right)\,
 \end{equation}
-Here $\rho_0$ is a normalization factor, and $z_c$ is a redshift scale, after which the density is cut off.
+where $\rho_0$ is a normalization factor, and $z_c$ is a redshift
+scale, after which the density is cut off.
 
-Now when we have all the ingredients, we can compute the sample with the following steps:
+For the modeling we first need to define the range of redshifts and
+off-axis angles. The range should include all the observable jet
+positions, but one should keep the range as small as possible in order
+to avoid production of too many points corresponding to an invisible
+bursts. For simplicity we consider the rectangular region.
+
+We start with selecting a range for redshifts. Ideally, one would
+expect that this range starts with $z=0$. Then, however, there will be
+visible jets for all possible off-axis angles, which will make our
+angles range too large. Note also, that since the bursts count
+increases with redshift as $z^3$, the probability to observe a
+low-redshift burst is very small. So instead of selecting the smallest
+redshift to be $0$, we select it to be a small number $z_\text{min}$.
+
+$z_\text{max}$ is defined by the farthest jet, which can be
+observed. Since the burst observability
+$p_\infty\left(z,\chi;\omega_2,\omega_3\right)$ decreases with both
+redshift and $\chi$, we can find the maximum redshift by solving the
+following equation:
+\begin{equation}
+p_\infty\left(z_\text{max},0;\omega_2,\omega_3\right) = p_\text{min} \,,
+\end{equation}
+where $p_\text{min}$ is the minimum number of particles required to claim an observation.
+
+The observability declines with $z$ and $\chi$, so the observable
+burst with the largest $\chi$ should be located at the redshift
+$z_\text{min}$. We can find this angle by solving the similar
+equation, as we did for the redshifts:
+\begin{equation}
+  	p_\infty\left(z_\text{min},\chi_\text{max};\omega_2,\omega_3\right) = p_\text{min}
+\end{equation}
+
+The simulation is performed by repetition of the following 3 steps
+before the required number of bursts is attained:
 \begin{enumerate}
 \item{
-	First of all we need to define the range from which to select redshifts and off-axis angles. We should include all observable jet positions in this range. However, to avoid dropping too many points corresponding to invisible bursts, we should keep the range as small as possible. We also want to make the region rectangular to be able to select redshifts and angles separately.
-
-	Lets start by selecting a range for redshifts. Ideally, we want this range to start with $z=0$. Then, however, there will be visible jets for all possible off-axis angles, which will make our angles range too large. Note also, that since the bursts count increases with redshift as $z^3$, the probability to observe a low-redshift burst is very small. So instead of selecting the smallest redshift to be $0$, we select it to be a small number $z_\text{min}$.
-
-	$z_\text{max}$ is defined by the farthest jet, which can be observed. Since the burst observability $p_\infty\left(z,\chi;\omega_2,\omega_3\right)$ decreases with both redshift and $\chi$, we can find the maximum redshift by solving the following equation:
-	\begin{equation}
-	p_\infty\left(z_\text{max},0;\omega_2,\omega_3\right) = p_\text{min}
-	\end{equation}
-	where $p_\text{min}$ is the minimum number of particles required to claim an observation.
-}
-\item{
-	The range for off-axis angles is easier to compute since nothing prohibits us from selecting the smallest angle to be $0$.
-
-	The observability declines with $z$ and $\chi$, so the observable burst with the largest $\chi$ should be located at the redshift $z_\text{min}$. We can find this angle by solving the similar equation, as we did for the redshifts:
-	\begin{equation}
-	p_\infty\left(z_\text{min},\chi_\text{max};\omega_2,\omega_3\right) = p_\text{min}
-	\end{equation}
-}
-\item{
-	Now we are in a position to select a particular properly distributed random redshift. The CDF of the distribution of redshifts is a ratio of redshift counts in different space volumes:
+First, the random redshift is generated following the distribution
+\ref{eq:redshift}. This may be done with the Inverse transform sampling
+method. The CDF of the distribution of redshifts is a ratio of
+ redshift counts in different space volumes:
 	\begin{equation}
 	\Phi_z\left(z\right) = \frac{\int_{z_\text{min}}^z \rho\left(z'\right) \dif V\left(z'\right)}{\int_{z_\text{max}}^{z_\text{max}} \rho\left(z'\right) \dif V\left(z'\right)}
 	\end{equation}
-	where $\dif V\left(z'\right)$ is the volume of the infinitesimal shell surrounding a sphere over which bursts at redshift $z'$ are distributed (see appendix \ref{sec:cosmology} for derivation).
+	where $\dif V\left(z'\right)$ is the volume of the
+        infinitesimal shell surrounding a sphere over which bursts at
+        redshift $z'$ are distributed (see appendix
+        \ref{sec:cosmology} for derivation).
 
-	To generate a redshift, we should uniformly select a value of $\Phi_z$, and solve the corresponding equation for $z$:
+To generate a redshift, one should uniformly select a value of
+$\Phi_z$, and solve the corresponding equation for $z$:
 	\begin{equation}
 	\Phi_z\left(z\right) = x
 	\end{equation}
-	where $x$ is a random variable uniformly distributed in the range $0$ to $1$.
+where $x$ is a random variable uniformly distributed in the range $0$ to $1$.
 }
-\item{
-	An off-axis angle can be selected in a similar way. The CDF of the angles distribution is a ratio of spherical areas:
+\item{ The random off-axis angle may be then generated with a similar
+  method. The CDF of the angles distribution is a ratio of spherical
+  areas:
 	\begin{equation}
-	\Phi_\chi\left(\chi\right) = \frac{\int_0^\chi \sin\chi' \dif\chi'}{\int_0^{\chi_\text{max}} \sin\chi' \dif\chi'} \approx \frac{\int_0^\chi \chi' \dif\chi'}{\int_0^{\chi_\text{max}} \chi' \dif\chi'} = \left(\frac{\chi}{\chi_\text{max}}\right)^2
+	\Phi_\chi\left(\chi\right) = \frac{\int_0^\chi \sin\chi' \dif\chi'}{\int_0^{\chi_\text{max}} \sin\chi' \dif\chi'} \approx \frac{\int_0^\chi \chi' \dif\chi'}{\int_0^{\chi_\text{max}} \chi' \dif\chi'} = \left(\frac{\chi}{\chi_\text{max}}\right)^2\,.
 	\end{equation}
 
 	As with redshifts, we get a properly distributed $\chi$ by solving the equation:
 	\begin{align}
-	\Phi_\chi\left(\chi\right) = \left(\frac{\chi}{\chi_\text{max}}\right)^2 = y \\
-	\chi = \chi_\text{max}\sqrt{y}
+	\Phi_\chi\left(\chi\right) = \left(\frac{\chi}{\chi_\text{max}}\right)^2 = y\,, \\
+	\chi = \chi_\text{max}\sqrt{y}\,,
 	\end{align}
-	Here $y$ is an another independent random variable uniformly distributed in the range $0$ to $1$.
+	where $y$ is an another independent random variable uniformly distributed in the range $0$ to $1$.
 }
-\item{Now we should check, if the burst in a selected position can be observed: $p_\infty\left(z,\chi;\omega_2,\omega_3\right) > p_\text{min}$. If it is, add $\kappa\left(z,\chi\right)$ to the sample. If not, repeat from the step $3$.}
-\item{If the sample is not as big as we want yet, repeat from the step $3$.}
+\item{Now we check, whether the burst in a selected position may be
+  observed: $p_\infty\left(z,\chi;\omega_2,\omega_3\right) >
+  p_\text{min}$. If it is, add $\kappa\left(z,\chi\right)$ to the
+  sample.}
 \end{enumerate}
 
-With this algorithm, we arrive to our second test / constraint for the burst parameters. The obtained stretching factors distribution should be compatible with observations.
+With this algorithm, we arrive to the stretching factor distribution
+which may be compared with the observed one. 
 
 \subsection{High energy bursts fraction}
 
-Our final test is comparison of answers to this question: given the bursts which were observed in a whole energy range $\left(\omega_1,\omega_3\right)$, which fraction of them can also be observed in a high energy range $\left(\omega_2,\omega_3\right)$?
+Our final test is based on the answer to the following question: given
+the bursts observed in the whole energy range
+$\left(\omega_1,\omega_3\right)$, which fraction of them may also be
+observed in the high energy range $\left(\omega_2,\omega_3\right)$?
 
-To calculate this value, we need to compute the number of bursts visible in a given energy range, which is the integral over space and jet directions:
+To calculate this ratio, one needs to compute the number of bursts
+visible in a given energy range, which is the integral over space and
+jet directions:
 \begin{align}
 b\left(\omega_1,\omega_2\right) &= \int_0^{z_\text{max}\left(\omega_1,\omega_2\right)} \dif V\left(z\right) \rho\left(z\right) \int_0^{\chi_\text{max}\left(z,\omega_1,\omega_2\right)} 2\pi \sin\chi \dif\chi \nonumber\\
-&\approx 2\pi \int_0^{z_\text{max}\left(\omega_1,\omega_2\right)} \dif V\left(z\right) \rho\left(z\right) \int_0^{\chi_\text{max}\left(z,\omega_1,\omega_2\right)} \chi \dif\chi = \pi \int_0^{z_\text{max}\left(\omega_1,\omega_2\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_1,\omega_2\right)
+&\approx 2\pi \int_0^{z_\text{max}\left(\omega_1,\omega_2\right)} \dif V\left(z\right) \rho\left(z\right) \int_0^{\chi_\text{max}\left(z,\omega_1,\omega_2\right)} \chi \dif\chi = \pi \int_0^{z_\text{max}\left(\omega_1,\omega_2\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_1,\omega_2\right)\,,
 \end{align}
-Here $z_\text{max}\left(\omega_1,\omega_2\right)$ and $\chi_\text{max}\left(z,\omega_1,\omega_2\right)$ are the same values we used in the previous section: the maximum redshift from which a burst can be observed in a given energy range, and the maximum off-axis angle with which the burst at redshift $z$ can be observed.
+where $z_\text{max}\left(\omega_1,\omega_2\right)$ and
+$\chi_\text{max}\left(z,\omega_1,\omega_2\right)$ are the same values
+we used in the previous section: the maximum redshift from which a
+burst can be observed in a given energy range, and the maximum
+off-axis angle with which the burst at redshift $z$ can be observed.
 
-The fraction we want to compute is the ratio of these integrals:
+The required fraction is the ratio of these integrals:
 \begin{equation}
-f\left(\omega_1,\omega_2,\omega_3\right) = \frac{b\left(\omega_2,\omega_3\right)}{b\left(\omega_1,\omega_3\right)} = \frac{\int_0^{z_\text{max}\left(\omega_2,\omega_3\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_2,\omega_3\right)}{\int_0^{z_\text{max}\left(\omega_1,\omega_3\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_1,\omega_3\right)}
+f\left(\omega_1,\omega_2,\omega_3\right) = \frac{b\left(\omega_2,\omega_3\right)}{b\left(\omega_1,\omega_3\right)} = \frac{\int_0^{z_\text{max}\left(\omega_2,\omega_3\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_2,\omega_3\right)}{\int_0^{z_\text{max}\left(\omega_1,\omega_3\right)} \dif V\left(z\right) \rho\left(z\right) \chi^2_\text{max}\left(z,\omega_1,\omega_3\right)}\,.
 \end{equation}
 
-This is our 3rd test -- the ratio obtained should be compatible with the observed value.
+Our 3rd test is the comparison of the obtained ratio with the observed value.
 
 \section{Results}
 \label{sec:results}
@@ -920,40 +982,81 @@ This is our 3rd test -- the ratio obtained should be compatible with the observe
 \subsection{Parameter fit}
 \label{sec:parameters}
 
-For now we discussed how to compute various observables of the model, and how to test the model against the data from observations. However, we never considered specific values for parameters of the burst. We will do that in this section.
+For now we have discussed how to compute various observables of the model,
+and how to test the model against the data from observations. Now we
+come to the discussion of specific values for the parameters of the
+burst.
 
-First of all, we need to determine, which parameters to fit. At most, the observables of a particular burst depend on 10 parameters: 8 of the burst $\left(\gamma, \eta_0, r_0, n, \omega_0, \theta_0, k, \alpha\right)$, and 2 of the observer $\left(z, \chi\right)$. However, some of these parameters only change observables trivially, and, also, there are transformations of variables, which will not change observables at all (see equation \ref{eq:p}):
+First of all, we need to determine, which parameters to fit. At most,
+the observables of a particular burst depend on 10 parameters: 8 of
+the burst $\left(\gamma, \eta_0, r_0, n, \omega_0, \theta_0, k,
+\alpha\right)$, and 2 of the observers position related to the burst
+$\left(z, \chi\right)$. However, some of these parameters only change
+observables trivially, and, also, there are transformations of
+variables, which do not change observables at all (see equation
+\ref{eq:p}):
 \begin{itemize}
-	\item{The number of photons $p$ depends linearly on $\eta_0$, so $\eta_0$ doesn't affect other observables like duration, or stretching factor. We can easily fit $\eta_0$ to match the observed photon count.}
-	\item{If we make a simultaneous transformation of $r_0 \rightarrow \lambda r_0$ and $\eta_0 \rightarrow \frac{1}{\lambda^3}\eta_0$, where $\lambda$ is a parameter of transformation, only duration of the burst will change. Other observables, like the total number of photons, or stretching factor, will not be affected.}
-	\item{Finally, if we make a following transformation: $\omega_0 \rightarrow \lambda \omega_0$, $\theta_0 \rightarrow \lambda^k \theta_0$, $\eta_0 \rightarrow \lambda^\alpha \eta_0$, where $\lambda$ is another transformation parameter, no observables will change whatsoever.}
+	\item{The number of photons $p$ depends linearly on $\eta_0$,
+          so $\eta_0$ doesn't affect other observables like duration,
+          or stretching factor. One can easily fit $\eta_0$ to match
+          the observed photon count.}
+	\item{If we make a simultaneous transformation of $r_0
+          \rightarrow \lambda r_0$ and $\eta_0 \rightarrow
+          \frac{1}{\lambda^3}\eta_0$, where $\lambda$ is a parameter
+          of transformation, only duration of the burst will
+          change. Other observables, like the total number of photons,
+          or stretching factor, will not be affected.}
+	\item{Finally, if we make a following transformation:
+          $\omega_0 \rightarrow \lambda \omega_0$, $\theta_0
+          \rightarrow \lambda^k \theta_0$, $\eta_0 \rightarrow
+          \lambda^\alpha \eta_0$, where $\lambda$ is another
+          transformation parameter, no observables will change
+          whatsoever.}
 \end{itemize}
-Given these transformations, we can reduce the number of parameters for fit to 7: $\left(\gamma, n, \theta_0, k, \alpha, z, \chi\right)$.
+Given these transformations, one can reduce the number of parameters
+for fit to 7: $\left(\gamma, n, \theta_0, k, \alpha, z, \chi\right)$.
 
-Also, some of these parameters we know from observations:
+Also, some of these parameters are known from observations:
 \begin{itemize}
-	\item{Redshifts $z$ of many bursts have been measured \cite{Ackermann:2013zfa}.}
-	\item{We know that relativistic factors $\gamma$ are on the order of magnitude\footnote{Our minimization procedure can find similar minimums for other values of $\gamma$, at least from $100$ to $1000$} of $\gamma = 300$ \cite{Ghirlanda:2011ux}.}
+	\item{Redshifts $z$ of many bursts have been measured
+          \cite{Ackermann:2013zfa}.}
+	\item{We know that relativistic factors $\gamma$ are on the
+          order of magnitude\footnote{Our minimization procedure can
+            find similar minimums for other values of $\gamma$, at
+            least from $100$ to $1000$} of $\gamma = 300$
+          \cite{Ghirlanda:2011ux}.}
 \end{itemize}
 This knowledge allows us to reduce the number of parameters to minimize against to just 5: $\left(n, \theta_0, k, \alpha, \chi\right)$.
 
-We want our cost function $C\left(n, \theta_0, k, \alpha, \chi\right)$ to satisfy the following objectives:
+The best fit parameters are found by minimizing the cost function
+$C\left(n, \theta_0, k, \alpha, \chi\right)$ which should
+satisfy the following objectives:
 \begin{itemize}
-	\item {
-		Total energy of the burst is finite (that is $k+\frac{\alpha}{2}+1 < 0$) and smaller than $\unit[6 \times 10^{53}]{GeV} \approx \unit[10^{51}]{erg}$ \cite{Gehrels:2013xd}.
-	}
-	\item {
-		The stretching factor of the burst should be compatible with the value for the GRB 090926A.
-	}
-	\item {
-		We require all bursts to have the same burst parameters $\left(\gamma, \eta_0, r_0, n, \omega_0, \theta_0, k, \alpha\right)$. And we know that bursts with small stretching factors like GRB 090902B should be possible to observe. So we require that bursts with the stretching factor of GRB 090902B or lower appear in random samples by $z$ and $\chi$ (sampling is done the same way as in section \ref{sec:distribution}).
-	}
-	\item {
-		The ratio of photons with high energies and low energies should be compatible with the value for the GRB 090926A, $\frac{p_{\infty} \left(z,\chi;\unit[1]{GeV},\infty\right)}{p_{\infty} \left(z,\chi;\unit[0.1]{GeV},\unit[1]{GeV}\right)} = 0.057$.
-	}
-	\item {
-		Finally, the burst should not be too faint compared to other bursts from the sample. In other words, the total number of observed photons should approximately equal to the median among the sample.
-	}
+	\item { Total energy of the burst is finite (that is
+          $k+\frac{\alpha}{2}+1 < 0$) and smaller than $\unit[6 \times
+            10^{53}]{GeV} \approx \unit[10^{51}]{erg}$
+          \cite{Gehrels:2013xd}.  }
+	\item { The stretching factor of the burst should be
+          compatible with the value for the GRB 090926A.  }
+	\item { The ratio of photons with high energies and low
+          energies should be compatible with the value for the GRB
+          090926A, $\frac{p_{\infty}
+            \left(z,\chi;\unit[1]{GeV},\infty\right)}{p_{\infty}
+            \left(z,\chi;\unit[0.1]{GeV},\unit[1]{GeV}\right)} =
+          0.057$.  }
+	\item { The burst should not be too faint compared to
+          other bursts from the sample. In other words, the total
+          number of observed photons should approximately equal to the
+          median among the sample.  }
+	\item { We assume that all bursts have the same burst
+          parameters $\left(\gamma, \eta_0, r_0, n, \omega_0,
+          \theta_0, k, \alpha\right)$ and require that bursts with
+          small stretching factors like GRB 090902B should be possible
+          to observe. So we require that bursts with the stretching
+          factor of GRB 090902B or lower appear in random samples by
+          varying $z$ and $\chi$ (sampling is done the same way as in
+          section \ref{sec:distribution}). Note that this requirement
+          unlike others applies to an ensemble of simulated bursts. }
 \end{itemize}
 
 The cost function is then computed by the following procedure:
@@ -979,16 +1082,6 @@ The cost function is then computed by the following procedure:
 			}{\Delta\log\kappa_{\text{GRB090926A}}}
 		\end{equation}
 		Here $\log\kappa_{\text{GRB090926A}} = \frac{1}{2}\left(\log\left(6.62\right) + \log\left(1.99\right)\right)$ and $\Delta\log\kappa_{\text{GRB090926A}} = \frac{1}{2}\left(\log\left(6.62\right) - \log\left(1.99\right)\right)$.
-	}
-	\item{
-		Compute the cost due to the minimal stretching factor from the sample:
-		\begin{equation}
-			C_{\kappa\text{min}} = \max\left(0, 
-				\frac{
-					\log{\kappa_\text{min}} - \log{\kappa_{\text{GRB090902B}}}
-				}{\Delta\log\kappa_{\text{GRB090902B}}}\right)
-		\end{equation}
-		Here $\kappa_\text{min}$ is the minimal stretching factor from the sample computed in the step \ref{item:sample}, $\log\kappa_{\text{GRB090902B}} = \frac{1}{2}\left(\log\left(0.89\right) + \log\left(0.35\right)\right)$ and $\Delta\log\kappa_{\text{GRB090902B}} = \frac{1}{2}\left(\log\left(0.89\right) - \log\left(0.35\right)\right)$.
 	}
 	\item{
 		Compute the cost due to the fraction of high and low energy photon counts:
@@ -1017,9 +1110,19 @@ The cost function is then computed by the following procedure:
 		Here $p_\text{med}$ is the median number of observed photons among the sample computed in the step \ref{item:sample}.
 	}
 	\item{
+		Compute the cost due to the minimal stretching factor from the sample:
+		\begin{equation}
+			C_{\kappa\text{min}} = \max\left(0, 
+				\frac{
+					\log{\kappa_\text{min}} - \log{\kappa_{\text{GRB090902B}}}
+				}{\Delta\log\kappa_{\text{GRB090902B}}}\right)
+		\end{equation}
+		Here $\kappa_\text{min}$ is the minimal stretching factor from the sample computed in the step \ref{item:sample}, $\log\kappa_{\text{GRB090902B}} = \frac{1}{2}\left(\log\left(0.89\right) + \log\left(0.35\right)\right)$ and $\Delta\log\kappa_{\text{GRB090902B}} = \frac{1}{2}\left(\log\left(0.89\right) - \log\left(0.35\right)\right)$.
+	}
+	\item{
 		Finally, the value of the cost function is the sum of squares of the four:
 		\begin{equation}
-			C = C_\kappa^2 + C_{\kappa\text{min}}^2 + C_f^2 + C_b^2
+			C = C_\kappa^2 + C_f^2 + C_b^2 + C_{\kappa\text{min}}^2
 		\end{equation}
 	}
 \end{enumerate}
@@ -1041,9 +1144,13 @@ The cost function is then computed by the following procedure:
 	\label{tab:fitInitialPoints}
 \end{table}
 
-We use the Nelder-Mead (downhill simplex) method for the minimization procedure. Initial points were chosen to include the areas in parameter space where each cost is close to $0$ (first $4$ points correspondingly), and to cover the large fraction of the parameter space. You can see the values in table \ref{tab:fitInitialPoints}.
+We use the Nelder-Mead (downhill simplex) method for the minimization
+procedure. Initial points were chosen to include the areas in
+parameter space where each cost is close to $0$ (first $4$ points
+correspondingly), and to cover the large fraction of the parameter
+space. You can see the values in table \ref{tab:fitInitialPoints}.
 
-The minimization then converged to the following parameter values:
+The minimization converged to the following parameter values:
 \begin{multicols}{2}
 \begin{itemize}
 		\item{$\gamma = 300$}
@@ -1059,32 +1166,90 @@ The minimization then converged to the following parameter values:
 \end{itemize}
 \end{multicols}
 
-Note, that these parameter values (except for $z$ and $\chi$) are universal, and they can describe the whole population of observed bursts, as will be shown in the next section.
+Note, that these parameter values (except for $z$ and $\chi$) are
+universal, and they may describe the whole population of observed
+bursts, as will be shown in the next section.
 
 \subsection{Results of the tests}
 	
-	As was discussed in the previous section our model can reproduce both stretching factors smaller than $1$ (like of GRB 090902B) and larger than $1$ (like of GRB 090926A) depending on redshift and observer's off-axis angle (see fig. \ref{fig:sampleLightCurves}).
+As was discussed in the previous section our model can reproduce both
+stretching factors smaller than $1$ (like of GRB 090902B) and larger
+than $1$ (like of GRB 090926A) depending on redshift and observer's
+off-axis angle (see fig. \ref{fig:sampleLightCurves}).
 
-	Here are results of our tests:
-	\begin{itemize}
-		\item{
-			Total energy emitted in $\unit[100]{MeV}$ and more energetic gamma rays $E < \unit[5.89 \times 10^{53}]{GeV}$, which is in agreement with \cite{Gehrels:2013xd}.
-		}
-		\item{
-			The distribution of observable bursts' stretching factors is shown on fig. \ref{fig:kappaDistribution}.
-			This distribution does not contradict to the values of stretching factors obtained in section \ref{sec:observations}.
-		}
-		\item{
-			The fraction of bursts observable in low energy band, which are also observed in high energy band $f_m = 0.110$.
-			The Fermi LAT catalog contains $35$ bursts out of which $4$ can be observed in high energy band.
-			Therefore the observed value $f_o = 0.11 \pm 0.05$ (error obtained from binomial distribution) agrees with the model.
-		}
-	\end{itemize}
+Below are the results of the tests of Section~\ref{sec:tests}:
+\begin{itemize}
+	\item{ The total energy emitted in $\unit[100]{MeV}$ and more
+          energetic gamma rays $E < \unit[5.89 \times 10^{53}]{GeV}$,
+          which is in agreement with \cite{Gehrels:2013xd}.  }
+	\item{ The distribution of observable bursts' stretching
+          factors is shown in Fig. \ref{fig:kappaDistribution}.  This
+          distribution does not contradict to the values of stretching
+          factors obtained in section \ref{sec:observations}.  }
+	\item{ The fraction of bursts observable in low energy band,
+          which are also observed in high energy band is $f_m = 0.110$.
+          The Fermi LAT catalog contains $35$ bursts out of which $4$
+          can be observed in high energy band.  Therefore the observed
+          value $f_o = 0.11 \pm 0.05$ (error from binomial
+          distribution) agrees with the model.  }
+\end{itemize}
 
-	Also, there is a correlation between the fraction of high energy photons (that is high energy photon count divided by the total photon count), the stretching factor and the observer's off-axis angle (see fig. \ref{fig:correlations}).
-	It allows one to predict observer's off-axis angles.
+Therefore the model successfully explains the variety of the
+stretching factors observed by the Fermi LAT.
 
-	So our model is able to explain the time stretching effect from section \ref{sec:observations}.
+\section{Discussion}
+
+The are some caveats and possible directions of improvement of the
+model. First of all, as it's seen in Fig. \ref{fig:correlations} the
+stretching factor of GRB 090926A is higher that the model
+prediction. More data are needed to understand whether this requires a
+refinement of the model or is a statistical fluctuation.
+
+Second, the shapes of light curves produced by the model (see
+fig. \ref{fig:sampleLightCurves}) differ considerably from observed
+ones (e.g. fig. \ref{fig:grb090902B}). In particular, the slope of
+light curves produced by the model is zero at $t = 0$, while the slope
+of the observed light curves at $t = 0$ appears to have a maximum.
+
+Third, the assumption of plasma energy dependence on off-axis angle
+should be better justified.  This might probably be done using
+hydrodynamic simulation of the jet.
+
+We note, that even though it appears that bursts are similar in their
+rest frames, this may be considered only as a first approximation.
+The differences in masses, metallicities, angular momenta of
+progenitor stars, and the differences in local conditions around them
+might account for differences in light curves of GRBs (or, even, for
+especially large stretching factor of GRB 090926A).  This means that
+the minor variations of the model parameters might be necessary.
+
+It seems, however, that all the issues above may be addressed by
+refining the model without changing it's main assumptions.
+
+Our study can be summarized with 3 main conclusions.
+
+First, the time stretching of GRB light curves between different VHE
+(in particular $\unit[100]{MeV} < E < \unit[1]{GeV}$ and $E >
+\unit[1]{GeV}$ ) bands is discovered with the statistical significance
+of $3.3\sigma$.  Depending on the burst the stretching factor may be
+higher of lower than 1, that is the higher or the lower-energy light
+curve is stretched.
+
+Second, the time stretching may be explained with curvature effects,
+that is the effects of jet geometry.  There is no need to introduce
+any new spectral components.
+
+Finally, one may assume that all GRBs are the same in their rest
+frames.  The internal burst parameters (such as $\gamma$, $\eta_0$,
+$r_0$, $n$, $\omega_0$, $\theta_0$, $k$ and $\alpha$) might stay the
+same for all bursts, and this assumption is more or less consistent
+with existing observations.
+
+We note, that the model predicts a correlation between
+the fraction of the high energy photons, the stretching factor and the
+observer's off-axis angle (see fig. \ref{fig:correlations}). This may
+be used as a method to estimate the observer's off-axis angle.
+
 
 \begin{figure}
 	\hspace*{\fill}
@@ -1120,60 +1285,23 @@ Note, that these parameter values (except for $z$ and $\chi$) are universal, and
         \label{fig:correlations}
 \end{figure}
 
-%\section{Conclusions}
-
-%\label{sec:conclusions}
-%% TODO: remove section
-
-%% TODO: add more descriptive words
-
-	Our study can be summarized with 3 main conclusions.
-
-	First, the time stretching of GRB light curves between different VHE (in particular $(\unit[100]{MeV}, \unit[1]{GeV})$ and $(\unit[1]{GeV}, \unit[300]{GeV})$) bands is discovered with statistic significance of $3.3\sigma$.
-	This time stretching might be positive or negative (that is higher or lower energy light curve is stretched) depending on the burst.
-
-	Second, this time stretching effect can be explained with curvature effects, that is effects of jet geometry.
-	There is no need to introduce any new spectral components.
-
-	Finally, we can assume all GRBs to be the same in their rest frames.
-	The internal burst parameters (such as $\gamma$, $\eta_0$, $r_0$, $n$, $\omega_0$, $\theta_0$, $k$ and $\alpha$) might stay the same for all bursts, and this assumption is more or less consistent with existing observations.
-
-	However, there are some caveats, and directions for improvement.
-
-	First of all, the model prediction and observations are not completely consistent.
-	If you look at fig. \ref{fig:correlations}, you will see that the stretching factor of GRB 090926A is too high compared to the model prediction.
-	It appears that parameters of the model cannot be fitted to account for it (without ruining agreement with other observations).
-	More data should be analyzed to see whether the problem will be exacerbated, and some refinement of the model might also be required.
-
-	Second, the shapes of light curves produced by the model (see fig. \ref{fig:sampleLightCurves}) differ considerably from observed ones (e.g. fig. \ref{fig:grb090902B}).
-	Most importantly, the slope of light curves produced by the model is zero at $t = 0$, even though the slope of observed light curves at $t = 0$ is not only non-zero, but appears to have a maximum.
-
-	Third, the assumption of plasma energy dependence on off-axis angle should be better justified.
-	This might probably be done using hydrodynamic simulation of the jet.
-
-	Finally, even though it appears that bursts are similar in their rest frames, they cannot be exactly the same.
-	The differences in masses, metallicities, angular momenta of progenitor stars, and the differences in local conditions around them might account for differences in light curves of GRBs (or, even, for especially large stretching factor of GRB 090926A).
-	It means that minor variations of model parameters might be necessary on burst per burst basis.
-
-It seems, however, that all these problems are not unresolvable, and
-may be addressed by refining the model without changing its main
-assumptions.
-%% TODO: remove unresolvable, rephrase
-
-{\bf Acknowledgments.} We thank M.~Pshirkov and S.~Troitsky for
-comments and inspiring discussions.  The work was supported by Russian
-Science Foundation grant 14-12-01340. The analysis is based on data
-and software provided by the Fermi Science Support Center (FSSC). The
-numerical part of the work was done at the cluster of the Theoretical
-Division of INR RAS. G.R. acknowledges the fellowship of the Dynasty
-foundation.
+{\bf Acknowledgments.} We thank A.~Gruzinov, M.~Pshirkov and
+S.~Troitsky for comments and inspiring discussions.  The work was
+supported by Russian Science Foundation grant 14-12-01340. The
+analysis is based on data and software provided by the Fermi Science
+Support Center (FSSC). The numerical part of the work was done at the
+cluster of the Theoretical Division of INR RAS. G.R. acknowledges the
+fellowship of the Dynasty foundation.
 
 
 \begin{appendices}
 
 \section{Details of using Fermi Science tools}
 \label{sec:fermiCode}
-This appendix contains two things: exact values we are passing to a web form on the Fermi LAT data server, and the code we use to invoke the Fermi tools (including full list of options).
+This appendix contains the details on using the Fermi LAT
+data. Namely, the exact values passed to the web form on the Fermi LAT
+data server and the code used to run the Fermi tools including the
+full list of options.
 
 Parameters that are passed to the web form of the Fermi LAT data server to download the bursts data are the following:
 \begin{itemize}
@@ -1219,13 +1347,13 @@ Parameters that are passed to the web form of the Fermi LAT data server to downl
 	}
 \end{itemize}
 
-For background, all parameters are the same, except for the time ranges, which are the following:
+For background, all the parameters are the same, except for the time ranges, which are the following:
 \begin{align*}
 	\texttt{time} + \texttt{startOffset} &- 0.5\left(\texttt{endOffset} - \texttt{startOffset}\right) - 86400,\\
 	\texttt{time} + \texttt{startOffset} &- 0.5\left(\texttt{endOffset} - \texttt{startOffset}\right)
 \end{align*}
 
-The commands we use to invoke Fermi Science tools are the following:
+The commands we use to run the Fermi Science Tools are the following:
 \begin{lstlisting}
 gtselect infile=[eventFile] outfile=filtered.fits
 	ra=INDEF dec=INDEF rad=180 tmin=INDEF tmax=INDEF emin=100 emax=300000
@@ -1251,7 +1379,11 @@ gtltcube evfile=timed.fits evtable=EVENTS scfile=[spacecraft] sctable=SC_DATA
 gtpsf expcube=ltcube.fits outfile=psf_[IrfName].fits outtable=PSF irfs=[IrfName]
 	ra=[RA] dec=[DEC] emin=100 emax=300000 nenergies=41 thetamax=30 ntheta=300
 \end{lstlisting}
-\texttt{[RA]} and \texttt{[DEC]} here are the coordinates of the burst, and \texttt{[IrfName]} is the Instrument Response Function, which depends on photon's event class (transient, source, clean, or ultraclean) and conversion type (back or front). The list of IRF names can be obtained with the \texttt{gtirfs} tool. We need to compute PSFs for all of them.
+\texttt{[RA]} and \texttt{[DEC]} here are the coordinates of the
+burst, and \texttt{[IrfName]} is the Instrument Response Function,
+which depends on photon's event class (``SOURCE'' in our case) and
+conversion type (back or front). The list of IRF names is obtained
+with the \texttt{gtirfs} tool.
 
 \begin{lstlisting}
 gtexpcube2 infile=ltcube.fits cmap=none outfile=expcube_[IrfName].fits irfs=[IrfName]
@@ -1259,18 +1391,26 @@ gtexpcube2 infile=ltcube.fits cmap=none outfile=expcube_[IrfName].fits irfs=[Irf
 	proj=CAR ebinalg=log emin=100 emax=300000 enumbins=40
 	ebinfile=NONE bincalc=EDGE ignorephi=no thmax=180 thmin=0 table=Exposure
 \end{lstlisting}
-Note, that R.A. coordinates in the \texttt{expcube} FITS files are indexed in reverse order and starting from 180. For example, $\texttt{ra[0]}=180$, $\texttt{ra[1]}=179$, and so on.
+Note, that R.A. coordinates in the \texttt{expcube} FITS files are
+indexed in reverse order and start from 180. For example,
+$\texttt{ra[0]}=180$, $\texttt{ra[1]}=179$, and so on.
 
-\section{Cosmology}
-%% TODO: change title
+\section{Cosmological distances}
 \label{sec:cosmology}
-This appendix contains a few formulas we need from cosmology, in particular the area of a photon sphere $A_\text{ph}\left(z\right)$, a sphere over which photons emitted in a particular burst at redshift $z$ are spread; and the volume of the infinitesimal shell surrounding a burst sphere $\dif V\left(z\right)$, a sphere over which bursts at redshift $z$ are distributed.
+This appendix contains a few formulas related to the cosmological
+distances. In particular, it provides formula for the area of a photon
+sphere $A_\text{ph}\left(z\right)$, a sphere over which photons
+emitted in a particular burst at redshift $z$ are spread; and the
+volume of the infinitesimal shell surrounding a burst sphere $\dif
+V\left(z\right)$, a sphere over which bursts at redshift $z$ are
+distributed.
 
 First of all, the metric of the expanding Universe:
 \begin{equation}
 \dif s^2 = -\dif t^2 + a^2\left(t\right) \dif r^2 + a^2\left(t\right) r^2 \dif \Omega_2
 \end{equation}
-We define $a\left(t_\text{obs}\right) = 1$, where $t_\text{obs}$ is the observation time.
+We define $a\left(t_\text{obs}\right) = 1$, where $t_\text{obs}$ is
+the observation time.
 
 We need to understand how the scale factor changes with time. For that we assume that the energy content of the Universe consists of matter $\Omega_m$ and vacuum energy $\Omega_\Lambda$ only, so that the Friedmann equation takes the following form:
 \begin{align*}
@@ -1278,7 +1418,9 @@ We need to understand how the scale factor changes with time. For that we assume
 \dot{a}\left(t\right) &= a\left(t\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda} \\
 \dif t &= \frac{\dif a}{a\left(t\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}}
 \end{align*}
-Here $H_\text{obs} = H\left(t_\text{obs}\right) = \frac{\dot{a}\left( t_\text{obs} \right)}{a\left( t_\text{obs} \right)} = \dot{a}\left( t_\text{obs} \right)$ is the Hubble parameter at the observation time.
+Here $H_\text{obs} = H\left(t_\text{obs}\right) = \frac{\dot{a}\left(
+  t_\text{obs} \right)}{a\left( t_\text{obs} \right)} = \dot{a}\left(
+t_\text{obs} \right)$ is the Hubble parameter at the observation time.
 
 We also need to know the areas of two spheres: the photon sphere, a
 sphere over which photons emitted in a particular burst are spread;
@@ -1287,8 +1429,7 @@ redshift are distributed. These two spheres have the same radii -- a
 distance from the observer to the burst, but different centers: the
 photon sphere is centered on the burst, while the bursts sphere is
 centered on the observer. Also, they have different areas, because the
-scale factor differs at locations of burst and observer.
-%% TODO rephrase, mention back in time
+scale factor differs at the time of emission and observation.
 
 Let us begin with the photon sphere. This sphere has the origin at $r = 0$ and $t = 0$, at the central engine of a particular burst. Taking $\dif s = 0$ and $\dif \Omega_2 = 0$ in the equation for metric, we get:
 \begin{equation*}
@@ -1300,7 +1441,11 @@ r\left(t_\text{obs}\right) &= \int_0^{t_\text{obs}}\frac{\dif t}{a\left(t\right)
 &= \int_{a\left(0\right)}^1\frac{\dif a}{a^2\left(t\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}} \\
 &= \frac{\, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{a^3\left(0\right) \Omega_\Lambda }\right)-a\left(0\right) \, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{\Omega_\Lambda }\right)}{a\left(0\right) H_\text{obs} \sqrt{\Omega_\Lambda }}
 \end{align*}
-Here $_2F_1\left(a, b; c; z\right) = \frac{\Gamma\left(c\right)}{\Gamma\left(b\right)\Gamma\left(c-b\right)}\int_0^1 \frac{t^{b-1}\left(1-t\right)^{c-b-1}}{\left(1-t z\right)^a} \dif t$ is a hypergeometric function. We can substitute $a\left(0\right) = \frac{1}{1+z}$, so, finally,
+Here $_2F_1\left(a, b; c; z\right) =
+\frac{\Gamma\left(c\right)}{\Gamma\left(b\right)\Gamma\left(c-b\right)}\int_0^1
+\frac{t^{b-1}\left(1-t\right)^{c-b-1}}{\left(1-t z\right)^a} \dif t$
+is a hypergeometric function. We then substitute $a\left(0\right) =
+\frac{1}{1+z}$ and finally arrive at
 \begin{equation}
 r\left(z\right) = \frac{\left(1+z\right)\, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{\Omega_\Lambda}\left(1+z\right)^3\right) - \, _2F_1\left(\frac{1}{3},\frac{1}{2};\frac{4}{3};-\frac{\Omega_m}{\Omega_\Lambda }\right)}{H_\text{obs} \sqrt{\Omega_\Lambda }}
 \end{equation}
@@ -1312,17 +1457,18 @@ A_\text{ph}\left(z\right) = 4 \pi a^2\left(t_\text{obs}\right) r^2\left(z\right)
 The second sphere is the bursts sphere. It has its origin at the
 observer's position, and the radius the same as the photon
 sphere. Therefore, its area is:
-%% TODO: mention that this is the sphere in the past
 \begin{equation}
 A_\text{b}\left(z\right) = 4 \pi a^2\left(0\right) r^2\left(z\right) = \frac{4 \pi r^2\left(z\right)}{\left(1+z\right)^2}
 \end{equation}
 
-We need to know one more thing about the bursts sphere -- the volume of the infinitesimal shell surrounding it. For that we can again use the metric:
+It's helpful to calculate one more quantity related to the bursts
+sphere -- the volume of the infinitesimal shell surrounding it. For
+that we again use the metric:
 \begin{align}
 \dif V\left(z\right) &= - A_\text{b}\left(z\right) a\left(0\right) \dif r \nonumber\\
 &= - A_\text{b}\left(z\right) a\left(0\right) \frac{\dif a}{a^2\left(0\right) H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}} \nonumber\\
 &= A_\text{b}\left(z\right) \frac{\frac{1}{\left(1+z\right)^2}\dif z \left(1+z\right)}{H_\text{obs} \sqrt{\Omega_m\frac{1}{a^3\left(t\right)} + \Omega_\Lambda}} \nonumber\\
-&= A_\text{b}\left(z\right) \frac{1}{\left(1+z\right)} \frac{\dif z}{H_\text{obs} \sqrt{\Omega_m\left(1+z\right)^3 + \Omega_\Lambda}} \nonumber\\
+%&= A_\text{b}\left(z\right) \frac{1}{\left(1+z\right)} \frac{\dif z}{H_\text{obs} \sqrt{\Omega_m\left(1+z\right)^3 + \Omega_\Lambda}} \nonumber\\
 &= \frac{4\pi r^2\left(z\right)}{\left(1+z\right)^3} \frac{\dif z}{H_\text{obs} \sqrt{\Omega_m\left(1+z\right)^3 + \Omega_\Lambda}}
 \end{align}
 
