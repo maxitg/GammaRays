@@ -192,7 +192,7 @@ spectrum.
 		\hspace*{\fill}
 		\caption{
 			High and low energy light curves produced by the geometrical model.
-			Burst parameter values are the same as discussed in section \ref{sec:parameters}.
+			Burst parameter values are the same as discussed in Section \ref{sec:parameters}.
 		}
 		\label{fig:sampleLightCurves}
 	\end{figure}
@@ -209,7 +209,7 @@ factors is shown in Figure \ref{fig:kappaDistribution}.
 The rest of the paper is organized as follows. We describe the Fermi
 LAT data and the analysis procedures in Section
 \ref{sec:observations}. The model and the details on calculations are
-explained in Section \ref{sec:model}. The Section \label{sec:tests}
+explained in Section \ref{sec:model}. The Section \ref{sec:tests}
 introduces three phenomenological tests for the model. The parameters
 of the model and the new method for estimating the jet observation
 angles are shown in Section \ref{sec:results}. The code for modeling
@@ -286,7 +286,7 @@ of Ref. \cite{Ackermann:2013zfa}:
           and future compared to this interval.
 	}
 \end{itemize}
-The data are summarized in table \ref{tab:bursts}. For the background
+The data are summarized in Table \ref{tab:bursts}. For the background
 estimation, we also download observational data for 24 hours before
 the burst.  The analysis is performed with the Fermi Science Tools
 v9r33p0
@@ -357,7 +357,7 @@ Out of 19 bursts studied, only 4 have at least 10 high energy events
 remaining after the filtering, and thus eligible for computing the
 stretching factors. The results of this computation are shown in
 Figures \ref{fig:grb080916C}, \ref{fig:grb090510},
-\ref{fig:grb090902B}, \ref{fig:grb090926A} and table
+\ref{fig:grb090902B}, \ref{fig:grb090926A} and Table
 \ref{tab:observationResults}.
 
 Out of these 4 bursts, two (GRB 080916C and GRB 090510) have
@@ -1024,7 +1024,7 @@ Also, some of these parameters are known from observations:
           order of magnitude\footnote{Our minimization procedure can
             find similar minimums for other values of $\gamma$, at
             least from $100$ to $1000$} of $\gamma = 300$
-          \cite{Ghirlanda:2011ux}.}
+          \cite{Ghirlanda:2011bn}.}
 \end{itemize}
 This knowledge allows us to reduce the number of parameters to minimize against to just 5: $\left(n, \theta_0, k, \alpha, \chi\right)$.
 
@@ -1055,7 +1055,7 @@ satisfy the following objectives:
           to observe. So we require that bursts with the stretching
           factor of GRB 090902B or lower appear in random samples by
           varying $z$ and $\chi$ (sampling is done the same way as in
-          section \ref{sec:distribution}). Note that this requirement
+          Section \ref{sec:distribution}). Note that this requirement
           unlike others applies to an ensemble of simulated bursts. }
 \end{itemize}
 
@@ -1072,7 +1072,7 @@ The cost function is then computed by the following procedure:
 	}
 	\item{
 		\label{item:sample}
-		Compute the small sample of 10 bursts (we will need stretching factors and total photon counts) with the same fixed burst parameters $\left(\gamma, \eta_0, r_0, n, \omega_0, \theta_0, k, \alpha\right)$, and with $z$ and $\chi$ representatively distributed (as discussed in section \ref{sec:distribution}).
+		Compute the small sample of 10 bursts (we will need stretching factors and total photon counts) with the same fixed burst parameters $\left(\gamma, \eta_0, r_0, n, \omega_0, \theta_0, k, \alpha\right)$, and with $z$ and $\chi$ representatively distributed (as discussed in Section \ref{sec:distribution}).
 	}
 	\item{
 		Compute the cost due to the stretching factor:
@@ -1140,7 +1140,7 @@ The cost function is then computed by the following procedure:
 		 5.0000	&	$\mathrm{1.12535 \times 10^{-7}}$	&	-0.200000	&	-2.0000000 	&	$\mathrm{4.73795 \times 10^{-3}}$ 	\\
 		 7.0000	&	$\mathrm{2.00000 \times 10^{-12}}$	&	-3.000000	&	-3.0000000	&	$\mathrm{1.73795 \times 10^{-3}}$
 	\end{tabular}
-	\caption{Initial points used for minimization procedure from section \ref{sec:parameters}.}
+	\caption{Initial points used for minimization procedure from Section \ref{sec:parameters}.}
 	\label{tab:fitInitialPoints}
 \end{table}
 
@@ -1148,7 +1148,7 @@ We use the Nelder-Mead (downhill simplex) method for the minimization
 procedure. Initial points were chosen to include the areas in
 parameter space where each cost is close to $0$ (first $4$ points
 correspondingly), and to cover the large fraction of the parameter
-space. You can see the values in table \ref{tab:fitInitialPoints}.
+space. You can see the values in Table \ref{tab:fitInitialPoints}.
 
 The minimization converged to the following parameter values:
 \begin{multicols}{2}
@@ -1185,7 +1185,7 @@ Below are the results of the tests of Section~\ref{sec:tests}:
 	\item{ The distribution of observable bursts' stretching
           factors is shown in Fig. \ref{fig:kappaDistribution}.  This
           distribution does not contradict to the values of stretching
-          factors obtained in section \ref{sec:observations}.  }
+          factors obtained in Section \ref{sec:observations}.  }
 	\item{ The fraction of bursts observable in low energy band,
           which are also observed in high energy band is $f_m = 0.110$.
           The Fermi LAT catalog contains $35$ bursts out of which $4$
@@ -1307,7 +1307,7 @@ Parameters that are passed to the web form of the Fermi LAT data server to downl
 \begin{itemize}
 	\item{
 		{\bf Object name or coordinates}.
-		Coordinates are filled from the table \ref{tab:bursts}.
+		Coordinates are filled from the Table \ref{tab:bursts}.
 	}
 	\item{
 		{\bf Coordinate system}.
@@ -1316,11 +1316,11 @@ Parameters that are passed to the web form of the Fermi LAT data server to downl
 	\item{
 		{\bf Search radius (degrees)}.
 		$60$.
-		Events are filtered by location separately by using the point spread functions (PSFs) of the LAT (as described in section \ref{sec:photonSelection}).
+		Events are filtered by location separately by using the point spread functions (PSFs) of the LAT (as described in Section \ref{sec:photonSelection}).
 	}
 	\item{
 		{\bf Observation dates}.
-		To have a decent safety margin, we extend the duration of the burst by $50\%$ to both past and future relative to the table \ref{tab:bursts} time ranges.
+		To have a decent safety margin, we extend the duration of the burst by $50\%$ to both past and future relative to the Table \ref{tab:bursts} time ranges.
 		So, we fill in the following values:
 		\begin{align*}
 			\texttt{time} + \texttt{startOffset} &- 0.5\left(\texttt{endOffset}-\texttt{startOffset}\right),\\
@@ -1474,7 +1474,7 @@ that we again use the metric:
 
 \end{appendices}
 
-\bibliographystyle{ieeetr}
+\bibliographystyle{hieeetr}
 \bibliography{gammaRays.bib}
 
 \end{document}
