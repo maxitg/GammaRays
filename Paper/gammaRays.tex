@@ -22,7 +22,7 @@
 \DeclareMathOperator*{\argmin}{argmin}
 
 \title{
-	Time stretching of the GeV emission of GRBs: Fermi LAT data vs geometrical model
+	Time stretching of the GeV emission of GRBs: Fermi-LAT data vs geometrical model
 }
 
 \author{
@@ -65,7 +65,7 @@ INR-TH/2014-034
         considered equivalent in their rest frames and the observed
         light curves differ only due to different redshifts and view
         directions. The model conforms to the total burst energy
-        constraint and matches the Fermi LAT observations of the
+        constraint and matches the Fermi-LAT observations of the
         fraction of GRBs visible in $\unit[100]{MeV} < E <
         \unit[1]{GeV}$ band, which may be observed at higher
         energies. The model predicts the distribution of observable
@@ -219,7 +219,7 @@ is open source and is publicly available on GitHub
 \section{Data analysis}
 \label{sec:observations}
 
-\subsection{Fermi LAT Photon Selection}
+\subsection{Fermi-LAT Photon Selection}
 \label{sec:photonSelection}
 
 \begin{table}
@@ -281,7 +281,7 @@ of Ref. \cite{Ackermann:2013zfa}:
 	\item{
 		$T_{05}$ -- $T_{95}$ interval of the LAT-detected
           emission. The beginning of the interval is used as a fixed
-          point of stretching. The Fermi LAT photons are downloaded
+          point of stretching. The Fermi-LAT photons are downloaded
           for the period extended in time by $50\%$ towards both past
           and future compared to this interval.
 	}
@@ -1188,7 +1188,7 @@ Below are the results of the tests of Section~\ref{sec:tests}:
           factors obtained in Section \ref{sec:observations}.  }
 	\item{ The fraction of bursts observable in low energy band,
           which are also observed in high energy band is $f_m = 0.110$.
-          The Fermi LAT catalog contains $35$ bursts out of which $4$
+          The Fermi-LAT catalog contains $35$ bursts out of which $4$
           can be observed in high energy band.  Therefore the observed
           value $f_o = 0.11 \pm 0.05$ (error from binomial
           distribution) agrees with the model.  }
@@ -1298,12 +1298,12 @@ fellowship of the Dynasty foundation.
 
 \section{Details of using Fermi Science tools}
 \label{sec:fermiCode}
-This appendix contains the details on using the Fermi LAT
-data. Namely, the exact values passed to the web form on the Fermi LAT
+This appendix contains the details on using the Fermi-LAT
+data. Namely, the exact values passed to the web form on the Fermi-LAT
 data server and the code used to run the Fermi tools including the
 full list of options.
 
-Parameters that are passed to the web form of the Fermi LAT data server to download the bursts data are the following:
+Parameters that are passed to the web form of the Fermi-LAT data server to download the bursts data are the following:
 \begin{itemize}
 	\item{
 		{\bf Object name or coordinates}.
@@ -1359,7 +1359,7 @@ gtselect infile=[eventFile] outfile=filtered.fits
 	ra=INDEF dec=INDEF rad=180 tmin=INDEF tmax=INDEF emin=100 emax=300000
 	zmax=100 evclass=2 convtype=-1 evtable=EVENTS
 \end{lstlisting}
-Here \texttt{[eventFile]} is the file downloaded from the Fermi LAT data server.
+Here \texttt{[eventFile]} is the file downloaded from the Fermi-LAT data server.
 
 \begin{lstlisting}
 gtmktime scfile=[spacecraft] sctable=SC_DATA
@@ -1367,7 +1367,7 @@ gtmktime scfile=[spacecraft] sctable=SC_DATA
 	evfile=filtered.fits evtable=EVENTS outfile=timed.fits
 	apply_fiter=yes
 \end{lstlisting}
-where \texttt{[spacecraft]} is the FITS file containing the spacecraft data (also downloaded from the Fermi LAT data server).
+where \texttt{[spacecraft]} is the FITS file containing the spacecraft data (also downloaded from the Fermi-LAT data server).
 
 \begin{lstlisting}
 gtltcube evfile=timed.fits evtable=EVENTS scfile=[spacecraft] sctable=SC_DATA
