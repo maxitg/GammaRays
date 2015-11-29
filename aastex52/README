@@ -1,0 +1,131 @@
+% README -- Contents of the AASTeX package distribution
+
+Thanks for your interest in the AASTeX package for manuscript preparation.
+This directory contains all the files in the distribution.  They are
+described briefly below.  Following the file descriptions
+are short installation instructions, the generic recipe for printing the
+user guide and sample, and information about contacting us regarding
+the distribution.
+
+aastex.cls		The AASTeX class file
+
+aasguide.tex		The user guide for the package
+aasguide.pdf		PDF of the user guide
+
+aassymbols.tex		Tables of AASTeX and AMS symbols commands
+aassymbols.pdf		PDF of the symbols tables
+
+sample.tex		Sample paper with "typical" content and markup
+table.tex		Sample table file demonstrating capabilities 
+	                of deluxetable
+
+natbib.sty		The natbib citation package (v7.1)
+natnotes.tex		The natbib reference guide
+natnotes.pdf		PDF of the natbib reference
+
+You will also find the following sample graphics and 
+supplemental materials files. 
+
+f1.eps		Sample figure files
+f2.eps
+f2_color.eps
+f3.eps 
+
+video3.mpg	A sample MPEG animation
+
+datafile1.txt	A machine-readable version of Table 1 from sample.tex
+
+ 
+INSTALLING THE CLASS FILE
+
+The aastex.cls file must be installed so that LaTeX can find it.
+To use AASTeX locally, simply place it in the same directory as 
+your LaTeX file. 
+
+To install AASTeX for global use on your system, 
+copy the aastex.cls (and natbib.sty if 
+it is not already on your system) into the directory where your 
+LaTeX installation expects to find class files. 
+
+Alternately, Unix/Linux users can use the make file included 
+with the distribution. Simply adjust the Makefile so that 
+the INSTALLDIR parameter is set to the directory where your 
+installation expects to find class files, e.g. 
+
+INSTALLDIR = /usr/share/texmf/tex/latex/misc
+
+If you have teTeX installed, 
+run "texconfig conf" to see what TEXMFMAIN is.
+
+Once the INSTALLDIR parameter is set correctly 
+in the Makefile, type "make install" at the prompt. 
+(You must have the necessary 
+write permission in the system area where LaTeX 
+files are installed.)
+
+If you are using teTeX, you will need to update the LaTeX 
+cache by typing "texconfig rehash."
+
+Please see the AASTeX Web site FAQ at
+
+http://aastex.aas.org/
+
+for additional installation notes or contact the help desk at 
+aastex-help@aas.org for assistance. 
+
+
+PRINTING THE GUIDE AND SAMPLES
+
+The user guide is written in AASTeX preprint2 style.  
+To print it out on a PostScript printer , you will need a DVI driver 
+that will output to PostScript. If you wish to print to PostScript, 
+and you are on a Unix or Linux system,  
+the DVI driver on your computer system is probably called "dvips". 
+To print out the user guide DVI file, type 
+
+    prompt> dvips aasguide
+
+To create and print your own DVI file, type
+
+    prompt> latex aasguide
+    prompt> latex aasguide
+    prompt> dvips aasguide
+
+There are various system- and program-specific eccentricities which
+cannot be fully enumerated here.  Some things to watch out for:
+
+    1.  On some systems, LaTeX does not permit a filename extension
+	(the .tex) on the input file specification; .tex is assumed.
+
+    2.  The user interfaces for DVI drivers are quite inconsistent.
+	Some operate in an interactive mode, asking the user about
+	variable setup parameters, while some only accept control
+	input on the command line.
+
+    3.  On some systems, DVI translation and printing are combined,
+	so one would enter only one OS command after running LaTeX.
+	This is typically the case for dvips.
+
+Since LaTeX installations vary widely, you may need to consult 
+the documentation for your particular installation or your local 
+system administator for guidance in installing and using 
+AASTeX.
+ 
+ADMINISTRATIVE DETAILS
+
+AASTeX was designed and written by Chris Biemesderfer in 1988.
+Substantial revisions were made by Lee Brotzman and Pierre
+Landau when the package was updated to v4.0.
+AASTeX was rewritten as a LaTeX class by Arthur Ogawa for the
+v5.0 release. It was updated to v5.2 by SR Nova Private Ltd.
+The documentation has benefited from revisions by
+Jeannette Barnes, Sara Zimmerman, and Greg Schwarz.
+
+Comments, suggestions, complaints, and pleas for help can be sent
+electronically to aastex-help@aas.org.
+
+AASTeX Web site: http://aastex.aas.org/
+
+CB, 20 May 1999
+Rev. SZ, 2 Nov 2000
+Rev. SZ, 14 Dec 2004

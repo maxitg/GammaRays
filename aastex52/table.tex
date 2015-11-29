@@ -1,0 +1,125 @@
+%%
+%% Begining of file `table.tex'
+
+%% This complex but short example prepared in the deluxetable environment
+%% demonstrates some of the techniques
+%% that can be used to generate complex column headings and to align
+%% variable-width columns. See the manuscript sample file, sample.tex,
+%% for more table examples.
+
+%% Note this file has its own \documentclass, \begin{document}, and
+%% \end{document} commands. If you want to insert this table in another
+%% LaTeX document using the \input command, comment out these lines.
+
+\documentclass{aastex}
+\begin{document}
+
+%% Note that the table will print double-spaced since we are using the
+%% manuscript style. Change the style to preprint or preprint2 to see
+%% how LaTeX formats the table in those styles.
+
+%% In this example the LaTeX \multicolumn command is used to span a heading
+%% over several columns.  When \multicolumn is used along with the
+%% \cutinhead or \sidehead commands, the \tablecolumns command must
+%% be used to specify the number of columns in the table -
+%% otherwise \cutinhead and \sidehead will not work properly.
+
+%% \cline has been used to produce straddle rules below the spanning heads,
+%% \cutinhead to produce a centered head in the body of the table, and
+%% \sidehead to produce a flush-left head in the body.
+
+%% This table also makes use of the \phn command to better align some of the
+%% columns.  Also see \phd, \phs, and \phm{} - other commands useful for
+%% column alignment.  All of these commands insert a blank space
+%% whose width is  equal to that of a number (\phn),
+%% a decimal point (\phd), a minus sign (\phs), or any
+%% character you wish to use (\phm{text}).
+%% Keep in mind that if you are preparing a table for electronic submission
+%% to one of the journals, you need not worry too much about column
+%% alignment. The editors will fix table alignment as appropriate.
+
+%% If a table is more than one page long, the width of the table can vary
+%% from page to page when the default \tablewidth is used, as below.  The
+%% individual table widths for each page will be written to the log file; a
+%% maximum tablewidth for the table can be computed from these values.
+%% The \tablewidth argument can then be reset and the file reprocessed, so
+%% that the table is uniform throughout the pages. Try getting the widths
+%% from the log file and changing the \tablewidth parameter to see how
+%% adjusting this value affects table formatting.
+
+%% The * option to the \\ command has been used in the lines after
+%% the \sidehead to keep them together on the same page. Try taking
+%% the *'s out and LaTeXing the manuscript again to see the difference
+%% in the page breaks. You can group together as many lines as
+%% you like using this command.
+
+\begin{deluxetable}{rrrrrrrr}
+\tablecolumns{8}
+\tablewidth{0pc}
+\tablecaption{Percentage of Fake Stars Lost}
+\tablehead{
+\colhead{}    &  \multicolumn{3}{c}{Non-shell Stars} &   \colhead{}   &
+\multicolumn{3}{c}{Shell Stars} \\
+\cline{2-4} \cline{6-8} \\
+\colhead{Mag} & \colhead{F336W}   & \colhead{F555W}    & \colhead{F814W} &
+\colhead{}    & \colhead{F336W}   & \colhead{F555W}    & \colhead{F814W}}
+\startdata
+20.25 & 2.2$\pm$7.4\phn & \nodata & \nodata &
+& 0.9$\pm$6.8 & \nodata & 0.0$\pm$44.7 \\
+20.75 & 2.4$\pm$7.8\phn & \nodata & 2.8$\pm$7.4 &
+& 1.7$\pm$6.6 & \nodata & 1.4$\pm$6.7\phn \\
+21.25 & 0.1$\pm$7.7\phn & \nodata & 1.7$\pm$7.6 &
+& 2.6$\pm$6.5 & \nodata & 0.9$\pm$6.6\phn \\
+21.75 & 2.4$\pm$4.5\phn & 2.2$\pm$7.4 & 0.1$\pm$7.6 &
+& 7.1$\pm$4.5 & 0.9$\pm$6.8 & 3.3$\pm$6.5\phn \\
+22.25 & 3.4$\pm$3.1\phn & 1.8$\pm$7.7 & 2.9$\pm$4.4 &
+& 11.8$\pm$3.6 & 0.4$\pm$6.6 & 5.7$\pm$4.4\phn \\
+22.75 & 4.5$\pm$2.9\phn & 1.8$\pm$7.7 & 4.7$\pm$3.1 &
+& 26.2$\pm$3.6 & 3.4$\pm$6.5 & 10.9$\pm$3.6\phn \\
+23.25 & 7.0$\pm$2.4\phn & 3.4$\pm$4.5 & 3.7$\pm$2.9 &
+& 44.2$\pm$3.3 & 10.7$\pm$4.5 & 20.6$\pm$3.5\phn \\
+\cutinhead{More Data}
+23.75 & 12.4$\pm$2.7\phn & 4.1$\pm$3.1 & 6.7$\pm$2.5 &
+& 59.8$\pm$4.0 & 20.1$\pm$3.6 & 32.6$\pm$3.4\phn \\
+24.25 & 30.2$\pm$3.1\phn & 5.3$\pm$2.9 & 10.0$\pm$2.7 &
+& 74.9$\pm$5.1 & 35.8$\pm$3.6 & 43.1$\pm$4.0\phn \\
+24.75 & 66.8$\pm$5.5\phn & 10.4$\pm$2.4 & 16.5$\pm$3.2 &
+& 83.7$\pm$6.1 & 56.3$\pm$3.3 & 57.0$\pm$5.2\phn \\
+25.25 & 87.5$\pm$35.4 & 20.0$\pm$2.7 & 28.0$\pm$5.6 &
+& \nodata & 71.5$\pm$4.0 & 71.8$\pm$6.2\phn \\
+25.75 & \nodata\phn & 55.3$\pm$3.1 & \nodata &
+& \nodata & 81.2$\pm$5.1 & \nodata\phn \\
+26.25 & \nodata\phn & 85.1$\pm$5.5 & \nodata &
+& \nodata & 85.6$\pm$6.1 & \nodata\phn \\
+\sidehead{More Data}
+27.75 & 12.4$\pm$2.7\phn & 4.1$\pm$3.1 & 6.7$\pm$2.5 &
+& 59.8$\pm$4.0 & 20.1$\pm$3.6 & 32.6$\pm$3.4\phn \\*
+28.25 & 30.2$\pm$3.1\phn & 5.3$\pm$2.9 & 10.0$\pm$2.7 &
+& 74.9$\pm$5.1 & 35.8$\pm$3.6 & 43.1$\pm$4.0\phn \\*
+29.75 & 66.8$\pm$5.5\phn & 10.4$\pm$2.4 & 16.5$\pm$3.2 &
+& 83.7$\pm$6.1 & 56.3$\pm$3.3 & 57.0$\pm$5.2\phn \\
+30.25 & 87.5$\pm$35.4 & 20.0$\pm$2.7 & 28.0$\pm$5.6 &
+& \nodata & 71.5$\pm$4.0 & 71.8$\pm$6.2\phn \\
+31.75 & \nodata\phn & 55.3$\pm$3.1 & \nodata &
+& \nodata & 81.2$\pm$5.1 & \nodata\phn \\
+32.25 & \nodata\phn & 85.1$\pm$5.5 & \nodata &
+& \nodata & 85.6$\pm$6.1 & \nodata\phn \\
+33.75 & 12.4$\pm$2.7\phn & 4.1$\pm$3.1 & 6.7$\pm$2.5 &
+& 59.8$\pm$4.0 & 20.1$\pm$3.6 & 32.6$\pm$3.4\phn \\
+34.25 & 30.2$\pm$3.1\phn & 5.3$\pm$2.9 & 10.0$\pm$2.7 &
+& 74.9$\pm$5.1 & 35.8$\pm$3.6 & 43.1$\pm$4.0\phn \\
+35.75 & 66.8$\pm$5.5\phn & 10.4$\pm$2.4 & 16.5$\pm$3.2 &
+& 83.7$\pm$6.1 & 56.3$\pm$3.3 & 57.0$\pm$5.2\phn \\
+36.25 & 87.5$\pm$35.4 & 20.0$\pm$2.7 & 28.0$\pm$5.6 &
+& \nodata & 71.5$\pm$4.0 & 71.8$\pm$6.2\phn \\
+37.75 & \nodata\phn & 55.3$\pm$3.1 & \nodata &
+& \nodata & 81.2$\pm$5.1 & \nodata\phn \\
+38.25 & \nodata\phn & 85.1$\pm$5.5 & \nodata &
+& \nodata & 85.6$\pm$6.1 & \nodata\phn \\
+\enddata
+\end{deluxetable}
+
+ \end{document}
+
+%%
+%% End of file `table.tex'.
