@@ -150,7 +150,7 @@ spectrum.
 
 	\begin{figure}
         \centering
-        \includegraphics[width=0.7\textwidth]{modelOverview}
+        \includegraphics[width=0.7\textwidth]{modelOverview.pdf}
         \caption{ Model Overview.  The red and blue cones represent
           the regions through which low and high energy charged
           particles propagate.  In the case shown the observer's
@@ -1001,15 +1001,15 @@ variables, which do not change observables at all (see equation
           or stretching factor. One can easily fit $\eta_0$ to match
           the observed photon count.}
 	\item{If we make a simultaneous transformation of $r_0
-          \rightarrow \lambda r_0$ and $\eta_0 \rightarrow
-          \frac{1}{\lambda^3}\eta_0$, where $\lambda$ is a parameter
+          \rightarrow \lambda_1 r_0$ and $\eta_0 \rightarrow
+          \frac{1}{\lambda_1^3}\eta_0$, where $\lambda_1$ is a parameter
           of transformation, only duration of the burst will
           change. Other observables, like the total number of photons,
           or stretching factor, will not be affected.}
 	\item{Finally, if we make a following transformation:
-          $\omega_0 \rightarrow \lambda \omega_0$, $\theta_0
-          \rightarrow \lambda^k \theta_0$, $\eta_0 \rightarrow
-          \lambda^\alpha \eta_0$, where $\lambda$ is another
+          $\omega_0 \rightarrow \lambda_2 \omega_0$, $\theta_0
+          \rightarrow \lambda_2^k \theta_0$, $\eta_0 \rightarrow
+          \lambda_2^\alpha \eta_0$, where $\lambda_2$ is another
           transformation parameter, no observables will change
           whatsoever.}
 \end{itemize}
@@ -1028,9 +1028,11 @@ Also, some of these parameters are known from observations:
 \end{itemize}
 This knowledge allows us to reduce the number of parameters to minimize against to just 5: $\left(n, \theta_0, k, \alpha, \chi\right)$.
 
-The best fit parameters are found by minimizing the cost function
-$C\left(n, \theta_0, k, \alpha, \chi\right)$ which should
-satisfy the following objectives:
+We are going to fit parameters specifically for GRB 090926A for its stretching factor is the most significant. While we assume burst related parameters $\left(n, \theta_0, k, \alpha\right)$ to be the same for all bursts, $\chi$ here considered to be the off-axis angle of GRB 090926A. At the same time, we need to make sure that burst related universal parameters $\left(n, \theta_0, k, \alpha\right)$ are consistent with observation of other bursts such as GRB 090902B.
+
+In particular, the best fit parameters are found by minimizing the cost function
+$C\left(n, \theta_0, k, \alpha, \chi\right)$ which
+satisfies the following objectives:
 \begin{itemize}
 	\item { Total energy of the burst is finite (that is
           $k+\frac{\alpha}{2}+1 < 0$) and smaller than $\unit[6 \times
