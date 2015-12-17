@@ -112,7 +112,7 @@
 %% editorial office after submission.
 
 \begin{abstract}
-It is known that the high energy $(> \unit[100]{MeV})$
+		It is known that the high energy $(> \unit[100]{MeV})$
         emission of gamma-ray bursts is delayed with respect to the
         low energy emission.  However, the dependence of light curves
         on energy has not been studied for the high energy bands.  In
@@ -194,12 +194,11 @@ interesting results, see~\citet{Vianello:2013ela,Gehrels:2013xd} for a
 review. In particular, the total energy emitted in gamma-rays during a
 burst was found to be similar for the different GRBs within an order
 of magnitude~\citep{Bloom:2003wy}. This indicates that the most of the
-bursts have similar energetics in their rest frames. Moreover, the
-high energy radiation of GRBs is shown to follow the predictions of
-the synchrotron radiation scenario~\citep{Wang:2013ptaw}.  Several
+bursts have similar energetics in their rest frames. {\bf Also, it is generally accepted that} the
+high energy radiation of GRBs follow{\bf s} the predictions of
+the synchrotron radiation scenario~\citep{Wang:2013ptaw}, {\bf although there are problems with that model~\citep{Daigne:2010fb} and there are bursts in which additional radiation component clearly appears~\citep{Abdo:2009pg} }. Several
 observations are related to the temporal variations of spectra. This
-way, the spectral lags were found between different low energy bands
-\citep{Yi:2005ht} and the very-high-energy radiation was discovered to
+way, the spectral lags were found between different low energy bands {\bf \citep{cheng1995time,Wu:1999ms} }and the very-high-energy radiation was discovered to
 be extended relative to the x-ray emission
 \citep{Castignani:2014gaa,Lange:2013uh,Vianello:2013ela}. In this paper
 we go further and compare the temporal extension of GRB gamma-ray
@@ -242,7 +241,7 @@ We propose that the observed energy dependence of the time profiles
 may be explained without introduction of the new effects. We argue
 that the stretching may originate from the effects of the jet geometry
 called curvature effects. These effects were explored by multiple
-authors \citep{Nakamura:2001kd,Shen:2005ea,Shenoy:2013cba}.  These
+authors {\bf \citep{Meszaros:1997je,Soderberg:2001mk,Nakamura:2001kd,Shen:2005ea,Shenoy:2013cba}}.  These
 studies concerned x-ray radiation, and considered the homogeneous
 distribution of radiation sources throughout the jet. Our model is
 based on the reverse assumption that the highest energy radiators are
@@ -429,6 +428,7 @@ appendix of \citet{Rubtsov:2011qq} to estimate the background for low
 and high-energy bands. Note, that the ``TRANSIENT'' class photons are
 not included in the analysis due to the strong dependence of the
 background on the spacecraft position.
+{\bf Therefore, the background we estimate is mostly sky background (for the background from misidentification of protons for ``SOURCE'' class events is subdominant), and it remains stable over the period of $24$ hours, making our background estimate valid during the time of the burst.}
 
 \subsection{KS-test}
 
@@ -966,7 +966,7 @@ bursts density. We assume that the bursts density is roughly
 proportional to the stars density, and the latter is roughly
 proportional to the matter density, which changes with $z$ as
 $\left(1+z\right)^3$. It is clear, however, that since no stars
-existed at very small redshifts, the burst density should decline
+existed at very {\bf large} redshifts, the burst density should decline
 there, so we add an exponential cutoff to it:
 \begin{equation}\label{eq:redshift}
 \rho = \rho_0 \left(1+z\right)^3 \exp\left(-\frac{z}{z_c}\right)\,
@@ -1104,16 +1104,16 @@ variables, which do not change observables at all (see equation
           so $\eta_0$ doesn't affect other observables like duration,
           or stretching factor. One can easily fit $\eta_0$ to match
           the observed photon count.}
-	\item{If we make a simultaneous transformation of $r_0
-          \rightarrow \lambda r_0$ and $\eta_0 \rightarrow
-          \frac{1}{\lambda^3}\eta_0$, where $\lambda$ is a parameter
+	\item{{\bf If we make a simultaneous transformation of $r_0
+          \rightarrow \lambda_1 r_0$ and $\eta_0 \rightarrow
+          \frac{1}{\lambda_1^3}\eta_0$, where $\lambda_1$} is a parameter
           of transformation, only duration of the burst will
           change. Other observables, like the total number of photons,
           or stretching factor, will not be affected.}
-	\item{Finally, if we make a following transformation:
-          $\omega_0 \rightarrow \lambda \omega_0$, $\theta_0
-          \rightarrow \lambda^k \theta_0$, $\eta_0 \rightarrow
-          \lambda^\alpha \eta_0$, where $\lambda$ is another
+	\item{{\bf Finally, if we make a following transformation:
+          $\omega_0 \rightarrow \lambda_2 \omega_0$, $\theta_0
+          \rightarrow \lambda_2^k \theta_0$, $\eta_0 \rightarrow
+          \lambda_2^\alpha \eta_0$, where $\lambda_2$ } is another
           transformation parameter, no observables will change
           whatsoever.}
 \end{itemize}
@@ -1132,9 +1132,11 @@ Also, some of these parameters are known from observations:
 \end{itemize}
 This knowledge allows us to reduce the number of parameters to minimize against to just 5: $\left(n, \theta_0, k, \alpha, \chi\right)$.
 
-The best fit parameters are found by minimizing the cost function
-$C\left(n, \theta_0, k, \alpha, \chi\right)$ which should
-satisfy the following objectives:
+{\bf We are going to fit parameters specifically for GRB 090926A for its stretching factor is the most significant. While we assume burst related parameters $\left(n, \theta_0, k, \alpha\right)$ to be the same for all bursts, $\chi$ here considered to be the off-axis angle of GRB 090926A. At the same time, we need to make sure that burst related universal parameters $\left(n, \theta_0, k, \alpha\right)$ are consistent with observation of other bursts such as GRB 090902B.
+
+In particular, the best fit parameters are found by minimizing the cost function
+$C\left(n, \theta_0, k, \alpha, \chi\right)$ which
+satisfies the following objectives:}
 \begin{itemize}
 	\item { Total energy of the burst is finite (that is
           $k+\frac{\alpha}{2}+1 < 0$) and smaller than $\unit[6 \times
@@ -1617,6 +1619,12 @@ Bloom, J.~S., Frail, D., \& Kulkarni, S. 2003, \apj, 594, 674
 Castignani, G., Guetta, D., Pian, E., {et~al.} 2014, \aap, 565,
   A60
 
+\bibitem[Cheng et al.(1995)]{cheng1995time}
+Cheng, L.-X., Ma, Y.-Q., Cheng, K.-S., Lu, T., Zhou, Y.-Y. 1995, \aap, 300, 746
+
+\bibitem[Daigne {et~al.}(2011)]{Daigne:2010fb}
+Daigne, F., Bosnjak, Z., Dubus, G. 2011, \aap, 526, A110
+
 \bibitem[Gehrels \& Razzaque(2013)]{Gehrels:2013xd}
 Gehrels, N., \& Razzaque, S. 2013, Front.Phys.China., 8, 661
 
@@ -1626,6 +1634,9 @@ Ghirlanda, G., Nava, L., Ghisellini, G., {et~al.} 2012,
 
 \bibitem[Lange \& Pohl(2013)]{Lange:2013uh}
 Lange, J., \& Pohl, M. 2013, \aap, 551, A89
+
+\bibitem[Meszaros et al.(1998)]{Meszaros:1997je}
+Meszaros, P., Rees, M.-J., Wijers, R.-A.-M.-J. 1998, \apj, 499, 301
 
 \bibitem[Nakamura \& Ioka(2001)]{Nakamura:2001kd}
 Nakamura, T., \& Ioka, K. 2001, \apj, 554, L163
@@ -1640,6 +1651,9 @@ Shen, R.-F., Song, L.-M., \& Li, Z. 2005, \mnras, 362, 59
 \bibitem[Shenoy et al.(2013)]{Shenoy:2013cba}
 Shenoy, A., Sonbas, E., Dermer, C., {et~al.} 2013, \apj, 778, 3
 
+\bibitem[Soderberg(2001)]{Soderberg:2001mk} 
+Soderberg, A.-M. \& Fenimore, E.-E. 2001, astro-ph/0103277
+
 \bibitem[Tajima(2009)]{Tajima:2009az}
 Tajima, H. 2009, arXiv:0907.0714
 
@@ -1648,6 +1662,9 @@ Vianello, G. 2012, eConf, C121028, 325
 
 \bibitem[{Wang {et~al.}(ApJ)Wang, Liu, \& Lemoine}]{Wang:2013ptaw}
 Wang, X.-Y., Liu, R.-Y., \& Lemoine, M. \apj, 2013, 771, L33
+
+\bibitem[Wu \& Fenimore(2000)]{Wu:1999ms}
+Wu, B., Fenimore, E. 2000, \apj, 535, L29
 
 \bibitem[{Yi {et~al.}(2006)Yi, Liang, Qin, \& Lu}]{Yi:2005ht}
 Yi, T.-F., Liang, E.-W., Qin, Y.-P., \& Lu, R.-J. 2006,
