@@ -1,0 +1,57 @@
+
+Dear Editor,
+Dear Referee,
+
+We thank you strongly for the comprehensive review of the manuscript which helped us to improve the paper with the account of your comments. We are sorry for the vast delay with the reply due to personal reasons. Please find below answers for the second Referee's comments and comments of the expert on the statistical aspects. We have also studied the literature suggested by the first Referee and referenced when relevant.
+
+Answers to the second Referee report
+
+Q: I think that the consideration of relevant observations and previous papers is weak and needs to be improved. 
+A: We agree that many relevant works were indeed missed and now it's fixed in an updated version (see below)
+
+Q: Section 1: "In particular, the total energy emitted in gamma-rays during a burst was found to be similar for the different GRBs within an order of magnitude (Bloom et al. 2003)." More recent papers, with a larger sample and post Fermi, find a wider range of total energy. For example, Frail et al., ApJ, 2012, 746, 156.
+"Moreover, the high energy radiation of GRBs is shown to follow the predictions of the synchrotron radiation scenario." This is statement is seriously incomplete and misleading. Many in the field think it likely that the keV-MeV emission is from synchrotron emission, but there there are serious conflicts between at least simple version of synchrotron predictions and observations. There is a vast literature on this topic and numerous papers attempting to resolve the problems. Furthermore, it is unquestionable that multiple emission components are observed in some Fermi GRBs. For example, in addition to the likely-synchrotron component, GRB 090902B has a power-law component (Abdo, A. A. et al. 2009, ApJ, 706, L138).
+Yi et al. seems a peculiar reference for spectral lags ... its about short versus long BATSE GRBs. There were numerous papers about BATSE lags during the 1990s. Perhaps find a review article?
+"curvature effects. These effects were explored by multiple authors..." There are earlier papers on this topic. e.g., Rees. Fenimore.
+
+A: An introduction is revised according to the comments. References to the recent results are included. 
+
+Q: section 2.1 I'm doubtful that the background is constant in time for 24 hours. Perhaps the authors should consult with a member of the LAT team, or justify this assumption.
+
+A: The requirement of the stability of the background is the reason why the "TRANSIENT" event class was not used. For the "SOURCE" class events, the sky background dominates over the misidentification of protons. The corresponding statement is added to section 2.2.
+
+Q: Section 3.
+"However, only about 30 of them were detected by the LAT, and only 4 of them were bright in the high energy band. If one extrapolates the uniform jet model to the very high energies, this observation would mean that these groups of bursts are internally different: some of them produce VHE radiation, while the others do not. These differences are hard to explain given that the burst energetics are similar"
+There are numerous ways to explain this in addition to jet viewing effects: 1) current evidence is that burst energetics are not similar, 2) some synchrotron spectra might have a cutoff, 3) there might be a range of jet Lorentz factions, leading to a range of cutoffs due to gamma-gamma opacity, 4) the high-energy emission may mostly be due to an additional component (e.g., inverse Compton). The ratio between the nominally synchrotron component and the additional component may vary.
+How does this analysis of curvature effects compare to previous published papers?
+
+A: The statement is revised in Section 3. We argue that since the particular reason is non known, one may consider explanation which are based or not based on the internal difference of GRBs.
+The difference between our model and previous published papers is now given in the Introduction.
+
+Q: section 4.2
+There are many papers on the GRB rate versus z, relating to the star formation rate. Generally there is thought to be a bias towards Pop II and low metallicity stars -- and thus a deficit near z = 0. One of the star formation rate curves could be used.
+A: Unfortunately this requires to rerun all the calculation. We will include the star formation data in the next applications of the model.
+
+Q: "since no stars existed at very small redshifts" is "large" meant?
+A: corrected
+
+Q: section 5.1
+I found this section confusing. It seems to start as a general discussion of how to fit the model to the data, then to implicitly change to fitting the the data of GRB 090926A.
+A: Additional explanation is added to Section 5.1. GRB 090926A has the most significant stretching factor and it's explanation is a key to fit all the observations. 
+
+Answer to the comments of the expert on the statistical aspects
+
+Q: I see two problems with the use of `KS Probability' in Figures 3-5.
+
+a) The Anderson-Darling statistic is similar to KS but always more sensitive. See https://asaip.psu.edu/Articles/beware-the-kolmogorov-smirnov-test.
+b) The KS and AD tests are hypothesis tests, and are not designed for multiple applications for parameter estimation (Stretching Factor). There is no problem with using these statistics as measures of proximity between data and model, but the tabulated significance levels are not applicable (see Web page above). As the original data are time series, simple bootstrapping cannot be performed, so I am not sure how significance levels can be estimated. Some careful thought is needed, or the study should proceed without estimation of the accuracy of the best-fit Stretching Factors.
+
+A: 
+We thank the expert for the issues rised. 
+a) Specially thanks for interesting reference and suggestion. It's intriguing to test whether AD is stronger in our particular case. Unfortunately, this would require redesign of the code which is optimized for performance with KS. We'll try AD within the next application of our model. 
+b) A special bootstrapping procedure should be designed for the precise statistical meaning of the accuracy. Still, the accuracy is given as an estimate, while the main result is the statistical significance of the deviation from stretching factor 1.0. This is estimated by just comparing the data with the expected distribution.
+
+
+Sincerely yours,
+Maxim Piskunov, Grigory Rubtsov
+
