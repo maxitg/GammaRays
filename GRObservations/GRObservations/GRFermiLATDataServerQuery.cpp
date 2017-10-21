@@ -116,6 +116,14 @@ size_t GRFermiLATDataServerQuery::saveToFile(char *ptr, size_t size, size_t nmem
     return written;
 }
 
+string GRFermiLATDataServerQuery::httpToHttps(string http) {
+    if (http[4] == ':') {
+        return http.insert(4, "s");
+    } else {
+        return http;
+    }
+}
+
 void GRFermiLATDataServerQuery::download() {            
     if (mkdir(hash.c_str(), S_IRWXU ^ S_IRWXG ^ S_IRWXO) == -1) {
         if (errno != EEXIST) {
@@ -200,7 +208,7 @@ void GRFermiLATDataServerQuery::download() {
     string responce;
     
     if(curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, "http://fermi.gsfc.nasa.gov/cgi-bin/ssc/LAT/LATDataQuery.cgi");
+        curl_easy_setopt(curl, CURLOPT_URL, "https://fermi.gsfc.nasa.gov/cgi-bin/ssc/LAT/LATDataQuery.cgi");
         curl_easy_setopt(curl, CURLOPT_HTTPPOST, formpost);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &responce);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &this->saveToString);
@@ -242,6 +250,7 @@ void GRFermiLATDataServerQuery::download() {
     resultsURLIndex += resultsURLLeft.size();
     size_t resultsURLSize = responce.find(resultsURLRight, resultsURLIndex) - resultsURLIndex;
     string resultsURL = responce.substr(resultsURLIndex, resultsURLSize);
+    resultsURL = httpToHttps(resultsURL);
     
     bool resultsReady = false;
     vector <string> resultURLs;
@@ -283,7 +292,7 @@ void GRFermiLATDataServerQuery::download() {
     resultURLs.clear();
     while ((currentPosition = responce.find(".fits\">", ++currentPosition)) != string::npos) {
         size_t linkIndex = responce.rfind("href=\"", currentPosition);
-        resultURLs.push_back(responce.substr(linkIndex+6, (currentPosition+5) - (linkIndex+6)));
+        resultURLs.push_back(httpToHttps(responce.substr(linkIndex+6, (currentPosition+5) - (linkIndex+6))));
     }
     
     if (!resultURLs.size()) {
