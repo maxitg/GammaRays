@@ -362,24 +362,28 @@ void GRFermiLATDataServerQuery::download() {
     return;
 }
 
-string GRFermiLATDataServerQuery::irfName(GRFermiEventClass eventClass, GRFermiConversionType conversionType) {
-    string irfName = "P7REP_";
+string GRFermiLATDataServerQuery::irfName(GRFermiEventClass eventClass, GRFermiConversionType conversionType, bool includeConversionType) {
+    string irfName = "P8R2_";
     
     if (eventClass == GRFermiEventClassUltraclean) irfName += "ULTRACLEAN";
     else if (eventClass == GRFermiEventClassClean) irfName += "CLEAN";
     else if (eventClass == GRFermiEventClassSource) irfName += "SOURCE";
-    else irfName += "TRANSIENT";
+    else irfName += "TRANSIENT020";
     
-    irfName += (string)"_V15::";
+    irfName += (string)"_V6";
     
-    if (conversionType == GRFermiConversionTypeBack) irfName += "BACK";
-    else irfName += "FRONT";
+    if (includeConversionType) {
+        irfName += "::";
+        
+        if (conversionType == GRFermiConversionTypeBack) irfName += "BACK";
+        else irfName += "FRONT";
+    }
     return irfName;
 }
 
 int GRFermiLATDataServerQuery::gtselect() {
     ostringstream cmd;
-    cmd << fixed << "gtselect" << " ";
+    cmd << fixed << "./launchScript gtselect" << " ";
     cmd << "infile=@" << hash << "/eventList.txt" << " ";
     cmd << "outfile=" << hash << "/filtered.fits" << " ";
     cmd << "ra=" << "INDEF" << " ";
@@ -390,7 +394,7 @@ int GRFermiLATDataServerQuery::gtselect() {
     cmd << "emin=" << 100. << " ";
     cmd << "emax=" << 300000. << " ";
     cmd << "zmax=" << 100. << " ";
-    cmd << "evclass=" << 2 << " ";
+    cmd << "evclass=" << 128 << " "; // source of Pass 8
     cmd << "convtype=" << -1 << " ";
     cmd << "evtable=" << "EVENTS" << " ";
     cmd << "chatter=" << 0 << " ";
@@ -399,7 +403,7 @@ int GRFermiLATDataServerQuery::gtselect() {
 
 int GRFermiLATDataServerQuery::gtmktime() {
     ostringstream cmd;
-    cmd << fixed << "gtmktime" << " ";
+    cmd << fixed << "./launchScript gtmktime" << " ";
     cmd << "scfile=" << hash << "/spacecraft.fits" << " ";
     cmd << "sctable=" << "SC_DATA" << " ";
     cmd << "filter=" << "\"DATA_QUAL>0 && LAT_CONFIG==1\"" << " ";
@@ -415,7 +419,7 @@ int GRFermiLATDataServerQuery::gtmktime() {
 
 int GRFermiLATDataServerQuery::gtltcube() {
     ostringstream cmd;
-    cmd << fixed << "gtltcube" << " ";
+    cmd << fixed << "./launchScript gtltcube" << " ";
     cmd << "evfile=" << hash << "/timed.fits" << " ";
     cmd << "evtable=" << "EVENTS" << " ";
     cmd << "scfile=" << hash << "/spacecraft.fits" << " ";
@@ -433,15 +437,16 @@ int GRFermiLATDataServerQuery::gtltcube() {
 }
 
 int GRFermiLATDataServerQuery::gtpsf(GRFermiEventClass eventClass, GRFermiConversionType conversionType) {
-    string irf = irfName(eventClass, conversionType);
+    string irf = irfName(eventClass, conversionType, true);
     string psfFilename = "psf_" + irf + ".fits";
     
     ostringstream cmd;
-    cmd << fixed << "gtpsf" << " ";
+    cmd << fixed << "./launchScript gtpsf" << " ";
     cmd << "expcube=" << hash << "/ltcube.fits" << " ";
     cmd << "outfile=" << hash << "/" << psfFilename << " ";
     cmd << "outtable=" << "PSF" << " ";
-    cmd << "irfs=" << irf << " ";
+    cmd << "irfs=" << irfName(eventClass, conversionType, false) << " ";
+    cmd << "evtype=" << GRFermiConversionTypeValues[conversionType] << " ";
     cmd << "ra=" << location.ra << " ";
     cmd << "dec=" << location.dec << " ";
     cmd << "emin=" << 100. << " ";
@@ -454,15 +459,15 @@ int GRFermiLATDataServerQuery::gtpsf(GRFermiEventClass eventClass, GRFermiConver
 }
 
 int GRFermiLATDataServerQuery::gtexpcube(GRFermiEventClass eventClass, GRFermiConversionType conversionType) {
-    string irf = irfName(eventClass, conversionType);
+    string irf = irfName(eventClass, conversionType, true);
     string expcubeFilename = "expcube_" + irf + ".fits";
     
     ostringstream cmd;
-    cmd << fixed << "gtexpcube2" << " ";
+    cmd << fixed << "./launchScript gtexpcube2" << " ";
     cmd << "infile=" << hash << "/ltcube.fits" << " ";
     cmd << "cmap=" << "none" << " ";
     cmd << "outfile=" << hash << "/" << expcubeFilename << " ";
-    cmd << "irfs=" << irf << " ";
+    cmd << "irfs=" << irfName(eventClass, conversionType, false) << " ";
     cmd << "nxpix=" << 360 << " ";
     cmd << "nypix=" << 180 << " ";
     cmd << "binsz=" << 1 << " ";
@@ -534,18 +539,19 @@ void GRFermiLATDataServerQuery::readPhotons() {
     fits_movabs_hdu(timedFile, 2, NULL, &status);
     fits_get_num_rows(timedFile, &nrows, &status);
     events.reserve(nrows);
+    cout << nrows << endl;
     
     float *readEnergies;
     float *readRas;
     float *readDecs;
     double *readTimes;
-    int *readEventClasses;
+    char *readEventClasses;
     int *readConversionTypes;
     readEnergies = new float[nrows];
     readRas = new float[nrows];
     readDecs = new float[nrows];
     readTimes = new double[nrows];
-    readEventClasses = new int[nrows];
+    readEventClasses = new char[32*nrows];
     readConversionTypes = new int[nrows];
     
     fits_read_col(timedFile, TFLOAT, 1, 1, 1, nrows, 0, readEnergies, 0, &status);
@@ -555,10 +561,10 @@ void GRFermiLATDataServerQuery::readPhotons() {
     fits_read_col(timedFile, TFLOAT, 3, 1, 1, nrows, 0, readDecs, 0, &status);
     
     fits_read_col(timedFile, TDOUBLE, 10, 1, 1, nrows, 0, readTimes, 0, &status);
+
+    fits_read_col(timedFile, TBIT, 15, 1, 1, 32*nrows, 0, readEventClasses, 0, &status);
     
-    fits_read_col(timedFile, TINT, 15, 1, 1, nrows, 0, readEventClasses, 0, &status);
-    
-    fits_read_col(timedFile, TINT, 16, 1, 1, nrows, 0, readConversionTypes, 0, &status);
+    fits_read_col(timedFile, TINT, 17, 1, 1, nrows, 0, readConversionTypes, 0, &status);
     
     fits_close_file(timedFile, &status);
     
@@ -568,9 +574,9 @@ void GRFermiLATDataServerQuery::readPhotons() {
         GRLocation location = GRLocation(GRCoordinateSystemJ2000, readRas[i], readDecs[i]);
         
         GRFermiEventClass eventClass;
-        if ((readEventClasses[i]/16)%2) eventClass = GRFermiEventClassUltraclean;
-        else if ((readEventClasses[i]/8)%2) eventClass = GRFermiEventClassClean;
-        else if ((readEventClasses[i]/4)%2) eventClass = GRFermiEventClassSource;
+        if (readEventClasses[32*i+22]) eventClass = GRFermiEventClassUltraclean;
+        else if (readEventClasses[i*32+23]) eventClass = GRFermiEventClassClean;
+        else if (readEventClasses[i*32+24]) eventClass = GRFermiEventClassSource;
         else eventClass = GRFermiEventClassTransient;
         
         GRFermiConversionType conversionType;
@@ -594,7 +600,7 @@ void GRFermiLATDataServerQuery::readPsfs() {
         psfs[i].resize(GRFermiConversionTypesCount);
         for (int j = 0; j < GRFermiConversionTypesCount; j++) {
             
-            string fileName = hash + "/psf_" + irfName(GRFermiEventClasses[i], GRFermiConversionTypes[j]) + ".fits";
+            string fileName = hash + "/psf_" + irfName(GRFermiEventClasses[i], GRFermiConversionTypes[j], true) + ".fits";
             fitsfile *psfFile;
             int status = 0;
             long nrows;
@@ -637,7 +643,7 @@ void GRFermiLATDataServerQuery::readExposureMaps() {
         exposureMaps[i].resize(GRFermiConversionTypesCount);
         for (int j = 0; j < GRFermiConversionTypesCount; j++) {
             
-            string fileName = hash + "/expcube_" + irfName(GRFermiEventClasses[i], GRFermiConversionTypes[j]) + ".fits";
+            string fileName = hash + "/expcube_" + irfName(GRFermiEventClasses[i], GRFermiConversionTypes[j], true) + ".fits";
             fitsfile *expcubeFile;
             int status = 0;
             long nrows;

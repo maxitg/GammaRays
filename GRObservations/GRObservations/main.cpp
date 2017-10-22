@@ -13,6 +13,8 @@
 
 #include "GRBurst.h"
 
+#define FERMI_DIR "/usr/local/ScienceTools/x86_64-apple-darwin14.4.0"
+
 using namespace std;
 
 double probability(double sigma) {
@@ -45,6 +47,15 @@ int main(int argc, const char * argv[])
         cout << "Usage: GRObservations burstsCatalogLocation" << endl;
         return 1;
     }
+    
+    ofstream launchScript("launchScript");
+    launchScript << "#!/bin/bash" << endl;
+    setenv("FERMI_DIR", FERMI_DIR, 0);
+    launchScript << "export FERMI_DIR=" << getenv("FERMI_DIR") << ";" << endl;
+    launchScript << "source $FERMI_DIR/fermi-init.sh;" << endl;
+    launchScript << "\"$@\"" << endl;
+    launchScript.close();
+    system("chmod +x launchScript");
     
     ifstream burstsFile(argv[1]);
     while (!burstsFile.eof()) {

@@ -31,6 +31,7 @@ const int GRFermiEventClassesCount = 4;
 
 const GRFermiConversionType GRFermiConversionTypes[] = {GRFermiConversionTypeFront, GRFermiConversionTypeBack};
 const GRFermiEventClass GRFermiEventClasses[] = {GRFermiEventClassTransient, GRFermiEventClassSource, GRFermiEventClassClean, GRFermiEventClassUltraclean};
+const int GRFermiConversionTypeValues[] = {1, 2};
 
 class GRFermiLATPhoton {
 public:
