@@ -77,7 +77,7 @@ private:
     static size_t saveToString(char *ptr, size_t size, size_t nmemb, string *string);
     static size_t saveToFile(char *ptr, size_t size, size_t nmemv, FILE *file);
     
-    string irfName(GRFermiEventClass eventClass, GRFermiConversionType conversionType);
+    string irfName(GRFermiEventClass eventClass, GRFermiConversionType conversionType, bool includeConversionType);
     string httpToHttps(string http);
     
     int gtselect();
