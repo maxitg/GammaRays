@@ -85,6 +85,17 @@ ostream& GRPsf::writeSpreads(float probability, ostream &stream) {
     return stream;
 }
 
+ostream& GRPsf::csvWrite(ostream &stream) {
+    stream << "Energy MeV,Angle degrees,Probability density" << endl;
+    for (int energyIndex = 0; energyIndex < energies.size(); ++energyIndex) {
+        for (int angleIndex = 0; angleIndex < angles.size(); ++angleIndex) {
+            stream << energies[energyIndex] << "," << angles[angleIndex] << "," <<
+            probabilityDensity[energyIndex][angleIndex] << endl;
+        }
+    }
+    return stream;
+}
+
 string GRPsf::description() {
     ostringstream result;
     result << "angles: ";

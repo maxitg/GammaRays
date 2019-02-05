@@ -74,6 +74,8 @@ public:
     
 private:
     void calculateBackground();
+    void writePhotons();
+    void writePsfs();
             
 public:
     void init();
