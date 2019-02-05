@@ -1,0 +1,25 @@
+Corrections:
+
+Section 2.1, line 25: the in "the gtselect" should be typeset in an ordinary font, and not monospace
+
+Equation (6): There is an obvious typesetting problem. \eta should have 3 arguments, separated by commas. There should be no multiplication sign before \theta, and the parenthesis after \eta, and after its last argument should have matching size.
+
+Page 14, second code listing: There should be no space between equal signs in "LAT_CONFIG == 1"
+
+Questions:
+
+Q1. Yes
+Q2. Yes
+Q3. Yes
+Q4. Yes
+Q5. Yes
+Q6. Yes
+Q7. No, the correct synonim for "do" here is compute, not represent.
+Q8. No, it should be singular. The bands we are talking about here are the same as defined in the abstract: 100 MeV < E < 1 GeV and E > 1 GeV
+Q9. The reference "Vianello, G. 2012, eConf, C121028, 325" is correct as can be seen on inSPIRE HEP: https://inspirehep.net/search?p=find+eprint+1304.5570, however, for clarity, please change it to: "Vianello, G. 2012, eConf, C121028, 325, arXiv:1304.5570"
+Q10. Ok, see the following list:
+
+Abdo, A. A., Ackermann, M., Ajello, M., et al. 2009, ApJL, 706, L138
+Ackermann, M., Asano, K., Atwood, W. B., et al. 2010, ApJ, 716, 1178
+Ackermann, M., Ajello, M., Asano, K., et al. 2011, ApJ, 729, 114
+Ackermann, M., Ajello, M., Albert, A., et al. 2012, ApJS, 203, 4
