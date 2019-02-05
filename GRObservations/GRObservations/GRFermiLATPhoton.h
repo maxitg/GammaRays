@@ -18,6 +18,7 @@ enum GRFermiConversionType {
     GRFermiConversionTypeFront = 0,
     GRFermiConversionTypeBack = 1
     };
+const vector<string> GRFermiConversionTypeDescriptions = {"front", "back"};
 
 enum GRFermiEventClass {
     GRFermiEventClassTransient = 0,
@@ -25,6 +26,7 @@ enum GRFermiEventClass {
     GRFermiEventClassClean = 2,
     GRFermiEventClassUltraclean = 3
     };
+const vector<string> GRFermiEventClassDescriptions = {"transient", "source", "clean", "ultraclean"};
 
 const int GRFermiConversionTypesCount = 2;
 const int GRFermiEventClassesCount = 4;

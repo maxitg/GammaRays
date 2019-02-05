@@ -28,6 +28,7 @@ public:
     float spread(float energy, float probability);
     float spread(int energyIndex, float probability);
     ostream& writeSpreads(float probability, ostream &stream);
+    ostream& csvWrite(ostream &stream);
     string description();
 };
 

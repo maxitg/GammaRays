@@ -97,7 +97,7 @@ void GRBurst::calculateBackground() {
             *(backgroundEstimationList[i]) += grbExposure / backgroundExposure;
         }
     }
-        
+    
     mevDistribution.linearComponent = -mevExpectationValue;
     mevDistribution.start = query.startTime - (time + startOffset);
     mevDistribution.end = query.endTime - (time + startOffset);
@@ -155,67 +155,9 @@ void GRBurst::read() {
     }
     sort(mevPhotons.begin(), mevPhotons.end());
     sort(gevPhotons.begin(), gevPhotons.end());
-  
-    vector<GRFermiLATPhoton> allPhotons;
-    for (const auto& photon : mevPhotons) {
-        allPhotons.push_back(photon);
-    }
-    for (const auto& photon : gevPhotons) {
-        allPhotons.push_back(photon);
-    }
-    sort(allPhotons.begin(), allPhotons.end());
     
-    if (mkdir(name.c_str(), S_IRWXU ^ S_IRWXG ^ S_IRWXO) == -1) {
-        if (errno != EEXIST) {
-            error = GRBurstErrorMkdirFailed;
-        }
-    }
-    ofstream photonsStream(name + "/photons.csv");
-    photonsStream <<
-            "MET sec,Energy MeV,RA degrees,DEC degrees,Error degrees,Class,Conversion Type" << endl;
-    photonsStream.setf(ios::fixed, ios::floatfield);
-    // photonsStream.precision(2);
-    for (const auto& photon : allPhotons) {
-        photonsStream << photon.time << "," << photon.energy << "," << photon.location.ra << ",";
-        photonsStream << photon.location.dec << "," << photon.location.error << ",";
-        
-        switch (photon.eventClass) {
-            case GRFermiEventClassTransient:
-                photonsStream << "transient";
-                break;
-                
-            case GRFermiEventClassSource:
-                photonsStream << "source";
-                break;
-                
-            case GRFermiEventClassClean:
-                photonsStream << "clean";
-                break;
-                
-            case GRFermiEventClassUltraclean:
-                photonsStream << "ultraclean";
-                break;
-                
-            default:
-                break;
-        }
-        photonsStream << ",";
-        
-        switch (photon.conversionType) {
-            case GRFermiConversionTypeFront:
-                photonsStream << "front";
-                break;
-                
-            case GRFermiConversionTypeBack:
-                photonsStream << "back";
-                break;
-                
-            default:
-                break;
-        }
-        photonsStream << endl;
-    }
-    photonsStream.close();
+    writePhotons();
+    writePsfs();
     
     for (int i = 0; i < backgroundQuery.events.size(); i++) {
         GRFermiLATPhoton photon = backgroundQuery.events[i];
@@ -243,8 +185,42 @@ void GRBurst::read() {
     for (int i = 0; i < gevPhotons.size(); i++) {
         gevDistribution.values.push_back(gevPhotons[i].time - (time + startOffset));
     }
-        
+    
     error = GRBurstErrorOk;
+}
+
+void GRBurst::writePhotons() {
+    vector<GRFermiLATPhoton> allPhotons;
+    for (const auto& photon : mevPhotons) {
+        allPhotons.push_back(photon);
+    }
+    for (const auto& photon : gevPhotons) {
+        allPhotons.push_back(photon);
+    }
+    sort(allPhotons.begin(), allPhotons.end());
+    
+    if (mkdir(name.c_str(), S_IRWXU ^ S_IRWXG ^ S_IRWXO) == -1) {
+        if (errno != EEXIST) {
+            error = GRBurstErrorMkdirFailed;
+        }
+    }
+    ofstream photonsStream(name + "/photons.csv");
+    photonsStream << "MET sec,Energy MeV,RA degrees,DEC degrees,Error degrees,Class,Conversion Type,Relative exposure" << endl;
+    photonsStream.setf(ios::fixed, ios::floatfield);
+    for (const auto& photon : allPhotons) {
+        photonsStream << photon.time << "," << photon.energy << "," << photon.location.ra << "," << photon.location.dec << "," << photon.location.error << "," << GRFermiEventClassDescriptions[photon.eventClass] << "," << GRFermiConversionTypeDescriptions[photon.conversionType] << "," << query.exposureMaps[photon.eventClass][photon.conversionType].exposure(photon.energy, photon.location) << endl;
+    }
+    photonsStream.close();
+}
+
+void GRBurst::writePsfs() {
+    for (int eventClassIndex = 0; eventClassIndex < query.psfs.size(); ++eventClassIndex) {
+        for (int conversionTypeIndex = 0; conversionTypeIndex < query.psfs[eventClassIndex].size(); ++conversionTypeIndex) {
+            ofstream psfStream(name + "/psf_" + GRFermiEventClassDescriptions[eventClassIndex] + "_" + GRFermiConversionTypeDescriptions[conversionTypeIndex] + ".csv");
+            query.psfs[eventClassIndex][conversionTypeIndex].csvWrite(psfStream);
+            psfStream.close();
+        }
+    }
 }
 
 void GRBurst::evaluate() {

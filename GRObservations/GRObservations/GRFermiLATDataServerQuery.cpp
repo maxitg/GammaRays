@@ -664,7 +664,7 @@ void GRFermiLATDataServerQuery::readExposureMaps() {
             readExposures = new float[360*180*nrows];
             
             fits_read_pix(expcubeFile, TFLOAT, fpixel, 360*180*nrows, 0, readExposures, 0, &status);
-                        
+            
             for (int k = 0; k < nrows; k++) {
                 exposureMaps[i][j].exposures[k].resize(360);
                 for (int ra = 0; ra < 360; ra++) {
